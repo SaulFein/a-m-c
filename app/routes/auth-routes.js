@@ -4,9 +4,9 @@ module.exports = (router, models) => {
   let User = models.User;
   let Car = models.Car;
 
-  let basicHTTP = require(__dirname + '/../lib/basicHTTP.js');
+  let basicHTTP = require(__dirname + '/../../lib/basicHTTP.js');
   let jsonParser = require('body-parser').json();
-  let jwtAuth = require(__dirname + '/../lib/jwtAuth.js');
+  let jwtAuth = require(__dirname + '/../../lib/jwtAuth.js');
 
   let userId;
 
@@ -68,3 +68,4 @@ module.exports = (router, models) => {
           res.status(200).json({message: 'All Cars', data: cars});
         });
       })
+    };
