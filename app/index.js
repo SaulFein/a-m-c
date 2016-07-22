@@ -17,6 +17,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 let models = {};
 
 require(__dirname + '/models/car.js')(mongoose, models);
-// require(__dirname + '/User.js')(mongoose, models);
+require(__dirname + '/models/user.js')(mongoose, models);
 
 module.exports = models;
