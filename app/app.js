@@ -35,6 +35,6 @@
           //Redirect to addCar in all the other cases.
           .otherwise({redirectTo:'/'});
 
-          filepickerProvider.setKey('AynkfxksOQNSa83fviAQKz');
+          filepickerProvider.setKey('AS2OofL0jSaWHwlvlGpt4z');
 
   });

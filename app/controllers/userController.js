@@ -60,15 +60,13 @@ var userCtrl = angular.module('userCtrl', [])
   let userId = AuthService.getId();
   console.log("This is userId from userCtrl getCars" + userId);
   CarService.getCars(userId)
-    .then(function(res) {
-      // console.log("this is res.data from getCars User Control ", res.data)
-      // vm.cars = res.data.data;
-      // vm.curCar = vm.cars.inventory[vm.curPos];
-      // console.log("This is cur Car ", vm.curCar );
-      // console.log("This is cur Car ", vm.cars);
-    }, function(err) {
-      console.log(err);
-    });
+  .success(function(data){
+      console.log(JSON.stringify(data));
+      vm.cars = data;
+  })
+  .error(function(data) {
+      console.log('Error: ' + data);
+  });
 }
 //
     vm.signOut = function(){

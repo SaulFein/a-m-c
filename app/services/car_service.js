@@ -28,8 +28,7 @@ var CarService = angular.module('CarService', []);
           token: AuthService.getToken()
         }
       })
-      .then((res)=> {
-      })
+  
     };
 
     carService.getCar = function(data) {

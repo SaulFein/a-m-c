@@ -1,6 +1,6 @@
 'use strict';
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', function($scope, $window, $http, filepickerService, AuthService, CarService){
+addCtrl.controller('addCarController', function($scope, $window, $http, $location, filepickerService, AuthService, CarService){
     let url = 'http://localhost:3000/api/users/';
     var cUser = $window.localStorage.user;
     $scope.car = {};
@@ -11,23 +11,31 @@ addCtrl.controller('addCarController', function($scope, $window, $http, filepick
             token: AuthService.getToken()
           }
         })
-        .then((res) => {
-          carId = $window.localStorage.carId = res.data.data._id;
-          console.log(res);
-          console.log('this is userId submint' + cUser);
-          console.log('this is token submint' + $window.localStorage.token);
+        .success(function(data){
+            console.log(JSON.stringify(data));
+            //Clean the form to allow the user to create new cars
+            $scope.car = {};
         })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+        // .then((res) => {
+        //   // carId = $window.localStorage.carId = res.data._id;
+        //   console.log(res);
+        //   console.log('this is userId submint' + cUser);
+        //   console.log('this is token submint' + $window.localStorage.token);
+        // })
     };
     // $scope.createCar = function(){
     //     $http.post(url + cUser + '/inventory', $scope.car)
-    //         .success(function(data){
-    //             console.log(JSON.stringify(data));
-    //             //Clean the form to allow the user to create new cars
-    //             $scope.car = {};
-    //         })
-    //         .error(function(data) {
-    //             console.log('Error: ' + data);
-    //         });
+            // .success(function(data){
+            //     console.log(JSON.stringify(data));
+            //     //Clean the form to allow the user to create new cars
+            //     $scope.car = {};
+            // })
+            // .error(function(data) {
+            //     console.log('Error: ' + data);
+            // });
     // };
     //Single file upload, you can take a look at the options
     $scope.upload = function(){
@@ -62,7 +70,11 @@ addCtrl.controller('addCarController', function($scope, $window, $http, filepick
             }
         );
     };
-
+    $scope.checkToken = function() {
+      if(!$window.localStorage.token){
+        $location.path('/')
+      }
+    }
     // $scope.getCars = function(data){
     //   console.log("THISMOTHER FUCKER!-----------------")
     //   cUser = $window.localStorage.user

@@ -1,4 +1,4 @@
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-8 col-md-offset-2" ng-init="checkToken()">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="panel-title text-center">
@@ -6,6 +6,9 @@
             </h2>
         </div>
 
+        <button type="button" class="btn btn-default">
+          <a id="logout" href='#/inventory'>  Return to Inventory  </a>
+        </button>
         <div class="panel-body">
             <!-- The form to add cars information -->
             <form name ="addForm" novalidate>

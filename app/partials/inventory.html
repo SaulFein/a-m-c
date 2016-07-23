@@ -1,15 +1,26 @@
 <section ng-init="userCtrl.getCars(); userCtrl.checkToken()">
 
-  <h2 id="car-title">Make: {{userCtrl.curCar.make}}</h2>
-  <h2 id="car-model">Model: {{userCtrl.curCar.model}}</h2>
-
-<table>
+  <!-- <h2 id="car-title">Make: {{userCtrl.curCar.make}}</h2>
+  <h2 id="car-model">Model: {{userCtrl.curCar.model}}</h2> -->
+  <div ng-repeat="car in userCtrl.cars">
+      <div class="col-md-4 col-xs-6  col-sm-offset-0">
+      <div class="thumbnail">
+        <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', w:300, h:150} }}" />
+        <div class="caption text-center">
+          <h3>{{car.make}} {{car.model}}</h3>
+          <p><label>Year: </label> {{car.year}}</p>
+          <div class="text-right"><a ng-href="/#/detail/{{car._id}}" class="btn btn-danger" role="button">View</a> </div>
+        </div>
+      </div>
+      </div>
+  </div>
+<!-- <table>
   <tr data-ng-repeat="car in userCtrl.cars.inventory" class="scores">
     <td>{{car.make}}</td>
     <td>{{car.model}}</td>
     <td>{{car.year}}</td>
   </tr>
-</table>
+</table> -->
   <!-- <div id="answer-cont"> -->
   <!-- <div id="next-button" ng-show="carCtrl.showNextButton" ng-click="carCtrl.showNextButton = false; carCtrl.newQuestion()"name="button">next</div> -->
   <!-- </div> -->
