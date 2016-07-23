@@ -58,10 +58,11 @@ var userCtrl = angular.module('userCtrl', [])
   vm.getCars = function() {
   console.log("hit this getCars from User Controller! ======== ");
   let userId = AuthService.getId();
-  CarService.getCars()
+  console.log("This is userId from userCtrl getCars" + userId);
+  CarService.getCars(userId)
     .then(function(res) {
       // console.log("this is res.data from getCars User Control ", res.data)
-      vm.cars = res.data.data;
+      // vm.cars = res.data.data;
       // vm.curCar = vm.cars.inventory[vm.curPos];
       // console.log("This is cur Car ", vm.curCar );
       // console.log("This is cur Car ", vm.cars);
@@ -86,10 +87,10 @@ var userCtrl = angular.module('userCtrl', [])
 //     //     });
 //     // }
 //
-//     vm.checkToken = function() {
-//       if(!$window.localStorage.token){
-//         $location.path('/')
-//       }
-//     }
+    vm.checkToken = function() {
+      if(!$window.localStorage.token){
+        $location.path('/')
+      }
+    }
 
   }])

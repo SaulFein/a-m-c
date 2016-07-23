@@ -21,11 +21,15 @@ var CarService = angular.module('CarService', []);
     };
 
     carService.getCars = function(userId) {
+      console.log("car service get carCars hit " + userId)
+
       return $http.get(mainRoute + '/users/' + userId + '/inventory', {
         headers: {
           token: AuthService.getToken()
         }
-      });
+      })
+      .then((res)=> {
+      })
     };
 
     carService.getCar = function(data) {

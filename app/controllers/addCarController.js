@@ -1,6 +1,6 @@
 'use strict';
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', function($scope, $window, $http, filepickerService){
+addCtrl.controller('addCarController', function($scope, $window, $http, filepickerService, AuthService, CarService){
     let url = 'http://localhost:3000/api/users/';
     var cUser = $window.localStorage.user;
     $scope.car = {};
@@ -62,4 +62,14 @@ addCtrl.controller('addCarController', function($scope, $window, $http, filepick
             }
         );
     };
+
+    // $scope.getCars = function(data){
+    //   console.log("THISMOTHER FUCKER!-----------------")
+    //   cUser = $window.localStorage.user
+    //   console.log('This is current Car ' + vm.curCar);
+    //
+    //   vm.allCars = CarService.getCars(cUser);
+    //   vm.curCar = vm.allCars[vm.curCar];
+    //   console.log('This is current Car ' + vm.curCar);
+    // }
 });

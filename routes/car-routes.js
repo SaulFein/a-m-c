@@ -12,7 +12,7 @@ module.exports = (router, models) => {
          * Get route to retrieve all the cars.
          */
         router.route('/users/:user/inventory')
-          .get((req, res) => {
+          .get(jwtAuth, (req, res) => {
             //Query the DB and if no errors, send all the cars
             var query = Car.find({});
             query.exec(function(err, cars){
@@ -24,7 +24,7 @@ module.exports = (router, models) => {
         /*
          * Post route to save a new car into the DB.
          */
-        .post((req, res) => {
+        .post(jwtAuth, (req, res) => {
             //Creates a new car
             var newCar = new Car(req.body);
             //Save it into the DB.
@@ -37,13 +37,21 @@ module.exports = (router, models) => {
         /*
          * Get a single car based on id.
          */
-         router.route('/car/:id')
+         router.route('/users/:user/inventory/:car')
           .get((req, res) => {
-            Car.findById(req.params.id, function(err, car){
+            Car.findById(req.params.car, function(err, car){
                 if(err) res.send(err);
                 //If no errors, send it back to the client
                 res.json(car);
             });
         });
+        //  router.route('/car/:id')
+        //   .get((req, res) => {
+        //     Car.findById(req.params.id, function(err, car){
+        //         if(err) res.send(err);
+        //         //If no errors, send it back to the client
+        //         res.json(car);
+        //     });
+        // });
 
 };
