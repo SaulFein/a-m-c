@@ -1,18 +1,34 @@
+'use strict';
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', function($scope, $http, filepickerService){
+addCtrl.controller('addCarController', function($scope, $window, $http, filepickerService){
+    let url = 'http://localhost:3000/api/users/';
+    var cUser = $window.localStorage.user;
     $scope.car = {};
     //Send the newly created car to the server to store in the db
     $scope.createCar = function(){
-        $http.post('/car', $scope.car)
-            .success(function(data){
-                console.log(JSON.stringify(data));
-                //Clean the form to allow the user to create new cars
-                $scope.car = {};
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
+        $http.post(url + cUser + '/inventory', $scope.car, {
+          headers: {
+            token: AuthService.getToken()
+          }
+        })
+        .then((res) => {
+          carId = $window.localStorage.carId = res.data.data._id;
+          console.log(res);
+          console.log('this is userId submint' + cUser);
+          console.log('this is token submint' + $window.localStorage.token);
+        })
     };
+    // $scope.createCar = function(){
+    //     $http.post(url + cUser + '/inventory', $scope.car)
+    //         .success(function(data){
+    //             console.log(JSON.stringify(data));
+    //             //Clean the form to allow the user to create new cars
+    //             $scope.car = {};
+    //         })
+    //         .error(function(data) {
+    //             console.log('Error: ' + data);
+    //         });
+    // };
     //Single file upload, you can take a look at the options
     $scope.upload = function(){
         filepickerService.pick(

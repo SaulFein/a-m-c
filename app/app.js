@@ -28,10 +28,12 @@
             templateUrl: 'partials/home.html'
           })
           .when('/inventory', {
-            templateUrl: 'partials/inventory.html'
+            templateUrl: 'partials/inventory.html',
+            controllerAs: 'userCtrl',
+            controller: 'UserController'
           })
           //Redirect to addCar in all the other cases.
-          // .otherwise({redirectTo:'/'});
+          .otherwise({redirectTo:'/'});
 
           filepickerProvider.setKey('AynkfxksOQNSa83fviAQKz');
 

@@ -7,7 +7,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
-let models = require(__dirname + '/app/index.js');
+let models = require(__dirname + '/models/index.js');
 let publicRouter = express.Router();
 let apiRouter = express.Router();
 let config = require('./config/env.js');
@@ -16,9 +16,9 @@ let config = require('./config/env.js');
 app.use(morgan('dev'));
 
 
-require(__dirname + '/app/routes/auth-routes')(publicRouter, models);
-require(__dirname + '/app/routes/users-routes')(apiRouter, models);
-require(__dirname + '/app/routes/car-routes')(apiRouter, models);
+require(__dirname + '/routes/auth-routes')(publicRouter, models);
+require(__dirname + '/routes/users-routes')(apiRouter, models);
+require(__dirname + '/routes/car-routes')(apiRouter, models);
 
 
 // parse application/json and look for raw text
@@ -30,7 +30,7 @@ app.use('/', publicRouter);
 app.use('/api', apiRouter);
 app.use(morgan('dev'));
 // Static files
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/app'));
 
 // app.route('/car')
 //     .post(car.post)
