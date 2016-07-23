@@ -17,8 +17,8 @@ app.use(morgan('dev'));
 
 
 require(__dirname + '/app/routes/auth-routes')(publicRouter, models);
-// require(__dirname + '/app/routes/users-routes')(apiRouter, models);
-require(__dirname + '/app/routes/car-routes')(publicRouter, models);
+require(__dirname + '/app/routes/users-routes')(apiRouter, models);
+require(__dirname + '/app/routes/car-routes')(apiRouter, models);
 
 
 // parse application/json and look for raw text

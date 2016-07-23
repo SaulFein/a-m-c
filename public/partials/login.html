@@ -1,8 +1,8 @@
 <section>
   <h1>AMC</h1>
   <h4>AMC admin Login</h4>
-  <p class="error-message" ng-show="userctrl.ip">Invalid login!</p>
-  <form id="login-form" ng-submit="userctrl.signIn(user)">
+  <p class="error-message" ng-show="userCtrl.ip">Invalid login!</p>
+  <form id="login-form" ng-submit="userCtrl.signIn(user)">
     <input type="text" placeholder="username" value="username" ng-model="user.username" required/>
 
     <input type="password" placeholder="password" value="password" ng-model="user.password" required/>

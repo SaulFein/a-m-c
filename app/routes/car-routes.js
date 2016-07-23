@@ -11,7 +11,7 @@ module.exports = (router, models) => {
         /*
          * Get route to retrieve all the cars.
          */
-        router.route('/car')
+        router.route('/users/:user/inventory')
           .get((req, res) => {
             //Query the DB and if no errors, send all the cars
             var query = Car.find({});

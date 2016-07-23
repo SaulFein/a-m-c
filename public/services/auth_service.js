@@ -1,5 +1,5 @@
-module.exports = function(app) {
-  app.factory('AuthService', ['$http', '$window',function($http, $window) {
+var AuthService = angular.module('AuthService', []);
+  AuthService.factory('AuthService', ['$http', '$window',function($http, $window) {
     var token;
     var userId;
     var url = 'http://localhost:3000'
@@ -18,10 +18,12 @@ module.exports = function(app) {
       signOut(cb) {
         // token = null;
         // userId = null;
+        console.log('user signing out')
         delete $window.localStorage['token'];
         // $window.localStorage.token = null;
         $window.localStorage.user = null;
         if (cb) cb();
+
       },
       signIn(user, cb) {
         // token = null;
@@ -47,4 +49,3 @@ module.exports = function(app) {
     }
     return auth;
   }])
-};

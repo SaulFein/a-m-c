@@ -1,5 +1,6 @@
-module.exports = function(app) {
-  app.factory('ErrorService', function() {
+var ErrorService = angular.module('ErrorService', []);
+
+  ErrorService.factory('ErrorService', function() {
     var error;
     return function(newError) {
       if (newError === null) return error = null;
@@ -7,4 +8,3 @@ module.exports = function(app) {
       return error = newError;
     }
   })
-}

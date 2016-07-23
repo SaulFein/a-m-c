@@ -1,6 +1,10 @@
 var userCtrl = angular.module('userCtrl', [])
   userCtrl.controller('UserController',['AuthService', 'CarService', 'ErrorService', '$http', '$location','$window',
+  // userCtrl.controller('UserController',['AuthService', 'ErrorService', '$http', '$location','$window',
+
+  // function(AuthService, ErrorService, $http, $location, $window){
   function(AuthService, CarService, ErrorService, $http, $location, $window){
+
     let url = 'http://localhost:3000'
     const vm = this;
     vm.user = [];
@@ -46,31 +50,31 @@ var userCtrl = angular.module('userCtrl', [])
         } else {
           vm.error = ErrorService(null);
           console.log("signed in yay!!!!!!!!!!")
-          $location.path('/admin-view');
+          $location.path('/inventory');
         }
       })
     }
 
-//   vm.getCars = function() {
-//   console.log("hit this getCars from User Controller! ======== ");
-//   let userId = AuthService.getId();
-//   CarService.getCars()
-//     .then(function(res) {
-//       // console.log("this is res.data from getCars User Control ", res.data)
-//       vm.cars = res.data.data;
-//       // vm.curCar = vm.cars.inventory[vm.curPos];
-//       // console.log("This is cur Car ", vm.curCar );
-//       // console.log("This is cur Car ", vm.cars);
-//     }, function(err) {
-//       console.log(err);
-//     });
-// }
+  vm.getCars = function() {
+  console.log("hit this getCars from User Controller! ======== ");
+  let userId = AuthService.getId();
+  CarService.getCars()
+    .then(function(res) {
+      // console.log("this is res.data from getCars User Control ", res.data)
+      vm.cars = res.data.data;
+      // vm.curCar = vm.cars.inventory[vm.curPos];
+      // console.log("This is cur Car ", vm.curCar );
+      // console.log("This is cur Car ", vm.cars);
+    }, function(err) {
+      console.log(err);
+    });
+}
 //
-//     vm.signOut = function(){
-//       AuthService.signOut(() => {
-//         $location.path('/login')
-//       })
-//     }
+    vm.signOut = function(){
+      AuthService.signOut(() => {
+        $location.path('/login')
+      })
+    }
 //
 //     // vm.getCars = function() {
 //     //   let userId = AuthService.getId();

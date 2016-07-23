@@ -1,6 +1,10 @@
 //Main file
-(function(){
-  var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'angular-filepicker'])
+'use strict';
+
+
+  var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker'])
+
+
       app.config(function($routeProvider, filepickerProvider){
           //The route provider handles the client request to switch route
           $routeProvider.when('/addCar', {
@@ -17,15 +21,18 @@
           })
           .when('/login', {
             templateUrl: 'partials/login.html',
-            controller: 'userController'
+            controllerAs: 'userCtrl',
+            controller: 'UserController'
           })
           .when('/', {
             templateUrl: 'partials/home.html'
           })
+          .when('/inventory', {
+            templateUrl: 'partials/inventory.html'
+          })
           //Redirect to addCar in all the other cases.
-          .otherwise({redirectTo:'/'});
+          // .otherwise({redirectTo:'/'});
 
           filepickerProvider.setKey('AynkfxksOQNSa83fviAQKz');
 
   });
-})();
