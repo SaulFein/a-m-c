@@ -60,12 +60,32 @@ module.exports = (router, models) => {
 
     router.route('/inventory')
       .get((req, res) => {
-        Car.find((err, cars)=>{
-          if(err){
-            return res.json({message: err});
-          }
-          console.log("trying to get cars from auth routes")
-          res.status(200).json({message: 'All Cars', data: cars});
+        //Query the DB and if no errors, send all the cars
+        var query = Car.find({});
+        query.exec(function(err, cars){
+            if(err) res.send(err);
+            //If no errors, send them back to the client
+            res.json(cars);
         });
-      })
+    })
+
+    router.route('/inventory/:car')
+     .get((req, res) => {
+       Car.findById(req.params.car, function(err, car){
+           if(err) res.send(err);
+           //If no errors, send it back to the client
+           res.json(car);
+       });
+   });
+
+    // router.route('/inventory')
+    //   .get((req, res) => {
+    //     Car.find((err, cars)=>{
+    //       if(err){
+    //         return res.json({message: err});
+    //       }
+    //       console.log("trying to get cars from auth routes")
+    //       res.status(200).json({message: 'All Cars', data: cars});
+    //     });
+    //   })
     };

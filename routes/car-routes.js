@@ -38,20 +38,25 @@ module.exports = (router, models) => {
          * Get a single car based on id.
          */
          router.route('/users/:user/inventory/:car')
-          .get((req, res) => {
+          .get(jwtAuth, (req, res) => {
             Car.findById(req.params.car, function(err, car){
                 if(err) res.send(err);
                 //If no errors, send it back to the client
                 res.json(car);
+            })
+            .put(jwtAuth, (req, res) => {
+              Car.findByIdAndUpdate(req.params.car, req.body, {new: true}, (err, car) => {
+                if (err) {
+                  return res.send(err);
+                }
+                res.status(200).json({message: 'Updated car', data: car});
+              });
+            })
+            .delete(jwtAuth, (req, res) => {
+              Car.findByIdAndRemove(req.params.car, (err, car) => {
+                res.status(200).json({message: 'Deleted Car', data: car});
+              });
             });
         });
-        //  router.route('/car/:id')
-        //   .get((req, res) => {
-        //     Car.findById(req.params.id, function(err, car){
-        //         if(err) res.send(err);
-        //         //If no errors, send it back to the client
-        //         res.json(car);
-        //     });
-        // });
 
 };

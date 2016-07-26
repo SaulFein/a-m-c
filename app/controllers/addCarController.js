@@ -4,6 +4,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
     let url = 'http://localhost:3000/api/users/';
     var cUser = $window.localStorage.user;
     $scope.car = {};
+    let carId;
     //Send the newly created car to the server to store in the db
     $scope.createCar = function(){
         $http.post(url + cUser + '/inventory', $scope.car, {
@@ -19,24 +20,8 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         .error(function(data) {
             console.log('Error: ' + data);
         });
-        // .then((res) => {
-        //   // carId = $window.localStorage.carId = res.data._id;
-        //   console.log(res);
-        //   console.log('this is userId submint' + cUser);
-        //   console.log('this is token submint' + $window.localStorage.token);
-        // })
     };
-    // $scope.createCar = function(){
-    //     $http.post(url + cUser + '/inventory', $scope.car)
-            // .success(function(data){
-            //     console.log(JSON.stringify(data));
-            //     //Clean the form to allow the user to create new cars
-            //     $scope.car = {};
-            // })
-            // .error(function(data) {
-            //     console.log('Error: ' + data);
-            // });
-    // };
+
     //Single file upload, you can take a look at the options
     $scope.upload = function(){
         filepickerService.pick(
@@ -75,6 +60,38 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         $location.path('/')
       }
     }
+
+    $scope.updateCar = function(){
+        $http.put(url + cUser + '/inventory/' + carId, data {
+          headers: {
+            token: AuthService.getToken()
+          }
+        })
+        .success(function(data){
+            console.log(JSON.stringify(data));
+            //Clean the form to allow the user to create new cars
+            $scope.car = {};
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    };
+
+    $scope.deleteCar = function(){
+        $http.post(url + cUser + '/inventory', $scope.car, {
+          headers: {
+            token: AuthService.getToken()
+          }
+        })
+        .success(function(data){
+            console.log(JSON.stringify(data));
+            //Clean the form to allow the user to create new cars
+            $scope.car = {};
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    };
     // $scope.getCars = function(data){
     //   console.log("THISMOTHER FUCKER!-----------------")
     //   cUser = $window.localStorage.user

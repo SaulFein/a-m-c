@@ -50,23 +50,24 @@ var userCtrl = angular.module('userCtrl', [])
         } else {
           vm.error = ErrorService(null);
           console.log("signed in yay!!!!!!!!!!")
-          $location.path('/inventory');
+          $location.path('/admin-inventory');
         }
       })
     }
 
   vm.getCars = function() {
-  console.log("hit this getCars from User Controller! ======== ");
   let userId = AuthService.getId();
   console.log("This is userId from userCtrl getCars" + userId);
-  CarService.getCars(userId)
-  .success(function(data){
-      console.log(JSON.stringify(data));
-      vm.cars = data;
-  })
-  .error(function(data) {
-      console.log('Error: ' + data);
-  });
+    CarService.getCars(userId)
+    .success(function(data){
+        // console.log("Loading Cars!");
+        // console.log(JSON.stringify(data));
+        vm.cars = data;
+        $window.localStorage.cars = JSON.stringify(vm.cars);
+    })
+    .error(function(data) {
+        console.log('Error: ' + data);
+    });
 }
 //
     vm.signOut = function(){
@@ -92,3 +93,26 @@ var userCtrl = angular.module('userCtrl', [])
     }
 
   }])
+
+
+//For user side
+//   vm.getCars = function() {
+//   let userId = AuthService.getId();
+//   console.log("This is userId from userCtrl getCars" + userId);
+//   if(!$window.localStorage.cars){
+//     CarService.getCars(userId)
+//     .success(function(data){
+//         // console.log("Loading Cars!");
+//         // console.log(JSON.stringify(data));
+//         vm.cars = data;
+//         $window.localStorage.cars = JSON.stringify(vm.cars);
+//     })
+//     .error(function(data) {
+//         console.log('Error: ' + data);
+//     });
+//   } else {
+//     vm.cars = JSON.parse($window.localStorage.cars);
+//   //   console.log("This is vm.get cars " + vm.cars)
+//   //   return vm.cars;
+//   }
+// }
