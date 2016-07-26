@@ -62,7 +62,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
     }
 
     $scope.updateCar = function(){
-        $http.put(url + cUser + '/inventory/' + carId, data {
+        $http.put(url + cUser + '/inventory/' + carId, data, {
           headers: {
             token: AuthService.getToken()
           }
@@ -77,21 +77,21 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         });
     };
 
-    $scope.deleteCar = function(){
-        $http.post(url + cUser + '/inventory', $scope.car, {
-          headers: {
-            token: AuthService.getToken()
-          }
-        })
-        .success(function(data){
-            console.log(JSON.stringify(data));
-            //Clean the form to allow the user to create new cars
-            $scope.car = {};
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-    };
+    // $scope.deleteCar = function(){
+    //     $http.post(url + cUser + '/inventory', $scope.car, {
+    //       headers: {
+    //         token: AuthService.getToken()
+    //       }
+    //     })
+    //     .success(function(data){
+    //         console.log(JSON.stringify(data));
+    //         //Clean the form to allow the user to create new cars
+    //         $scope.car = {};
+    //     })
+    //     .error(function(data) {
+    //         console.log('Error: ' + data);
+    //     });
+    // };
     // $scope.getCars = function(data){
     //   console.log("THISMOTHER FUCKER!-----------------")
     //   cUser = $window.localStorage.user

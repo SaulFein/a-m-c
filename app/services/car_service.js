@@ -30,13 +30,13 @@ var CarService = angular.module('CarService', []);
 
     };
 
-    carService.getCar = function(data) {
-      return $http.get(mainRoute + '/users/' + data._id + '/inventory/' + data.carId, {
-        headers: {
-          token: AuthService.getToken()
-        }
-      });
-    };
+    // carService.getCar = function(data) {
+    //   return $http.get(mainRoute + '/users/' + data._id + '/inventory/' + data.carId, {
+    //     headers: {
+    //       token: AuthService.getToken()
+    //     }
+    //   });
+    // };
 
 
     carService.updateCar = function(data, carId) {

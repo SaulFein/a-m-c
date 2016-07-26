@@ -12,7 +12,7 @@ module.exports = (router, models) => {
          * Get route to retrieve all the cars.
          */
         router.route('/users/:user/inventory')
-          .get(jwtAuth, (req, res) => {
+          .get((req, res) => {
             //Query the DB and if no errors, send all the cars
             var query = Car.find({});
             query.exec(function(err, cars){
@@ -43,6 +43,7 @@ module.exports = (router, models) => {
                 if(err) res.send(err);
                 //If no errors, send it back to the client
                 res.json(car);
+              });
             })
             .put(jwtAuth, (req, res) => {
               Car.findByIdAndUpdate(req.params.car, req.body, {new: true}, (err, car) => {
@@ -57,6 +58,6 @@ module.exports = (router, models) => {
                 res.status(200).json({message: 'Deleted Car', data: car});
               });
             });
-        });
+      
 
 };

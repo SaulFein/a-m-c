@@ -21,6 +21,7 @@
           })
           .when('/detail/:id', {
               templateUrl: 'partials/detail.html',
+              // controllerAs: 'detailCtrl',
               controller: 'detailController'
           })
           .when('/login', {
