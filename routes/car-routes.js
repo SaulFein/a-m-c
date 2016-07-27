@@ -55,9 +55,12 @@ module.exports = (router, models) => {
             })
             .delete(jwtAuth, (req, res) => {
               Car.findByIdAndRemove(req.params.car, (err, car) => {
+                if (err) {
+                  return res.send(err);
+                }
                 res.status(200).json({message: 'Deleted Car', data: car});
               });
             });
-      
+
 
 };

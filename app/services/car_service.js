@@ -49,11 +49,7 @@ var CarService = angular.module('CarService', []);
     };
 
     carService.deleteCar = function(data) {
-      return $http.delete(mainRoute + '/users/' + data._id + '/inventory/' + data.carId, {
-        headers: {
-          token: AuthService.getToken()
-        }
-      });
+      return $http.delete(mainRoute + '/users/' + data._id + '/inventory/' + data.carId);
     };
 
     carService.getId = function(){

@@ -1,10 +1,12 @@
 'use strict';
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', function($scope, $window, $http, $location, filepickerService, AuthService, CarService){
+addCtrl.controller('addCarController', function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService){
     let url = 'http://localhost:3000/api/users/';
     var cUser = $window.localStorage.user;
     $scope.car = {};
     let carId;
+    var id = $routeParams.id;
+
     //Send the newly created car to the server to store in the db
     $scope.createCar = function(){
         $http.post(url + cUser + '/inventory', $scope.car, {
@@ -77,21 +79,22 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         });
     };
 
-    // $scope.deleteCar = function(){
-    //     $http.post(url + cUser + '/inventory', $scope.car, {
-    //       headers: {
-    //         token: AuthService.getToken()
-    //       }
-    //     })
-    //     .success(function(data){
-    //         console.log(JSON.stringify(data));
-    //         //Clean the form to allow the user to create new cars
-    //         $scope.car = {};
-    //     })
-    //     .error(function(data) {
-    //         console.log('Error: ' + data);
-    //     });
-    // };
+    $scope.deleteCar = function(data){
+      console.log("this is deleteCar from aCC ", data)
+        $http.delete(url + cUser + '/inventory/' + id, {
+          headers: {
+            token: AuthService.getToken()
+          }
+        })
+        .success(function(data){
+            console.log(JSON.stringify(data));
+            //Clean the form to allow the user to create new cars
+            $scope.car = {};
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    };
     // $scope.getCars = function(data){
     //   console.log("THISMOTHER FUCKER!-----------------")
     //   cUser = $window.localStorage.user

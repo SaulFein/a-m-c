@@ -11,7 +11,7 @@
               templateUrl: 'partials/addCar.html',
               controller: 'addCarController'
           })
-          .when('/editCar', {
+          .when('/editCar/:id', {
               templateUrl: 'partials/editCar.html',
               controller: 'addCarController'
           })
