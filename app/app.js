@@ -11,10 +11,6 @@
               templateUrl: 'partials/addCar.html',
               controller: 'addCarController'
           })
-          .when('/editCar/:id', {
-              templateUrl: 'partials/editCar.html',
-              controller: 'addCarController'
-          })
           .when('/gallery', {
               templateUrl: 'partials/gallery.html',
               controller: 'galleryController'
@@ -22,7 +18,7 @@
           .when('/detail/:id', {
               templateUrl: 'partials/detail.html',
               // controllerAs: 'detailCtrl',
-              controller: 'detailController'
+              controller: 'addCarController'
           })
           .when('/login', {
             templateUrl: 'partials/login.html',

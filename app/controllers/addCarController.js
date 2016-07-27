@@ -24,7 +24,58 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         });
     };
 
-    //Single file upload, you can take a look at the options
+    $scope.updateCar = function(){
+        $http.put(url + cUser + '/inventory/' + id, $scope.car, {
+          headers: {
+            token: AuthService.getToken()
+          }
+        })
+        .success(function(data){
+            console.log(JSON.stringify(data));
+            //Clean the form to allow the user to create new cars
+            $scope.car = {};
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    };
+
+    $scope.deleteCar = function(data){
+      console.log("this is deleteCar from aCC ", data)
+        $http.delete(url + cUser + '/inventory/' + id, {
+          headers: {
+            token: AuthService.getToken()
+          }
+        })
+        .success(function(data){
+            console.log(JSON.stringify(data));
+            //Clean the form to allow the user to create new cars
+            $scope.car = {};
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    };
+
+    $scope.getCar = function() {
+      console.log("this is get detail controller " + id)
+      $http.get(url + cUser + '/inventory/' + id, {
+        headers: {
+          token: AuthService.getToken()
+        }
+      })
+      .success(function(data){
+          console.log(JSON.stringify(data));
+          $scope.car = data;
+      })
+      .error(function(data) {
+          console.log('Error: ' + data);
+      });
+    }
+///////////////////////////////////////////////////////////
+//////////////////file picker functions////////////////////
+
+//Single file upload, you can take a look at the options
     $scope.upload = function(){
         filepickerService.pick(
             {
@@ -57,51 +108,11 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             }
         );
     };
+
+    //////////////////////////////////////////////////
     $scope.checkToken = function() {
       if(!$window.localStorage.token){
         $location.path('/')
       }
     }
-
-    $scope.updateCar = function(){
-        $http.put(url + cUser + '/inventory/' + carId, data, {
-          headers: {
-            token: AuthService.getToken()
-          }
-        })
-        .success(function(data){
-            console.log(JSON.stringify(data));
-            //Clean the form to allow the user to create new cars
-            $scope.car = {};
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-    };
-
-    $scope.deleteCar = function(data){
-      console.log("this is deleteCar from aCC ", data)
-        $http.delete(url + cUser + '/inventory/' + id, {
-          headers: {
-            token: AuthService.getToken()
-          }
-        })
-        .success(function(data){
-            console.log(JSON.stringify(data));
-            //Clean the form to allow the user to create new cars
-            $scope.car = {};
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-    };
-    // $scope.getCars = function(data){
-    //   console.log("THISMOTHER FUCKER!-----------------")
-    //   cUser = $window.localStorage.user
-    //   console.log('This is current Car ' + vm.curCar);
-    //
-    //   vm.allCars = CarService.getCars(cUser);
-    //   vm.curCar = vm.allCars[vm.curCar];
-    //   console.log('This is current Car ' + vm.curCar);
-    // }
 });
