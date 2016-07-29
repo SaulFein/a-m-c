@@ -3,6 +3,7 @@
 var CarService = angular.module('CarService', []);
   app.factory('CarService', ['$http', 'AuthService','$window', function($http, AuthService, $window) {
     const mainRoute = "http://localhost:3000/api";
+    const pubRoute = "http://localhost:3000";
     let carId;
     let carService = {};
 
@@ -28,6 +29,11 @@ var CarService = angular.module('CarService', []);
         }
       })
 
+    };
+
+    carService.getCarsPublic = function() {
+      console.log("car service get carCarsPublic hit")
+      return $http.get(pubRoute + '/inventory')
     };
 
     // carService.getCar = function(data) {

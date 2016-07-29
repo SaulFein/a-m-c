@@ -15,6 +15,10 @@
               templateUrl: 'partials/gallery.html',
               controller: 'galleryController'
           })
+          .when('/car/:id', {
+            templateUrl: 'partials/car-view.html',
+            controller: 'detailController'
+          })
           .when('/detail/:id', {
               templateUrl: 'partials/detail.html',
               // controllerAs: 'detailCtrl',

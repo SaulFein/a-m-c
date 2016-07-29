@@ -1,0 +1,28 @@
+<div class="col-md-8 col-md-offset-2" ng-init="getCar();">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title text-center"><span class="glyphicon glyphicon-user"></span> Car details </h2>
+        </div>
+
+        <div class="text-right"><a href="/#/gallery" class="btn btn-danger" role="button">Return to Gallery</a> </div>
+
+        <div class="panel-body text-center">
+            <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', w:500} }}" />
+            <h2>{{car.make}} {{car.model}}</h2>
+            <hr />
+            <p class="text-left"><label>Year: </label> {{car.year}}</p>
+            <p class="text-left"><label>Color: </label> {{car.color}}</p>
+            <!-- Only if there are other pictures -->
+            <div ng-if="car.morePictures">
+                <h3> More Pictures <h3>
+                <div ng-repeat="picture in car.morePictures">
+                    <div class="col-md-{{12 / car.morePictures.length}}">
+                        <a ng-href="{{picture.url}}" class="thumbnail">
+                          <img ng-src="{{picture.url | fpConvert: {filter:'sharpen', w:500} }}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 <!-- view the gallery of all the cars in the db -->
-<div class="row">
+<div class="row" ng-init="getCars();">
 <div ng-repeat="car in cars">
     <div class="col-md-4 col-xs-6  col-sm-offset-0">
     <div class="thumbnail">
@@ -7,7 +7,7 @@
       <div class="caption text-center">
         <h3>{{car.make}} {{car.model}}</h3>
         <p><label>Year: </label> {{car.year}}</p>
-        <div class="text-right"><a ng-href="/#/detail/{{car._id}}" class="btn btn-danger" role="button">View</a> </div>
+        <div class="text-right"><a ng-href="/#/car/{{car._id}}" class="btn btn-danger" role="button">View</a> </div>
       </div>
     </div>
     </div>
