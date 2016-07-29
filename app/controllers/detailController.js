@@ -79,6 +79,7 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
           }
         })
         .success(function(data){
+          filepickerService.remove(data);
             console.log(JSON.stringify(data));
             //Clean the form to allow the user to create new cars
             $scope.car = {};
