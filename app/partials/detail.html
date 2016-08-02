@@ -18,11 +18,12 @@
               <p class="text-left"><label>Year: </label> {{car.year}}</p>
               <p class="text-left"><label>Color: </label> {{car.color}}</p>
               <!-- Only if there are other pictures -->
-              <div ng-if="car.morePictures">
+              <div ng-if="car.morePictures" class="thumbnailpics">
                   <h3> More Pictures <h3>
                   <div ng-repeat="picture in car.morePictures">
-                      <div class="col-md-{{12 / car.morePictures.length}}">
-                          <a ng-href="{{picture.url}}" class="thumbnail">
+                      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                      <!-- <div class="col-md-{{12 / car.morePictures.length}}"> -->
+                          <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal">
                             <img ng-src="{{picture.url | fpConvert: {filter:'sharpen', w:500} }}">
                           </a>
                       </div>
