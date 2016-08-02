@@ -1,12 +1,15 @@
 var userCtrl = angular.module('userCtrl', [])
+  // userCtrl.controller('UserController',['AuthService', 'CarService', 'ErrorService', 'pwCheck', '$http', '$location','$window',
   userCtrl.controller('UserController',['AuthService', 'CarService', 'ErrorService', '$http', '$location','$window',
-  // userCtrl.controller('UserController',['AuthService', 'ErrorService', '$http', '$location','$window',
 
-  // function(AuthService, ErrorService, $http, $location, $window){
+  // function(AuthService, CarService, ErrorService, pwCheck, $http, $location, $window){
   function(AuthService, CarService, ErrorService, $http, $location, $window){
+
 
     // let url = 'http://localhost:3000'
     const vm = this;
+    vm.pw1 = 'password';
+    vm.newUser = {};
     vm.user = [];
     vm.cars = [];
     vm.curPos = 0;
@@ -16,9 +19,10 @@ var userCtrl = angular.module('userCtrl', [])
     vm.ip = false; //ip = invalid password
 
     vm.createUser = function(user) {
-      console.log("attempting to sign in ", user)
+      let userId = AuthService.getId();
+      // console.log("attempting to sign in ", user)
       // $http.post(url + '/signup', user, {
-      $http.post('/signup', user, {
+      $http.post('api/users/'+ userId +'/signup', user, {
         headers: {
           token: AuthService.getToken()
         }
@@ -29,15 +33,16 @@ var userCtrl = angular.module('userCtrl', [])
           console.log("Then CU res.data ", res.data);
           vm.user.push(res.data);
           vm.newUser = null;
-          console.log("local Token " + $window.localStorage.token)
+          // console.log("local Token " + $window.localStorage.token)
 
           console.log("resdata Token " + res.data.token)
-          token = $window.localStorage.token = res.data.token;
+          // token = $window.localStorage.token = res.data.token;
           // console.log("VM Creat USER TOKEN " + token)
-          $location.path('/login');
+          // $location.path('/login');
         } else {
           vm.uae = true;
-          token = $window.localStorage.token = res.data.token;
+          console.log('username already exists!')
+          // token = $window.localStorage.token = res.data.token;
         }
       });
     };

@@ -2,27 +2,50 @@
 'use strict';
 
 
-  var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker'])
+  var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'pwCheck'])
+  // var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker'])
+    angular.module('pwCheck', [])
+    .directive('pwCheck', [function () {
+      return {
+          require: 'ngModel',
+          link: function (scope, elem, attrs, ctrl) {
+              var firstPassword = '#' + attrs.pwCheck;
+              elem.add(firstPassword).on('keyup', function () {
+                  scope.$apply(function () {
+                      // console.info(elem.val() === $(firstPassword).val());
+                      ctrl.$setValidity('pwmatch', elem.val() === $(firstPassword).val());
+                  });
+              });
+          },
+          controllerAs: 'userCtrl',
+          controller: 'UserController'
+
+      }
+    }]);
 
 
       app.config(function($routeProvider, filepickerProvider){
           //The route provider handles the client request to switch route
           $routeProvider.when('/addCar', {
-              templateUrl: 'partials/addCar.html',
-              controller: 'addCarController'
+            templateUrl: 'partials/addCar.html',
+            controller: 'addCarController'
+          })
+          .when('/addUser', {
+            templateUrl: 'partials/addUser.html',
+            controllerAs: 'userCtrl',
+            controller: 'UserController'
           })
           .when('/gallery', {
-              templateUrl: 'partials/gallery.html',
-              controller: 'galleryController'
+            templateUrl: 'partials/gallery.html',
+            controller: 'galleryController'
           })
           .when('/car/:id', {
             templateUrl: 'partials/car-view.html',
             controller: 'detailController'
           })
           .when('/detail/:id', {
-              templateUrl: 'partials/detail.html',
-              // controllerAs: 'detailCtrl',
-              controller: 'addCarController'
+            templateUrl: 'partials/detail.html',
+            controller: 'addCarController'
           })
           .when('/login', {
             templateUrl: 'partials/login.html',

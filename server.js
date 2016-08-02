@@ -16,7 +16,7 @@ let config = require('./config/env.js');
 app.use(morgan('dev'));
 
 
-require(__dirname + '/routes/auth-routes')(publicRouter, models);
+require(__dirname + '/routes/pub-routes')(publicRouter, models);
 require(__dirname + '/routes/users-routes')(apiRouter, models);
 require(__dirname + '/routes/car-routes')(apiRouter, models);
 

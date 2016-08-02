@@ -12,7 +12,7 @@
 
 
           <div class="panel-body text-center">
-              <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', w:500} }}" />
+              <img class="main-image" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}" />
               <h2>{{car.make}} {{car.model}}</h2>
               <hr />
               <p class="text-left"><label>Year: </label> {{car.year}}</p>
@@ -21,10 +21,10 @@
               <div ng-if="car.morePictures" class="thumbnailpics">
                   <h3> More Pictures <h3>
                   <div ng-repeat="picture in car.morePictures">
-                      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                      <div class="col-lg-2 col-sm-3 col-xs-4" id="fit-thumb">
                       <!-- <div class="col-md-{{12 / car.morePictures.length}}"> -->
                           <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal">
-                            <img ng-src="{{picture.url | fpConvert: {filter:'sharpen', w:500} }}">
+                            <img class="thumb-nails" ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
                           </a>
                       </div>
                   </div>

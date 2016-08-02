@@ -3,9 +3,9 @@
   <h4>AMC admin Login</h4>
   <p class="error-message" ng-show="userCtrl.ip">Invalid login!</p>
   <form id="login-form" ng-submit="userCtrl.signIn(user)">
-    <input type="text" placeholder="username" value="username" ng-model="user.username" required/>
+    <input type="text" placeholder="username" ng-model="user.username" required/>
 
-    <input type="password" placeholder="password" value="password" ng-model="user.password" required/>
+    <input type="password" placeholder="password" ng-model="user.password" required/>
 
     <button id="login-button" type="submit">Login</button>
   </form>

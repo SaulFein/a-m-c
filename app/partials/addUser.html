@@ -1,0 +1,34 @@
+<div class="col-md-8 col-md-offset-2" ng-init="userCtrl.checkToken()">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title text-center">
+                <span class="glyphicon glyphicon-user"></span>Add User Form
+            </h2>
+        </div>
+
+        <button type="button" class="btn btn-default">
+          <a id="logout" href='#/admin-inventory'>  Return to Inventory  </a>
+        </button>
+        <div class="panel-body">
+            <!-- The form to add user -->
+            <form name ="addForm" ng-submit="userCtrl.createUser(user)"novalidate>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" placeholder="Username" ng-model="user.username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="pw1" class="form-control" placeholder="Password" ng-model="pw1" required>
+                </div>
+                <div class="form-group">
+                    <label for="pw2">Confirm Password</label>
+                    <!-- <input type="password" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" class="form-control" placeholder="Confirm Password"> -->
+
+                    <input type="password" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" class="form-control" placeholder="Confirm Password"required>
+                  <div class="msg-block" ng-show="myForm.$error"> <span class="msg-error" ng-show="myForm.pw2.$error.pwmatch">Passwords don't match.</span></div>
+                </div>
+                <button type="submit" class="btn btn-danger btn-block">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

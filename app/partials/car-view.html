@@ -7,7 +7,7 @@
         <div class="text-right"><a href="/#/gallery" class="btn btn-danger" role="button">Return to Gallery</a> </div>
 
         <div class="panel-body text-center">
-            <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', w:500} }}" />
+          <img class="main-image" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}" />
             <h2>{{car.make}} {{car.model}}</h2>
             <hr />
             <p class="text-left"><label>Year: </label> {{car.year}}</p>
