@@ -2,13 +2,13 @@
 
 var CarService = angular.module('CarService', []);
   app.factory('CarService', ['$http', 'AuthService','$window', function($http, AuthService, $window) {
-    const mainRoute = "http://localhost:3000/api";
-    const pubRoute = "http://localhost:3000";
+    // const mainRoute = "http://localhost:3000/api";
+    // const pubRoute = "http://localhost:3000";
     let carId;
     let carService = {};
 
     carService.createCar = function(data) {
-      return $http.post(mainRoute + '/users/' + data._id + '/inventory', data, {
+      return $http.post('/api/users/' + data._id + '/inventory', data, {
         headers: {
           token: AuthService.getToken()
         }
@@ -23,7 +23,7 @@ var CarService = angular.module('CarService', []);
 
     carService.getCars = function(userId) {
       console.log("car service get carCars hit " + userId)
-      return $http.get(mainRoute + '/users/' + userId + '/inventory', {
+      return $http.get('/api/users/' + userId + '/inventory', {
         headers: {
           token: AuthService.getToken()
         }
@@ -33,7 +33,7 @@ var CarService = angular.module('CarService', []);
 
     carService.getCarsPublic = function() {
       console.log("car service get carCarsPublic hit")
-      return $http.get(pubRoute + '/inventory')
+      return $http.get('/inventory')
     };
 
     // carService.getCar = function(data) {
@@ -47,7 +47,7 @@ var CarService = angular.module('CarService', []);
 
     carService.updateCar = function(data, carId) {
       console.log(carId)
-      return $http.put(mainRoute + '/users/' + data._id + '/inventory/' + carId, data, {
+      return $http.put('/api/users/' + data._id + '/inventory/' + carId, data, {
         headers: {
           token: AuthService.getToken()
         }
@@ -55,7 +55,7 @@ var CarService = angular.module('CarService', []);
     };
 
     carService.deleteCar = function(data) {
-      return $http.delete(mainRoute + '/users/' + data._id + '/inventory/' + data.carId);
+      return $http.delete('/api/users/' + data._id + '/inventory/' + data.carId);
     };
 
     carService.getId = function(){

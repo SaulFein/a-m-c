@@ -2,7 +2,7 @@ var AuthService = angular.module('AuthService', []);
   AuthService.factory('AuthService', ['$http', '$window',function($http, $window) {
     var token;
     var userId;
-    var url = 'http://localhost:3000'
+    // var url = 'http://localhost:3000'
     var auth = {
       createUser(user, cb) {
         cb || function() {};
@@ -30,7 +30,8 @@ var AuthService = angular.module('AuthService', []);
         // $window.localStorage.token = null;
         console.log('signIn from auth serv ', user)
         cb || function() {};
-        $http.post(url + '/login', {}, {
+        // $http.post(url + '/login', {}, {
+        $http.post('/login', {}, {
           headers: {
             authorization: 'Basic ' + btoa(user.username + ':' + user.password)
           }

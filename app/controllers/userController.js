@@ -5,7 +5,7 @@ var userCtrl = angular.module('userCtrl', [])
   // function(AuthService, ErrorService, $http, $location, $window){
   function(AuthService, CarService, ErrorService, $http, $location, $window){
 
-    let url = 'http://localhost:3000'
+    // let url = 'http://localhost:3000'
     const vm = this;
     vm.user = [];
     vm.cars = [];
@@ -17,7 +17,8 @@ var userCtrl = angular.module('userCtrl', [])
 
     vm.createUser = function(user) {
       console.log("attempting to sign in ", user)
-      $http.post(url + '/signup', user, {
+      // $http.post(url + '/signup', user, {
+      $http.post('/signup', user, {
         headers: {
           token: AuthService.getToken()
         }
