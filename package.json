@@ -4,6 +4,7 @@
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.0",
+    "bower": "^1.7.9",
     "browser-sync": "^2.13.0",
     "browserify": "^13.0.1",
     "dotenv": "^2.0.0",
@@ -19,6 +20,6 @@
     "morgan": "^1.7.0"
   },
   "scripts": {
-   "postinstall": "bower install"
- }  
+    "postinstall": "bower install"
+  }
 }
