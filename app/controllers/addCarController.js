@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; ///
 var addCtrl = angular.module('addCarCtrl', []);
 addCtrl.controller('addCarController', function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService){
     let url = 'http://localhost:3000/api/users/';
