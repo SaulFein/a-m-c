@@ -13,8 +13,8 @@ module.exports = (mongoose, models) => {
     password: {
       type: String,
       required: true
-    },
-    inventory: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Car' }]
+    }
+    // inventory: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Car' }]  //this is for population
   });
 
   UserSchema.pre('save', function(next) {

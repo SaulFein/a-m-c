@@ -2,26 +2,8 @@
 'use strict';
 
 
-  var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'pwCheck'])
-  // var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker'])
-    angular.module('pwCheck', [])
-    .directive('pwCheck', [function () {
-      return {
-          require: 'ngModel',
-          link: function (scope, elem, attrs, ctrl) {
-              var firstPassword = '#' + attrs.pwCheck;
-              elem.add(firstPassword).on('keyup', function () {
-                  scope.$apply(function () {
-                      // console.info(elem.val() === $(firstPassword).val());
-                      ctrl.$setValidity('pwmatch', elem.val() === $(firstPassword).val());
-                  });
-              });
-          },
-          controllerAs: 'userCtrl',
-          controller: 'UserController'
-
-      }
-    }]);
+  // var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'pwCheck'])
+  var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'ngPassword', 'ngMessages'])
 
 
       app.config(function($routeProvider, filepickerProvider){

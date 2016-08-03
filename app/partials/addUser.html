@@ -11,23 +11,43 @@
         </button>
         <div class="panel-body">
             <!-- The form to add user -->
-            <form name ="addForm" ng-submit="userCtrl.createUser(user)"novalidate>
+            <form name ="addForm" ng-submit="userCtrl.createUser(user)">
+
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" placeholder="Username" ng-model="user.username" required>
+                    <input type="text" class="form-control" placeholder="Username" name="username" ng-model="user.username" required>
+                      <div class="clearfix">
+                        <div ng-messages="addForm.username.$error" style="color:maroon" ng-if="addForm.$submitted || addForm.username.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                          <div ng-message="required" class="message slide-left">This field is required</div>
+                        </div>
+                      </div>
                 </div>
+
+
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="pw1" class="form-control" placeholder="Password" ng-model="pw1" required>
+                    <input type="password" class="form-control" placeholder="Password" name="newPassword" ng-model="user.password" required>
+                      <div class="clearfix">
+                        <div ng-messages="addForm.newPassword.$error" style="color:maroon" ng-if="addForm.$submitted || addForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                          <div ng-message="required" class="message slide-left">This field is required</div>
+                        </div>
+                      </div>
                 </div>
-                <div class="form-group">
-                    <label for="pw2">Confirm Password</label>
-                    <!-- <input type="password" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" class="form-control" placeholder="Confirm Password"> -->
 
-                    <input type="password" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" class="form-control" placeholder="Confirm Password"required>
-                  <div class="msg-block" ng-show="myForm.$error"> <span class="msg-error" ng-show="myForm.pw2.$error.pwmatch">Passwords don't match.</span></div>
+
+                <div class="form-group">
+                    <label for="confirm">Confirm Password</label>
+                    <input type="password" class="form-control" match-password="newPassword" placeholder="Confirm Password" name="confirmPassword" ng-model="password.confirm" required>
+                      <div class="clearfix">
+                        <div ng-messages="addForm.confirmPassword.$error" style="color:maroon" ng-if="addForm.$submitted || addForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                          <div ng-message="required" class="message slide-left">This field is required</div>
+                          <div ng-message="passwordMatch" class="message slide-left">Your passwords do not match</div>
+                        </div>
+                     </div>
                 </div>
-                <button type="submit" class="btn btn-danger btn-block">Submit</button>
+
+
+                <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-danger btn-block">Submit</button>
             </form>
         </div>
     </div>

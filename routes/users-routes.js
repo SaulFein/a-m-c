@@ -52,7 +52,6 @@ module.exports = (router, models) => {
           }
           if (!user) {
             var newUser = new User(req.body);
-            console.log("This is newUser from user Routes " + newUser);
             newUser.username = req.body.username;
             newUser.password = req.body.password;
             newUser.save((err, user) => {

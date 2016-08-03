@@ -1,14 +1,14 @@
-var userCtrl = angular.module('userCtrl', [])
+var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
   // userCtrl.controller('UserController',['AuthService', 'CarService', 'ErrorService', 'pwCheck', '$http', '$location','$window',
   userCtrl.controller('UserController',['AuthService', 'CarService', 'ErrorService', '$http', '$location','$window',
 
   // function(AuthService, CarService, ErrorService, pwCheck, $http, $location, $window){
-  function(AuthService, CarService, ErrorService, $http, $location, $window){
+  function(AuthService, CarService, ErrorService, $http, $location, $window, ngMessages, ngPassword){
 
 
     // let url = 'http://localhost:3000'
     const vm = this;
-    vm.pw1 = 'password';
+    // vm.pw1 = 'password';
     vm.newUser = {};
     vm.user = [];
     vm.cars = [];
@@ -29,7 +29,7 @@ var userCtrl = angular.module('userCtrl', [])
       })
       .then(function(res){
         if(res.data.message !== "User Already Exists"){
-          console.log('Shitttttt ' + res.data.message);
+          console.log('CreateUser from UC message: ' + res.data.message);
           console.log("Then CU res.data ", res.data);
           vm.user.push(res.data);
           vm.newUser = null;
@@ -99,7 +99,6 @@ var userCtrl = angular.module('userCtrl', [])
     }
 
   }])
-
 
 //For user side
 //   vm.getCars = function() {
