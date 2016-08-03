@@ -17,7 +17,7 @@
                     <label for="username">Username</label>
                     <input type="text" class="form-control" placeholder="Username" name="username" ng-model="user.username" required>
                       <div class="clearfix">
-                        <div ng-messages="addForm.username.$error" style="color:maroon" ng-if="addForm.$submitted || addForm.username.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                        <div ng-messages="addForm.username.$error" style="color:red" ng-if="addForm.$submitted || addForm.username.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                           <div ng-message="required" class="message slide-left">This field is required</div>
                         </div>
                       </div>
@@ -28,7 +28,7 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" placeholder="Password" name="newPassword" ng-model="user.password" required>
                       <div class="clearfix">
-                        <div ng-messages="addForm.newPassword.$error" style="color:maroon" ng-if="addForm.$submitted || addForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                        <div ng-messages="addForm.newPassword.$error" style="color:red" ng-if="addForm.$submitted || addForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                           <div ng-message="required" class="message slide-left">This field is required</div>
                         </div>
                       </div>
@@ -39,15 +39,22 @@
                     <label for="confirm">Confirm Password</label>
                     <input type="password" class="form-control" match-password="newPassword" placeholder="Confirm Password" name="confirmPassword" ng-model="password.confirm" required>
                       <div class="clearfix">
-                        <div ng-messages="addForm.confirmPassword.$error" style="color:maroon" ng-if="addForm.$submitted || addForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                        <div ng-messages="addForm.confirmPassword.$error" style="color:red" ng-if="addForm.$submitted || addForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                           <div ng-message="required" class="message slide-left">This field is required</div>
                           <div ng-message="passwordMatch" class="message slide-left">Your passwords do not match</div>
                         </div>
                      </div>
                 </div>
 
-
                 <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-danger btn-block">Submit</button>
+                <button type="reset" ng-click="addForm.$setPristine();" class="btn btn-danger btn-block" ng-show="addForm.$submitted">Reset Form</button>
+
+                <div class="form-group">
+                  <div style="color:green" ng-show="addForm.$submitted">User added!</div>
+                  <!-- <div ng-messages="addForm.newPassword.$error" style="color:green" ng-show="addForm.$submitted" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <div ng-message="required" class="message slide-left">This field is required</div>
+                  </div> -->
+                </div>
             </form>
         </div>
     </div>

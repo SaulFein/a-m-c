@@ -9,8 +9,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
     // let url = 'http://localhost:3000'
     const vm = this;
     // vm.pw1 = 'password';
-    vm.newUser = {};
-    vm.user = [];
+    // vm.user = [];
     vm.cars = [];
     vm.curPos = 0;
     vm.curCar;
@@ -20,8 +19,6 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
 
     vm.createUser = function(user) {
       let userId = AuthService.getId();
-      // console.log("attempting to sign in ", user)
-      // $http.post(url + '/signup', user, {
       $http.post('api/users/'+ userId +'/signup', user, {
         headers: {
           token: AuthService.getToken()
@@ -31,8 +28,8 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
         if(res.data.message !== "User Already Exists"){
           console.log('CreateUser from UC message: ' + res.data.message);
           console.log("Then CU res.data ", res.data);
-          vm.user.push(res.data);
-          vm.newUser = null;
+          // vm.user.push(res.data);
+          vm.user = {};
           // console.log("local Token " + $window.localStorage.token)
 
           console.log("resdata Token " + res.data.token)
