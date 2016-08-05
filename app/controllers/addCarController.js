@@ -8,6 +8,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
     let carId;
     var id = $routeParams.id;
 
+
     //Send the newly created car to the server to store in the db
     $scope.createCar = function(){
         $http.post(url + cUser + '/inventory', $scope.car, {
@@ -78,7 +79,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         for (var i = 0; i < data.morePictures.length; i++){
           console.log("This is data.morePictures[" + i + "]." + data.morePictures[i].url);
         }
-
       })
       .error(function(data) {
           console.log('Error: ' + data);

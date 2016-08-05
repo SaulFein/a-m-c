@@ -36,3 +36,30 @@ img.thumb-nails {
     color:#F00;
     font-size:14px;
 }
+
+/*
+.image {
+      height:50em;
+
+  }
+  img.alignLeft {
+    width: 100%
+  }*/
+
+/****************/
+/*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }*/
+#next {
+  float: right;
+}
+
+#prev {
+  float: left
+}
+
+.sshow {
+  width: 100%;
+}
+
+#ss-contain {
+  height: 50em;
+}

@@ -1,3 +1,4 @@
+
 <div class="col-md-8 col-md-offset-2" ng-init="getCar();">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -17,12 +18,24 @@
                 <h3> More Pictures <h3>
                 <div ng-repeat="picture in car.morePictures">
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                        <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal">
+                      <a ng-click="setCurrentSlideIndex($index)" ng-href="" class="thumbnail" id="detailGal">
+
+                        <!-- <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal"> -->
                           <img ng-src="{{picture.url | fpConvert: {filter:'sharpen', w:500} }}">
                         </a>
                     </div>
                 </div>
             </div>
+            <div id="ss-contain">
+                <img ng-repeat="picture in car.morePictures" class="sshow" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{picture.url}}">
+                  <h1 id="prev"><a  href="" ng-click="prevSlide()"><</a></h1>
+                  <h1 id="next"><a  href="" ng-click="nextSlide()">></a></h1>
+
+            </div>
         </div>
+
+
+      </div>
+
     </div>
 </div>

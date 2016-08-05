@@ -6,3 +6,7 @@ bower_components
 config.js
 directives
 userControllerScopeConv.js
+ngFader.css
+unslider.css
+ngFader.js
+unslider-min.js
