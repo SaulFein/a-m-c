@@ -49,17 +49,49 @@ img.thumb-nails {
 /****************/
 /*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }*/
 #next {
-  float: right;
+  position:absolute;
+  bottom:15%;
+  right:10%;
 }
 
 #prev {
-  float: left
+  position:absolute;
+  bottom:15%;
+  left:10%;
+}
+#next a{
+  text-decoration: none;
+  color: grey;
+}
+
+#prev a{
+text-decoration: none;
+color: grey;
+}
+
+#next a:hover{
+  text-decoration: none;
+  color: white;
+}
+
+#prev a:hover{
+text-decoration: none;
+color: white;
 }
 
 .sshow {
   width: 100%;
 }
-
 #ss-contain {
-  height: 50em;
+  margin: auto;
+  overflow: hidden;
+  width: 90%;
+  border: 2px solid red;
+}
+
+#ss-contain img {
+  position: relative; /* allows repositioning */
+/*
+  max-height: 50%;
+  width: 100%;*/
 }
