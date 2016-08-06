@@ -29,6 +29,10 @@
                     <input type="text" class="form-control" placeholder="Color" ng-model="car.color" required>
                 </div>
                 <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" placeholder="Price" ng-model="car.price">
+                </div>
+                <div class="form-group">
                     <label for="vin">VIN</label>
                     <input type="text" class="form-control" placeholder="VIN" ng-model="car.vin">
                 </div>
@@ -60,7 +64,8 @@
                         </button>
                         <div style="margin-top:10px;">
                             <!-- Show the thumbnail only when the picture is uploaded -->
-                            <a href="{{car.picture.url}}" class="thumbnail" ng-if="car.picture">
+                            <!-- <a href="{{car.picture.url}}" class="thumbnail" ng-if="car.picture"> -->
+                            <a class="thumbnail" ng-if="car.picture">
                             <!-- the picture is rendered with width: 500 and sharpened -->
                             <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}">
                             </a>
@@ -75,7 +80,7 @@
                     </button>
                     <!-- Show the thumbanil of more pictures -->
                         <div style="margin-top:10px;" ng-repeat="picture in car.morePictures">     <div class="col-md-{{12 / car.morePictures.length}}">
-                            <a href="{{picture.url}}" class="thumbnail">
+                            <a class="thumbnail">
                               <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
                             </a>
                         </div>
@@ -84,6 +89,15 @@
                 </div>
                 <hr />
                 <button type="submit" class="btn btn-danger btn-block"  ng-click="createCar()" ng-disabled="car.$invalid || !car.picture">Submit</button>
+
+                  <!---form validation -->
+                <div class="form-group">
+                  <div style="color:green" ng-show="addForm.$submitted">Car added!</div>
+                  <!-- <div ng-messages="addForm.newPassword.$error" style="color:green" ng-show="addForm.$submitted" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <div ng-message="required" class="message slide-left">This field is required</div>
+                  </div> -->
+                </div>
+
             </form>
         </div>
     </div>

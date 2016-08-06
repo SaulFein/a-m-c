@@ -6,6 +6,7 @@ module.exports = (mongoose, models) => {
       model: {type: String, required: true},
       year: {type: String, required: true},
       color: {type: String, default: 'N/A'},
+      price: {type: String, default: 'N/A'},
       vin: {type: String, default: 'N/A'},
       highlights: {type: String, default: 'N/A'},
       description: {type: String, default: 'N/A'},

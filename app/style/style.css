@@ -86,7 +86,7 @@ color: white;
   margin: auto;
   overflow: hidden;
   width: 90%;
-  border: 2px solid red;
+  /*border: 2px solid red;*/
 }
 
 #ss-contain img {

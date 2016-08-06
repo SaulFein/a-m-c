@@ -46,7 +46,9 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
       console.log("this is deleteCar from aCC ", data)
       console.log("This is data.picture.url " + data.picture.url)
       var fpHolder = data.picture.url;
-      var fpMHolder = data.morePictures
+      if(data.morePictures){
+        var fpMHolder = data.morePictures;
+      }
         $http.delete(url + cUser + '/inventory/' + id, {
           headers: {
             token: AuthService.getToken()
@@ -54,8 +56,10 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         })
         .success(function(data){
           filepickerService.remove(fpHolder)
-          for(var i = 0; i < fpMHolder.length; i++) {
-            filepickerService.remove(fpMHolder[i].url);
+          if(fpMHolder){
+            for(var i = 0; i < fpMHolder.length; i++) {
+              filepickerService.remove(fpMHolder[i].url);
+            }
           }
             console.log(JSON.stringify(data));
             //Clean the form to allow the user to create new cars
@@ -76,8 +80,10 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
       .success(function(data){
         console.log(JSON.stringify(data));
         $scope.car = data;
-        for (var i = 0; i < data.morePictures.length; i++){
-          console.log("This is data.morePictures[" + i + "]." + data.morePictures[i].url);
+        if (data.morePictures) {
+          for (var i = 0; i < data.morePictures.length; i++){
+            console.log("This is data.morePictures[" + i + "]." + data.morePictures[i].url);
+          }
         }
       })
       .error(function(data) {

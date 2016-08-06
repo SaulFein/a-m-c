@@ -49,6 +49,7 @@
                 <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-danger btn-block">Submit</button>
                 <button type="reset" ng-click="addForm.$setPristine();" class="btn btn-danger btn-block" ng-show="addForm.$submitted">Reset Form</button>
 
+                <!---form validation -->
                 <div class="form-group">
                   <div style="color:green" ng-show="addForm.$submitted">User added!</div>
                   <!-- <div ng-messages="addForm.newPassword.$error" style="color:green" ng-show="addForm.$submitted" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
