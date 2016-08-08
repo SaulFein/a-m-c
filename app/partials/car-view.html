@@ -8,7 +8,12 @@
         <div class="text-right"><a href="/#/gallery" class="btn btn-danger" role="button">Return to Gallery</a> </div>
 
         <div class="panel-body text-center">
-          <img class="main-image" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}" />
+          <div id="ss-contain">
+              <img ng-repeat="picture in slides" class="sshow" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{picture.image}}">
+                <div id="prevbut"><h1 id="prev"><a  href="" ng-click="prevSlide()"><</a></h1></div>
+                  <div id="nextbut"><h1 id="next"><a  href="" ng-click="nextSlide()">></a></h1></div>
+          </div>
+          <!-- <img class="main-image" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}" /> -->
             <h2>{{car.make}} {{car.model}}</h2>
             <hr />
             <p class="text-left"><label>Year: </label> {{car.year}}</p>
@@ -16,20 +21,15 @@
             <!-- Only if there are other pictures -->
             <div ng-if="car.morePictures">
                 <h3> More Pictures <h3>
-                <div ng-repeat="picture in car.morePictures">
+                <div ng-repeat="picture in slides">
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
                       <a ng-click="setCurrentSlideIndex($index)" ng-href="" class="thumbnail" id="detailGal">
 
                         <!-- <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal"> -->
-                          <img ng-src="{{picture.url | fpConvert: {filter:'sharpen', w:500} }}">
+                          <img ng-src="{{picture.image | fpConvert: {filter:'sharpen', w:500} }}">
                         </a>
                     </div>
                 </div>
-            </div>
-            <div id="ss-contain">
-                <img ng-repeat="picture in car.morePictures" class="sshow" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{picture.url}}">
-                  <h1 id="prev"><a  href="" ng-click="prevSlide()"><</a></h1>
-                  <h1 id="next"><a  href="" ng-click="nextSlide()">></a></h1>
             </div>
         </div>
 

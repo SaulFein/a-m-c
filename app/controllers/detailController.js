@@ -31,6 +31,7 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
       .success(function(data){
           // console.log(JSON.stringify(data));
           $scope.car = data;
+          $scope.slides.push({image: data.picture.url, title: 'Main Image'});
           for (var i = 0; i < data.morePictures.length; i++){
             console.log(data.morePictures[i].url)
             $scope.slides.push({image: data.morePictures[i].url, title: 'Image ' + i});
