@@ -1,20 +1,38 @@
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-8 col-md-offset-2" ng-init="getCars()">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="panel-title text-center"><span class="glyphicon glyphicon-user"></span> Welcome to AMC </h2>
         </div>
         <!-- <div class="panel-body text-center"> -->
-          <div id="myCarousel" class="carousel slide" data-ride="carousel" ng-init="getCars()">
-            <!-- Indicators -->
-            <!-- <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol> -->
-            <ol class="carousel-indicators" ng-repeat="car in cars">
-              <li data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active:!$index}"></li>
-            </ol>
-            <div class="carousel-inner">
+
+            <div id="preview-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+              <!-- Slides -->
+              <div class="carousel-inner">
+                <div class="item" ng-repeat="car in cars" ng-class="{active:!$index}" >
+
+                <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
+                  <img ng-src="{{ car.picture.url }}" style="margin:auto">
+                </div>
+              </div>
+              <!-- end Slides -->
+
+              <!-- Controls -->
+              <a class="left carousel-control" ng-class="{'hide': cars.length == 0}" role="button" data-target="#preview-carousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" ng-class="{'hide': cars.length == 0}" role="button" data-target="#preview-carousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+              <ol class="carousel-indicators">
+                <li ng-repeat="car in cars" ng-class="{active:!$index}" data-target="#preview-carousel" data-slide-to="{{ $index }}" ></li>
+              </ol>
+              <!-- end Controls -->
+            </div>
+
+
+            <!-- <div class="carousel-inner">
               <div class="item" ng-class="{active:!$index}" ng-repeat="car in cars">
                 <img class="first-slide" src="{{car.picture.url}}" alt="First slide" style="margin:auto">
                 <div class="container">
@@ -23,8 +41,8 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            </div> -->
+            <!-- <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
             </a>
@@ -32,7 +50,6 @@
               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
-          </div>
+          </div> -->
         <!-- </div> -->
-    </div>
 </div>

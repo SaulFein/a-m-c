@@ -33,7 +33,7 @@
             controllerAs: 'userCtrl',
             controller: 'UserController'
           })
-          .when('/', {
+          .when('/home', {
             templateUrl: 'partials/home.html',
             controller: 'galleryController'
           })
@@ -43,7 +43,7 @@
             controller: 'UserController'
           })
           //Redirect to addCar in all the other cases.
-          .otherwise({redirectTo:'/'});
+          .otherwise({redirectTo:'/home'});
 
           filepickerProvider.setKey('AS2OofL0jSaWHwlvlGpt4z');
 
