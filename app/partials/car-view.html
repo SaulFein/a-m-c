@@ -8,11 +8,33 @@
         <div class="text-right"><a href="/#/gallery" class="btn btn-danger" role="button">Return to Gallery</a> </div>
 
         <div class="panel-body text-center">
-          <div id="ss-contain">
-              <img ng-repeat="picture in slides" class="sshow" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{picture.image}}">
-                <div id="prevbut"><h1 id="prev"><a  href="" ng-click="prevSlide()"><</a></h1></div>
-                  <div id="nextbut"><h1 id="next"><a  href="" ng-click="nextSlide()">></a></h1></div>
+
+          <div id="preview-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+            <!-- Slides -->
+            <div class="carousel-inner">
+              <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
+
+              <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
+                <img ng-src="{{ picture.image }}" style="margin:auto">
+              </div>
+            </div>
+            <!-- end Slides -->
+
+            <!-- Controls -->
+            <a class="left carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#preview-carousel" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#preview-carousel" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+            <ol class="carousel-indicators">
+              <li ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel" data-slide-to="{{ $index }}" ></li>
+            </ol>
+            <!-- end Controls -->
           </div>
+
           <!-- <img class="main-image" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}" /> -->
             <h2>{{car.make}} {{car.model}}</h2>
             <hr />
@@ -21,10 +43,9 @@
             <!-- Only if there are other pictures -->
             <div ng-if="car.morePictures">
                 <h3> More Pictures <h3>
-                <div ng-repeat="picture in slides">
+                <div ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel" data-slide-to="{{ $index }}" >
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                      <a ng-click="setCurrentSlideIndex($index)" ng-href="" class="thumbnail" id="detailGal">
-
+                      <a class="thumbnail" id="detailGal">
                         <!-- <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal"> -->
                           <img ng-src="{{picture.image | fpConvert: {filter:'sharpen', w:500} }}">
                         </a>
