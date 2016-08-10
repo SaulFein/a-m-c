@@ -7,6 +7,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
     $scope.car = {};
     let carId;
     var id = $routeParams.id;
+    $scope.car.morePictures = [];
 
 
     //Send the newly created car to the server to store in the db
@@ -34,8 +35,9 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         })
         .success(function(data){
             console.log(JSON.stringify(data));
+            $scope.getCar();
             //Clean the form to allow the user to create new cars
-            $scope.car = {};
+            // $scope.car = {};
         })
         .error(function(data) {
             console.log('Error: ' + data);
@@ -121,7 +123,30 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             },
       function(Blob){
                 console.log(JSON.stringify(Blob));
-                $scope.car.morePictures = Blob;
+                if(!$scope.car.morePictures){
+                  $scope.car.morePictures = Blob;
+                } else {
+                  for(var i = 0; i < Blob.length; i++){
+                    $scope.car.morePictures.push(Blob[i]);
+                  }
+                }
+                $scope.$apply();
+                console.log("THIS IS SCOPE.MOREPICUTERS " , $scope.car.morePictures);
+            }
+        );
+    };
+
+    $scope.uploadOne = function(){
+        filepickerService.pick(
+            {
+                mimetype: 'image/*',
+                language: 'en',
+                services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE','IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                openTo: 'IMAGE_SEARCH'
+            },
+      function(Blob){
+                console.log(JSON.stringify(Blob));
+                $scope.car.morePictures.push(Blob);
                 $scope.$apply();
             }
         );
@@ -131,6 +156,8 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
       var fpHolder = data.picture.url;
       filepickerService.remove(fpHolder);
       console.log(fpHolder + " has been removed!");
+      delete data.picture;
+
     }
 
     var getIndexIfObjWithOwnAttr = function(array, attr, value) {
@@ -144,13 +171,14 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
 
     $scope.removeMoreImage = function(image, data){
       var index = getIndexIfObjWithOwnAttr(data.morePictures, 'url', image);
-      // filepickerService.remove(image);
-      // console.log(image + " has been removed!");
       // var fpMHolder = data.morePictures;
       // var index = data.morePictures.url.indexOf(image);
       console.log("this is index: " + index)
       data.morePictures.splice(index, 1);
       console.log("data.morePictures after splice ", data.morePictures);
+      filepickerService.remove(image);
+      console.log(image + " has been removed!");
+
     }
 
     //////////////////////////////////////////////////
