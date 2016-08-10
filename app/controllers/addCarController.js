@@ -127,6 +127,32 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         );
     };
 
+    $scope.removeImage = function(data){
+      var fpHolder = data.picture.url;
+      filepickerService.remove(fpHolder);
+      console.log(fpHolder + " has been removed!");
+    }
+
+    var getIndexIfObjWithOwnAttr = function(array, attr, value) {
+      for(var i = 0; i < array.length; i++) {
+        if(array[i].hasOwnProperty(attr) && array[i][attr] === value) {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+    $scope.removeMoreImage = function(image, data){
+      var index = getIndexIfObjWithOwnAttr(data.morePictures, 'url', image);
+      // filepickerService.remove(image);
+      // console.log(image + " has been removed!");
+      // var fpMHolder = data.morePictures;
+      // var index = data.morePictures.url.indexOf(image);
+      console.log("this is index: " + index)
+      data.morePictures.splice(index, 1);
+      console.log("data.morePictures after splice ", data.morePictures);
+    }
+
     //////////////////////////////////////////////////
     $scope.checkToken = function() {
       if(!$window.localStorage.token){

@@ -101,9 +101,10 @@
                             <div style="margin-top:10px;">
                                 <!-- Show the thumbnail only when the picture is uploaded -->
                                 <a href="{{car.picture.url}}" class="thumbnail" ng-if="car.picture">
-                                <!-- the picture is rendered with width: 500 and sharpened -->
-                                <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}">
+                                  <!-- the picture is rendered with width: 500 and sharpened -->
+                                  <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}">
                                 </a>
+                                <button type="button" class="btn btn-default" data-ng-click="removeImage(car)"> Remove Image</button>
                             </div>
                         </div>
                     </div>
@@ -118,6 +119,7 @@
                                 <a href="{{picture.url}}" class="thumbnail">
                                   <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
                                 </a>
+                                <button type="button" class="btn btn-default" data-ng-click="removeMoreImage(picture.url, car)"> Remove Image</button>
                             </div>
                         </div>
                         </div>
