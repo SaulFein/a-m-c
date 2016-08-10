@@ -9,9 +9,10 @@
               <!-- Slides -->
               <div class="carousel-inner">
                 <div class="item" ng-repeat="car in cars" ng-class="{active:!$index}" >
-
+                  <a ng-href="/#/car/{{car._id}}">
                 <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
-                  <img ng-src="{{ car.picture.url }}" style="margin:auto">
+                    <img ng-src="{{ car.picture.url }}" style="margin:auto">
+                  </a>
                 </div>
               </div>
               <!-- end Slides -->
