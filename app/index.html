@@ -1,115 +1,135 @@
 <!DOCTYPE HTML>
 <html ng-app="app">
-<head>
-    <meta charset="utf-8">
-    <title>AMC</title>
-    <meta name="description" content="Car database">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="./style/style.css"/>
-    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css"/>
-    <!-- <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet"> -->
-
-    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
-
-    <!-- <link rel="stylesheet" href="./style/ngFader.css"/> -->
-
-
-
-    <!-- JS libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./bower_components/angular/angular.js"></script>
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"> </script>
-    <script src="./bower_components/angular-route/angular-route.js"></script>
-    <script src="./bower_components/filepicker-js/filepicker.js"></script>
-    <script src="./bower_components/angular-filepicker/dist/angular_filepicker.js"></script>
-    <script src="./bower_components/angular-password/angular-password.js"></script>
-    <script src="./bower_components/angular-messages/angular-messages.js"></script>
-    <script src="./bower_components/angular-touch/angular-touch.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-animate.min.js"></script> -->
-    <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
-    <!-- <script src="./bower_components/angular-animate/angular-animate.js"></script> -->
-
-    <!-- <script src="./ngFader.js"></script> -->
-
-
-
-
-
-
-
-
-    <!-- Angular files -->
-    <script src="./app.js"></script>
-    <!-- <script src="./config.js"></script> -->
-
-    <script src="./controllers/addCarController.js"></script>
-    <script src="./controllers/galleryController.js"></script>
-    <script src="./controllers/detailController.js"></script>
-    <script src="./controllers/userController.js"></script>
-    <script src="./services/auth_service.js"></script>
-    <script src="./services/error_service.js"></script>
-    <script src="./services/car_service.js"></script>
-    <!-- <script src="./directives/pw_directive.js"></script> -->
-
-
-
-
-
-
-</head>
-<body>
-<div class="container-full">
-    <!-- <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">AMC MEAN app</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right"> -->
-                <!-- <li role="presentation"><a href="/#/addCar">Add Car</a></li> -->
-                <!-- <li role="presentation"><a href="/#/gallery">Gallery</a></li>
-              </ul>
-            </div>
-        </div>
-    </nav> -->
-    <nav role="navigation" class="navbar navbar-default">
+  <head>
+      <meta charset="utf-8">
+      <title>AMC</title>
+      <meta name="description" content="Car database">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- CSS -->
+      <link rel="stylesheet" href="./style/style.css"/>
+      <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css"/>
+      <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+      <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+      <!-- JS libraries -->
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+      <script src="./bower_components/angular/angular.js"></script>
+      <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"> </script>
+      <script src="./bower_components/angular-route/angular-route.js"></script>
+      <script src="./bower_components/filepicker-js/filepicker.js"></script>
+      <script src="./bower_components/angular-filepicker/dist/angular_filepicker.js"></script>
+      <script src="./bower_components/angular-password/angular-password.js"></script>
+      <script src="./bower_components/angular-messages/angular-messages.js"></script>
+      <script src="./bower_components/angular-touch/angular-touch.js"></script>
+      <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+      <!-- Angular files -->
+      <script src="./app.js"></script>
+      <script src="./controllers/addCarController.js"></script>
+      <script src="./controllers/galleryController.js"></script>
+      <script src="./controllers/detailController.js"></script>
+      <script src="./controllers/userController.js"></script>
+      <script src="./services/auth_service.js"></script>
+      <script src="./services/error_service.js"></script>
+      <script src="./services/car_service.js"></script>
+  </head>
+  <body>
+    <div class="container-full">
+      <!-- Nav Section -->
+      <nav role="navigation" class="navbar navbar-default">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                <span class="sr-only">Welcome to AMC</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="#" class="navbar-brand">Authentic Motorcars</a>
+          <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only">Welcome to AMC</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="navbar-brand">Authentic Motorcars</a>
         </div>
         <!-- Collection of nav links and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#/home">Home</a></li>
-                <li><a href="#/gallery">Inventory</a></li>
-                <!-- <li><a href="#">Messages</a></li> -->
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/login">Login</a></li>
-            </ul>
+          <ul class="nav navbar-nav">
+            <li><a href="#/home">Home</a></li>
+            <li><a href="#/gallery">Inventory</a></li>
+            <!-- <li><a href="#">Messages</a></li> -->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#/login">Login</a></li>
+          </ul>
         </div>
-    </nav>
-    <!-- Here is where the partials will be displayed -->
-    <div ng-view>
+      </nav>
+      <!---------------------------------------------------->
+      <!-- Here is where the partials will be displayed -->
+        <div ng-view>
+        </div>
+        <!-------------------------------------------------->
+        <!-------------------------------------------------->
+        <div class="container-full">
+          <div class="row foot-contain">
+            <div class="col-xs-8 col-md-3 col-md-offset-2">
+              <p>Bavaria ipsum dolor sit amet Schmankal san, glei. Soi hoggd a Hoiwe Milli, Griasnoggalsubbm. Ebba Xaver vui huift vui, a Hoiwe. Griaß God beinand damischa bitt sodala singan. Obandln a ganze gwiss Weiznglasl nia need Hetschapfah Obazda oamoi ebba! Naa gwiss Schaung kost nix Steckerleis Habedehre, heid gfoids ma sagrisch guad? Maderln a noch da Giasinga.</p>
+            </div>
+            <div class="col-xs-8 col-md-3 col-md-offset-0">
+              <p>Hemad oans eam sei a fescha Bua naa Habedehre. Vo de lem und lem lossn a bissal des. Auf der Oim, da gibt’s koa Sünd des basd scho Schaung kost nix, Radler Greichats muass sodala Wiesn: Bussal damischa a fescha Bua Fünferl des is schee, Bradwurschtsemmal Mamalad! Fei Foidweg oa, Sauwedda amoi: Biazelt muass resch kloan, resch im Beidl gscheit.</p>
+            </div>
+            <div class="col-xs-8 col-md-3 col-md-offset-0">
+              <p>Radi wann griagd ma nacha wos z’dringa da an noch da Giasinga Heiwog, schüds nei. Biaschlegl Biazelt im Beidl ham, Charivari Sauwedda resch Heimatland mi griasd eich midnand dringma aweng! Lewakaas Biagadn i hab an Weibaleid hoam Leonhardifahrt gar nia need, Maibam! Ded do Lewakaas Brotzeit.</p>
+            </div>
+          </div>
+        </div>
 
-<!-- <div ng-controller="MainController">
-  fstack = {{fstack}}
-</div> -->
+
+        <!-------------------------------------------------->
+        <!-- Footer Section -->
+        <footer class="site-footer">
+          <div class="container">
+            <div class="row footer-title">
+              <div class="col-md-5">
+                <h4>Authentic Motorcars</h4>
+                <address>
+                  17351 E 70th Street<br>
+                  Redmond, WA 98052
+                </address>
+              </div>
+            </div>
+            <div class="bottom-footer">
+              <div class="col-md-5"><span class="glyphicon glyphicon-copyright-mark"></span> 2016 Authentic Motorcars</div>
+              <div class="col-md-7">
+                  <ul class="footer-nav">
+                    <li><a href="#/home">Home</a></li>
+                    <li><a href="#/gallery">Inventory</a></li>
+                    <li><a href="#/login">Login</a></li>
+                  </ul>
+              </div>
+            </div>
+        </div>
+      </footer>
+        <!-- <footer class="nav navbar-inverse navbar-fixed-bottom">
+          <div class="container">
+            <div class="navbar-text pull-left">
+              <p><span class="glyphicon glyphicon-copyright-mark"></span> 2016 Authentic Motorcars <p>
+            </div>
+        </div>
+      </footer> -->
+      <!---------------------------------------------------->
     </div>
-</div>
-</body>
+  </body>
 </html>
+
+<!--Old nav bar-->
+<!-- <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">AMC MEAN app</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right"> -->
+            <!-- <li role="presentation"><a href="/#/addCar">Add Car</a></li> -->
+            <!-- <li role="presentation"><a href="/#/gallery">Gallery</a></li>
+          </ul>
+        </div>
+    </div>
+</nav> -->
