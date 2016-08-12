@@ -162,11 +162,13 @@ color: white;
 
 /* centered columns styles */
 .row-centered {
-    text-align:center;
+    text-align:center !important;
+    display: inline-block;
+    margin-top: 30px;
 }
 .col-centered {
     display:inline-block;
-    float:none;
+    float:none !important;
     /* reset the text-align */
     text-align:left;
     /* inline-block space fix */
