@@ -162,13 +162,13 @@ color: white;
 
 /* centered columns styles */
 .row-centered {
-    text-align:center !important;
+    text-align:center;
     display: inline-block;
     margin-top: 30px;
 }
 .col-centered {
     display:inline-block;
-    float:none !important;
+    float:none;
     /* reset the text-align */
     text-align:left;
     /* inline-block space fix */
@@ -176,4 +176,18 @@ color: white;
 }
 .text-top {
   vertical-align: top;
+}
+
+.nav-style {
+  background-color: black;
+  padding: 15px 30px;
+}
+
+.header-style {
+  background-color: black;
+  padding: 15px;
+}
+
+a.navbar-brand.my-brand {
+  padding-bottom: 15px;
 }

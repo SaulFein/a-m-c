@@ -6,10 +6,11 @@
       <meta name="description" content="Car database">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- CSS -->
-      <link rel="stylesheet" href="./style/style.css"/>
       <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css"/>
       <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
       <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+      <link rel="stylesheet" href="./style/style.css"/>
+
       <!-- JS libraries -->
       <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -24,6 +25,8 @@
       <script src="./bower_components/angular-touch/angular-touch.js"></script>
       <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+      <!-- <script src="jquery.bcSwipe.js"></script> -->
+
       <!-- Angular files -->
       <script src="./app.js"></script>
       <script src="./controllers/addCarController.js"></script>
@@ -39,18 +42,19 @@
       <!-- Nav Section -->
       <nav role="navigation" class="navbar navbar-default">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
+        <div class="navbar-header header-style">
           <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
             <span class="sr-only">Welcome to AMC</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="#" class="navbar-brand">Authentic Motorcars</a>
+          <a href="#" class="navbar-brand my-brand">Authentic Motorcars</a>
         </div>
         <!-- Collection of nav links and other content for toggling -->
-        <div id="navbarCollapse" class="collapse navbar-collapse">
+        <div id="navbarCollapse" class="collapse navbar-collapse nav-style">
           <ul class="nav navbar-nav">
+            <!-- <li><a href="#/home"><h4>Authentic Motorcars</h4></a></li> -->
             <li><a href="#/home">Home</a></li>
             <li><a href="#/gallery">Inventory</a></li>
             <!-- <li><a href="#">Messages</a></li> -->
