@@ -9,7 +9,6 @@ galleryCtrl.controller('galleryController', function($scope, $http, $window, Car
           // console.log(JSON.stringify(data));
           $scope.cars = data;
           $window.localStorage.cars = JSON.stringify($scope.cars);
-              $('.carousel').bcSwipe({ threshold: 50 });
       })
       .error(function(data) {
           console.log('Error: ' + data);
