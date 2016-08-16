@@ -180,7 +180,12 @@ color: white;
 
 .nav-style {
   background-color: black;
-  padding: 15px 30px;
+  /*padding: 15px 30px;*/
+}
+
+.navbar-collapse.nav-style{
+  padding left: 15px;
+  padding right: 15px;
 }
 
 .header-style {
@@ -195,5 +200,23 @@ a.navbar-brand.my-brand {
 button.navbar-toggle.nav-toggle-style {
     border-color: black;
     background-color: black;
+}
 
+button.navbar-toggle.nav-toggle-style:hover {
+    border-color: black;
+    background-color: #212121;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #212121;
+}
+
+.nav-style li a{
+  line-height: 20px;
+}
+
+@media (min-width: 768px){
+  .navbar-collapse.nav-style li a {
+    line-height: 50px;
+  }
 }
