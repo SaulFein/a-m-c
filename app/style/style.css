@@ -195,6 +195,8 @@ color: white;
 
 a.navbar-brand.my-brand {
   padding-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: none;
 }
 
 button.navbar-toggle.nav-toggle-style {
@@ -212,7 +214,9 @@ button.navbar-toggle.nav-toggle-style:hover {
 }
 
 .nav-style li a{
+  font-family: 'Montserrat', sans-serif;
   line-height: 20px;
+  text-shadow: none;
 }
 
 @media (min-width: 768px){
