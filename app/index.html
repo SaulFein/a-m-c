@@ -43,7 +43,7 @@
       <script src="./services/error_service.js"></script>
       <script src="./services/car_service.js"></script>
   </head>
-  <body>
+  <body ng-cloak>
     <div class="container-full">
       <!-- Nav Section -->
       <nav role="navigation" class="navbar navbar-default">
@@ -60,17 +60,25 @@
         <!-- Collection of nav links and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse nav-style">
           <ul class="nav navbar-nav">
-            <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#/home">HOME</a></li>
-            <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#/gallery">INVENTORY</a></li>
+            <li><a data-target=".navbar-collapse" href="#/home">HOME</a></li>
+            <li><a data-target=".navbar-collapse" href="#/gallery">INVENTORY</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#/login">LOGIN</a></li>
+            <li><a data-target=".navbar-collapse" href="#/login">LOGIN</a></li>
           </ul>
         </div>
+        <!-- this script prevents wierd flicker from collapse -->
+        <script type="text/javascript">
+          $('.navbar-collapse a').click(function (e) {
+            if($('.navbar-toggle').css('display') == 'block' && !$(this).siblings().length){
+              $('.navbar-collapse').collapse('toggle');
+            }
+          });
+        </script>
       </nav>
       <!---------------------------------------------------->
       <!-- Here is where the partials will be displayed -->
-        <div ng-view>
+        <div ng-cloak ng-view>
         </div>
         <!-------------------------------------------------->
 
