@@ -1,6 +1,7 @@
 .container{
   width: 100%;
 }
+
 #detailGal {
   width: 4em;
   height: 3em;
@@ -218,6 +219,41 @@ button.navbar-toggle.nav-toggle-style:hover {
   line-height: 20px;
   text-shadow: none;
 }
+
+.car-header {
+  text-align: center;
+}
+
+.car-descr{
+   text-indent: 30px;
+}
+
+.car-specs{
+  list-style: none;
+  background-color: #c2c2c2;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.car-specs li{
+  list-style: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-decoration: none;
+}
+.car-specs hr{
+width: 80%;
+border-color: black;
+}
+.car-price {
+  text-align: center;
+}
+
+.modal-style {
+  position: relative;
+  display: table;
+  overflow-x: auto;
+  width: auto;
+  min-width: 300px;}
 
 @media (min-width: 768px){
   .navbar-collapse.nav-style li a {
