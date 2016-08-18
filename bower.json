@@ -13,7 +13,9 @@
     "angular-bootstrap": "^2.0.1",
     "angular-slick": "^0.2.1",
     "bootstrap-carousel-swipe": "*",
-    "angular-sanitize": "^1.5.8"
+    "angular-sanitize": "^1.5.8",
+    "angular-touch": "^1.5.8",
+    "filepicker-js-bower": "filepicker-js#^2.4.17"
   },
   "resolutions": {
     "angular": "^1.5.2"
