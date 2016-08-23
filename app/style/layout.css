@@ -1,0 +1,16 @@
+/*Bootstrap container class over-ride*/
+#container-or{
+  width: 100%;
+}
+
+/*Thumbnail style for car-view and detail view templates*/
+#detailGal {
+  width: 4em;
+  height: 3em;
+}
+
+#detailGal img {
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
