@@ -42,6 +42,10 @@
             controllerAs: 'userCtrl',
             controller: 'UserController'
           })
+          .when('/contact', {
+            templateUrl: 'partials/contact.html'
+            // controller: 'galleryController'
+          })
           //Redirect to addCar in all the other cases.
           // .otherwise({redirectTo:'/home'});
 
