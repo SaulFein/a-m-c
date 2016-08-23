@@ -15,11 +15,13 @@
               <!-- Slides -->
               <div class="carousel-inner">
                 <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
-                  <a data-toggle="modal" data-target="#carViewModal">
+                  <a class="hidden-xs" data-toggle="modal" data-target="#carViewModal">
                 <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
-                  <img ng-src="{{ picture.image }}" style="margin:auto">
-                </a>
-
+                    <img ng-src="{{ picture.image }}" style="margin:auto">
+                  </a>
+                  <a class="visible-xs"> <!--shows on mobile, add visible-sm to show on tablet-->
+                    <img ng-src="{{ picture.image }}" style="margin:auto">
+                  </a>
                 </div>
               </div>
               <!-- end Slides -->
@@ -55,6 +57,7 @@
 
 
           <!--_________________________Modal Carousle ___________________________-->
+          <div class="hidden-xs">
           <div id="carViewModal" class="item modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-style">
               <div class="modal-content">
@@ -90,6 +93,7 @@
           </div>
         </div>
       </div>
+    </div>
 <!--- ___________________End of Modal Carousel __________________________-->
 
           <!-- <img class="main-image" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}" /> -->
