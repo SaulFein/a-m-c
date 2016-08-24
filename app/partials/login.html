@@ -1,12 +1,26 @@
 <section>
-  <h1>AMC</h1>
-  <h4>AMC admin Login</h4>
-  <p class="error-message" ng-show="userCtrl.ip">Invalid login!</p>
-  <form id="login-form" ng-submit="userCtrl.signIn(user)">
-    <input type="text" placeholder="username" ng-model="user.username" required/>
+  <form id="login-form" class="form-signin" ng-submit="userCtrl.signIn(user)">
+    <h2 class="form-signin-heading">Admin Login</h2>
+    <input type="text" class="form-control" placeholder="username" ng-model="user.username" required/>
 
-    <input type="password" placeholder="password" ng-model="user.password" required/>
-
-    <button id="login-button" type="submit">Login</button>
+    <input type="password" class="form-control" placeholder="password" ng-model="user.password" required/>
+    <p class="error-message" ng-show="userCtrl.ip">Invalid login!</p>
+    <label class="checkbox">
+       <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+    </label>
+    <button id="login-button" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
   </form>
 </section>
+
+
+<!-- <div class="wrapper">
+   <form class="form-signin">
+     <h2 class="form-signin-heading">Please login</h2>
+     <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+     <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+     <label class="checkbox">
+       <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+     </label>
+     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+   </form>
+ </div> -->
