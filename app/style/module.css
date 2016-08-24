@@ -57,3 +57,20 @@ input[type="text"] {
 }
 
 /*-----------------*/
+
+.admin-panel {
+  text-align: center;
+}
+.admin-panel h3{
+  padding-bottom: 1%;
+}
+.car-container{
+  padding-left: 3%;
+  padding-right: 3%;
+}
+/*.admin-panel {
+  height: 40px;
+}*/
+
+
+}

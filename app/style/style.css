@@ -160,6 +160,7 @@ color: white;
 a.navbar-brand.my-brand {
   padding-bottom: 15px;
   font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
   text-shadow: none;
 }
 
