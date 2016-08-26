@@ -47,7 +47,7 @@
             // controller: 'galleryController'
           })
           //Redirect to addCar in all the other cases.
-          // .otherwise({redirectTo:'/home'});
+          .otherwise({redirectTo:'/home'});
 
           filepickerProvider.setKey('AS2OofL0jSaWHwlvlGpt4z');
 
