@@ -4,10 +4,9 @@
             <h2 class="panel-title text-center"><span class="glyphicon glyphicon-user"></span> Welcome to AMC </h2>
         </div> -->
         <!-- <div class="panel-body text-center"> -->
-
             <div id="preview-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
               <!-- Slides -->
-              <div class="carousel-inner">
+              <div class="carousel-inner carousel-container">
                 <div class="item" ng-repeat="car in cars" ng-class="{active:!$index}" >
                   <a ng-href="/#/car/{{car._id}}">
                 <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
@@ -30,7 +29,7 @@
                 <li ng-repeat="car in cars" ng-class="{active:!$index}" data-target="#preview-carousel" data-slide-to="{{ $index }}" ></li>
               </ol>
               <!-- end Controls -->
-            </div>
+          </div>
             <!-- touch swipe for carousel -->
             <script>
               $("#preview-carousel").carousel()

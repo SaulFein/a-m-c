@@ -1,4 +1,11 @@
 
+.carousel-container {
+  position: relative;
+  padding-bottom: 64.062682215743%; /* ratio of image height to width */
+  height: 0;
+  overflow: hidden;
+}
+
 .main-image{
   width: 100%;
 }

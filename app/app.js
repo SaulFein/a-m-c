@@ -50,5 +50,31 @@
           .otherwise({redirectTo:'/home'});
 
           filepickerProvider.setKey('AS2OofL0jSaWHwlvlGpt4z');
+  })
+  .directive('routeLoadingIndicator', ['$rootScope',
+    function($rootScope) {
+      console.log("directive hit!");
+      return {
+        restrict: 'E',
+        template: "<div class='col-lg-12' ng-if='isRouteLoading'><h1>Loading <i class='fa fa-cog fa-spin'></i></h1></div>",
+        link: function(scope, elem, attrs) {
+          // debugger;
+          scope.isRouteLoading = false;
+          console.log("isRouteLoading = false");
 
-  });
+          $rootScope.$on('$routeChangeStart', function() {
+            scope.isRouteLoading = true;
+            console.log("isRouteLoading = true");
+
+          });
+
+          $rootScope.$on('$routeChangeSuccess', function() {
+            scope.isRouteLoading = false;
+            console.log("isRouteLoading = false bottom");
+
+          });
+        }
+      };
+
+    }
+  ]);

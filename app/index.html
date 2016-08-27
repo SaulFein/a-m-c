@@ -13,6 +13,7 @@
       <link rel="stylesheet" href="./style/base.css"/>
       <link rel="stylesheet" href="./style/layout.css"/>
       <link rel="stylesheet" href="./style/module.css"/>
+      <link data-require="font-awesome@*" data-semver="4.1.0" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" />
 
 
 
@@ -50,6 +51,8 @@
       <script src="./services/auth_service.js"></script>
       <script src="./services/error_service.js"></script>
       <script src="./services/car_service.js"></script>
+      <script src="./directives/routeLoadingIndicator.js"></script>
+
   </head>
   <body ng-cloak>
     <div class="container-full">
@@ -87,8 +90,12 @@
       </nav>
       <!---------------------------------------------------->
       <!-- Here is where the partials will be displayed -->
-        <div ng-cloak ng-view>
-        </div>
+      <div class="row">
+        <route-loading-indicator></route-loading-indicator>
+      </div>
+
+        <div ng-if='!isRouteLoading' ng-view></div>
+
         <!-------------------------------------------------->
 
         <!-- Footer Section -->
