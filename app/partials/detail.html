@@ -43,12 +43,11 @@
                     <span class="glyphicon glyphicon-user"></span>Edit Car form
                 </h2>
             </div>
-            <div class="text-right"><a href="" ng-click="showme=false" class="btn btn-danger" role="button">Return to Car Details</a> </div>
-
-            <button type="button" class="btn btn-default">
-              <a id="logout" href='#/admin-inventory'>  Return to Inventory  </a>
+            <button ng-click="showme=false" class="btn btn-default top-panel-btns"><a class="no-style-link" href="" role="button">Return to Car Details</a> </button>
+            <button type="button" class="btn btn-default top-panel-btns">
+              <a id="logout" class="no-style-link" href='#/admin-inventory'>  Return to Inventory  </a>
             </button>
-            <button type="button" class="btn btn-default" data-ng-click="deleteCar(car)"> Delete Car </button>
+            <button type="button" class="btn btn-danger top-panel-btns" data-ng-click="deleteCar(car)"> Delete Car </button>
             <div class="panel-body">
                 <!-- The form to add cars information -->
                 <form name ="addForm" novalidate>
@@ -116,7 +115,7 @@
                                   <!-- the picture is rendered with width: 500 and sharpened -->
                                   <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}">
                                 </a>
-                                <button type="button" class="btn btn-default" data-ng-click="removeImage(car)"> Remove Image</button>
+                                <button type="button" class="btn btn-danger" data-ng-click="removeImage(car)"> Remove Image</button>
                             </div>
                         </div>
                     </div>
@@ -131,7 +130,7 @@
                                 <a href="{{picture.url}}" class="thumbnail">
                                   <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
                                 </a>
-                                <button type="button" class="btn btn-default" data-ng-click="removeMoreImage(picture.url, car)"> Remove Image</button>
+                                <button type="button" class="btn btn-danger" data-ng-click="removeMoreImage(picture.url, car)"> Remove Image</button>
                             </div>
                         </div>
                         </div>

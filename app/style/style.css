@@ -235,6 +235,15 @@ border-color: black;
   width: auto;
   min-width: 300px;}
 
+  a.no-style-link{
+    text-decoration: none;
+    color: black;
+  }
+
+  .top-panel-btns {
+    margin-top: 1%;
+  }
+
 @media (min-width: 768px){
   .navbar-collapse.nav-style li a {
     line-height: 50px;
