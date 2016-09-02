@@ -18,7 +18,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
     vm.ip = false; //ip = invalid password
 
     vm.createUser = function(user) {
-      let userId = AuthService.getId();
+      var userId = AuthService.getId();
       $http.post('api/users/'+ userId +'/signup', user, {
         headers: {
           token: AuthService.getToken()
@@ -58,7 +58,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
     }
 
   vm.getCars = function() {
-  let userId = AuthService.getId();
+  var userId = AuthService.getId();
   console.log("This is userId from userCtrl getCars" + userId);
     CarService.getCars(userId)
     .success(function(data){

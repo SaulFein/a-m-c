@@ -2,10 +2,10 @@
 var addCtrl = angular.module('addCarCtrl', []);
 addCtrl.controller('addCarController', function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService){
     // let url = 'http://localhost:3000/api/users/';
-    let url = '/api/users/'
+    var url = '/api/users/'
     var cUser = $window.localStorage.user;
     $scope.car = {};
-    let carId;
+    var carId;
     var id = $routeParams.id;
     $scope.car.morePictures = [];
 
