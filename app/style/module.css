@@ -60,7 +60,17 @@ input[type="text"] {
 
 .admin-panel {
   text-align: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
+.admin-title{
+  text-align: center;
+}
+button#add-button{
+  margin-left: 2%;
+  margin-right:2%;
+}
+
 .admin-panel h3{
   padding-bottom: 1%;
 }

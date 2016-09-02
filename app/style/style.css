@@ -15,6 +15,15 @@
   background-color: #e9e9e9;
 }
 
+.inventory-car-containter {
+  position: relative;
+  padding-bottom: 80.851537291844%; /* ratio of image height to width */
+  height: 0;
+  /*overflow: hidden;*/
+  border: none;
+  /*background-color: #e9e9e9;*/
+}
+
 .main-image{
   width: 100%;
 }
@@ -237,6 +246,13 @@ border-color: black;
 
   a.no-style-link{
     text-decoration: none;
+    text-shadow: none;
+    color: white;
+  }
+
+  a.no-style-link-thumb{
+    text-decoration: none;
+    text-shadow: none;
     color: black;
   }
 
@@ -244,8 +260,59 @@ border-color: black;
     margin-top: 1%;
   }
 
+  /*.update-btn {
+    margin-top: 1%;
+  }*/
+
+.thumb-container {
+  padding-bottom: 1%;
+  border-bottom: 1px solid #dddddd;
+}
+
+.thumb-container .thumbnail {
+  border: none;
+}
+
+.ul-mult-btn {
+  padding-bottom: 1%;
+  border-bottom: 1px solid #dddddd;
+}
+p.yr-mk-mdl{
+  max-width:100%;
+  margin: 0;
+}
 @media (min-width: 768px){
   .navbar-collapse.nav-style li a {
     line-height: 50px;
   }
+}
+
+@media only screen and (min-width : 320px) {
+  .inventory-car-containter {
+    padding-bottom: 65.851537291844%; /* ratio of image height to width */
+  }
+  a.navbar-brand.my-brand {
+    font-size: 14px;
+}
+
+}
+
+/*iphone 6*/
+@media only screen and (min-width : 375px) {
+  .inventory-car-containter {
+    padding-bottom: 50.851537291844%; /* ratio of image height to width */
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  .inventory-car-containter {
+    position: relative;
+    padding-bottom: 80.851537291844%; /* ratio of image height to width */
+    height: 0;
+    /*overflow: hidden;*/
+    border: none;
+    /*background-color: #e9e9e9;*/
+  }
+
 }

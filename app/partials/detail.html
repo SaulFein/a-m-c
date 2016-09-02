@@ -1,12 +1,13 @@
 <!-- View the details of a car -->
 <section ng-hide="showme" ng-init="getCar()";>
+  <div class="row">
   <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
           <div class="panel-heading">
-              <h2 class="panel-title text-center"><span class="glyphicon glyphicon-user"></span> Car details </h2>
+              <h2 class="panel-title text-center"><span class=""></span> CAR DETAILS </h2>
           </div>
 
-          <div class="text-right"><a href="/#/admin-inventory" class="btn btn-danger" role="button">Return to Inventory</a> </div>
+          <div class="text-right"><a href="/#/admin-inventory" class="btn btn-danger" role="button">INVENTORY</a> </div>
           <!-- <div class="text-right"><a href="/#/editCar/{{car._id}}" ng-click="showme=true" class="btn btn-danger" role="button">Edit</a> </div> -->
           <div class="text-right"><a href="" ng-click="showme=true" class="btn btn-danger" role="button">Edit</a> </div>
 
@@ -32,22 +33,43 @@
           </div>
       </div>
   </div>
+</div>
 </section>
 
   <!-- //edit car section -->
   <section ng-show="showme">
+    <div class="row">
     <div class="col-md-8 col-md-offset-2" ng-init="checkToken()">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title text-center">
-                    <span class="glyphicon glyphicon-user"></span>Edit Car form
+                    <span class="glyphicon glyphicon-edit"></span> EDIT CAR
                 </h2>
             </div>
-            <button ng-click="showme=false" class="btn btn-default top-panel-btns"><a class="no-style-link" href="" role="button">Return to Car Details</a> </button>
-            <button type="button" class="btn btn-default top-panel-btns">
-              <a id="logout" class="no-style-link" href='#/admin-inventory'>  Return to Inventory  </a>
-            </button>
-            <button type="button" class="btn btn-danger top-panel-btns" data-ng-click="deleteCar(car)"> Delete Car </button>
+
+            <div class="row">
+            <div class=" col-md-12 col-md-offset-0 admin-panel">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                       <!-- <h3 class="panel-title">
+                         ADMIN
+                          </h3> -->
+                          <div>
+                            <button ng-click="showme=false" class="btn btn-info top-panel-btns"><a class="no-style-link" href="" role="button"> <span class= "glyphicon glyphicon-arrow-left"></span> CAR DETAILS</a> </button>
+                            <button type="button" class="btn btn-primary top-panel-btns">
+                              <a id="logout" class="no-style-link" href='#/admin-inventory'>  INVENTORY  </a>
+                            </button>
+                            <button type="button" class="btn btn-danger top-panel-btns" data-ng-click="deleteCar(car)"><span class= "glyphicon glyphicon-remove-circle"></span> DELETE CAR </button>
+                          </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </div>
+            </div>
+            </div>
+
+
+
+
             <div class="panel-body">
                 <!-- The form to add cars information -->
                 <form name ="addForm" novalidate>
@@ -106,40 +128,43 @@
                     <div class="form-group">
                         <label for="picture">Main picture</label>
                         <div class="text-center">
-                            <button type="button" class="btn btn-default" ng-click="upload()">
-                                Upload <span class="caret"></span>
+                            <button type="button" class="btn btn-primary" ng-click="upload()"> <span class= "glyphicon glyphicon-upload"></span>
+                                UPLOAD <span class="caret"></span>
                             </button>
                             <div style="margin-top:10px;">
                                 <!-- Show the thumbnail only when the picture is uploaded -->
-                                <a href="{{car.picture.url}}" class="thumbnail" ng-if="car.picture">
+                                <div class="thumbnail" ng-if="car.picture">
                                   <!-- the picture is rendered with width: 500 and sharpened -->
                                   <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}">
-                                </a>
-                                <button type="button" class="btn btn-danger" data-ng-click="removeImage(car)"> Remove Image</button>
+                                </div>
+                                <button type="button" class="btn btn-danger" data-ng-click="removeImage(car)"> <span class= "glyphicon glyphicon-remove-circle"></span> REMOVE IMAGE</button>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="picture">More pictures?</label>
                         <div class="text-center">
-                        <button type="button" class="btn btn-default" ng-click="uploadMultiple()">
-                        Upload <span class="caret"></span>
-                        </button>
+                          <div class="ul-mult-btn">
+                            <button type="button" class="btn btn-primary" ng-click="uploadMultiple()">
+                            <span class= "glyphicon glyphicon-upload"></span> UPLOAD <span class="caret"></span>
+                            </button>
+                          </div>
                         <!-- Show the thumbanil of more pictures -->
-                            <div style="margin-top:10px;" ng-repeat="picture in car.morePictures">     <div class="col-md-{{12 / car.morePictures.length}}">
-                                <a href="{{picture.url}}" class="thumbnail">
+                            <div style="margin-top:10px;" ng-repeat="picture in car.morePictures">     <div class="thumb-container col-md-{{12 / car.morePictures.length}}">
+                                <div class="thumbnail">
                                   <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
-                                </a>
-                                <button type="button" class="btn btn-danger" data-ng-click="removeMoreImage(picture.url, car)"> Remove Image</button>
+                                </div>
+                                <button type="button" class="btn btn-danger" data-ng-click="removeMoreImage(picture.url, car)"> <span class= "glyphicon glyphicon-remove-circle"></span> REMOVE IMAGE</button>
                             </div>
                         </div>
                         </div>
                     </div>
                     <hr />
-                    <button type="submit" class="btn btn-danger btn-block"  ng-click="updateCar(); getCar(); showme=false;" ng-disabled="car.$invalid || !car.picture">Update</button>
+                    <button type="submit" class="btn btn-primary btn-block update-btn"  ng-click="updateCar(); getCar(); showme=false;" ng-disabled="car.$invalid || !car.picture">UPDATE</button>
                 </form>
             </div>
         </div>
     </div>
+  </div>
 
   </section>

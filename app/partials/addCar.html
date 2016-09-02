@@ -3,13 +3,28 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="panel-title text-center">
-                <span class="glyphicon glyphicon-user"></span>Car form
+                <span class="glyphicon .glyphicon-list"></span> ADD CAR
             </h2>
         </div>
 
-        <button type="button" class="btn btn-default">
-          <a id="logout" href='#/admin-inventory'>  Return to Inventory  </a>
-        </button>
+        <div class="row">
+        <div class=" col-md-12 col-md-offset-0 admin-panel">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                   <!-- <h3 class="panel-title">
+                     ADMIN
+                      </h3> -->
+                      <div>
+                        <button type="button" class="btn btn-primary top-panel-btns">
+                          <a id="logout" class="no-style-link" href='#/admin-inventory'> <span class= "glyphicon glyphicon-arrow-left"></span> INVENTORY  </a>
+                        </button>
+                      </div>
+                  <div class="clearfix"></div>
+              </div>
+          </div>
+        </div>
+        </div>
+
         <div class="panel-body">
             <!-- The form to add cars information -->
             <form name ="addForm" novalidate>
@@ -68,8 +83,8 @@
                 <div class="form-group">
                     <label for="picture">Main picture</label>
                     <div class="text-center">
-                        <button type="button" class="btn btn-default" ng-click="upload()">
-                            Upload <span class="caret"></span>
+                        <button type="button" class="btn btn-primary" ng-click="upload()"><span class= "glyphicon glyphicon-upload"></span>
+                            UPLOAD <span class="caret"></span>
                         </button>
                         <div style="margin-top:10px;">
                             <!-- Show the thumbnail only when the picture is uploaded -->
@@ -84,8 +99,8 @@
                 <div class="form-group">
                     <label for="picture">More pictures? (Max 3, optional!)</label>
                     <div class="text-center">
-                    <button type="button" class="btn btn-default" ng-click="uploadMultiple()">
-                    Upload <span class="caret"></span>
+                    <button type="button" class="btn btn-primary" ng-click="uploadMultiple()"> <span class= "glyphicon glyphicon-upload"></span>
+                    UPLOAD <span class="caret"></span>
                     </button>
                     <!-- Show the thumbanil of more pictures -->
                         <div style="margin-top:10px;" ng-repeat="picture in car.morePictures">     <div class="col-md-{{12 / car.morePictures.length}}">
