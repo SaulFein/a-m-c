@@ -1,44 +1,114 @@
 <!-- View the details of a car -->
-<section ng-hide="showme" ng-init="getCar()";>
-  <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-      <div class="panel panel-default">
-          <div class="panel-heading">
-              <h2 class="panel-title text-center"><span class=""></span> CAR DETAILS </h2>
-          </div>
-          <div class="panel panel-default">
-                      <div class="rtn-inventory">
-                        <a href="/#/admin-inventory" class="btn btn-primary" role="button">INVENTORY</a>
-                        <!-- <div class="text-right"><a href="/#/editCar/{{car._id}}" ng-click="showme=true" class="btn btn-danger" role="button">Edit</a> </div> -->
-                        <a href="" ng-click="showme=true" class="btn btn-danger" role="button">Edit</a>
-                      </div>
-                  <div class="clearfix"></div>
-          </div>
+<section ng-hide="showme">
+  <div ng-cloak id="container-or" class="container">
+  <div class="" ng-init="getCar();">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title text-center"><span class=""></span> CAR DETAILS </h2>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    <div class="rtn-inventory">
+                      <a href="/#/admin-inventory" class="btn btn-primary" role="button">INVENTORY</a>
+                      <!-- <div class="text-right"><a href="/#/editCar/{{car._id}}" ng-click="showme=true" class="btn btn-danger" role="button">Edit</a> </div> -->
+                      <a href="" ng-click="showme=true" class="btn btn-danger" role="button">Edit</a>
+                    </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
 
-
-
-          <div class="panel-body text-center">
-              <img class="main-image" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}" />
-              <h2>{{car.make}} {{car.model}}</h2>
-              <hr />
-              <p class="text-left"><label>Year: </label> {{car.year}}</p>
-              <p class="text-left"><label>Color: </label> {{car.color}}</p>
-              <!-- Only if there are other pictures -->
-              <div ng-if="car.morePictures" class="thumbnailpics">
-                  <h3> More Pictures <h3>
-                  <div ng-repeat="picture in car.morePictures">
-                      <div class="col-lg-2 col-sm-3 col-xs-4" id="fit-thumb">
-                      <!-- <div class="col-md-{{12 / car.morePictures.length}}"> -->
-                          <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal">
-                            <img class="thumb-nails" ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
-                          </a>
-                      </div>
-                  </div>
-              </div>
-          </div>
+      <div class="panel-default">
+      <div class="row car-header">
+        <div class="col-md-8">
+          <h2>{{car.make}} {{car.model}}</h2>
+          <!-- <div class="text-right"><a href="/#/gallery" class="btn btn-danger" role="button">Return to Gallery</a> </div> -->
+        </div>
       </div>
+          <!-- <div class="panel-body text-center"> -->
+          <div class="row">
+            <div class="col-md-8">
+              <div id="preview-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                <!-- Slides -->
+                <div class="carousel-inner carousel-container">
+                  <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
+                    <a >
+                  <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
+                      <img ng-src="{{ picture.image }}" style="margin:auto">
+                    </a>
+
+                  </div>
+                </div>
+                <!-- end Slides -->
+
+                <!-- Controls -->
+                <a class="left carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#preview-carousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#preview-carousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+                <!-- end Controls -->
+              </div>
+            </div>
+
+
+            <!-- <img class="main-image" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}" /> -->
+
+              <div class="col-md-4">
+                <div class="car-specs">
+                  <h3 class="car-price">Price: {{car.price}}</h3>
+                  <hr>
+                  <ul>
+                    <li>Year: {{car.year}}</li>
+                    <li>Miles: {{car.miles}}</li>
+                    <li>Color: {{car.color}}</li>
+                    <li>Interior Color: {{car.interiorColor}}</li>
+                    <li>Engine: {{car.engine}}</li>
+                    <li>Transmission: {{car.transmission}}</li>
+                    <li>VIN: {{car.vin}}</li>
+                    <li>Hightlights: {{car.highlights}}</li>
+                    <li><a class="btn btn-danger" role="button" href="{{car.carfax}}">CarFax Report</a></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+
+
+              <hr />
+              <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+              <!-- Only if there are other pictures -->
+                <div ng-if="car.morePictures">
+                    <h3> More Pictures <h3>
+                    <div ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel " data-slide-to="{{ $index }}">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                          <a class="thumbnail" id="detailGal">
+                            <!-- <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal"> -->
+                              <img ng-src="{{picture.image | fpConvert: {filter:'sharpen', w:500} }}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+            <div id="container-or" class="container">
+          <!-- add ngSanitize to app and then you can use ng-bind-html -->
+              <div class="car-descr" ng-bind-html="car.description"></div>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- touch swipe for carousel -->
+        <script>
+          $("#preview-carousel").carousel();
+
+        </script>
+
   </div>
-</div>
+
 </section>
 
   <!-- //edit car section -->

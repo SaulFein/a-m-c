@@ -9,6 +9,24 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
     var id = $routeParams.id;
     $scope.car.morePictures = [];
 
+    $scope.slides = [];
+    $scope.myInterval = 1000;
+    $scope.currentIndex = 0;
+    var slides = $scope.slides;
+
+    $scope.setCurrentSlideIndex = function (index) {
+        $scope.currentIndex = index;
+    };
+    $scope.isCurrentSlideIndex = function (index) {
+        return $scope.currentIndex === index;
+    };
+    $scope.prevSlide = function () {
+        $scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
+    };
+    $scope.nextSlide = function () {
+        $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
+    };
+
 
     //Send the newly created car to the server to store in the db
     $scope.createCar = function(){
@@ -85,6 +103,11 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         if (data.morePictures) {
           for (var i = 0; i < data.morePictures.length; i++){
             console.log("This is data.morePictures[" + i + "]." + data.morePictures[i].url);
+          }
+          $scope.slides.push({image: data.picture.url, title: 'Main Image'});
+          for (var i = 0; i < data.morePictures.length; i++){
+            console.log(data.morePictures[i].url)
+            $scope.slides.push({image: data.morePictures[i].url, title: 'Image ' + i});
           }
         }
       })
