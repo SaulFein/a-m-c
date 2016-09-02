@@ -113,7 +113,7 @@ color: white;
 .site-footer{
   background-color: #222;
   color: #fff;
-  margin-top: 30px;
+  /*margin-top: 30px;*/
   padding-top: 30px;
 }
 
@@ -256,9 +256,9 @@ border-color: black;
     color: black;
   }
 
-  .top-panel-btns {
+  /*.top-panel-btns {
     margin-top: 1%;
-  }
+  }*/
 
   /*.update-btn {
     margin-top: 1%;
@@ -281,6 +281,13 @@ p.yr-mk-mdl{
   max-width:100%;
   margin: 0;
 }
+
+.rtn-inventory{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-align: center;
+}
+
 @media (min-width: 768px){
   .navbar-collapse.nav-style li a {
     line-height: 50px;

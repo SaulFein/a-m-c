@@ -3,13 +3,17 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="panel-title text-center">
-                <span class="glyphicon glyphicon-user"></span>Add User Form
+                <span class="glyphicon glyphicon-user"></span> ADD USER
             </h2>
         </div>
+        <div class="panel panel-default">
 
-        <button type="button" class="btn btn-default">
-          <a id="logout" href='#/admin-inventory'>  Return to Inventory  </a>
-        </button>
+                    <div class="rtn-inventory">
+                        <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> INVENTORY  </button></a>
+                    </div>
+                <div class="clearfix"></div>
+        </div>
+
         <div class="panel-body">
             <!-- The form to add user -->
             <form name ="addForm" ng-submit="userCtrl.createUser(user)">

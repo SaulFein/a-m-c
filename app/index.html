@@ -56,6 +56,8 @@
 
   </head>
   <body ng-cloak>
+    <div class="page-wrap">
+
     <div class="container-full">
       <!-- Nav Section -->
       <nav role="navigation" class="navbar navbar-default">
@@ -91,6 +93,7 @@
       </nav>
       <!---------------------------------------------------->
       <!-- Here is where the partials will be displayed -->
+
       <div class="row">
         <route-loading-indicator></route-loading-indicator>
       </div>
@@ -100,29 +103,7 @@
         <!-------------------------------------------------->
 
         <!-- Footer Section -->
-        <footer class="site-footer">
-          <div id="container-or" class="container">
-            <div class="row footer-title">
-              <div class="col-md-5">
-                <h4>Authentic Motorcars</h4>
-                <address>
-                  17351 E 70th Street<br>
-                  Redmond, WA 98052
-                </address>
-              </div>
-            </div>
-            <div class="bottom-footer">
-              <div class="col-md-5"><span class="glyphicon glyphicon-copyright-mark"></span> 2016 Authentic Motorcars</div>
-              <div class="col-md-7">
-                  <ul class="footer-nav">
-                    <li><a href="#/home">Home</a></li>
-                    <li><a href="#/gallery">Inventory</a></li>
-                    <li><a href="#/login">Login</a></li>
-                  </ul>
-              </div>
-            </div>
-        </div>
-      </footer>
+
         <!-- <footer class="nav navbar-inverse navbar-fixed-bottom">
           <div class="container">
             <div class="navbar-text pull-left">
@@ -131,8 +112,32 @@
         </div>
       </footer> -->
       <!---------------------------------------------------->
-    </div>
+  </div>
+</div>
 
+  <footer class="site-footer navbar  navbar-bottom">
+    <div id="container-or" class="container">
+      <div class="row footer-title">
+        <div class="col-md-5">
+          <h4>Authentic Motorcars</h4>
+          <address>
+            17351 E 70th Street<br>
+            Redmond, WA 98052
+          </address>
+        </div>
+      </div>
+      <div class="bottom-footer">
+        <div class="col-md-5"><span class="glyphicon glyphicon-copyright-mark"></span> 2016 Authentic Motorcars</div>
+        <div class="col-md-7">
+            <ul class="footer-nav">
+              <li><a href="#/home">Home</a></li>
+              <li><a href="#/gallery">Inventory</a></li>
+              <li><a href="#/login">Login</a></li>
+            </ul>
+        </div>
+      </div>
+  </div>
+</footer>
   </body>
 </html>
 
