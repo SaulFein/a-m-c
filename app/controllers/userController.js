@@ -45,7 +45,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
     };
 
     vm.signIn = function(user) {
-      AuthService.signIn(user, (err, res) => {
+      AuthService.signIn(user, function(err, res) {
         if (err) {
           vm.ip = true;
           return console.log('Problem Signing In ', err);

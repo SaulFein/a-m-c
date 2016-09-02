@@ -13,7 +13,7 @@ var CarService = angular.module('CarService', []);
           token: AuthService.getToken()
         }
       })
-      .then((res)=>{
+      .then(function(res) {
         carId = $window.localStorage.carId = res.data.data._id;
         console.log(res);
         console.log('this is userId ' + data._id);

@@ -35,7 +35,7 @@ var AuthService = angular.module('AuthService', []);
           headers: {
             authorization: 'Basic ' + btoa(user.username + ':' + user.password)
           }
-        }).then((res) => {
+        }).then(function(res) {
           console.log(res)
           token = $window.localStorage.token = res.data.token;
           // userId = res.data.data._id;
@@ -43,7 +43,7 @@ var AuthService = angular.module('AuthService', []);
           console.log('This is token ', token)
           console.log('this is userId aut', userId)
           cb(null, res);
-        }, (err) => {
+        }, function (err) {
           cb(err);
         })
       }
