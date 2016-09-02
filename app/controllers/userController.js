@@ -73,7 +73,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
 }
 //
     vm.signOut = function(){
-      AuthService.signOut(() => {
+      AuthService.signOut(function() {
         $location.path('/login')
       })
     }
