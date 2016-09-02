@@ -18,14 +18,14 @@ html, body {
 .page-wrap {
   min-height: 100%;
   /* equal to footer height */
-  margin-bottom: -182px;
+  margin-bottom: -210px;
 }
 .page-wrap:after {
   content: "";
   display: block;
 }
 .site-footer, .page-wrap:after {
-  height: 182px;
+  height: 210px;
   margin-bottom: 0;
 }
 /*.site-footer {
