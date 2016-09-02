@@ -232,6 +232,8 @@ button.navbar-toggle.nav-toggle-style:hover {
 .car-specs hr{
 width: 80%;
 border-color: black;
+margin:auto;
+padding: 2%;
 }
 .car-price {
   text-align: center;

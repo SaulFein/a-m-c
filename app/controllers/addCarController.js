@@ -98,7 +98,9 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         }
       })
       .success(function(data){
-        console.log(JSON.stringify(data));
+        $scope.slides = [];
+        console.log("this is scope.slides!!!! ", $scope.slides)
+        // console.log(JSON.stringify(data));
         $scope.car = data;
         if (data.morePictures) {
           for (var i = 0; i < data.morePictures.length; i++){
@@ -134,7 +136,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             }
         );
     };
-    //Multiple files upload set to 3 as max number
+    //Multiple files upload set to 20 as max number
     $scope.uploadMultiple = function(){
         filepickerService.pickMultiple(
             {
