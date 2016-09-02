@@ -293,7 +293,19 @@ p.yr-mk-mdl{
   text-align: center;
 }
 
+/*@media (min-width: 992px){
+
+}*/
+
 @media (min-width: 768px){
+  /*.page-wrap {
+
+    margin-bottom: -221px !important;
+  }
+  .site-footer, .page-wrap:after {
+    height: 221px !important;
+    margin-bottom: none;
+  }*/
   .navbar-collapse.nav-style li a {
     line-height: 50px;
   }

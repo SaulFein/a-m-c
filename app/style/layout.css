@@ -5,6 +5,12 @@
   margin-bottom: 20px;
 }
 
+#container-or-footer{
+  width: 100%;
+  margin-top: 20px;
+  /*margin-bottom: 20px;*/
+}
+
 /*Thumbnail style for car-view and detail view templates*/
 #detailGal {
   width: 4em;
