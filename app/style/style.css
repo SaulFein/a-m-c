@@ -258,6 +258,9 @@ padding: 2%;
     color: black;
   }
 
+.cc-style {
+  background-image: none;
+}
   /*.top-panel-btns {
     margin-top: 1%;
   }*/
