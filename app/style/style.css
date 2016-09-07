@@ -313,6 +313,12 @@ p.yr-mk-mdl {
     text-align: center;
 }
 
+.inventory-title {
+    text-align: center;
+    margin: 0;
+    padding-bottom: 2%;
+}
+
 
 /*@media (min-width: 992px){
 
