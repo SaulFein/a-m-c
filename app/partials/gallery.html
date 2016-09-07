@@ -2,7 +2,7 @@
 <div class="row gallery-container" ng-init="getCars();">
   <div class="car-container">
 <div ng-repeat="car in cars">
-    <div class="col-md-3 col-ms-6 col-sm-4 col-sm-offset-0">
+    <div class="col-md-8 col-ms-10 col-sm-10 col-md-offset-2 col-sm-offset-1 col-ms-offset-1">
       <a ng-href="/#/car/{{car._id}}" class="no-style-link-thumb">
     <div class="thumbnail inventory-car-containter">
       <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', w:300, h:150} }}" />
