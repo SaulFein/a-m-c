@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (mongoose, models) => {
-  let bcrypt = require('bcrypt');
+  let bcrypt = require('bcrypt-nodejs');
   let jwt = require('jsonwebtoken');
 
   let UserSchema = mongoose.Schema({
