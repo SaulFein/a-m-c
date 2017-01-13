@@ -35,7 +35,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     token: AuthService.getToken()
                 }
             })
-            .success(function(data) {
+            .then(function(data) {
                 console.log(JSON.stringify(data));
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
@@ -51,7 +51,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     token: AuthService.getToken()
                 }
             })
-            .success(function(data) {
+            .then(function(data) {
                 console.log(JSON.stringify(data));
                 $scope.getCar();
                 //Clean the form to allow the user to create new cars
@@ -74,7 +74,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     token: AuthService.getToken()
                 }
             })
-            .success(function(data) {
+            .then(function(data) {
                 filepickerService.remove(fpHolder)
                 if (fpMHolder) {
                     for (var i = 0; i < fpMHolder.length; i++) {
@@ -100,7 +100,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                         token: AuthService.getToken()
                     }
                 })
-                .success(function(data) {
+                .then(function(data) {
                     $scope.slides = [];
                     console.log("this is scope.slides!!!! ", $scope.slides)
                         // console.log(JSON.stringify(data));

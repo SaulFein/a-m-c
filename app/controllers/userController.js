@@ -61,7 +61,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
   var userId = AuthService.getId();
   console.log("This is userId from userCtrl getCars" + userId);
     CarService.getCars(userId)
-    .success(function(data){
+    .then(function(data){
         // console.log("Loading Cars!");
         // console.log(JSON.stringify(data));
         vm.cars = data;
@@ -102,7 +102,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
 //   console.log("This is userId from userCtrl getCars" + userId);
 //   if(!$window.localStorage.cars){
 //     CarService.getCars(userId)
-//     .success(function(data){
+//     .then(function(data){
 //         // console.log("Loading Cars!");
 //         // console.log(JSON.stringify(data));
 //         vm.cars = data;

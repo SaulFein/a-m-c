@@ -28,7 +28,7 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
       console.log("this is get detail controller " + id)
       // $http.get(url + '/inventory/' + id)
       $http.get('/inventory/' + id)
-      .success(function(data){
+      .then(function(data){
           // console.log(JSON.stringify(data));
           $scope.car = data;
           $scope.slides.push({image: data.picture.url, title: 'Main Image'});
