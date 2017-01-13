@@ -4,7 +4,7 @@ node_modules
 bower_components
 .DS_Store
 config.js
-directives
+pw_directive.js
 userControllerScopeConv.js
 ngFader.css
 unslider.css
