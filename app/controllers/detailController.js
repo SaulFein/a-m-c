@@ -28,17 +28,17 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
       console.log("this is get detail controller " + id)
       // $http.get(url + '/inventory/' + id)
       $http.get('/inventory/' + id)
-      .success(function(data){
+      .then(function(data){
           // console.log(JSON.stringify(data));
-          $scope.car = data;
-          $scope.slides.push({image: data.picture.url, title: 'Main Image'});
-          for (var i = 0; i < data.morePictures.length; i++){
-            console.log(data.morePictures[i].url)
-            $scope.slides.push({image: data.morePictures[i].url, title: 'Image ' + i});
+          $scope.car = data.data;
+          $scope.slides.push({image: data.data.picture.url, title: 'Main Image'});
+          for (var i = 0; i < data.data.morePictures.length; i++){
+            console.log(data.data.morePictures[i].url)
+            $scope.slides.push({image: data.data.morePictures[i].url, title: 'Image ' + i});
           }
           console.log("this is scope.slides ",  $scope.slides)
       })
-      .error(function(data) {
+      .catch(function(data) {
           console.log('Error: ' + data);
       });
     }

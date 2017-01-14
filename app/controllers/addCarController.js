@@ -35,12 +35,12 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     token: AuthService.getToken()
                 }
             })
-            .success(function(data) {
+            .then(function(data) {
                 console.log(JSON.stringify(data));
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
             })
-            .error(function(data) {
+            .catch(function(data) {
                 console.log('Error: ' + data);
             });
     };
@@ -51,13 +51,13 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     token: AuthService.getToken()
                 }
             })
-            .success(function(data) {
+            .then(function(data) {
                 console.log(JSON.stringify(data));
                 $scope.getCar();
                 //Clean the form to allow the user to create new cars
                 // $scope.car = {};
             })
-            .error(function(data) {
+            .catch(function(data) {
                 console.log('Error: ' + data);
             });
     };
@@ -74,7 +74,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     token: AuthService.getToken()
                 }
             })
-            .success(function(data) {
+            .then(function(data) {
                 filepickerService.remove(fpHolder)
                 if (fpMHolder) {
                     for (var i = 0; i < fpMHolder.length; i++) {
@@ -88,7 +88,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 $scope.go('/admin-inventory')
 
             })
-            .error(function(data) {
+            .catch(function(data) {
                 console.log('Error: ' + data);
             });
     };
@@ -100,23 +100,23 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                         token: AuthService.getToken()
                     }
                 })
-                .success(function(data) {
+                .then(function(data) {
                     $scope.slides = [];
                     console.log("this is scope.slides!!!! ", $scope.slides)
                         // console.log(JSON.stringify(data));
-                    $scope.car = data;
-                    if (data.morePictures) {
-                        for (var i = 0; i < data.morePictures.length; i++) {
-                            console.log("This is data.morePictures[" + i + "]." + data.morePictures[i].url);
+                    $scope.car = data.data;
+                    if (data.data.morePictures) {
+                        for (var i = 0; i < data.data.morePictures.length; i++) {
+                            console.log("This is data.morePictures[" + i + "]." + data.data.morePictures[i].url);
                         }
-                        $scope.slides.push({ image: data.picture.url, title: 'Main Image' });
-                        for (var i = 0; i < data.morePictures.length; i++) {
-                            console.log(data.morePictures[i].url)
-                            $scope.slides.push({ image: data.morePictures[i].url, title: 'Image ' + i });
+                        $scope.slides.push({ image: data.data.picture.url, title: 'Main Image' });
+                        for (var i = 0; i < data.data.morePictures.length; i++) {
+                            console.log(data.data.morePictures[i].url)
+                            $scope.slides.push({ image: data.data.morePictures[i].url, title: 'Image ' + i });
                         }
                     }
                 })
-                .error(function(data) {
+                .catch(function(data) {
                     console.log('Error: ' + data);
                 });
         }

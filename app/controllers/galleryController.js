@@ -4,24 +4,24 @@ galleryCtrl.controller('galleryController', function($scope, $http, $window, Car
     //Retrieve all the cars to show the gallery
     $scope.getCars = function() {
       CarService.getCarsPublic()
-      .success(function(data){
+      .then(function(data){
           // console.log("Loading Cars!");
           // console.log(JSON.stringify(data));
-          $scope.cars = data;
+          $scope.cars = data.data;
           $window.localStorage.cars = JSON.stringify($scope.cars);
       })
-      .error(function(data) {
+      .catch(function(data) {
           console.log('Error: ' + data);
       });
     }
 
 
     // $http.get('/car')
-    //     .success(function(data){
+    //     .then(function(data){
     //         console.log(JSON.stringify(data));
     //         $scope.cars = data;
     //     })
-    //     .error(function(data) {
+    //     .catch(function(data) {
     //         console.log('Error: ' + data);
     //     });
 
