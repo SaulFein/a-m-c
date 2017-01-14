@@ -28,7 +28,7 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
       console.log("this is get detail controller " + id)
       // $http.get(url + '/inventory/' + id)
       $http.get('/inventory/' + id)
-      .then(function(data){
+      .success(function(data){
           // console.log(JSON.stringify(data));
           $scope.car = data;
           $scope.slides.push({image: data.picture.url, title: 'Main Image'});
@@ -38,7 +38,7 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
           }
           console.log("this is scope.slides ",  $scope.slides)
       })
-      .catch(function(data) {
+      .error(function(data) {
           console.log('Error: ' + data);
       });
     }

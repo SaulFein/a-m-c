@@ -4,7 +4,7 @@
     "dependencies": {
         "angular-filepicker": "^1.1.4",
         "bootstrap": "^3.3.6",
-        "angular": "^1.5.2",
+        "angular": "1.5.2",
         "angular-route": "^1.5.2",
         "angular-password": "^1.0.1",
         "angular-messages": "^1.5.8",
@@ -18,6 +18,6 @@
         "filepicker-js-bower": "filepicker-js#^2.4.17"
     },
     "resolutions": {
-        "angular": "^1.5.2"
+        "angular": "1.5.2"
     }
 }

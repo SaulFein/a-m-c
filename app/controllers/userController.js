@@ -61,13 +61,13 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
   var userId = AuthService.getId();
   console.log("This is userId from userCtrl getCars" + userId);
     CarService.getCars(userId)
-    .then(function(data){
+    .success(function(data){
         // console.log("Loading Cars!");
         // console.log(JSON.stringify(data));
         vm.cars = data;
         $window.localStorage.cars = JSON.stringify(vm.cars);
     })
-    .catch(function(data) {
+    .error(function(data) {
         console.log('Error: ' + data);
     });
 }
@@ -102,13 +102,13 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
 //   console.log("This is userId from userCtrl getCars" + userId);
 //   if(!$window.localStorage.cars){
 //     CarService.getCars(userId)
-//     .then(function(data){
+//     .success(function(data){
 //         // console.log("Loading Cars!");
 //         // console.log(JSON.stringify(data));
 //         vm.cars = data;
 //         $window.localStorage.cars = JSON.stringify(vm.cars);
 //     })
-//     .catch(function(data) {
+//     .error(function(data) {
 //         console.log('Error: ' + data);
 //     });
 //   } else {
