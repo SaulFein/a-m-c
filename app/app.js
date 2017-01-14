@@ -5,8 +5,10 @@
 // var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'pwCheck'])
 var app = angular.module('app', ['addCarCtrl', 'galleryCtrl', 'detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'ngPassword', 'ngMessages', 'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMap'])
 
-app.config(function($routeProvider, filepickerProvider) {
+app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function($routeProvider, filepickerProvider, $locationProvider) {
         //The route provider handles the client request to switch route
+        $locationProvider.hashPrefix('');
+
         $routeProvider.when('/addCar', {
                 templateUrl: 'partials/addCar.html',
                 controller: 'addCarController'
@@ -50,7 +52,7 @@ app.config(function($routeProvider, filepickerProvider) {
             .otherwise({ redirectTo: '/home' });
 
         filepickerProvider.setKey('AS2OofL0jSaWHwlvlGpt4z');
-    })
+    }])
     .directive('routeLoadingIndicator', ['$rootScope',
         function($rootScope) {
             console.log("directive hit!");
