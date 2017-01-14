@@ -22,3 +22,4 @@ require(__dirname + '/car.js')(mongoose, models);
 require(__dirname + '/user.js')(mongoose, models);
 
 module.exports = models;
+ 
