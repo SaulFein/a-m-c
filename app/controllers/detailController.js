@@ -38,7 +38,7 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
           }
           console.log("this is scope.slides ",  $scope.slides)
       })
-      .error(function(data) {
+      .catch(function(data) {
           console.log('Error: ' + data);
       });
     }

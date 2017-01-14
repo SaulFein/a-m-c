@@ -10,7 +10,7 @@ galleryCtrl.controller('galleryController', function($scope, $http, $window, Car
           $scope.cars = data;
           $window.localStorage.cars = JSON.stringify($scope.cars);
       })
-      .error(function(data) {
+      .catch(function(data) {
           console.log('Error: ' + data);
       });
     }
@@ -21,7 +21,7 @@ galleryCtrl.controller('galleryController', function($scope, $http, $window, Car
     //         console.log(JSON.stringify(data));
     //         $scope.cars = data;
     //     })
-    //     .error(function(data) {
+    //     .catch(function(data) {
     //         console.log('Error: ' + data);
     //     });
 

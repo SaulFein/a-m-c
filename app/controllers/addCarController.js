@@ -40,7 +40,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
             })
-            .error(function(data) {
+            .catch(function(data) {
                 console.log('Error: ' + data);
             });
     };
@@ -57,7 +57,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 //Clean the form to allow the user to create new cars
                 // $scope.car = {};
             })
-            .error(function(data) {
+            .catch(function(data) {
                 console.log('Error: ' + data);
             });
     };
@@ -88,7 +88,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 $scope.go('/admin-inventory')
 
             })
-            .error(function(data) {
+            .catch(function(data) {
                 console.log('Error: ' + data);
             });
     };
@@ -116,7 +116,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                         }
                     }
                 })
-                .error(function(data) {
+                .catch(function(data) {
                     console.log('Error: ' + data);
                 });
         }

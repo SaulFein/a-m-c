@@ -67,7 +67,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
         vm.cars = data;
         $window.localStorage.cars = JSON.stringify(vm.cars);
     })
-    .error(function(data) {
+    .catch(function(data) {
         console.log('Error: ' + data);
     });
 }
@@ -108,7 +108,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
 //         vm.cars = data;
 //         $window.localStorage.cars = JSON.stringify(vm.cars);
 //     })
-//     .error(function(data) {
+//     .catch(function(data) {
 //         console.log('Error: ' + data);
 //     });
 //   } else {
