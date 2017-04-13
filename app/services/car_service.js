@@ -43,7 +43,10 @@ var CarService = angular.module('CarService', []);
     //     }
     //   });
     // };
-
+    // carService.getSignature = function(userId, policy){
+    //   return $http.get('/api/users/' + userId + '/sig').then((res) => {
+    //   })
+    // }
 
     carService.updateCar = function(data, carId) {
       console.log(carId)

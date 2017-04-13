@@ -7,6 +7,8 @@ module.exports = (router, models) => {
   let Car = models.Car;
   let User = models.User;
   let jwtAuth = require(__dirname + '/../lib/jwtAuth.js');
+  let CryptoJS = require("crypto-js");
+
 
         /*
          * Get route to retrieve all the cars.
@@ -62,5 +64,18 @@ module.exports = (router, models) => {
               });
             });
 
+            router.route('/users/:user/sig')
+             .get((req, res) => {
+               console.log('--------------------', req);
+               console.log('--------------------', res);
+               res.send('fdjakfsjflaskdjfalsklajfs');
+             });
+            //  router.route('/users/:user/sig')
+            //   .post((req, res) => {
+            //     var policy = req.body
+            //     console.log('--------------------', req.body);
+            //     var sig = CryptoJS.HmacSHA256(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM');
+            //     res.send(sig);
+            //   });
 
 };

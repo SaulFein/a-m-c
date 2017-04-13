@@ -66,6 +66,8 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         console.log("this is deleteCar from aCC ", data)
             // console.log("This is data.picture.url " + data.picture.url)
         var fpHolder = data.picture.url;
+        var policy = createPolicy(data.picture.url);
+        var signature = createSignature(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM')
         if (data.morePictures) {
             var fpMHolder = data.morePictures;
         }
@@ -75,10 +77,28 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 }
             })
             .then(function(data) {
-                filepickerService.remove(fpHolder)
+                filepickerService.remove(fpHolder,
+                  {
+                    policy: policy,
+                    signature: signature
+                  },
+                  function(){
+                    console.log("Removed");
+                  }
+                )
                 if (fpMHolder) {
                     for (var i = 0; i < fpMHolder.length; i++) {
-                        filepickerService.remove(fpMHolder[i].url);
+                      var policy = createPolicy(fpMHolder[i].url);
+                      var signature = createSignature(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM')
+                        filepickerService.remove(fpMHolder[i].url,
+                          {
+                            policy: policy,
+                            signature: signature
+                          },
+                          function(){
+                            console.log("Removed");
+                          }
+                        );
                     }
                 }
                 console.log(JSON.stringify(data));
@@ -178,8 +198,19 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
     };
 
     $scope.removeImage = function(data) {
-        var fpHolder = data.picture.url;
-        filepickerService.remove(fpHolder);
+      var policy = createPolicy(data.picture.url);
+      // var newSig = $scope.getSig();
+      var signature = createSignature(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM')
+      var fpHolder = data.picture.url;
+        filepickerService.remove(fpHolder,
+          {
+                  policy: policy,
+                  signature: signature
+                },
+                function(){
+                  console.log("Removed");
+                }
+        );
         console.log(fpHolder + " has been removed!");
         delete data.picture;
 
@@ -193,22 +224,59 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         }
         return -1;
     }
+    $scope.setSelected = function(selected) {
+      $scope.selectedImageForRemoval = selected;
+    }
 
-    $scope.removeMoreImage = function(image, data) {
-        var index = getIndexIfObjWithOwnAttr(data.morePictures, 'url', image);
+    // $scope.removeMoreImage = function(image, data) {
+    //     var index = getIndexIfObjWithOwnAttr(data.morePictures, 'url', image);
+    //     // var fpMHolder = data.morePictures;
+    //     // var index = data.morePictures.url.indexOf(image);
+    //     console.log("this is index: " + index)
+    //     data.morePictures.splice(index, 1);
+    //     // console.log("data.morePictures after splice ", data.morePictures);
+    //     filepickerService.remove(image);
+    //     $('#confirm-modal-more').modal('hide');
+    //     $('body').removeClass('modal-open');
+    //     $('.modal-backdrop').remove();
+    //     console.log(image + " has been removed!");
+    //
+    // }s
+    var createPolicy = function(url) {
+      var handle = url.match(/[^\/]*$/);
+      var expiry =  Math.floor(new Date().getTime() / 1000 + 60*60)
+      var polObject = JSON.stringify({handle: handle[0], expiry: expiry});
+      return btoa(polObject);
+    }
+    var createSignature = function(policy, key) {
+      return CryptoJS.HmacSHA256(policy, key);
+    };
+    $scope.removeMoreImage = function(data) {
+        var index = $scope.selectedImageForRemoval;
+        var image = data.morePictures[index];
+        var policy = createPolicy(image.url);
+        // var newSig = $scope.getSig();
+        var signature = createSignature(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM')
         // var fpMHolder = data.morePictures;
         // var index = data.morePictures.url.indexOf(image);
         console.log("this is index: " + index)
         data.morePictures.splice(index, 1);
         // console.log("data.morePictures after splice ", data.morePictures);
-        filepickerService.remove(image);
+        filepickerService.remove(image.url,
+          {
+            policy: policy,
+            signature: signature
+          },
+          function(){
+            console.log("Removed");
+            $scope.updateCar()
+          })
         $('#confirm-modal-more').modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
         console.log(image + " has been removed!");
 
     }
-
     //////////////////////////////////////////////////
     $scope.checkToken = function() {
         if (!$window.localStorage.token) {
@@ -225,10 +293,13 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
     };
-
+    // $scope.getSig = function() {
+    //   CarService.getSignature(cUser).then((data) => {
+    //     return data;
+    //   })
+    // }
+    // $scope.getSig = function(policy) {
+    //   CarService.getSignature(cUser, policy).then((data) => {
+    //     return data;
+    //   })
 });
-
-
-
-
-//{"make":"Yellow Cars","model":"YCC","year":"2000","color":"Yellow","picture":{"url":"https://cdn.filepicker.io/api/file/ycuIeagMR9SKv7VcKt9J","filename":"yellowcar.jpg","mimetype":"image/jpeg","size":981938,"id":1,"client":"computer","isWriteable":true},"morePictures":[{"url":"https://cdn.filepicker.io/api/file/UV34kbR3TnCS8lCSSTjC","filename":"yellowcar3.jpg","mimetype":"image/jpeg","size":1038161,"id":1,"client":"computer","isWriteable":true},{"url":"https://cdn.filepicker.io/api/file/biU1AUEsTAq3o46NTcdB","filename":"yellowcar2.jpg","mimetype":"image/jpeg","size":105175,"id":2,"client":"computer","isWriteable":true}]}eable":true}}
