@@ -1,3 +1,79 @@
+/* Loading Gotham Font family
+NOTE: Gotham is used for HEADLINE and
+SUBHEAD, as well as body copy.
+It is also the logo and address font.*/
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/app/css/type/GothamHTF-Black.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-BlackItalic.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-Bold.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-BoldCondensed.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-BoldItalic.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-Book.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-BookCondensed.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-BookItalic.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-Light.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-LightCondensed.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-LightItalic.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-Medium.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-MediumCondensed.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-Thin.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-ThinItalic.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-Ultra.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-UltraItalic.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-XLight.otf') format('otf');
+  src: url('/app/css/type/GothamHTF-XLightItalic.otf') format('otf');
+}
+
+/* Loading Clarendon Font family from TypeKit
+NOTE: Clarendon is used for a graphic element ONLY and should not be used as body copy.
+It can be used as a HEADLINE if HEADLINES are one or two words.
+It can be used to emphasis a visual element such as numbers.
+It should not be used in sentences. */
+
+<script src="https://use.typekit.net/noo6xxu.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+/* Color palette for the website */
+  :root {
+/* C: 68 M: 0 Y: 3 K: 7
+L: 68 A: -29 B: -32
+R: 0 G: 181 B: 221
+HEX: #00b5dd
+PANTONE: 296C 638U
+*/
+    --blue: #00b5dd;
+/* C: 0 M: 58 Y: 99 K: 0
+L: 69 A: 43 B: 72
+R: 55 G: 133 B: 19
+HEX: #f68621
+PANTONE: 716C 137U
+*/
+    --orange: #f68621;
+/* C: 0 M: 0 Y: 0 K: 50
+L: 27 A: 0 B: -1
+R: 55 G: 64 B: 66
+HEX: #414042
+PANTONE: Cool Grey 7C 423U
+*/
+    --coolgrey7c: #414042;
+/* C: 0 M: 0 Y: 0 K: 50
+L: 33 A: 0 B: -1
+R: 77 G: 77 B: 79
+HEX: #4d4d4f
+PANTONE: Cool Grey 11C Hexachrome Black U
+*/
+    --coolgrey11c: #4d4d4f;
+/* C: 0 M: 30 Y: 49 K: 42
+L: 33 A: 0 B: -1
+R: 149 G: 105 B: 76
+HEX: #95694c
+PANTONE: 876C (Bronze)
+*/
+    --bronze: #95694c;
+  }
+
 .carousel-container {
     position: relative;
     padding-bottom: 64.062682215743%;
@@ -116,21 +192,19 @@
 }
 
 .site-footer {
-    background-color: #222;
-    color: #fff;
+    background-color: var(--coolgrey7c);
+    color: #black;
     /*margin-top: 30px;*/
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .bottom-footer {
-    border-top: 1px solid;
-    margin-top: 10px;
-    padding-top: 10px;
-    color: #b2b2b2;
+    background-color: var(--coolgrey7c);
+    color: #black;
 }
 
 .footer-nav {
-    text-align: right;
+    text-align: center;
     list-style: none;
 }
 
@@ -139,11 +213,12 @@
 }
 
 .footer-nav a {
-    color: #b2b2b2;
+  background-color: var(--coolgrey7c);
+  color: var(--blue);
 }
 
 .footer-nav a:hover {
-    color: #fff;
+    color: #000000;
     text-decoration: none;
 }
 
@@ -153,7 +228,7 @@
 }
 
 .footer-title {
-    color: #b2b2b2;
+    color: #black;
 }
 
 
@@ -162,7 +237,7 @@
 .row-centered {
     text-align: center;
     display: inline-block;
-    margin-top: 30px;
+    margin-top: 0px;
 }
 
 .col-centered {
@@ -179,45 +254,50 @@
 }
 
 .nav-style {
-    background-color: black;
+    background-color: white;
+    font-style: normal;
+    font-family: 'Gotham' sans-serif;
+    font-size: 20
     /*padding: 15px 30px;*/
 }
 
 .navbar-collapse.nav-style {
-    padding left: 15px;
-    padding right: 15px;
+    font-family: 'Gotham', sans-serif;
+    font-size: 20
+    padding left: 0px;
+    padding right: 0px;
 }
 
 .header-style {
-    background-color: black;
-    padding: 15px;
+    background-color: white;
+    padding: 0px;
 }
 
 a.navbar-brand.my-brand {
-    padding-bottom: 15px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
+    padding-bottom: 0px;
+    font-family: 'Gotham', sans-serif;
+    font-size: 26px;
     text-shadow: none;
 }
 
 button.navbar-toggle.nav-toggle-style {
-    border-color: black;
-    background-color: black;
+    border-color: white;
+    background-color: white;
 }
 
 button.navbar-toggle.nav-toggle-style:hover {
-    border-color: black;
-    background-color: #212121;
+    border-color: white;
+    background-color: #white;
 }
 
 .navbar-default .navbar-toggle:focus,
 .navbar-default .navbar-toggle:hover {
-    background-color: #212121;
+    background-color: #white;
 }
 
 .nav-style li a {
-    font-family: 'Montserrat', sans-serif;
-    line-height: 20px;
+    font-family: 'Gotham', sans-serif;
+    font-size: 20px;
     text-shadow: none;
 }
 
@@ -245,7 +325,7 @@ button.navbar-toggle.nav-toggle-style:hover {
 
 .car-specs hr {
     width: 80%;
-    border-color: black;
+    border-color: white;
     margin: auto;
     padding: 2%;
 }
@@ -334,7 +414,7 @@ p.yr-mk-mdl {
     margin-bottom: none;
   }*/
     .navbar-collapse.nav-style li a {
-        line-height: 50px;
+
     }
 }
 
