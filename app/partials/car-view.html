@@ -1,0 +1,175 @@
+
+<div ng-cloak id="container-or" class="container">
+<div class="" ng-init="getCar();">
+    <div class="panel-default">
+    <div class="row car-header">
+      <div class="col-md-8">
+        <h2>{{car.make}} {{car.model}}</h2>
+        <!-- <div class="text-right"><a href="/#/gallery" class="btn btn-danger" role="button">Return to Gallery</a> </div> -->
+      </div>
+    </div>
+        <!-- <div class="panel-body text-center"> -->
+        <div class="row">
+          <div class="col-md-8 col-lg-8">
+            <div id="preview-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+              <!-- Slides -->
+              <div class="carousel-inner carousel-container">
+                <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
+                  <a class="hidden-xs" data-toggle="modal" data-target="#carViewModal">
+                <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
+                    <img ng-src="{{ picture.image }}" style="margin:auto">
+                  </a>
+                  <a class="visible-xs"> <!--shows on mobile, add visible-sm to show on tablet-->
+                    <img ng-src="{{ picture.image }}" style="margin:auto">
+                  </a>
+                </div>
+              </div>
+              <!-- end Slides -->
+
+              <!-- Controls -->
+              <a class="left carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#preview-carousel, #modal-carousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#preview-carousel, #modal-carousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+              <!-- <ol class="carousel-indicators">
+                <li ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel" data-slide-to="{{ $index }}" >
+                  <button ng-class="{active:!$index}" data-target="#modal-carousel" data-slide-to="{{ $index }}"></button>
+                </li>
+
+              </ol> -->
+              <!-- end Controls -->
+            </div>
+          </div>
+
+
+          <!--_________________________Modal Carousle ___________________________-->
+          <div class="hidden-xs">
+          <div id="carViewModal" class="item modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-style">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div id="modal-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <!-- Slides -->
+                    <div class="carousel-inner">
+                      <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
+                        <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
+                        <img ng-src="{{ picture.image }}" style="margin:auto">
+
+                      </div>
+                    </div>
+                    <!-- end Slides -->
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#modal-carousel" data-slide="prev">
+                      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#modal-carousel" data-slide="next">
+                      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                    <!-- <ol class="carousel-indicators">
+                    <li ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#modal-carousel" data-slide-to="{{ $index }}" >
+                    <div ng-class="{active:!$index}" data-target="#preview-carousel" data-slide-to="{{ $index }}"></div>
+                  </li>
+                </ol> -->
+                <!-- end Controls -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--- ___________________End of Modal Carousel __________________________-->
+
+          <!-- <img class="main-image" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}" /> -->
+
+            <div class="col-md-4 col-lg-4">
+              <div class="car-specs">
+                <h3 class="car-price">Price: {{car.price}}</h3>
+                <hr>
+                <ul>
+                  <li>Year: {{car.year}}</li>
+                  <li>Miles: {{car.miles}}</li>
+                  <li>Color: {{car.color}}</li>
+                  <li>Interior Color: {{car.interiorColor}}</li>
+                  <li>Engine: {{car.engine}}</li>
+                  <li>Transmission: {{car.transmission}}</li>
+                  <li>VIN: {{car.vin}}</li>
+                  <li>Hightlights: {{car.highlights}}</li>
+                  <li><a class="btn btn-danger" role="button" href="{{car.carfax}}">CarFax Report</a></li>
+                </ul>
+              </div>
+          </div>
+        </div>
+
+
+            <hr />
+            <div class="row">
+            <div class="col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2">
+            <!-- Only if there are other pictures -->
+              <div ng-if="car.morePictures">
+                  <h3> More Pictures <h3>
+                  <div ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel " data-slide-to="{{ $index }}">
+                    <div data-target="#modal-carousel" data-slide-to="{{ $index }}">
+                      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                        <a class="thumbnail" id="detailGal">
+                          <!-- <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal"> -->
+                            <img ng-src="{{picture.image | fpConvert: {filter:'sharpen', w:500} }}">
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+          <div id="container-or" class="container">
+        <!-- add ngSanitize to app and then you can use ng-bind-html -->
+            <div class="car-descr" ng-bind-html="car.description"></div>
+          </div>
+        </div>
+
+
+      </div>
+      <!-- touch swipe for carousel -->
+      <script>
+        $("#preview-carousel").carousel()
+        $("#modal-carousel").carousel()
+        var lastSegment;
+        $(".modal").on("shown.bs.modal", function()  { // any time a modal is shown
+          var url = document.location.href;
+          lastSegment = url.split('/').pop();
+          var urlReplace = "#/" + $(this).attr('id'); // make the hash the id of the modal shown
+          history.pushState(null, null, urlReplace); // push state that hash into the url
+        });
+
+        // If a pushstate has previously happened and the back button is clicked, hide any modals.
+        $(window).on('popstate', function() {
+          $(".modal").modal('hide');
+        });
+
+        $(".modal").on("hidden.bs.modal", function()  { // any time a modal is hidden
+            var urlReplace = window.location.toString().split('#', 1)[0]
+
+            // alert("HELLLLOOOO" + urlReplace + '#/car/' + lastSegment)
+            history.pushState(null, null, urlReplace + '#/car/' + lastSegment); // push url without the hash as new history item
+        });
+        // if (window.history && window.history.pushState) {
+        //     $('#carViewModal').on('show.bs.modal', function (e) {
+        //       href = $(this).attr("href");
+        //         window.history.pushState('forward', null, './#modal');
+        //     });
+        //
+        //     $(window).on('popstate', function () {
+        //         $('#carViewModal').modal('hide');
+        //
+        //     });
+        // }
+
+      </script>
+
+</div>

@@ -1,0 +1,86 @@
+/*Google Map Style*/
+#map-container {
+  height: 300px;
+
+}
+
+#gmap {
+  width: 100%;
+  height: 100%;
+}
+/*-----------------*/
+
+/*Login Form Style*/
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  @include box-sizing(border-box);
+  &:focus {
+    z-index: 2;
+  }
+}
+
+.form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+    padding-left: 20px;
+	}
+
+input[type="password"] {
+  margin-bottom: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.error-message {
+  color: red;
+}
+
+/*-----------------*/
+
+.admin-panel {
+  text-align: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.admin-title{
+  text-align: center;
+}
+button#add-button{
+  margin-left: 2%;
+  margin-right:2%;
+}
+
+.admin-panel h3{
+  padding-bottom: 1%;
+}
+.car-container{
+  padding-left: 3%;
+  padding-right: 3%;
+}
+/*.admin-panel {
+  height: 40px;
+}*/
+
+
+}

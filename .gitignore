@@ -4,3 +4,10 @@ node_modules
 bower_components
 .DS_Store
 config.js
+pw_directive.js
+userControllerScopeConv.js
+ngFader.css
+unslider.css
+ngFader.js
+unslider-min.js
+jquery.bcSwipe.js
