@@ -64,18 +64,10 @@ module.exports = (router, models) => {
               });
             });
 
-            router.route('/users/:user/sig')
-             .get((req, res) => {
-               console.log('--------------------', req);
-               console.log('--------------------', res);
-               res.send('fdjakfsjflaskdjfalsklajfs');
-             });
-            //  router.route('/users/:user/sig')
-            //   .post((req, res) => {
-            //     var policy = req.body
-            //     console.log('--------------------', req.body);
-            //     var sig = CryptoJS.HmacSHA256(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM');
-            //     res.send(sig);
-            //   });
-
+             router.route('/users/:user/sig')
+              .post((req, res) => {
+                var policy = req.body.pol;
+                var sig = CryptoJS.HmacSHA256(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM');
+                res.send(sig);
+              });
 };

@@ -43,8 +43,18 @@ var CarService = angular.module('CarService', []);
     //     }
     //   });
     // };
+    carService.getSignature = function(userId, policy){
+      return $http.post('/api/users/' + userId + '/sig', policy, {
+        headers: {
+          token: AuthService.getToken()
+        }
+      })
+    }
     // carService.getSignature = function(userId, policy){
     //   return $http.get('/api/users/' + userId + '/sig').then((res) => {
+    //     headers: {
+    //       token: AuthService.getToken()
+    //     }
     //   })
     // }
 
