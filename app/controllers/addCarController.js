@@ -27,7 +27,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
     };
 
-
     //Send the newly created car to the server to store in the db
     $scope.createCar = function() {
         $http.post(url + cUser + '/inventory', $scope.car, {
@@ -54,8 +53,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             .then(function(data) {
                 console.log(JSON.stringify(data));
                 $scope.getCar();
-                //Clean the form to allow the user to create new cars
-                // $scope.car = {};
             })
             .catch(function(data) {
                 console.log('Error: ' + data);
@@ -63,11 +60,9 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
     };
 
     $scope.deleteCar = function(data) {
-        console.log("this is deleteCar from aCC ", data)
-            // console.log("This is data.picture.url " + data.picture.url)
         var fpHolder = data.picture.url;
         var policy = createPolicy(data.picture.url);
-        var signature = createSignature(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM')
+        var sig = $scope.getSig(policy);
         if (data.morePictures) {
             var fpMHolder = data.morePictures;
         }
@@ -80,7 +75,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 filepickerService.remove(fpHolder,
                   {
                     policy: policy,
-                    signature: signature
+                    signature: sig
                   },
                   function(){
                     console.log("Removed");
@@ -89,11 +84,11 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 if (fpMHolder) {
                     for (var i = 0; i < fpMHolder.length; i++) {
                       var policy = createPolicy(fpMHolder[i].url);
-                      var signature = createSignature(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM')
+                      var sig = $scope.getSig(policy);
                         filepickerService.remove(fpMHolder[i].url,
                           {
                             policy: policy,
-                            signature: signature
+                            signature: sig
                           },
                           function(){
                             console.log("Removed");
@@ -139,7 +134,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 .catch(function(data) {
                     console.log('Error: ' + data);
                 });
-        }
+    };
         ///////////////////////////////////////////////////////////
         //////////////////file picker functions////////////////////
 
@@ -199,13 +194,12 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
 
     $scope.removeImage = function(data) {
       var policy = createPolicy(data.picture.url);
-      // var newSig = $scope.getSig();
-      var signature = createSignature(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM')
+      var sig = $scope.getSig(policy);
       var fpHolder = data.picture.url;
         filepickerService.remove(fpHolder,
           {
                   policy: policy,
-                  signature: signature
+                  signature: sig
                 },
                 function(){
                   console.log("Removed");
@@ -213,8 +207,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         );
         console.log(fpHolder + " has been removed!");
         delete data.picture;
-
-    }
+    };
 
     var getIndexIfObjWithOwnAttr = function(array, attr, value) {
         for (var i = 0; i < array.length; i++) {
@@ -228,44 +221,23 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
       $scope.selectedImageForRemoval = selected;
     }
 
-    // $scope.removeMoreImage = function(image, data) {
-    //     var index = getIndexIfObjWithOwnAttr(data.morePictures, 'url', image);
-    //     // var fpMHolder = data.morePictures;
-    //     // var index = data.morePictures.url.indexOf(image);
-    //     console.log("this is index: " + index)
-    //     data.morePictures.splice(index, 1);
-    //     // console.log("data.morePictures after splice ", data.morePictures);
-    //     filepickerService.remove(image);
-    //     $('#confirm-modal-more').modal('hide');
-    //     $('body').removeClass('modal-open');
-    //     $('.modal-backdrop').remove();
-    //     console.log(image + " has been removed!");
-    //
-    // }s
     var createPolicy = function(url) {
       var handle = url.match(/[^\/]*$/);
       var expiry =  Math.floor(new Date().getTime() / 1000 + 60*60)
       var polObject = JSON.stringify({handle: handle[0], expiry: expiry});
       return btoa(polObject);
     }
-    var createSignature = function(policy, key) {
-      return CryptoJS.HmacSHA256(policy, key);
-    };
+
     $scope.removeMoreImage = function(data) {
         var index = $scope.selectedImageForRemoval;
         var image = data.morePictures[index];
         var policy = createPolicy(image.url);
-        // var newSig = $scope.getSig();
-        var signature = createSignature(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM')
-        // var fpMHolder = data.morePictures;
-        // var index = data.morePictures.url.indexOf(image);
-        console.log("this is index: " + index)
+        var sig = $scope.getSig(policy);
         data.morePictures.splice(index, 1);
-        // console.log("data.morePictures after splice ", data.morePictures);
         filepickerService.remove(image.url,
           {
             policy: policy,
-            signature: signature
+            signature: sig
           },
           function(){
             console.log("Removed");
@@ -293,13 +265,12 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
     };
-    // $scope.getSig = function() {
-    //   CarService.getSignature(cUser).then((data) => {
-    //     return data;
-    //   })
-    // }
-    // $scope.getSig = function(policy) {
-    //   CarService.getSignature(cUser, policy).then((data) => {
-    //     return data;
-    //   })
+
+    $scope.getSig = function(policy) {
+      var myPolicy = {pol: policy};
+      var sig = CarService.getSignature(cUser, myPolicy).then((data) => {
+        return data;
+      })
+      return sig;
+    };
 });
