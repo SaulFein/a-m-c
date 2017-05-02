@@ -1,7 +1,7 @@
 <!-- view the gallery of all the cars in the db -->
 <div class="row gallery-container" ng-init="getCars();">
   <div class="inventory-title">
-    <h2>Current Inventory</h2>
+    <h2>Inventory</h2>
   </div>
   <div class="car-container">
     <div ng-repeat="car in cars | orderBy:['make','model']">
