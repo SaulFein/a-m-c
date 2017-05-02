@@ -3,6 +3,7 @@
 // var mongoose  = require('mongoose');
 // var Car = require('../models/car');
 // App routes
+var fsKey = process.env.FILESTACK;
 module.exports = (router, models) => {
   let Car = models.Car;
   let User = models.User;
@@ -67,7 +68,7 @@ module.exports = (router, models) => {
              router.route('/users/:user/sig')
               .post((req, res) => {
                 var policy = req.body.pol;
-                var sig = CryptoJS.HmacSHA256(policy, 'MACNUIVXAJBMFDMNMVYIBRBHQM');
+                var sig = CryptoJS.HmacSHA256(policy, fsKey);
                 res.send(sig);
               });
 };
