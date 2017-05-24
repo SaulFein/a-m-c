@@ -153,12 +153,12 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             }
         );
     };
-    //Multiple files upload set to 20 as max number
+    //Multiple files upload set to 100 as max number
     $scope.uploadMultiple = function() {
         filepickerService.pickMultiple({
                 mimetype: 'image/*',
                 language: 'en',
-                maxFiles: 20, //pickMultiple has one more option
+                maxFiles: 100, //pickMultiple has one more option
                 services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
                 openTo: 'IMAGE_SEARCH'
             },
