@@ -1,0 +1,21 @@
+<!-- view the gallery of all the cars in the db -->
+<div class="row gallery-container" ng-init="getCars();">
+  <div class="inventory-title">
+  </div>
+  <div class="car-container col-md-10 col-md-offset-1">
+    <div ng-repeat="car in cars | orderBy:['make','model']">
+        <div class="col-md-4 col-ms-6 col-sm-6" style="display: flex; justify-content: center; padding-bottom: 5%">
+          <a ng-href="/#/car/{{car._id}}" class="no-style-link-thumb">
+            <div style="text-align:center; height: 240px; width:355px; overflow:hidden;">
+                <img style="height: 100%" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', h:225} }}" />
+              <div class="caption text-center">
+                <!-- <p class="yr-mk-mdl">{{car.year}} {{car.make}} {{car.model}}</p>
+                <p class="yr-mk-mdl">{{car.miles}} miles</p>
+                <p class="price">{{car.price}}</p> -->
+              </div>
+            </div>
+          </a>
+        </div>
+    </div>
+  </div>
+</div>
