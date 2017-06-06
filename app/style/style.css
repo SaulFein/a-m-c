@@ -332,9 +332,9 @@ button.navbar-toggle.nav-toggle-style:hover {
     padding: 2%;
 }
 
-.car-price {
+/*.car-price {
     text-align: center;
-}
+}*/
 
 .modal-style {
     position: relative;
@@ -404,22 +404,31 @@ p.yr-mk-mdl {
 }
 
 
-//////////
+#car-price {
+    position: absolute;
+    right: 100px;
+    bottom: 85px;
+    font-size: 22px;
+    background-color: #3a3a3a;
+    color: white;
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    opacity: 0.6;
+}
 
-/* Set the image to fill its parent and make transparent */
-/*.center-cropped img {
-  min-height: 100%;
-  min-width: 100%;
-  /* IE 8 */
-  /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";*/
-  /* IE 5-7 */
-  /*filter: alpha(opacity=0);
-  /* modern browsers */
-  opacity: 0;
-}*/
-//////////
+#car-price p {
+    color: white;
+    padding: 3px;
+    margin: 0px;
+}
 
-
+.inv-pics {
+  text-align:center;
+  height: 240px;
+  width:355px;
+  overflow:hidden;
+  transition:all .2s linear; 
+}
 /*@media (min-width: 992px){
 
 }*/
@@ -436,6 +445,21 @@ p.yr-mk-mdl {
     .navbar-collapse.nav-style li a {
 
     }
+}
+
+@media (min-width: 1148px) and (max-width: 1370px) {
+  .inv-pics {
+    height: 200px;
+    width:296px;
+  }
+}
+
+
+@media (min-width: 800px) and (max-width: 1147px) {
+  .inv-pics {
+    height: 165px;
+    width:244px;
+  }
 }
 
 @media only screen and (min-width: 320px) {
