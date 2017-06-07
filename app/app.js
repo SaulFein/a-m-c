@@ -36,7 +36,7 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
                 controller: 'UserController'
             })
             .when('/home', {
-                templateUrl: 'partials/homeNew.html',
+                templateUrl: 'partials/home3.html',
                 controller: 'galleryController'
             })
             .when('/admin-inventory', {

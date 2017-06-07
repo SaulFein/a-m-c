@@ -8,16 +8,17 @@
           <a ng-href="/#/car/{{car._id}}" class="no-style-link-thumb">
             <div class="inv-pics">
                 <img style="height: 100%" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', h:225} }}" />
-                <div id="car-price"><p>{{car.price}}</p></div>
+                <span id="car-price"><p>{{car.price}}</p></span>
 
-              <div class="caption text-center">
-                <!-- <p class="yr-mk-mdl">{{car.year}} {{car.make}} {{car.model}}</p>
-                <p class="yr-mk-mdl">{{car.miles}} miles</p>
-                 -->
+                <div class="car-text">
+                  <p class="yr-mk-mdl">{{car.year}} {{car.make}} {{car.model}}</p>
+                  <!-- <p class="yr-mk-mdl">{{car.miles}} miles</p> -->
+                </div>
 
-              </div>
+
             </div>
           </a>
+
         </div>
     </div>
   </div>
