@@ -388,11 +388,11 @@ a.no-style-link-thumb {
 
 p.yr-mk-mdl {
   max-width: 100%;
-  font-size: 20px;
+  font-size: 18px;
   margin: 0;
   color: #777777;
   padding-top: 10px;
-  font-family: "Gotham";
+  font-family: 'Gotham', sans-serif;
 }
 
 .car-text {
