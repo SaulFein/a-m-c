@@ -388,16 +388,19 @@ a.no-style-link-thumb {
 
 p.yr-mk-mdl {
   max-width: 100%;
-  font-size: 18px;
+  font-size: 20px;
   margin: 0;
-  color: #777777;
-  padding-top: 10px;
+  padding-left: 5px;
+  color: #4d4d4f;
+  font-weight: 200;
   font-family: 'Gotham', sans-serif;
 }
 
 .car-text {
   position: absolute;
-  bottom: 23px;
+  bottom: 50px;
+  width: 100%;
+  text-align: left;
 }
 
 .rtn-inventory {
@@ -425,7 +428,7 @@ p.yr-mk-mdl {
 #car-price {
   position: absolute;
   right: 20px;
-  bottom: 56px;
+  bottom: 92px;
   font-size: 22px;
   background-color: #3a3a3a;
   color: white;
@@ -451,6 +454,13 @@ p.yr-mk-mdl {
 /*@media (min-width: 992px){
 
 }*/
+
+.sprite {
+  height: 25px;
+  position: absolute;
+  bottom: 93px;
+  left: 18px;
+}
 
 @media (min-width: 768px) {
     /*.page-wrap {
@@ -478,11 +488,17 @@ p.yr-mk-mdl {
 
 @media (min-width: 1148px) and (max-width: 1199px) {
   .car-text {
-      bottom: 10px;
+      bottom: 49px;
+      max-width: 265px;
+      height: 26px;
   }
   #car-price {
     right: 20px;
-    bottom: 47px;
+    bottom: 91px;
+  }
+
+  p.yr-mk-mdl {
+    font-size: 18px;
   }
 }
 
@@ -492,31 +508,40 @@ p.yr-mk-mdl {
     width:244px;
   }
   .car-text {
-      bottom: 9px;
+    bottom: 49px;
+    height: 26px;
+    max-width: 265px;
   }
   #car-price {
     right: 20px;
-    bottom: 47px;
+    bottom: 91px;
+  }
+  p.yr-mk-mdl {
+    font-size: 18px;
   }
 }
 
 @media (min-width: 800px) and (max-width: 991px) {
   #car-price {
     right: 20px;
-    bottom: 36px;
+    bottom: 91px;
   }
   .car-text {
-      bottom: 5px;
+      bottom: 49px;
+      height: 26px;
+      max-width: 308px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 799px) {
   #car-price {
     right: 20px;
-    bottom: 36px;
+    bottom: 91px;
   }
   .car-text {
-      bottom: 5px;
+      bottom: 49px;
+      height: 26px;
+      max-width: 308px;
   }
 }
 
@@ -526,7 +551,7 @@ p.yr-mk-mdl {
     width:207px;
   }*/
   .car-text {
-      bottom: 3px;
+      bottom: 47px;
   }
   #car-price {
     /*right: -2px;
