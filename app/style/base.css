@@ -16,18 +16,36 @@ html, body {
   height: 100%;
 }
 .page-wrap {
-  min-height: 100%;
+  /*min-height: 100%;
   /* equal to footer height */
-  margin-bottom: -221px;
+  /*margin-bottom: -221px;*/
 }
 .page-wrap:after {
   content: "";
   display: block;
 }
 .site-footer, .page-wrap:after {
-  height: 221px;
+  height: 0px;
   margin-bottom: 0;
 }
 /*.site-footer {
   background: orange;
 }*/
+.footer-section {
+  text-align: center;
+  padding-bottom: 50px;
+  color: #4d4d4f;
+  font-weight: 300;
+  font-family: 'Gotham', sans-serif;
+  font-size: 15px;
+}
+
+.site-nav {
+  background-image: none;
+    background-color: white;
+    height: 100px;
+    box-shadow: none;
+    border-right-color: white;
+    border-left-color: white;
+    border-top-color: white;
+}

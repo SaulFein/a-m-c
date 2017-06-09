@@ -299,7 +299,7 @@ button.navbar-toggle.nav-toggle-style:hover {
 
 .nav-style li a {
     font-family: 'Gotham', sans-serif;
-    font-size: 20px;
+    font-size: 17px;
     text-shadow: none;
 }
 
@@ -427,14 +427,15 @@ p.yr-mk-mdl {
 }
 #car-price {
   position: absolute;
-  right: 20px;
-  bottom: 92px;
-  font-size: 22px;
-  background-color: #3a3a3a;
+  right: 6px;
+  bottom: 91px;
+  font-size: 19px;
+  background-color: rgba(58, 58, 58, 0.66);
+  /*background-color: #3a3a3a;*/
   color: white;
-  filter: alpha(opacity=60);
+  /*filter: alpha(opacity=60);
   -moz-opacity: 0.6;
-  opacity: 0.6;
+  opacity: 0.6;*/
 }
 
 #car-price p {
@@ -446,7 +447,7 @@ p.yr-mk-mdl {
 
 .inv-pics {
   text-align:center;
-  height: 240px;
+  height: 237px;
   width:355px;
   overflow:hidden;
   transition:all .2s linear;
@@ -454,12 +455,19 @@ p.yr-mk-mdl {
 /*@media (min-width: 992px){
 
 }*/
+.car-tiles{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 88px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
 
 .sprite {
   height: 25px;
   position: absolute;
-  bottom: 93px;
-  left: 18px;
+  bottom: 92px;
+  left: 8px;
 }
 
 @media (min-width: 768px) {
@@ -478,11 +486,11 @@ p.yr-mk-mdl {
 
 @media (min-width: 1148px) and (max-width: 1370px) {
   .inv-pics {
-    height: 200px;
+    height: 197px;
     width:296px;
   }
   #car-price {
-    right: 20px;
+    right: 6px;
   }
 }
 
@@ -492,8 +500,12 @@ p.yr-mk-mdl {
       max-width: 265px;
       height: 26px;
   }
+  .inv-pics {
+    height: 163px;
+    width:244px;
+  }
   #car-price {
-    right: 20px;
+    right: 6px;
     bottom: 91px;
   }
 
@@ -504,7 +516,7 @@ p.yr-mk-mdl {
 
 @media (min-width: 992px) and (max-width: 1147px) {
   .inv-pics {
-    height: 165px;
+    height: 163px;
     width:244px;
   }
   .car-text {
@@ -513,7 +525,7 @@ p.yr-mk-mdl {
     max-width: 265px;
   }
   #car-price {
-    right: 20px;
+    right: 6px;
     bottom: 91px;
   }
   p.yr-mk-mdl {
@@ -523,7 +535,7 @@ p.yr-mk-mdl {
 
 @media (min-width: 800px) and (max-width: 991px) {
   #car-price {
-    right: 20px;
+    right: 6px;
     bottom: 91px;
   }
   .car-text {
@@ -535,7 +547,7 @@ p.yr-mk-mdl {
 
 @media (min-width: 768px) and (max-width: 799px) {
   #car-price {
-    right: 20px;
+    right: 6px;
     bottom: 91px;
   }
   .car-text {
