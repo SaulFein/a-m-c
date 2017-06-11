@@ -119,8 +119,17 @@ PANTONE: 876C (Bronze)
 
 
 /****************/
+.car-price {
+  float:right;
+  font-family: 'Gotham' sans-serif;
+  font-weight: 400;
+}
 
-
+.car-header {
+  float: left;
+  font-family: 'Gotham' sans-serif;
+  font-weight: 400;
+}
 /*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }*/
 
 #next {
@@ -303,9 +312,6 @@ button.navbar-toggle.nav-toggle-style:hover {
     text-shadow: none;
 }
 
-.car-header {
-    text-align: center;
-}
 
 .car-descr {
     text-indent: 30px;
@@ -313,14 +319,14 @@ button.navbar-toggle.nav-toggle-style:hover {
 
 .car-specs {
     list-style: none;
-    background-color: #c2c2c2;
-    padding-top: 5px;
+    width: 95%;
+    float: right;
+    margin: auto;
     padding-bottom: 5px;
 }
 
 .car-specs li {
     list-style: none;
-    padding-top: 5px;
     padding-bottom: 5px;
     text-decoration: none;
 }
@@ -469,6 +475,37 @@ p.yr-mk-mdl {
   bottom: 92px;
   left: 8px;
 }
+.spec-list li{
+    padding: 20px;
+    font-family: 'Gotham' sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+
+.car-detail-carousel {
+  width: 800px;
+  height: 536px;
+}
+
+.description-section {
+  font-family: 'Gotham' sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+.description-section h3{
+  font-family: 'Gotham' sans-serif;
+  font-weight: 400;
+}
+
+.thumb-group {
+  margin:auto;
+  padding:0px;
+  /*padding-left: 25px*/
+}
 
 @media (min-width: 768px) {
     /*.page-wrap {
@@ -508,6 +545,10 @@ p.yr-mk-mdl {
     right: 6px;
     bottom: 91px;
   }
+  .car-detail-carousel {
+    width: 650px;
+    height: 436px;
+  }
 
   p.yr-mk-mdl {
     font-size: 18px;
@@ -524,6 +565,10 @@ p.yr-mk-mdl {
     height: 26px;
     max-width: 265px;
   }
+  .car-detail-carousel {
+    width: 650px;
+    height: 436px;
+  }
   #car-price {
     right: 6px;
     bottom: 91px;
@@ -537,6 +582,11 @@ p.yr-mk-mdl {
   #car-price {
     right: 6px;
     bottom: 91px;
+  }
+  .car-detail-carousel {
+    width: 500px;
+    height: 335px;
+    margin: auto;
   }
   .car-text {
       bottom: 49px;

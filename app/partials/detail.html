@@ -1,6 +1,6 @@
 <!-- View the details of a car -->
 <section ng-hide="showme">
-    <div ng-cloak id="container-or" class="container">
+    <div ng-cloak id="container-or" class="row gallery-container container" style="margin:auto">
         <div class="" ng-init="getCar();">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -27,7 +27,7 @@
                     <!-- <div class="panel-body text-center"> -->
                     <div class="row">
                         <div class="col-md-8 col-lg-8">
-                            <div id="preview-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                            <div id="preview-carousel" class="carousel slide car-detail-carousel" data-ride="carousel" data-interval="false">
                                 <!-- Slides -->
                                 <div class="carousel-inner carousel-container">
                                     <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
