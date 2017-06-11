@@ -43,7 +43,7 @@ html, body {
 .site-nav {
   background-image: none;
     background-color: white;
-    height: 100px;
+    /*height: 100px;*/
     box-shadow: none;
     border-right-color: white;
     border-left-color: white;
