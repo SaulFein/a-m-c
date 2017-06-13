@@ -2,12 +2,12 @@
 <div ng-cloak class="row gallery-container container" style="margin:auto; padding:0px">
 <div class="" ng-init="getCar();">
     <div class="panel-default">
-      <div class="col-md-12" style="padding:0px">
+      <div class="car-ymm-price" style="padding:0px">
         <h2 class="car-header">{{car.year}} {{car.make}} {{car.model}}</h2>
         <h2 class="car-price">{{car.price}}</h2>
       </div>
         <!-- <div class="panel-body text-center"> -->
-        <div class="row">
+        <div class="row car-detail-row">
           <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12">
             <div id="preview-carousel" class="carousel slide car-detail-carousel" data-ride="carousel" data-interval="false">
               <!-- Slides -->
@@ -46,10 +46,10 @@
               <div class="col-md-12 col-sm-12 col-xs-12 thumb-group" ng-if="car.morePictures">
                   <div ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel " data-slide-to="{{ $index }}">
                     <div data-target="#modal-carousel" data-slide-to="{{ $index }}">
-                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding:2px">
+                      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3" style="padding:2px">
                         <a class="thumbnail" id="detailGal">
                           <!-- <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal"> -->
-                            <img ng-src="{{picture.image | fpConvert: {filter:'sharpen', w:500} }}">
+                            <img ng-src="{{picture.image}}">
                           </a>
                       </div>
                     </div>

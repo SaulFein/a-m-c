@@ -12,25 +12,3 @@
 }
 
 /*Thumbnail style for car-view and detail view templates*/
-#detailGal {
-  /*width: 100px;
-  height: 67px;*/
-  width: 127px;
-  height: 85px;
-  padding: 0px;
-  border: none;
-  margin: auto;
-  box-shadow: none;
-  border-radius: 0px;
-  overflow: hidden;
-}
-
-#detailGal img {
-  /*height: 100%;*/
-  max-width: 100%;
-  max-height: 100%;
-  float: left;
-  margin: 5px 0;
-  padding-left: 2px;
-  padding-right: 2px;
-}
