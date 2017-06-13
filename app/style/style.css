@@ -119,8 +119,17 @@ PANTONE: 876C (Bronze)
 
 
 /****************/
+.car-price {
+  float:right;
+  font-family: 'Gotham' sans-serif;
+  font-weight: 400;
+}
 
-
+.car-header {
+  float: left;
+  font-family: 'Gotham' sans-serif;
+  font-weight: 400;
+}
 /*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }*/
 
 #next {
@@ -265,7 +274,8 @@ PANTONE: 876C (Bronze)
 
 .navbar-collapse.nav-style {
     font-family: 'Gotham', sans-serif;
-    font-size: 20
+    font-size: 20;
+    margin-top: 10px;
     padding left: 0px;
     padding right: 0px;
 }
@@ -299,13 +309,10 @@ button.navbar-toggle.nav-toggle-style:hover {
 
 .nav-style li a {
     font-family: 'Gotham', sans-serif;
-    font-size: 20px;
+    font-size: 17px;
     text-shadow: none;
 }
 
-.car-header {
-    text-align: center;
-}
 
 .car-descr {
     text-indent: 30px;
@@ -313,14 +320,14 @@ button.navbar-toggle.nav-toggle-style:hover {
 
 .car-specs {
     list-style: none;
-    background-color: #c2c2c2;
-    padding-top: 5px;
+    width: 95%;
+    float: right;
+    margin: auto;
     padding-bottom: 5px;
 }
 
 .car-specs li {
     list-style: none;
-    padding-top: 5px;
     padding-bottom: 5px;
     text-decoration: none;
 }
@@ -427,14 +434,15 @@ p.yr-mk-mdl {
 }
 #car-price {
   position: absolute;
-  right: 20px;
-  bottom: 92px;
-  font-size: 22px;
-  background-color: #3a3a3a;
+  right: 6px;
+  bottom: 91px;
+  font-size: 19px;
+  background-color: rgba(58, 58, 58, 0.66);
+  /*background-color: #3a3a3a;*/
   color: white;
-  filter: alpha(opacity=60);
+  /*filter: alpha(opacity=60);
   -moz-opacity: 0.6;
-  opacity: 0.6;
+  opacity: 0.6;*/
 }
 
 #car-price p {
@@ -446,7 +454,7 @@ p.yr-mk-mdl {
 
 .inv-pics {
   text-align:center;
-  height: 240px;
+  height: 237px;
   width:355px;
   overflow:hidden;
   transition:all .2s linear;
@@ -454,12 +462,50 @@ p.yr-mk-mdl {
 /*@media (min-width: 992px){
 
 }*/
+.car-tiles{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 88px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
 
 .sprite {
   height: 25px;
   position: absolute;
-  bottom: 93px;
-  left: 18px;
+  bottom: 92px;
+  left: 8px;
+}
+.spec-list li{
+    padding: 20px;
+    font-family: 'Gotham' sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+
+.car-detail-carousel {
+  width: 800px;
+  height: 536px;
+}
+
+.description-section {
+  font-family: 'Gotham' sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+.description-section h3{
+  font-family: 'Gotham' sans-serif;
+  font-weight: 400;
+}
+
+.thumb-group {
+  margin:auto;
+  padding:0px;
+  /*padding-left: 25px*/
 }
 
 @media (min-width: 768px) {
@@ -478,11 +524,11 @@ p.yr-mk-mdl {
 
 @media (min-width: 1148px) and (max-width: 1370px) {
   .inv-pics {
-    height: 200px;
+    height: 197px;
     width:296px;
   }
   #car-price {
-    right: 20px;
+    right: 6px;
   }
 }
 
@@ -492,9 +538,17 @@ p.yr-mk-mdl {
       max-width: 265px;
       height: 26px;
   }
+  .inv-pics {
+    height: 163px;
+    width:244px;
+  }
   #car-price {
-    right: 20px;
+    right: 6px;
     bottom: 91px;
+  }
+  .car-detail-carousel {
+    width: 650px;
+    height: 436px;
   }
 
   p.yr-mk-mdl {
@@ -504,7 +558,7 @@ p.yr-mk-mdl {
 
 @media (min-width: 992px) and (max-width: 1147px) {
   .inv-pics {
-    height: 165px;
+    height: 163px;
     width:244px;
   }
   .car-text {
@@ -512,8 +566,12 @@ p.yr-mk-mdl {
     height: 26px;
     max-width: 265px;
   }
+  .car-detail-carousel {
+    width: 650px;
+    height: 436px;
+  }
   #car-price {
-    right: 20px;
+    right: 6px;
     bottom: 91px;
   }
   p.yr-mk-mdl {
@@ -523,8 +581,13 @@ p.yr-mk-mdl {
 
 @media (min-width: 800px) and (max-width: 991px) {
   #car-price {
-    right: 20px;
+    right: 6px;
     bottom: 91px;
+  }
+  .car-detail-carousel {
+    width: 500px;
+    height: 335px;
+    margin: auto;
   }
   .car-text {
       bottom: 49px;
@@ -535,8 +598,13 @@ p.yr-mk-mdl {
 
 @media (min-width: 768px) and (max-width: 799px) {
   #car-price {
-    right: 20px;
+    right: 6px;
     bottom: 91px;
+  }
+  .car-detail-carousel {
+    width: 500px;
+    height: 335px;
+    margin: auto;
   }
   .car-text {
       bottom: 49px;
@@ -550,6 +618,13 @@ p.yr-mk-mdl {
     height: 140px;
     width:207px;
   }*/
+  .car-detail-carousel {
+    width: 100%;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: auto;
+  }
   .car-text {
       bottom: 47px;
   }
