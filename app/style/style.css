@@ -430,7 +430,7 @@ p.yr-mk-mdl {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #ddd;
+    background-color: white;
 }
 #car-price {
   position: absolute;
@@ -539,6 +539,7 @@ p.yr-mk-mdl {
     justify-content: space-between;
     margin: auto;
 }
+
 
 @media (min-width: 1199px){
   .inv-pics {
@@ -714,6 +715,10 @@ p.yr-mk-mdl {
         font-size: 26px;
       }
 }
+
+#fade-in-pic {
+}
+
 
 @media only screen and (min-width: 320px) {
     .inventory-car-containter {

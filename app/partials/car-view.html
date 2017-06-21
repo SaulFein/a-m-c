@@ -44,12 +44,12 @@
             <!-- <div class="row"> -->
             <!-- Only if there are other pictures -->
               <div class="col-md-12 col-sm-12 col-xs-12 thumb-group" ng-if="car.morePictures">
-                  <div ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel " data-slide-to="{{ $index }}">
+                  <div  ng-show="carPix" ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel " data-slide-to="{{ $index }}">
                     <div data-target="#modal-carousel" data-slide-to="{{ $index }}">
                       <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3" style="padding:2px">
                         <a class="thumbnail" id="detailGal">
                           <!-- <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal"> -->
-                            <img ng-src="{{picture.image}}">
+                            <img id="fade-in-pic" show-on-load ng-src="{{picture.image}}">
                           </a>
                       </div>
                     </div>
