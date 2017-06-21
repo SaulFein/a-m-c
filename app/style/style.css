@@ -540,6 +540,38 @@ p.yr-mk-mdl {
     margin: auto;
 }
 
+.spec-lables {
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.email-lables {
+  font-family: 'Gotham' sans-serif;
+  font-weight: 400;
+}
+
+.contact-header {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: lightgrey;
+    /*background-color:#f68f33;*/
+    height: 50px;
+    /*color: white;*/
+    font-family: 'Gotham' sans-serif;
+    /*font-size: 20px;*/
+}
+.contact-header h4 {
+  padding: 10px;
+  padding-top: 15px;
+  padding-left: 15px;
+  font-weight: 400;
+}
+
+.list-price {
+  background-color: #1eb6e0;
+
+  color: white;
+}
 
 @media (min-width: 1199px){
   .inv-pics {
