@@ -7,7 +7,7 @@ var EmailService = angular.module('EmailService', []);
     var emailService = {};
 
     emailService.sendEmail = function(email) {
-      return $http.post('/contact', email, {})
+      return $http.post('/contact', email)
       .then(function successCallback(email) {
         // toastr.success("Email Sent");
         // $scope.firstName = null;
