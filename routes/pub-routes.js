@@ -21,7 +21,6 @@ module.exports = (router, models) => {
 
   let userId;
 
-
   router.route('/login')
     .post(basicHTTP, (req, res) => {
       User.findOne({'username': req.body.username}, (err, user) => {
