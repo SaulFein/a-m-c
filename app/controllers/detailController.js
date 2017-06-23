@@ -28,7 +28,7 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
         lastName: $scope.lastName,
         phone: $scope.phone,
         email: $scope.email,
-        comments: '<b>From: </b>' + $scope.firstName + ' ' + $scope.lastName + ' ' + '<b>Phone: </b>' + $scope.phone + '<br> ' + $scope.comments,
+        comments: '<b>From: </b>' + $scope.firstName + ' ' + $scope.lastName + '<br> ' + '<b>Phone: </b>' + $scope.phone +  '<br> ' + '<b>Email: </b>' + $scope.email + '<br> ' + $scope.comments,
         subject: $scope.car.year + " " + $scope.car.make + " " + $scope.car.model
       }
       EmailService.sendEmail(email)
