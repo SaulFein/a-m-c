@@ -120,13 +120,13 @@ PANTONE: 876C (Bronze)
 
 /****************/
 .car-price {
-  float:right;
+  /*float:right;*/
   font-family: 'Gotham' sans-serif;
   font-weight: 400;
 }
 
 .car-header {
-  float: left;
+  /*float: left;*/
   font-family: 'Gotham' sans-serif;
   font-weight: 400;
 }
@@ -430,7 +430,7 @@ p.yr-mk-mdl {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #ddd;
+    background-color: white;
 }
 #car-price {
   position: absolute;
@@ -507,28 +507,91 @@ p.yr-mk-mdl {
   padding:0px;
   /*padding-left: 25px*/
 }
-
-@media (min-width: 768px) {
-    /*.page-wrap {
-
-    margin-bottom: -221px !important;
-  }
-  .site-footer, .page-wrap:after {
-    height: 221px !important;
-    margin-bottom: none;
-  }*/
-    .navbar-collapse.nav-style li a {
-
-    }
+.navbar-toggle {
+  margin-right: 0px;
 }
 
-@media (min-width: 1148px) and (max-width: 1370px) {
+#detailGal {
+  /*width: 100px;
+  height: 67px;*/
+  width: 127px;
+  height: 85px;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  box-shadow: none;
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+#detailGal img {
+  /*height: 100%;*/
+  max-width: 100%;
+  max-height: 100%;
+  float: left;
+  margin: 5px 0;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.car-ymm-price {
+    width: 1053px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.spec-lables {
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.email-lables {
+  font-family: 'Gotham' sans-serif;
+  font-weight: 400;
+}
+
+.contact-header {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: lightgrey;
+    /*background-color:#f68f33;*/
+    height: 50px;
+    /*color: white;*/
+    font-family: 'Gotham' sans-serif;
+    /*font-size: 20px;*/
+}
+.contact-header h4 {
+  padding: 10px;
+  padding-top: 15px;
+  padding-left: 15px;
+  font-weight: 400;
+}
+
+.list-price {
+  background-color: #1eb6e0;
+
+  color: white;
+}
+
+@media (min-width: 1199px){
   .inv-pics {
     height: 197px;
     width:296px;
   }
+  .car-detail-carousel {
+    width: 685px;
+    height: 460px;
+  }
   #car-price {
     right: 6px;
+  }
+  .car-detail-row{
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  #detailGal {
+      width: 110px;
+      height: 74px;
   }
 }
 
@@ -547,13 +610,21 @@ p.yr-mk-mdl {
     bottom: 91px;
   }
   .car-detail-carousel {
-    width: 650px;
-    height: 436px;
+    width: 635px;
+    height: 426px;
   }
 
   p.yr-mk-mdl {
     font-size: 18px;
   }
+
+  #detailGal {
+      width: 100px;
+      height: 67px;
+  }
+  .car-ymm-price {
+      width: 970px;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1147px) {
@@ -567,8 +638,8 @@ p.yr-mk-mdl {
     max-width: 265px;
   }
   .car-detail-carousel {
-    width: 650px;
-    height: 436px;
+    width: 600px;
+    height: 403px;
   }
   #car-price {
     right: 6px;
@@ -577,6 +648,17 @@ p.yr-mk-mdl {
   p.yr-mk-mdl {
     font-size: 18px;
   }
+  #detailGal {
+      width: 100px;
+      height: 67px;
+  }
+  .car-detail-row{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .car-ymm-price {
+      width: 908px;
+    }
 }
 
 @media (min-width: 800px) and (max-width: 991px) {
@@ -585,8 +667,8 @@ p.yr-mk-mdl {
     bottom: 91px;
   }
   .car-detail-carousel {
-    width: 500px;
-    height: 335px;
+    width: 456px;
+    height: 306px;
     margin: auto;
   }
   .car-text {
@@ -594,6 +676,17 @@ p.yr-mk-mdl {
       height: 26px;
       max-width: 308px;
   }
+  #detailGal {
+      width: 100px;
+      height: 67px;
+  }
+  .car-detail-row{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .car-ymm-price {
+      width: 688px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 799px) {
@@ -602,8 +695,8 @@ p.yr-mk-mdl {
     bottom: 91px;
   }
   .car-detail-carousel {
-    width: 500px;
-    height: 335px;
+    width: 456px;
+    height: 306px;
     margin: auto;
   }
   .car-text {
@@ -611,6 +704,17 @@ p.yr-mk-mdl {
       height: 26px;
       max-width: 308px;
   }
+  #detailGal {
+      width: 100px;
+      height: 67px;
+  }
+  .car-detail-row{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .car-ymm-price {
+      width: 688px;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -618,6 +722,10 @@ p.yr-mk-mdl {
     height: 140px;
     width:207px;
   }*/
+  .car-detail-row{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
   .car-detail-carousel {
     width: 100%;
     height: 100%;
@@ -632,7 +740,17 @@ p.yr-mk-mdl {
     /*right: -2px;
     bottom: 36px;*/
   }
+  .car-ymm-price {
+      width: 90%;
+    }
+    .car-ymm-price h2{
+        font-size: 26px;
+      }
 }
+
+#fade-in-pic {
+}
+
 
 @media only screen and (min-width: 320px) {
     .inventory-car-containter {

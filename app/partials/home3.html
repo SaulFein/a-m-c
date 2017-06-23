@@ -7,7 +7,7 @@
   <div class="car-container col-md-12 col-ms-12 col-mm-12 col-sm-12">
     <div ng-repeat="car in cars | orderBy:['make','model']">
         <div class="col-md-4 col-ms-6 col-mm-6 col-sm-6 col-xs-12 car-tiles">
-          <a ng-href="/#/car/{{car._id}}" style="background-image: url({{car.picture.url}})" class="bg-img-style">
+          <a show-on-load-bg ng-href="/#/car/{{car._id}}"  class="bg-img-style">
             <img src='/assets/favicon.ico' alt='Icons' class='sprite'>
             <div class="inv-pics">
                 <!-- <img style="height: 100%" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', h:225} }}" /> -->

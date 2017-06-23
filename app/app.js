@@ -79,4 +79,31 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
             };
 
         }
-    ]);
+    ])
+    .directive("showOnLoad", function() {
+        return {
+            link: function(scope, element) {
+                element.on("load", function() {
+                    scope.$apply(function() {
+                        scope.carPix = true;
+                        element.hide(0).fadeIn(2000)
+                    });
+                });
+            }
+        };
+    })
+
+    .directive("showOnLoadBg", function() {
+        return {
+            link: function(scope, element) {
+                  var img = new Image();
+                  var url = scope.car.picture.url;
+                  img.onload = function(){
+                    element.css({"background-image": "url("+url+")"});
+                    element.hide(0).fadeIn(1000);
+                }
+                img.src = url
+
+            }
+          }
+    });
