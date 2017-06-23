@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (router, models) => {
-  // var eaddress = process.env.EUSERNAME;
+  var eaddress = process.env.EUSERNAME;
   // var epass = process.env.EPASS;
   // const nodemailer = require('nodemailer');
   //
@@ -67,10 +67,10 @@ module.exports = (router, models) => {
     .post((req, res) => {
       var email = req.body;
       sendmail({
-        from: 'gunstar45@hotmail.com',
-        to: 'feinstein.brandon@gmail.com',
-        subject: 'test sendmail',
-        html: 'Mail of test sendmail ',
+        from: email.email,
+        to: eaddress,
+        subject: email.subject,
+        html: email.comments,
   }, function(err, reply) {
     console.log(err && err.stack);
     console.dir(reply);
