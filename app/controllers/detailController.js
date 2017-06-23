@@ -1,6 +1,6 @@
 'use strict';
 var detailCtrl = angular.module('detailCtrl', []);
-detailCtrl.controller('detailController', function($scope, $http, $routeParams, $window, filepickerService, AuthService){
+detailCtrl.controller('detailController', function($scope, $http, $routeParams, $window, filepickerService, AuthService, EmailService){
   // let url = 'http://localhost:3000';
 
     $scope.car = {};
@@ -21,6 +21,18 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
     $scope.nextSlide = function () {
         $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
     };
+
+    $scope.sendEmail = function ()  {
+      var email = {
+        firstName: $scope.firstName,
+        lastName: $scope.lastName,
+        phone: $scope.phone,
+        email: $scope.email,
+        comments: $scope.comments,
+        subject: $scope.car.year + " " + $scope.car.make + " " + $scope.car.model
+      }
+      EmailService.sendEmail(email);
+    }
 
     //get the id to query the db and retrieve the correct car
     var id = $routeParams.id;
