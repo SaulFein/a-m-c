@@ -32,18 +32,18 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
         subject: $scope.car.year + " " + $scope.car.make + " " + $scope.car.model
       }
       EmailService.sendEmail(email)
-      // .then(function successCallback(email) {
-      //   toastr.success("Email Sent");
-      //   $scope.firstName = null;
-      //   $scope.lastName = null;
-      //   $scope.phone = null;
-      //   $scope.email = null;
-      //   $scope.comments = null;
-      //       }, function errorCallback(response) {
-      //         toastr.error("Error Sending Email");
-      //     // called asynchronously if an error occurs
-      //     // or server returns response with an error status.
-      //       });;
+      .then(function successCallback(email) {
+        toastr.success("Email Sent");
+        $scope.firstName = null;
+        $scope.lastName = null;
+        $scope.phone = null;
+        $scope.email = null;
+        $scope.comments = null;
+            }, function errorCallback(response) {
+              toastr.error("Error Sending Email");
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+            });;
     }
 
     //get the id to query the db and retrieve the correct car
