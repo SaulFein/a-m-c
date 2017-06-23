@@ -7,16 +7,8 @@ var EmailService = angular.module('EmailService', []);
     var emailService = {};
 
     emailService.sendEmail = function(email) {
-      return $http.post('/contact', email, {
+      return $http.post('/contact', email, {})
 
-      })
-      .then(function successCallback(email) {
-    // this callback will be called asynchronously
-    // when the response is available
-      }, function errorCallback(response) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-      });
     };
 
 

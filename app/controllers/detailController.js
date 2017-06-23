@@ -1,6 +1,6 @@
 'use strict';
 var detailCtrl = angular.module('detailCtrl', []);
-detailCtrl.controller('detailController', function($scope, $http, $routeParams, $window, filepickerService, AuthService, EmailService){
+detailCtrl.controller('detailController', function($scope, $http, $routeParams, $window, filepickerService, AuthService, EmailService, toastr){
   // let url = 'http://localhost:3000';
 
     $scope.car = {};
@@ -31,7 +31,18 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
         comments: $scope.comments,
         subject: $scope.car.year + " " + $scope.car.make + " " + $scope.car.model
       }
-      EmailService.sendEmail(email);
+      EmailService.sendEmail(email).then(function successCallback(email) {
+        toastr.success("Email Sent");
+        $scope.firstName = null;
+         $scope.lastName = null;
+        $scope.phone = null;
+        $scope.email = null;
+        $scope.comments = null;
+            }, function errorCallback(response) {
+              toastr.error("Error Sending Email");
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+            });;
     }
 
     //get the id to query the db and retrieve the correct car
