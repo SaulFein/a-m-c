@@ -74,12 +74,10 @@ module.exports = (router, models) => {
   }, function(err, reply) {
     if(err) res.send(err);
     res.send(reply);
-    // console.log(err && err.stack);
-    // console.dir(reply);
 });
  //      let mailOptions = {
  //        from: email.email, // sender address
- //        to: 'brandon.feinstein@hotmail.com', // list of receivers
+ //        to: 'xxxx@hotmail.com', // list of receivers
  //        subject: email.subject, // Subject line
  //        // phone:  email.phone,
  //        // comments: email.comments,
