@@ -330,6 +330,8 @@ button.navbar-toggle.nav-toggle-style:hover {
     list-style: none;
     padding-bottom: 5px;
     text-decoration: none;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 
 .car-specs hr {

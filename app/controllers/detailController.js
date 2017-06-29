@@ -49,18 +49,13 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
     //get the id to query the db and retrieve the correct car
     var id = $routeParams.id;
     $scope.getCar = function() {
-      console.log("this is get detail controller " + id)
-      // $http.get(url + '/inventory/' + id)
       $http.get('/inventory/' + id)
       .then(function(data){
-          // console.log(JSON.stringify(data));
           $scope.car = data.data;
           $scope.slides.push({image: data.data.picture.url, title: 'Main Image'});
           for (var i = 0; i < data.data.morePictures.length; i++){
-            console.log(data.data.morePictures[i].url)
             $scope.slides.push({image: data.data.morePictures[i].url, title: 'Image ' + i});
           }
-          console.log("this is scope.slides ",  $scope.slides)
       })
       .catch(function(data) {
           console.log('Error: ' + data);
