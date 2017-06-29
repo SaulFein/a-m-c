@@ -1,6 +1,6 @@
 'use strict';
 var detailCtrl = angular.module('detailCtrl', []);
-detailCtrl.controller('detailController', function($scope, $http, $routeParams, $window, filepickerService, AuthService){
+detailCtrl.controller('detailController', function($scope, $http, $routeParams, $window, filepickerService, AuthService, EmailService, toastr){
   // let url = 'http://localhost:3000';
 
     $scope.car = {};
@@ -21,6 +21,30 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
     $scope.nextSlide = function () {
         $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
     };
+
+    $scope.sendEmail = function ()  {
+      var email = {
+        firstName: $scope.firstName,
+        lastName: $scope.lastName,
+        phone: $scope.phone,
+        email: $scope.email,
+        comments: '<b>From: </b>' + $scope.firstName + ' ' + $scope.lastName + '<br> ' + '<b>Phone: </b>' + $scope.phone +  '<br> ' + '<b>Email: </b>' + $scope.email + '<br> ' + $scope.comments,
+        subject: $scope.car.year + " " + $scope.car.make + " " + $scope.car.model
+      }
+      EmailService.sendEmail(email)
+      .then(function successCallback(email) {
+        toastr.success("Email Sent");
+        $scope.firstName = null;
+        $scope.lastName = null;
+        $scope.phone = null;
+        $scope.email = null;
+        $scope.comments = null;
+            }, function errorCallback(response) {
+              toastr.error("Error Sending Email");
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+            });;
+    }
 
     //get the id to query the db and retrieve the correct car
     var id = $routeParams.id;

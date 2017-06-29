@@ -10,7 +10,6 @@ module.exports = (router, models) => {
   let jwtAuth = require(__dirname + '/../lib/jwtAuth.js');
   let CryptoJS = require("crypto-js");
 
-
         /*
          * Get route to retrieve all the cars.
          */

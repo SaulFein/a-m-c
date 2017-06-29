@@ -127,22 +127,22 @@
                   <div style="padding: 10px; border: 1px solid #ddd; border-bottom-right-radius: 4px; border-bottom-left-radius:4px;">
                     <div class="form-group">
                       <!-- <label for="inputFirst1"><span class="email-lables">CONTACT INFO</span></label> -->
-                      <input type="fn" class="form-control" id="inputFirst1" placeholder="First Name">
+                      <input type="fn" ng-model="firstName" class="form-control" id="inputFirst1" placeholder="First Name">
                     </div>
                     <div class="form-group">
-                      <input type="ln" class="form-control" id="inputLast1" placeholder="Last Name">
+                      <input type="ln" ng-model="lastName" class="form-control" id="inputLast1" placeholder="Last Name">
                     </div>
                     <div class="form-group">
-                      <input type="phone" class="form-control" id="inputPhone1" placeholder="Phone">
+                      <input type="phone" ng-model="phone" class="form-control" id="inputPhone1" placeholder="Phone">
                     </div>
                     <div class="form-group">
-                      <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
+                      <input type="email" ng-model="email" class="form-control" id="inputEmail1" placeholder="Email">
                     </div>
                     <div class="form-group">
                       <label for="inputComments1"><span class="email-lables">COMMENTS</span></label>
-                      <textarea class="form-control" rows="3"></textarea>
+                      <textarea class="form-control" ng-model="comments" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" ng-click="sendEmail()" class="btn btn-default">Submit</button>
                   </div>
                 </form>
             </div>

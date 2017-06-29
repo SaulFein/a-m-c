@@ -3,7 +3,7 @@
 
 
 // var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'pwCheck'])
-var app = angular.module('app', ['addCarCtrl', 'galleryCtrl', 'detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'ngPassword', 'ngMessages', 'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMap'])
+var app = angular.module('app', ['addCarCtrl', 'galleryCtrl', 'detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'ngPassword', 'ngMessages', 'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMap', 'EmailService', 'toastr'])
 
 app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function($routeProvider, filepickerProvider, $locationProvider) {
         //The route provider handles the client request to switch route

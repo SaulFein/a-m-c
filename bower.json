@@ -16,7 +16,8 @@
     "angular-sanitize": "1.5.8",
     "angular-touch": "1.5.8",
     "filepicker-js-bower": "filepicker-js#^2.4.17",
-    "crypto-js": "3.1.9"
+    "crypto-js": "3.1.9",
+    "angular-toastr": "2.1.1"
   },
   "resolutions": {
     "angular": "1.5.2"
