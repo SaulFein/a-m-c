@@ -33,15 +33,9 @@
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
               </a>
-              <!-- <ol class="carousel-indicators">
-                <li ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel" data-slide-to="{{ $index }}" >
-                  <button ng-class="{active:!$index}" data-target="#modal-carousel" data-slide-to="{{ $index }}"></button>
-                </li>
-
-              </ol> -->
               <!-- end Controls -->
             </div>
-            <!-- <div class="row"> -->
+
             <!-- Only if there are other pictures -->
               <div class="col-md-12 col-sm-12 col-xs-12 thumb-group" ng-if="car.morePictures">
                   <div  ng-show="carPix" ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel " data-slide-to="{{ $index }}">
@@ -62,11 +56,10 @@
               </div>
           </div>
 
-
           <!--_________________________Modal Carousle ___________________________-->
           <div class="hidden-xs">
           <div id="carViewModal" class="item modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-style">
+            <div class="modal-dialog modal-style" style="max-width: 75%; margin: auto; height: auto;">
               <div class="modal-content">
                 <div class="modal-body">
                   <div id="modal-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -89,11 +82,7 @@
                       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                       <span class="sr-only">Next</span>
                     </a>
-                    <!-- <ol class="carousel-indicators">
-                    <li ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#modal-carousel" data-slide-to="{{ $index }}" >
-                    <div ng-class="{active:!$index}" data-target="#preview-carousel" data-slide-to="{{ $index }}"></div>
-                  </li>
-                </ol> -->
+
                 <!-- end Controls -->
               </div>
             </div>
@@ -102,10 +91,6 @@
       </div>
     </div>
 <!--- ___________________End of Modal Carousel __________________________-->
-
-          <!-- <img class="main-image" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}" /> -->
-
-
 
             <div class="col-sm-4 col-md-4 col-lg-4">
               <div class="car-specs">
@@ -147,15 +132,8 @@
                 </form>
             </div>
           </div>
-
-
-
-
-        <!-- </div> -->
-
         </div>
       </div>
-
 
       </div>
       <!-- touch swipe for carousel -->
@@ -170,29 +148,13 @@
           history.pushState(null, null, urlReplace); // push state that hash into the url
         });
 
-        // If a pushstate has previously happened and the back button is clicked, hide any modals.
         $(window).on('popstate', function() {
           $(".modal").modal('hide');
         });
 
         $(".modal").on("hidden.bs.modal", function()  { // any time a modal is hidden
             var urlReplace = window.location.toString().split('#', 1)[0]
-
-            // alert("HELLLLOOOO" + urlReplace + '#/car/' + lastSegment)
             history.pushState(null, null, urlReplace + '#/car/' + lastSegment); // push url without the hash as new history item
         });
-        // if (window.history && window.history.pushState) {
-        //     $('#carViewModal').on('show.bs.modal', function (e) {
-        //       href = $(this).attr("href");
-        //         window.history.pushState('forward', null, './#modal');
-        //     });
-        //
-        //     $(window).on('popstate', function () {
-        //         $('#carViewModal').modal('hide');
-        //
-        //     });
-        // }
-
       </script>
-
 </div>

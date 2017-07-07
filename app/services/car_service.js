@@ -15,14 +15,11 @@ var CarService = angular.module('CarService', []);
       })
       .then(function(res) {
         carId = $window.localStorage.carId = res.data.data._id;
-        console.log(res);
-        console.log('this is userId ' + data._id);
-
+      // toastr success car added
       });
     };
 
     carService.getCars = function(userId) {
-      console.log("car service get carCars hit " + userId)
       return $http.get('/api/users/' + userId + '/inventory', {
         headers: {
           token: AuthService.getToken()
@@ -32,17 +29,9 @@ var CarService = angular.module('CarService', []);
     };
 
     carService.getCarsPublic = function() {
-      console.log("car service get carCarsPublic hit")
       return $http.get('/inventory')
     };
 
-    // carService.getCar = function(data) {
-    //   return $http.get(mainRoute + '/users/' + data._id + '/inventory/' + data.carId, {
-    //     headers: {
-    //       token: AuthService.getToken()
-    //     }
-    //   });
-    // };
     carService.getSignature = function(userId, policy){
       return $http.post('/api/users/' + userId + '/sig', policy, {
         headers: {
@@ -50,16 +39,8 @@ var CarService = angular.module('CarService', []);
         }
       })
     }
-    // carService.getSignature = function(userId, policy){
-    //   return $http.get('/api/users/' + userId + '/sig').then((res) => {
-    //     headers: {
-    //       token: AuthService.getToken()
-    //     }
-    //   })
-    // }
 
     carService.updateCar = function(data, carId) {
-      console.log(carId)
       return $http.put('/api/users/' + data._id + '/inventory/' + carId, data, {
         headers: {
           token: AuthService.getToken()
@@ -74,6 +55,5 @@ var CarService = angular.module('CarService', []);
     carService.getId = function(){
       return $window.localStorage.carId || carId;
     }
-
     return carService;
   }]);

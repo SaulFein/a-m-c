@@ -19,7 +19,6 @@ module.exports = (mongoose, models) => {
 
   UserSchema.pre('save', function(next) {
     this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
-    console.log('password hashed');
     next();
   });
 

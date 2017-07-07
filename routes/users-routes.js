@@ -48,7 +48,6 @@ module.exports = (router, models) => {
           }
           if (user) {
             res.json({message: 'User Already Exists'});
-            return console.log("User Exists-----------")
           }
           if (!user) {
             var newUser = new User(req.body);
@@ -59,10 +58,7 @@ module.exports = (router, models) => {
                 console.log("saving user error " + err)
                 return res.json({message: 'Error Saving New User', error: err});
               }
-              console.log("save user " + user)
               res.status(200).json({message: 'User Created', token: user.generateToken(), data: user});
-
-              console.log("hello");
             });
           }
         });

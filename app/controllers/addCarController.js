@@ -35,12 +35,10 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 }
             })
             .then(function(data) {
-                console.log(JSON.stringify(data));
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
             })
             .catch(function(data) {
-                console.log('Error: ' + data);
             });
     };
 
@@ -51,11 +49,9 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 }
             })
             .then(function(data) {
-                console.log(JSON.stringify(data));
                 $scope.getCar();
             })
             .catch(function(data) {
-                console.log('Error: ' + data);
             });
     };
 
@@ -78,7 +74,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     signature: sig
                   },
                   function(){
-                    console.log("Removed");
                   }
                 )
                 if (fpMHolder) {
@@ -91,12 +86,10 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                             signature: sig
                           },
                           function(){
-                            console.log("Removed");
                           }
                         );
                     }
                 }
-                console.log(JSON.stringify(data));
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
 
@@ -109,7 +102,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
     };
 
     $scope.getCar = function() {
-            console.log("this is get detail controller " + id)
             $http.get(url + cUser + '/inventory/' + id, {
                     headers: {
                         token: AuthService.getToken()
@@ -117,16 +109,13 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 })
                 .then(function(data) {
                     $scope.slides = [];
-                    console.log("this is scope.slides!!!! ", $scope.slides)
                         // console.log(JSON.stringify(data));
                     $scope.car = data.data;
                     if (data.data.morePictures) {
                         for (var i = 0; i < data.data.morePictures.length; i++) {
-                            console.log("This is data.morePictures[" + i + "]." + data.data.morePictures[i].url);
                         }
                         $scope.slides.push({ image: data.data.picture.url, title: 'Main Image' });
                         for (var i = 0; i < data.data.morePictures.length; i++) {
-                            console.log(data.data.morePictures[i].url)
                             $scope.slides.push({ image: data.data.morePictures[i].url, title: 'Image ' + i });
                         }
                     }
@@ -147,7 +136,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 openTo: 'IMAGE_SEARCH'
             },
             function(Blob) {
-                console.log(JSON.stringify(Blob));
                 $scope.car.picture = Blob;
                 $scope.$apply();
             }
@@ -163,7 +151,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 openTo: 'IMAGE_SEARCH'
             },
             function(Blob) {
-                console.log(JSON.stringify(Blob));
                 if (!$scope.car.morePictures) {
                     $scope.car.morePictures = Blob;
                 } else {
@@ -172,7 +159,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     }
                 }
                 $scope.$apply();
-                console.log("THIS IS SCOPE.MOREPICUTERS ", $scope.car.morePictures);
             }
         );
     };
@@ -185,7 +171,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 openTo: 'IMAGE_SEARCH'
             },
             function(Blob) {
-                console.log(JSON.stringify(Blob));
                 $scope.car.morePictures.push(Blob);
                 $scope.$apply();
             }
@@ -202,10 +187,10 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                   signature: sig
                 },
                 function(){
-                  console.log("Removed");
+
                 }
         );
-        console.log(fpHolder + " has been removed!");
+        // toast removed
         delete data.picture;
     };
 
@@ -240,23 +225,17 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             signature: sig
           },
           function(){
-            console.log("Removed");
             $scope.updateCar()
           })
         $('#confirm-modal-more').modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
-        console.log(image + " has been removed!");
-
     }
     //////////////////////////////////////////////////
     $scope.checkToken = function() {
         if (!$window.localStorage.token) {
             $location.path('/')
         }
-    }
-    $scope.consoleThis = function() {
-        console.log("shit happened")
     }
 
     $scope.go = function(path) {

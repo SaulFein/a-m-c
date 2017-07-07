@@ -26,20 +26,10 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
       })
       .then(function(res){
         if(res.data.message !== "User Already Exists"){
-          console.log('CreateUser from UC message: ' + res.data.message);
-          console.log("Then CU res.data ", res.data);
-          // vm.user.push(res.data);
           vm.user = {};
-          // console.log("local Token " + $window.localStorage.token)
-
-          console.log("resdata Token " + res.data.token)
-          // token = $window.localStorage.token = res.data.token;
-          // console.log("VM Creat USER TOKEN " + token)
-          // $location.path('/login');
         } else {
           vm.uae = true;
-          console.log('username already exists!')
-          // token = $window.localStorage.token = res.data.token;
+          // toastr error user name already exists
         }
       });
     };
@@ -48,10 +38,9 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
       AuthService.signIn(user, function(err, res) {
         if (err) {
           vm.ip = true;
-          return console.log('Problem Signing In ', err);
+          return //toastr error problem signing in
         } else {
           vm.error = ErrorService(null);
-          console.log("signed in yay!!!!!!!!!!")
           $location.path('/admin-inventory');
         }
       })
@@ -59,11 +48,8 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
 
   vm.getCars = function() {
   var userId = AuthService.getId();
-  console.log("This is userId from userCtrl getCars" + userId);
     CarService.getCars(userId)
     .then(function(data){
-        // console.log("Loading Cars!");
-        // console.log(JSON.stringify(data));
         vm.cars = data.data;
         $window.localStorage.cars = JSON.stringify(vm.cars);
     })
@@ -71,49 +57,15 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
         console.log('Error: ' + data);
     });
 }
-//
     vm.signOut = function(){
       AuthService.signOut(function() {
         $location.path('/login')
       })
     }
-//
-//     // vm.getCars = function() {
-//     //   let userId = AuthService.getId();
-//     //   CarService.getCars(userId)
-//     //     .then(function(res) {
-//     //       vm.cars = res.data.data;
-//     //     }, function(err) {
-//     //       console.log(err);
-//     //     });
-//     // }
-//
+
     vm.checkToken = function() {
       if(!$window.localStorage.token){
         $location.path('/')
       }
     }
-
   }])
-
-//For user side
-//   vm.getCars = function() {
-//   let userId = AuthService.getId();
-//   console.log("This is userId from userCtrl getCars" + userId);
-//   if(!$window.localStorage.cars){
-//     CarService.getCars(userId)
-//     .then(function(data){
-//         // console.log("Loading Cars!");
-//         // console.log(JSON.stringify(data));
-//         vm.cars = data;
-//         $window.localStorage.cars = JSON.stringify(vm.cars);
-//     })
-//     .catch(function(data) {
-//         console.log('Error: ' + data);
-//     });
-//   } else {
-//     vm.cars = JSON.parse($window.localStorage.cars);
-//   //   console.log("This is vm.get cars " + vm.cars)
-//   //   return vm.cars;
-//   }
-// }
