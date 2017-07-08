@@ -1,6 +1,7 @@
 
 <div ng-cloak class="row gallery-container container" style="margin:auto; padding:0px">
 <div class="" ng-init="getCar();">
+  <div ng-if="car.sold" class="sold-banner">This car has been sold</div>
     <div class="panel-default">
       <div class="car-ymm-price" style="padding:0px">
         <h2 class="car-header">{{car.year}} {{car.make}} {{car.model}}</h2>

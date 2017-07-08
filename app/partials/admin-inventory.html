@@ -1,10 +1,10 @@
 <section class="row" ng-init="userCtrl.getCars(); userCtrl.checkToken()">
 <div class="row">
-<div class=" col-sm-12 col-md-6 col-md-offset-3">
-  <div class="panel panel-default">
-      <div class="panel-heading">
+<div class="col-sm-12">
+  <div class="panel panel-default" style="width: 100%; margin: auto; border: none; box-shadow: none">
+      <div class="panel-heading" style="background-color: white; background-image: none; border-bottom: none;">
            <h3 class="panel-title admin-title">
-             ADMIN HOME
+             ADMIN
            </h3>
       </div>
               <div class="admin-panel">
@@ -19,20 +19,23 @@
 
   <!-- <h2 id="car-title">Make: {{userCtrl.curCar.make}}</h2>
   <h2 id="car-model">Model: {{userCtrl.curCar.model}}</h2> -->
-  <div class="row gallery-container">
+  <div class="row gallery-container container" style="margin:auto">
+
     <div class="inventory-title">
-      <h2>Current Inventory</h2>
     </div>
-    <div class="car-container">
-  <div ng-repeat="car in userCtrl.cars | orderBy:['make','model']">
-      <div class="col-md-10 col-ms-10 col-sm-10 col-md-offset-1 col-sm-offset-1 col-ms-offset-1">
-        <a class="no-style-link-thumb" ng-href="/#/detail/{{car._id}}">
-      <div class="thumbnail inventory-car-containter">
-        <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', w:750, h:375} }}" />
-        <div class="caption text-center">
+    <div class="car-container col-md-12 col-ms-12 col-mm-12 col-sm-12">
+      <div ng-repeat="car in userCtrl.cars | orderBy:['make','model']">
+      <div class="col-md-4 col-ms-6 col-mm-6 col-sm-6 col-xs-12 car-tiles">
+        <a show-on-load-bg ng-href="/#/detail/{{car._id}}" class="bg-img-style">
+          <span class="sold-car" ng-if="car.sold">
+            <div class="sold-text" style="font-family: 'Gotham', sans-serif">SOLD</div>
+          </span>
+          <img src='/assets/favicon.ico' alt='Icons' class='sprite'>
+      <div class="inv-pics">
+        <span ng-hide="car.sold" id="car-price"><p>{{car.price}}</p></span>
+        <span ng-show="car.sold" style="opacity: 0.5" id="car-price"><p>{{car.price}}</p></span>
+        <div class="car-text">
           <p class="yr-mk-mdl">{{car.year}} {{car.make}} {{car.model}}</p>
-          <p class="yr-mk-mdl">{{car.miles}} miles</p>
-          <p class="price">{{car.price}}</p>
         </div>
       </div>
         </a>
