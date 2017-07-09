@@ -568,6 +568,27 @@ p.yr-mk-mdl {
   padding-left: 15px;
   font-weight: 400;
 }
+.contact-page-header {
+padding-bottom: 22px;
+color: #777;
+text-align: center;
+font-family: 'Gotham' sans-serif;
+font-size: 24px;
+}
+
+.contact-info {
+  text-align: center;
+  margin-top: 44px;
+  font-family: 'Gotham' sans-serif;
+  font-weight: 400;
+  color: #777;
+  font-size: 20px;
+}
+
+.contact-info a {
+  text-decoration: none;
+  color: #777;
+}
 
 .list-price {
   background-color: #1eb6e0;
