@@ -111,17 +111,22 @@
 
 </section>
 
+
+
+
+
+
   <!-- //edit car section -->
   <section ng-show="showme">
     <div class="row">
-    <div class="col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2" ng-init="checkToken()">
+    <div class="col-md-10 col-md-offset-1 col-sm-12" ng-init="checkToken()">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title text-center">
                     <span class="glyphicon glyphicon-edit"></span> EDIT CAR
                 </h2>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="margin-bottom: 0px">
                         <div class="rtn-inventory">
                           <a class="no-style-link" href="" role="button"> <button ng-click="showme=false" class="btn btn-info top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> CAR DETAILS </button></a>
                           <button type="button" class="btn btn-primary top-panel-btns">
@@ -163,9 +168,24 @@
             </div>
 
 
+
             <div class="panel-body">
                 <!-- The form to add cars information -->
                 <form name ="addForm" novalidate>
+                  <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="sold">Sold</label>
+                      <input style="box-shadow:none" type="checkbox" class="form-control" placeholder="Sold" ng-model="car.sold">
+                  </div>
+                </div>
+                  <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="sold"></label>
+
+                    <button type="submit" class="btn btn-primary btn-block update-btn" style="width: 200px" ng-click="updateCar(); getCar(); showme=false;" ng-disabled="car.$invalid || !car.picture">UPDATE</button>
+                  </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="make">Make</label>
                         <input type="text" class="form-control" placeholder="Make" value= "{{car.make}}" ng-model="car.make" required>
@@ -183,6 +203,12 @@
                         <input type="text" class="form-control" placeholder="Miles" ng-model="car.miles" required>
                     </div>
                     <div class="form-group">
+                        <label for="engine">Engine</label>
+                        <input type="text" class="form-control" placeholder="Engine" ng-model="car.engine">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
                         <label for="color">Color</label>
                         <input type="text" class="form-control" placeholder="Color" ng-model="car.color" required>
                     </div>
@@ -199,29 +225,30 @@
                         <input type="text" class="form-control" placeholder="VIN" ng-model="car.vin">
                     </div>
                     <div class="form-group">
-                        <label for="highlights">Highlights</label>
-                        <input type="text" class="form-control" placeholder="Highlights" ng-model="car.highlights">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text" class="form-control" placeholder="Description" ng-model="car.description">
-                    </div>
-                    <div class="form-group">
-                        <label for="carfax">CarFax</label>
-                        <input type="text" class="form-control" placeholder="CarFax" ng-model="car.carfax">
-                    </div>
-                    <div class="form-group">
-                        <label for="engine">Engine</label>
-                        <input type="text" class="form-control" placeholder="Engine" ng-model="car.engine">
-                    </div>
-                    <div class="form-group">
                         <label for="transmission">Transmission</label>
                         <input type="text" class="form-control" placeholder="Transmission" ng-model="car.transmission">
                     </div>
+                  </div>
+                  <div class="col-md-12 col-lg-12 col-sm-12">
                     <div class="form-group">
-                        <label for="sold">Sold</label>
-                        <input type="checkbox" class="form-control" placeholder="Sold" ng-model="car.sold">
+                        <label for="highlights">Highlights</label>
+                        <textarea type="text" class="form-control" placeholder="Highlights" ng-model="car.highlights"></textarea>
                     </div>
+                  </div>
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea type="text" class="form-control" placeholder="Description" ng-model="car.description"></textarea>
+                    </div>
+                  </div>
+                    <!-- <div class="form-group">
+                        <label for="carfax">CarFax</label>
+                        <input type="text" class="form-control" placeholder="CarFax" ng-model="car.carfax">
+                    </div> -->
+
+
+       <div class="col-md-12 col-lg-12 col-sm-12">
+
                     <div class="form-group">
                         <label for="picture">Main picture</label>
                         <div class="text-center">
@@ -230,11 +257,17 @@
                             </button>
                             <div style="margin-top:10px;">
                                 <!-- Show the thumbnail only when the picture is uploaded -->
-                                <div class="thumbnail" ng-if="car.picture">
+                                <div ng-if="car.picture">
                                   <!-- the picture is rendered with width: 500 and sharpened -->
-                                  <img ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}">
+                                  <img style="width:300px" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}">
                                 </div>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirm-modal-main"> <span class= "glyphicon glyphicon-remove-circle"></span> REMOVE IMAGE</button>
+                                <button type="button" class="btn btn-danger"
+                                                      style="margin-top: 15px;"
+                                                      data-toggle="modal"
+                                                      data-target="#confirm-modal-main">
+                                  <span class= "glyphicon glyphicon-remove-circle"></span>
+                                  REMOVE IMAGE
+                                </button>
 
                                     <!-- Modal -->
                                     <div id="confirm-modal-main" class="modal fade" role="dialog">
@@ -262,7 +295,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <hr>
+                  </div>
+                  <div class="col-md-12 col-lg-12 col-sm-12" style="margin-bottom: 18px">
+                    <div class="form-group" style="border-bottom: none;">
                         <label for="picture">More pictures?</label>
                         <div class="text-center">
                           <div class="ul-mult-btn">
@@ -271,15 +307,18 @@
                             </button>
                           </div>
                         <!-- Show the thumbanil of more pictures -->
-                            <div style="margin-top:10px;" ng-repeat="picture in car.morePictures">     <div class="thumb-container col-md-{{12 / car.morePictures.length}}">
-                                <div class="thumbnail">
-                                  <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
-                                </div>
-
+                            <div style="margin-top:10px;" ng-repeat="picture in car.morePictures">
+                              <!-- <div class="thumb-container col-md-{{12 / car.morePictures.length}}"> -->
+                                <div class="col-md-4" style="height: 175px;">
+                                <div>
+                                  <div style="height: 117px; overflow:hidden">
+                                    <img style="width: 175px; padding-top: 20px; padding-bottom: 10px;" ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
                                 <!--<button type="button" class="btn btn-danger" data-ng-click="removeMoreImage(picture.url, car)"> <span class= "glyphicon glyphicon-remove-circle"></span> REMOVE IMAGE</button>-->
+                                  </div>
+                                <br>
                                 <button type="button" class="btn btn-danger" ng-click="setSelected($index)" data-toggle="modal" data-target="#confirm-modal-more"> <span class= "glyphicon glyphicon-remove-circle"></span> REMOVE IMAGE</button>
-
-
+                              </div>
+                            </div>
                                     <div id="confirm-modal-more" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
 
@@ -301,12 +340,12 @@
                                     </div>
                                     </div>
 
-                            </div>
+                            <!-- </div> -->
                         </div>
                         </div>
                     </div>
-                    <hr />
-                    <button type="submit" class="btn btn-primary btn-block update-btn"  ng-click="updateCar(); getCar(); showme=false;" ng-disabled="car.$invalid || !car.picture">UPDATE</button>
+                  </div>
+                    <button type="submit" class="btn btn-primary btn-block update-btn"  style="margin:auto; width:200px;" ng-click="updateCar(); getCar(); showme=false;" ng-disabled="car.$invalid || !car.picture">UPDATE</button>
                 </form>
             </div>
         </div>

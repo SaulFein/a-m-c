@@ -99,4 +99,12 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
 
             }
           }
-    });
+    })
+    .directive('dateYear', [function () {
+        return {
+            template: "<span>{{year}}</span>",
+            link: function (scope) {
+                scope.year = new Date().getFullYear()
+            }
+        }
+    }]);
