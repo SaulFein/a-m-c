@@ -23,6 +23,9 @@
     "nodemailer-smtp-transport": "2.7.4",
     "sendmail": "1.1.1"
   },
+  "engines": {
+    "node": "7.1.0"
+  },
   "scripts": {
     "start": "node server.js",
     "postinstall": "bower install"
