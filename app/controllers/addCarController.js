@@ -1,6 +1,6 @@
 'use strict'; ///
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService) {
+addCtrl.controller('addCarController', function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr) {
     // let url = 'http://localhost:3000/api/users/';
     var url = '/api/users/'
     var cUser = $window.localStorage.user;
@@ -35,10 +35,12 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 }
             })
             .then(function(data) {
+              toastr.success("car saved")
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
             })
             .catch(function(data) {
+              toastr.error("error saving car")
             });
     };
 
@@ -49,9 +51,12 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 }
             })
             .then(function(data) {
+              toastr.success("car updated")
                 $scope.getCar();
             })
             .catch(function(data) {
+              toastr.error("error updating car")
+
             });
     };
 
@@ -92,7 +97,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 }
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
-
+                toastr.success("car deleted")
                 $scope.go('/admin-inventory')
 
             })
@@ -138,6 +143,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             function(Blob) {
                 $scope.car.picture = Blob;
                 $scope.$apply();
+                $scope.updateCar();
             }
         );
     };
@@ -159,6 +165,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     }
                 }
                 $scope.$apply();
+                $scope.updateCar();
             }
         );
     };
@@ -173,6 +180,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             function(Blob) {
                 $scope.car.morePictures.push(Blob);
                 $scope.$apply();
+                $scope.updateCar();
             }
         );
     };
@@ -252,4 +260,24 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
       })
       return sig;
     };
+    $scope.validateUpload = function() {
+      var make;
+      var model;
+      var year;
+      if($scope.car.make !== "" && $scope.car.make !== null && $scope.car.make !== void 0) {
+        make = true;
+      }
+      if($scope.car.model !== "" && $scope.car.model !== null && $scope.car.model !== void 0) {
+        model = true;
+      }
+      if($scope.car.year !== "" && $scope.car.year !== null && $scope.car.year !== void 0) {
+        year = true;
+      }
+      if(make === true && model === true && year === true){
+        return true;
+      } else {
+        return false;
+      }
+    };
+
 });

@@ -8,7 +8,7 @@ module.exports = (mongoose, models) => {
       miles: {type: String, default: 'N/A'},
       color: {type: String, default: 'N/A'},
       interiorColor: {type: String, default: 'N/A'},
-      price: {type: String, default: 'N/A'},
+      price: {type: String, default: 'Inquire'},
       vin: {type: String, default: 'N/A'},
       highlights: {type: String, default: 'N/A'},
       description: {type: String, default: 'N/A'},
