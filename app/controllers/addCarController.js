@@ -143,7 +143,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             function(Blob) {
                 $scope.car.picture = Blob;
                 $scope.$apply();
-                $scope.updateCar();
+                // $scope.updateCar();
             }
         );
     };
@@ -165,7 +165,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     }
                 }
                 $scope.$apply();
-                $scope.updateCar();
+                // $scope.updateCar();
             }
         );
     };
@@ -180,7 +180,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             function(Blob) {
                 $scope.car.morePictures.push(Blob);
                 $scope.$apply();
-                $scope.updateCar();
+                // $scope.updateCar();
             }
         );
     };
