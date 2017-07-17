@@ -252,7 +252,7 @@
                     <div class="form-group">
                         <label for="picture">Main picture</label>
                         <div class="text-center">
-                            <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="upload()"> <span class= "glyphicon glyphicon-upload"></span>
+                            <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadAndUp()"> <span class= "glyphicon glyphicon-upload"></span>
                                 UPLOAD <span class="caret"></span>
                             </button>
                             <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"><span class= "glyphicon glyphicon-upload"></span>
@@ -305,7 +305,7 @@
                         <label for="picture">More pictures?</label>
                         <div class="text-center">
                           <div class="ul-mult-btn">
-                            <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadMultiple()">
+                            <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadMultipleAndUp()">
                             <span class= "glyphicon glyphicon-upload"></span> UPLOAD <span class="caret"></span>
                             </button>
                             <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"><span class= "glyphicon glyphicon-upload"></span>
@@ -351,7 +351,7 @@
                         </div>
                     </div>
                   </div>
-                    <button type="submit" class="btn btn-primary btn-block update-btn"  style="margin:auto; width:200px;" ng-click="updateCar(); getCar(); showme=false;" ng-disabled="car.$invalid || !car.picture">UPDATE</button>
+                    <!-- <button type="submit" class="btn btn-primary btn-block update-btn"  style="margin:auto; width:200px;" ng-click="updateCar(); getCar(); showme=false;" ng-disabled="car.$invalid || !car.picture">UPDATE</button> -->
                 </form>
             </div>
         </div>

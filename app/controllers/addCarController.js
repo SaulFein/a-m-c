@@ -38,6 +38,7 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
               toastr.success("car saved")
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
+
             })
             .catch(function(data) {
               toastr.error("error saving car")
@@ -61,24 +62,28 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
     };
 
     $scope.deleteCar = function(data) {
+      if(data.picture !== undefined){
         var fpHolder = data.picture.url;
-        var policy = createPolicy(data.picture.url);
-        var sig = $scope.getSig(policy);
-        if (data.morePictures) {
+        $scope.policy = createPolicy(fpHolder);
+        $scope.sig = $scope.getSig($scope.policy);
+        if (data.morePictures.length > 0) {
             var fpMHolder = data.morePictures;
         }
+      }
         $http.delete(url + cUser + '/inventory/' + id, {
                 headers: {
                     token: AuthService.getToken()
                 }
             })
             .then(function(data) {
+              if(fpHolder !== undefined){
                 filepickerService.remove(fpHolder,
                   {
-                    policy: policy,
-                    signature: sig
+                    policy: $scope.policy,
+                    signature: $scope.sig
                   },
                   function(){
+                    // console.log("car removed ", data)
                   }
                 )
                 if (fpMHolder) {
@@ -91,16 +96,20 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                             signature: sig
                           },
                           function(){
+                            // console.log("car removed ", data)
                           }
                         );
                     }
                 }
+              };
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
+                $scope.sig = null;
+                $scope.policy = null;
                 toastr.success("car deleted")
                 $scope.go('/admin-inventory')
-
             })
+
             .catch(function(data) {
                 console.log('Error: ' + data);
             });
@@ -143,7 +152,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             function(Blob) {
                 $scope.car.picture = Blob;
                 $scope.$apply();
-                // $scope.updateCar();
             }
         );
     };
@@ -165,7 +173,6 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                     }
                 }
                 $scope.$apply();
-                // $scope.updateCar();
             }
         );
     };
@@ -180,7 +187,59 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             function(Blob) {
                 $scope.car.morePictures.push(Blob);
                 $scope.$apply();
-                // $scope.updateCar();
+            }
+        );
+    };
+
+//// upload and updateCar
+    $scope.uploadAndUp = function() {
+        filepickerService.pick({
+                mimetype: 'image/*',
+                language: 'en',
+                services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                openTo: 'IMAGE_SEARCH'
+            },
+            function(Blob) {
+                $scope.car.picture = Blob;
+                $scope.$apply();
+                $scope.updateCar();
+            }
+        );
+    };
+    //Multiple files upload set to 100 as max number
+    $scope.uploadMultipleAndUp = function() {
+        filepickerService.pickMultiple({
+                mimetype: 'image/*',
+                language: 'en',
+                maxFiles: 100, //pickMultiple has one more option
+                services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                openTo: 'IMAGE_SEARCH'
+            },
+            function(Blob) {
+                if (!$scope.car.morePictures) {
+                    $scope.car.morePictures = Blob;
+                } else {
+                    for (var i = 0; i < Blob.length; i++) {
+                        $scope.car.morePictures.push(Blob[i]);
+                    }
+                }
+                $scope.$apply();
+                $scope.updateCar();
+            }
+        );
+    };
+
+    $scope.uploadOneAndUp = function() {
+        filepickerService.pick({
+                mimetype: 'image/*',
+                language: 'en',
+                services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                openTo: 'IMAGE_SEARCH'
+            },
+            function(Blob) {
+                $scope.car.morePictures.push(Blob);
+                $scope.$apply();
+                $scope.updateCar();
             }
         );
     };
