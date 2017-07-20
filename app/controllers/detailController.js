@@ -74,6 +74,7 @@ detailCtrl.controller('detailController', function($scope, $rootScope, $http, $r
       $('.modal').modal('hide');
       $(".modal-backdrop").remove();
       $(".in").remove();
+      $('body').removeClass('modal-open');
     });
     //
     // $(".modal").on("hidden.bs.modal", function()  { // any time a modal is hidden
