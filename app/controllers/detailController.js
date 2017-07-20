@@ -1,6 +1,6 @@
 'use strict';
 var detailCtrl = angular.module('detailCtrl', []);
-detailCtrl.controller('detailController', function($scope, $http, $routeParams, $window, filepickerService, AuthService, EmailService, toastr){
+detailCtrl.controller('detailController', function($scope, $rootScope, $http, $routeParams, $window, filepickerService, AuthService, EmailService, toastr){
   // let url = 'http://localhost:3000';
 
     $scope.car = {};
@@ -61,4 +61,23 @@ detailCtrl.controller('detailController', function($scope, $http, $routeParams, 
           console.log('Error: ' + data);
       });
     }
+
+    // var lastSegment;
+    // $(".modal").on("shown.bs.modal", function()  { // any time a modal is shown
+    //   var url = document.location.href;
+    //   lastSegment = url.split('/').pop();
+    //   var urlReplace = "#/" + $(this).attr('id'); // make the hash the id of the modal shown
+    //   history.pushState(null, null, urlReplace); // push state that hash into the url
+    // });
+    //
+    $(window).on('popstate', function() {
+      $('.modal').modal('hide');
+      $(".modal-backdrop").remove();
+      $(".in").remove();
+    });
+    //
+    // $(".modal").on("hidden.bs.modal", function()  { // any time a modal is hidden
+    //     var urlReplace = window.location.toString().split('#', 1)[0]
+    //     history.pushState(null, null, urlReplace + '#/car/' + lastSegment); // push url without the hash as new history item
+    // });
 });
