@@ -1,6 +1,6 @@
 'use strict'; ///
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService) {
+addCtrl.controller('addCarController', function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr) {
     // let url = 'http://localhost:3000/api/users/';
     var url = '/api/users/'
     var cUser = $window.localStorage.user;
@@ -35,10 +35,13 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 }
             })
             .then(function(data) {
+              toastr.success("car saved")
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
+
             })
             .catch(function(data) {
+              toastr.error("error saving car")
             });
     };
 
@@ -49,31 +52,38 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 }
             })
             .then(function(data) {
+              toastr.success("car updated")
                 $scope.getCar();
             })
             .catch(function(data) {
+              toastr.error("error updating car")
+
             });
     };
 
     $scope.deleteCar = function(data) {
+      if(data.picture !== undefined){
         var fpHolder = data.picture.url;
-        var policy = createPolicy(data.picture.url);
-        var sig = $scope.getSig(policy);
-        if (data.morePictures) {
+        $scope.policy = createPolicy(fpHolder);
+        $scope.sig = $scope.getSig($scope.policy);
+        if (data.morePictures.length > 0) {
             var fpMHolder = data.morePictures;
         }
+      }
         $http.delete(url + cUser + '/inventory/' + id, {
                 headers: {
                     token: AuthService.getToken()
                 }
             })
             .then(function(data) {
+              if(fpHolder !== undefined){
                 filepickerService.remove(fpHolder,
                   {
-                    policy: policy,
-                    signature: sig
+                    policy: $scope.policy,
+                    signature: $scope.sig
                   },
                   function(){
+                    // console.log("car removed ", data)
                   }
                 )
                 if (fpMHolder) {
@@ -86,16 +96,20 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                             signature: sig
                           },
                           function(){
+                            // console.log("car removed ", data)
                           }
                         );
                     }
                 }
+              };
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
-
+                $scope.sig = null;
+                $scope.policy = null;
+                toastr.success("car deleted")
                 $scope.go('/admin-inventory')
-
             })
+
             .catch(function(data) {
                 console.log('Error: ' + data);
             });
@@ -177,6 +191,59 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
         );
     };
 
+//// upload and updateCar
+    $scope.uploadAndUp = function() {
+        filepickerService.pick({
+                mimetype: 'image/*',
+                language: 'en',
+                services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                openTo: 'IMAGE_SEARCH'
+            },
+            function(Blob) {
+                $scope.car.picture = Blob;
+                $scope.$apply();
+                $scope.updateCar();
+            }
+        );
+    };
+    //Multiple files upload set to 100 as max number
+    $scope.uploadMultipleAndUp = function() {
+        filepickerService.pickMultiple({
+                mimetype: 'image/*',
+                language: 'en',
+                maxFiles: 100, //pickMultiple has one more option
+                services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                openTo: 'IMAGE_SEARCH'
+            },
+            function(Blob) {
+                if (!$scope.car.morePictures) {
+                    $scope.car.morePictures = Blob;
+                } else {
+                    for (var i = 0; i < Blob.length; i++) {
+                        $scope.car.morePictures.push(Blob[i]);
+                    }
+                }
+                $scope.$apply();
+                $scope.updateCar();
+            }
+        );
+    };
+
+    $scope.uploadOneAndUp = function() {
+        filepickerService.pick({
+                mimetype: 'image/*',
+                language: 'en',
+                services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                openTo: 'IMAGE_SEARCH'
+            },
+            function(Blob) {
+                $scope.car.morePictures.push(Blob);
+                $scope.$apply();
+                $scope.updateCar();
+            }
+        );
+    };
+
     $scope.removeImage = function(data) {
       var policy = createPolicy(data.picture.url);
       var sig = $scope.getSig(policy);
@@ -252,4 +319,24 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
       })
       return sig;
     };
+    $scope.validateUpload = function() {
+      var make;
+      var model;
+      var year;
+      if($scope.car.make !== "" && $scope.car.make !== null && $scope.car.make !== void 0) {
+        make = true;
+      }
+      if($scope.car.model !== "" && $scope.car.model !== null && $scope.car.model !== void 0) {
+        model = true;
+      }
+      if($scope.car.year !== "" && $scope.car.year !== null && $scope.car.year !== void 0) {
+        year = true;
+      }
+      if(make === true && model === true && year === true){
+        return true;
+      } else {
+        return false;
+      }
+    };
+
 });

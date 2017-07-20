@@ -8,7 +8,7 @@ module.exports = (mongoose, models) => {
       miles: {type: String, default: 'N/A'},
       color: {type: String, default: 'N/A'},
       interiorColor: {type: String, default: 'N/A'},
-      price: {type: String, default: 'N/A'},
+      price: {type: String, default: 'Inquire'},
       vin: {type: String, default: 'N/A'},
       highlights: {type: String, default: 'N/A'},
       description: {type: String, default: 'N/A'},
@@ -18,6 +18,7 @@ module.exports = (mongoose, models) => {
       picture: {type: mongoose.Schema.Types.Mixed, required: true},
       morePictures: mongoose.Schema.Types.Mixed, // this is not required
       createdAt: {type: Date, default: Date.now},
+      sold: {type: Boolean, default: false}
   });
 
   // Sets the createdAt parameter equal to the current time

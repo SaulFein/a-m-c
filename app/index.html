@@ -6,7 +6,7 @@
 	  <link rel="shortcut icon" href="/assets/favicon.ico"/>
     <meta charset="utf-8">
     <title>Authentic Motorcars</title>
-    <meta name="description" content="Car database">
+    <meta name="description" content="Authentic Motorcars">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS -->
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -19,10 +19,6 @@
     <link rel="stylesheet" href="./style/module.css" />
 		<link href="./bower_components/angular-toastr/dist/angular-toastr.css" rel="stylesheet"/>
     <link data-require="font-awesome@*" data-semver="4.1.0" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" />
-
-    <!-- Fonts -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet"> -->
-    <!--<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> -->
 
     <!-- JS libraries -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
@@ -44,8 +40,6 @@
     <script src="./vendors/ng-map.min.js"></script>
     <script src="./bower_components/crypto-js/crypto-js.js"></script>
 		<script src="./bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
-
-
 
     <!-- Angular files -->
     <script src="./app.js"></script>
@@ -81,10 +75,6 @@
         </div>
         <!-- Collection of nav links and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse nav-style">
-          <!-- <ul class="nav navbar-nav">
-            <li><a data-target=".navbar-collapse" style="margin-top: 25px" href="#/home">HOME</a></li>
-            <li><a data-target=".navbar-collapse" style="margin-top: 25px" href="#/gallery">INVENTORY</a></li>
-          </ul> -->
           <ul class="nav navbar-nav navbar-right">
             <li><a data-target=".navbar-collapse" style="margin-top: 12px" href="#/gallery">INVENTORY</a></li>
 						<li><a data-target=".navbar-collapse" style="margin-top: 12px" href="#">SERVICE</a></li>
@@ -109,80 +99,19 @@
         <route-loading-indicator></route-loading-indicator>
       </div>
 
-        <div ng-if='!isRouteLoading' ng-view autoscroll="true"></div>
+      <div ng-if='!isRouteLoading' ng-view autoscroll="true"></div>
 
-        <!-------------------------------------------------->
-
-        <!-- Footer Section -->
-
-        <!-- <footer class="nav navbar-inverse navbar-fixed-bottom">
-          <div class="container">
-            <div class="navbar-text pull-left">
-              <p><span class="glyphicon glyphicon-copyright-mark"></span> 2016 Authentic Motorcars <p>
-            </div>
-        </div>
-      </footer> -->
-      <!---------------------------------------------------->
   </div>
 </div>
 
-  <!-- <footer class="site-footer navbar  navbar-bottom">
-    <div id="container-or-footer" class="container">
-      <div class="row footer-title">
-        <div class="col-md-5">
-          <h4>Authentic Motorcars</h4>
-          <address>
-            17351 E 70th Street<br>
-            Redmond, WA 98052
-          </address>
-        </div>
-      </div>
-      <div class="bottom-footer">
-        <div class="col-md-5"><span class="glyphicon glyphicon-copyright-mark"></span> 2016 Authentic Motorcars</div>
-        <div class="col-md-7">
-            <ul class="footer-nav">
-              <li><a href="#/home">Home</a></li>
-              <li><a href="#/gallery">Inventory</a></li>
-              <li><a href="#/login">Login</a></li>
-            </ul>
-        </div>
-      </div>
-  </div>
-</footer> -->
 <footer class="site-footer navbar  navbar-bottom">
 
 			<div class="col-md-10 col-md-offset-1">
 				<div class=footer-section>
-					17351 NE 70th Street Redmond, WA 98052 | <span class="glyphicon glyphicon-copyright-mark"></span> 2016 Authentic Motorcars
+					17351 NE 70th Street Redmond, WA 98052 | <span class="glyphicon glyphicon-copyright-mark"></span> <date-year></date-year> Authentic Motorcars
 				</div>
 			</div>
-
-		<!-- <div class="bottom-footer">
-			<div class="col-md-5"><span class="glyphicon glyphicon-copyright-mark"></span> 2016 Authentic Motorcars</div>
-			<div class="col-md-7">
-					<ul class="footer-nav">
-						<li><a href="#/home">Home</a></li>
-						<li><a href="#/gallery">Inventory</a></li>
-						<li><a href="#/login">Login</a></li>
-					</ul>
-			</div>
-		</div> -->
 
 </footer>
   </body>
 </html>
-
-<!--Old nav bar-->
-<!-- <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">AMC MEAN app</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right"> -->
-            <!-- <li role="presentation"><a href="/#/addCar">Add Car</a></li> -->
-            <!-- <li role="presentation"><a href="/#/gallery">Gallery</a></li>
-          </ul>
-        </div>
-    </div>
-</nav> -->
