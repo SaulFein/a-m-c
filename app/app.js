@@ -93,7 +93,7 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
                   var url = scope.car.picture.url;
                   img.onload = function(){
                     element.css({"background-image": "url("+url+")"});
-                    element.hide(0).fadeIn(1000);
+                    // element.hide(0).fadeIn(1000);
                 }
                 img.src = url
 
