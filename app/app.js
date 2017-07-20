@@ -79,7 +79,7 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
                 element.on("load", function() {
                     scope.$apply(function() {
                         scope.carPix = true;
-                        element.hide(0).fadeIn(2000)
+                        element.hide(0).fadeIn(1000)
                     });
                 });
             }
