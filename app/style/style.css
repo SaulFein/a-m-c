@@ -437,7 +437,7 @@ p.yr-mk-mdl {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: white;
+    background-color: grey;
 }
 #car-price {
   position: absolute;
