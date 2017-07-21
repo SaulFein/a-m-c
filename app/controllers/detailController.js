@@ -1,6 +1,6 @@
 'use strict';
 var detailCtrl = angular.module('detailCtrl', []);
-detailCtrl.controller('detailController', function($scope, $rootScope, $http, $routeParams, $window, filepickerService, AuthService, EmailService, toastr){
+detailCtrl.controller('detailController', ["$scope", "$rootScope", "$http", "$routeParams", "$window", "filepickerService", "AuthService", "EmailService", "toastr", function($scope, $rootScope, $http, $routeParams, $window, filepickerService, AuthService, EmailService, toastr){
   // let url = 'http://localhost:3000';
 
     $scope.car = {};
@@ -81,4 +81,4 @@ detailCtrl.controller('detailController', function($scope, $rootScope, $http, $r
     //     var urlReplace = window.location.toString().split('#', 1)[0]
     //     history.pushState(null, null, urlReplace + '#/car/' + lastSegment); // push url without the hash as new history item
     // });
-});
+}]);

@@ -1,10 +1,6 @@
 var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
-  // userCtrl.controller('UserController',['AuthService', 'CarService', 'ErrorService', 'pwCheck', '$http', '$location','$window',
   userCtrl.controller('UserController',['AuthService', 'CarService', 'ErrorService', '$http', '$location','$window',
-
-  // function(AuthService, CarService, ErrorService, pwCheck, $http, $location, $window){
   function(AuthService, CarService, ErrorService, $http, $location, $window, ngMessages, ngPassword){
-
 
     // let url = 'http://localhost:3000'
     const vm = this;

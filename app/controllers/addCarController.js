@@ -1,6 +1,6 @@
 'use strict'; ///
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr) {
+addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "CarService", "toastr", function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr) {
     // let url = 'http://localhost:3000/api/users/';
     var url = '/api/users/'
     var cUser = $window.localStorage.user;
@@ -339,4 +339,4 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
       }
     };
 
-});
+}]);

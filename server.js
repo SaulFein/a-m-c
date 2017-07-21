@@ -4,6 +4,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
 var morgan = require('morgan');
+var compression = require('compression');
 var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
@@ -22,6 +23,7 @@ require(__dirname + '/routes/car-routes')(apiRouter, models);
 
 
 // parse application/json and look for raw text
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
