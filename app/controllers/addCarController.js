@@ -45,6 +45,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
               .then(function(data){
                   $scope.cars = data.data;
                   $window.localStorage.cars = JSON.stringify($scope.cars);
+                  $window.localStorage.carsDate = new Date();
               })
               .catch(function(data) {
                   console.log('Error: ' + data);
@@ -70,6 +71,8 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
               .then(function(data){
                   $scope.cars = data.data;
                   $window.localStorage.cars = JSON.stringify($scope.cars);
+                  $window.localStorage.carsDate = new Date();
+
               })
               .catch(function(data) {
                   console.log('Error: ' + data);
@@ -133,6 +136,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
               .then(function(data){
                   $scope.cars = data.data;
                   $window.localStorage.cars = JSON.stringify($scope.cars);
+                  $window.localStorage.carsDate = new Date();
                   $scope.go('/admin-inventory');
               })
               .catch(function(data) {
