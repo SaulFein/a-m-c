@@ -40,6 +40,16 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 $scope.car = {};
 
             })
+            .then(function() {
+              CarService.getCarsPublic()
+              .then(function(data){
+                  $scope.cars = data.data;
+                  $window.localStorage.cars = JSON.stringify($scope.cars);
+              })
+              .catch(function(data) {
+                  console.log('Error: ' + data);
+              });
+            })
             .catch(function(data) {
               toastr.error("error saving car")
             });
@@ -54,6 +64,16 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
             .then(function(data) {
               toastr.success("car updated")
                 $scope.getCar();
+            })
+            .then(function() {
+              CarService.getCarsPublic()
+              .then(function(data){
+                  $scope.cars = data.data;
+                  $window.localStorage.cars = JSON.stringify($scope.cars);
+              })
+              .catch(function(data) {
+                  console.log('Error: ' + data);
+              });
             })
             .catch(function(data) {
               toastr.error("error updating car")
@@ -107,7 +127,17 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 $scope.sig = null;
                 $scope.policy = null;
                 toastr.success("car deleted")
-                $scope.go('/admin-inventory')
+            })
+            .then(function() {
+              CarService.getCarsPublic()
+              .then(function(data){
+                  $scope.cars = data.data;
+                  $window.localStorage.cars = JSON.stringify($scope.cars);
+                  $scope.go('/admin-inventory');
+              })
+              .catch(function(data) {
+                  console.log('Error: ' + data);
+              });
             })
 
             .catch(function(data) {

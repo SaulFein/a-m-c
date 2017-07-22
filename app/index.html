@@ -78,7 +78,7 @@
         <div id="navbarCollapse" class="collapse navbar-collapse nav-style">
           <ul class="nav navbar-nav navbar-right">
             <li><a data-target=".navbar-collapse" style="margin-top: 12px" href="#/gallery">INVENTORY</a></li>
-						<li><a data-target=".navbar-collapse" style="margin-top: 12px" href="#">SERVICE</a></li>
+						<li><a data-target=".navbar-collapse" style="margin-top: 12px" href="#/service">SERVICE</a></li>
 						<!-- <li><a data-target=".navbar-collapse" style="margin-top: 25px" href="#/login">LOGIN</a></li> -->
             <li><a data-target=".navbar-collapse" style="margin-top: 12px" href="#/contact">CONTACT</a></li>
           </ul>
@@ -96,9 +96,11 @@
       <!---------------------------------------------------->
       <!-- Here is where the partials will be displayed -->
 
-      <div class="row">
-        <route-loading-indicator></route-loading-indicator>
-      </div>
+      <!-- <div class="row">
+				<div style="margin:auto">
+        	<route-loading-indicator></route-loading-indicator>
+				</div>
+      </div> -->
 
       <div ng-if='!isRouteLoading' ng-cloak ng-view autoscroll="true"></div>
 

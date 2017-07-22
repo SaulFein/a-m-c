@@ -3,14 +3,17 @@ galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarS
     $scope.cars = [];
     //Retrieve all the cars to show the gallery
     $scope.getCars = function() {
-      CarService.getCarsPublic()
-      .then(function(data){
-
-          $scope.cars = data.data;
-          $window.localStorage.cars = JSON.stringify($scope.cars);
-      })
-      .catch(function(data) {
-          console.log('Error: ' + data);
-      });
+      if($window.localStorage.cars === void 0){
+        CarService.getCarsPublic()
+        .then(function(data){
+            $scope.cars = data.data;
+            $window.localStorage.cars = JSON.stringify($scope.cars);
+        })
+        .catch(function(data) {
+            console.log('Error: ' + data);
+        });
+      } else {
+        $scope.cars = JSON.parse($window.localStorage.cars)
+      }
     }
 }]);

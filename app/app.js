@@ -48,6 +48,9 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
                 templateUrl: 'partials/contact.html'
                     // controller: 'galleryController'
             })
+            .when('/service', {
+              templateUrl: 'partials/service.html'
+            })
             //Redirect to addCar in all the other cases.
             .otherwise({ redirectTo: '/home' });
 
