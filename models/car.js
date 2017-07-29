@@ -18,7 +18,8 @@ module.exports = (mongoose, models) => {
       picture: {type: mongoose.Schema.Types.Mixed, required: true},
       morePictures: mongoose.Schema.Types.Mixed, // this is not required
       createdAt: {type: Date, default: Date.now},
-      sold: {type: Boolean, default: false}
+      sold: {type: Boolean, default: false},
+      stockNumber: {type: String, default: 'N/A'}
   });
 
   // Sets the createdAt parameter equal to the current time

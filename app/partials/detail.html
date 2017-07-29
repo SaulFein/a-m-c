@@ -87,6 +87,7 @@
                           <li class="list-group-item"><span class="spec-lables">ENGINE</span> <br> {{car.engine}}</li>
                           <li class="list-group-item"><span class="spec-lables">TRANSMISSION</span> <br> {{car.transmission}}</li>
                           <li class="list-group-item"><span class="spec-lables">VIN</span> <br> {{car.vin}}</li>
+                          <li class="list-group-item"><span class="spec-lables">STOCK #</span> <br> {{car.stockNumber}}</li>
                           <li class="list-group-item"><span class="spec-lables">HIGHLIGHTS</span> <br> {{car.highlights}}</li>
                           <!-- <li class="list-group-item"><a class="btn btn-danger" role="button" href="{{car.carfax}}">CarFax Report</a></li> -->
                         </ul>
@@ -202,6 +203,10 @@
                     <div class="form-group">
                         <label for="engine">Engine</label>
                         <input type="text" class="form-control" placeholder="Engine" ng-model="car.engine">
+                    </div>
+                    <div class="form-group">
+                        <label for="stockNumber">Stock #</label>
+                        <input type="text" class="form-control" placeholder="Stock #" ng-model="car.stockNumber">
                     </div>
                   </div>
                   <div class="col-md-6 col-sm-12">

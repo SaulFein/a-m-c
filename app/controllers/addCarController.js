@@ -1,6 +1,6 @@
 'use strict'; ///
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr) {
+addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "CarService", "toastr", function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr) {
     // let url = 'http://localhost:3000/api/users/';
     var url = '/api/users/'
     var cUser = $window.localStorage.user;
@@ -40,6 +40,17 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 $scope.car = {};
 
             })
+            .then(function() {
+              CarService.getCarsPublic()
+              .then(function(data){
+                  $scope.cars = data.data;
+                  $window.localStorage.cars = JSON.stringify($scope.cars);
+                  $window.localStorage.carsDate = new Date();
+              })
+              .catch(function(data) {
+                  console.log('Error: ' + data);
+              });
+            })
             .catch(function(data) {
               toastr.error("error saving car")
             });
@@ -54,6 +65,18 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
             .then(function(data) {
               toastr.success("car updated")
                 $scope.getCar();
+            })
+            .then(function() {
+              CarService.getCarsPublic()
+              .then(function(data){
+                  $scope.cars = data.data;
+                  $window.localStorage.cars = JSON.stringify($scope.cars);
+                  $window.localStorage.carsDate = new Date();
+
+              })
+              .catch(function(data) {
+                  console.log('Error: ' + data);
+              });
             })
             .catch(function(data) {
               toastr.error("error updating car")
@@ -107,7 +130,18 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
                 $scope.sig = null;
                 $scope.policy = null;
                 toastr.success("car deleted")
-                $scope.go('/admin-inventory')
+            })
+            .then(function() {
+              CarService.getCarsPublic()
+              .then(function(data){
+                  $scope.cars = data.data;
+                  $window.localStorage.cars = JSON.stringify($scope.cars);
+                  $window.localStorage.carsDate = new Date();
+                  $scope.go('/admin-inventory');
+              })
+              .catch(function(data) {
+                  console.log('Error: ' + data);
+              });
             })
 
             .catch(function(data) {
@@ -339,4 +373,4 @@ addCtrl.controller('addCarController', function($scope, $window, $http, $locatio
       }
     };
 
-});
+}]);

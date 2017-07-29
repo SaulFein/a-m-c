@@ -48,6 +48,9 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
                 templateUrl: 'partials/contact.html'
                     // controller: 'galleryController'
             })
+            .when('/service', {
+              templateUrl: 'partials/service.html'
+            })
             //Redirect to addCar in all the other cases.
             .otherwise({ redirectTo: '/home' });
 
@@ -79,7 +82,7 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
                 element.on("load", function() {
                     scope.$apply(function() {
                         scope.carPix = true;
-                        element.hide(0).fadeIn(2000)
+                        element.hide(0).fadeIn(1000)
                     });
                 });
             }
@@ -93,7 +96,7 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
                   var url = scope.car.picture.url;
                   img.onload = function(){
                     element.css({"background-image": "url("+url+")"});
-                    element.hide(0).fadeIn(1000);
+                    // element.hide(0).fadeIn(1000);
                 }
                 img.src = url
 

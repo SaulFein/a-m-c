@@ -14,7 +14,7 @@
               <!-- Slides -->
               <div class="carousel-inner carousel-container">
                 <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
-                  <a class="hidden-xs" data-toggle="modal" data-target="#carViewModal">
+                  <a class="hidden-xs" data-toggle="modal" target="_self" data-target="#carviewmodal">
                 <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
                     <img ng-src="{{ picture.image }}" style="margin:auto">
                   </a>
@@ -59,7 +59,7 @@
 
           <!--_________________________Modal Carousle ___________________________-->
           <div class="hidden-xs">
-          <div id="carViewModal" class="item modal fade" tabindex="-1" role="dialog">
+          <div id="carviewmodal" class="item modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-style" style="max-width: 75%; margin: auto; height: auto;">
               <div class="modal-content">
                 <div class="modal-body">
@@ -103,6 +103,7 @@
                   <li class="list-group-item"><span class="spec-lables">ENGINE</span> <br> {{car.engine}}</li>
                   <li class="list-group-item"><span class="spec-lables">TRANSMISSION</span> <br> {{car.transmission}}</li>
                   <li class="list-group-item"><span class="spec-lables">VIN</span> <br> {{car.vin}}</li>
+                  <li class="list-group-item"><span class="spec-lables">STOCK #</span> <br> {{car.stockNumber}}</li>
                   <li class="list-group-item"><span class="spec-lables">HIGHLIGHTS</span> <br> {{car.highlights}}</li>
                   <!-- <li class="list-group-item"><a class="btn btn-danger" role="button" href="{{car.carfax}}">CarFax Report</a></li> -->
                 </ul>
@@ -141,21 +142,21 @@
       <script>
         $("#preview-carousel").carousel()
         $("#modal-carousel").carousel()
-        var lastSegment;
-        $(".modal").on("shown.bs.modal", function()  { // any time a modal is shown
-          var url = document.location.href;
-          lastSegment = url.split('/').pop();
-          var urlReplace = "#/" + $(this).attr('id'); // make the hash the id of the modal shown
-          history.pushState(null, null, urlReplace); // push state that hash into the url
-        });
-
-        $(window).on('popstate', function() {
-          $(".modal").modal('hide');
-        });
-
-        $(".modal").on("hidden.bs.modal", function()  { // any time a modal is hidden
-            var urlReplace = window.location.toString().split('#', 1)[0]
-            history.pushState(null, null, urlReplace + '#/car/' + lastSegment); // push url without the hash as new history item
-        });
+        // var lastSegment;
+        // $(".modal").on("shown.bs.modal", function()  { // any time a modal is shown
+        //   var url = document.location.href;
+        //   lastSegment = url.split('/').pop();
+        //   var urlReplace = "#/" + $(this).attr('id'); // make the hash the id of the modal shown
+        //   history.pushState(null, null, urlReplace); // push state that hash into the url
+        // });
+        //
+        // $(window).on('popstate', function() {
+        //   $(".modal").modal('hide');
+        // });
+        //
+        // $(".modal").on("hidden.bs.modal", function()  { // any time a modal is hidden
+        //     var urlReplace = window.location.toString().split('#', 1)[0]
+        //     history.pushState(null, null, urlReplace + '#/car/' + lastSegment); // push url without the hash as new history item
+        // });
       </script>
 </div>

@@ -117,7 +117,9 @@ PANTONE: 876C (Bronze)
     height: 100%;
 }
 
-
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
 /****************/
 .car-price {
   /*float:right;*/
@@ -435,7 +437,7 @@ p.yr-mk-mdl {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: white;
+    background-color: lightgrey;
 }
 #car-price {
   position: absolute;
