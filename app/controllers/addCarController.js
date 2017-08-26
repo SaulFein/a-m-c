@@ -179,7 +179,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     $scope.upload = function() {
         filepickerService.pick({
                 mimetype: 'image/*',
-                imageDim: [1920, 1280],
+                imageMax: [1920, 1280],
                 imageQuality: 60,
                 language: 'en',
                 services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
@@ -188,8 +188,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
             function(Blob) {
                 $scope.car.picture = Blob;
                 $scope.$apply();
-            }
-        );
+        })
     };
     //Multiple files upload set to 100 as max number
     $scope.uploadMultiple = function() {
