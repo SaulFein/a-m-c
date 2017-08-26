@@ -5,6 +5,8 @@ detailCtrl.controller('detailController', ["$scope", "$rootScope", "$http", "$ro
 
     $scope.car = {};
     $scope.slides = [];
+    $scope.thumbs = [];
+    $scope.tiles = [];
     $scope.myInterval = 1000;
     $scope.currentIndex = 0;
     var slides = $scope.slides;
@@ -46,14 +48,35 @@ detailCtrl.controller('detailController', ["$scope", "$rootScope", "$http", "$ro
             });;
     }
 
+    var getFileThumbUrl = function (fileUrl) {
+      var str = fileUrl;
+      var res = str.replace("https://cdn.filepicker.io/api/file/", "https://process.filestackapi.com/resize=width:300/");
+      return res;
+    }
+
+    var getFileTileUrl = function (fileUrl) {
+      var str = fileUrl;
+      var res = str.replace("https://cdn.filepicker.io/api/file/", "https://process.filestackapi.com/resize=width:700/");
+      return res;
+    }
+
     //get the id to query the db and retrieve the correct car
+
     var id = $routeParams.id;
     $scope.getCar = function() {
       $http.get('/inventory/' + id)
       .then(function(data){
           $scope.car = data.data;
           $scope.slides.push({image: data.data.picture.url, title: 'Main Image'});
+          var thumbUrl = getFileThumbUrl(data.data.picture.url);
+          $scope.thumbs.push({image: thumbUrl, title:"Main Image Thumb"});
+          var tileUrl = getFileTileUrl(data.data.picture.url);
+          $scope.tiles.push({image: tileUrl, title:"Main Image Tile"});
           for (var i = 0; i < data.data.morePictures.length; i++){
+            var thumbUrl = getFileThumbUrl(data.data.morePictures[i].url);
+            $scope.thumbs.push({image: thumbUrl, title:"Image Thumb" + i});
+            var tileUrl = getFileTileUrl(data.data.morePictures[i].url);
+            $scope.tiles.push({image: tileUrl, title:"Image Tile" + i});
             $scope.slides.push({image: data.data.morePictures[i].url, title: 'Image ' + i});
           }
       })
@@ -62,23 +85,15 @@ detailCtrl.controller('detailController', ["$scope", "$rootScope", "$http", "$ro
       });
     }
 
-    // var lastSegment;
-    // $(".modal").on("shown.bs.modal", function()  { // any time a modal is shown
-    //   var url = document.location.href;
-    //   lastSegment = url.split('/').pop();
-    //   var urlReplace = "#/" + $(this).attr('id'); // make the hash the id of the modal shown
-    //   history.pushState(null, null, urlReplace); // push state that hash into the url
-    // });
-    //
     $(window).on('popstate', function() {
       $('.modal').modal('hide');
       $(".modal-backdrop").remove();
       $(".in").remove();
       $('body').removeClass('modal-open');
     });
-    //
-    // $(".modal").on("hidden.bs.modal", function()  { // any time a modal is hidden
-    //     var urlReplace = window.location.toString().split('#', 1)[0]
-    //     history.pushState(null, null, urlReplace + '#/car/' + lastSegment); // push url without the hash as new history item
-    // });
 }]);
+
+
+// https://cdn.filepicker.io/api/file/nhYVFvETTWTYzVMG6Fll
+//
+// https://process.filestackapi.com/resize=width:200/nhYVFvETTWTYzVMG6Fll

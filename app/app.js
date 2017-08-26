@@ -94,8 +94,14 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
             link: function(scope, element) {
                   var img = new Image();
                   var url = scope.car.picture.url;
+                  var getFileTileUrl = function (fileUrl) {
+                    var str = fileUrl;
+                    var res = str.replace("https://cdn.filepicker.io/api/file/", "https://process.filestackapi.com/resize=width:700/");
+                    return res;
+                  }
+                  var tileUrl = getFileTileUrl(url);
                   img.onload = function(){
-                    element.css({"background-image": "url("+url+")"});
+                    element.css({"background-image": "url("+tileUrl+")"});
                     // element.hide(0).fadeIn(1000);
                 }
                 img.src = url
