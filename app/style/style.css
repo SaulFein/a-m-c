@@ -634,6 +634,14 @@ font-size: 24px;
   padding-bottom: 5px;
 }
 
+/*#bannerimage {
+  width: 100%;
+  background-image: url(../assets/img/amc-banner.jpg);
+  height: 405px;
+  background-color: purple;
+  background-position: center;
+}*/
+
 @media (min-width: 1199px){
   .inv-pics {
     height: 197px;
@@ -843,7 +851,7 @@ font-size: 24px;
       width: 90%;
     }
     .car-ymm-price h2{
-        font-size: 22px;
+        font-size: 22 px;
       }
 }
 
