@@ -4,22 +4,22 @@ var AuthService = angular.module('AuthService', []);
     var userId;
     // var url = 'http://localhost:3000'
     var auth = {
-      createUser(user, cb) {
+      createUser: function(user, cb) {
         cb || function() {};
       },
-      getToken() {
+      getToken: function() {
         return token || $window.localStorage.token;
       },
-      getId(){
+      getId: function(){
         return userId || $window.localStorage.user;
       },
-      signOut(cb) {
+      signOut: function(cb) {
         delete $window.localStorage['token'];
         $window.localStorage.user = null;
         if (cb) cb();
 
       },
-      signIn(user, cb) {
+      signIn: function(user, cb) {
         cb || function() {};
         $http.post('/login', {}, {
           headers: {
