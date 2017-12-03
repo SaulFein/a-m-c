@@ -359,7 +359,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
 
     $scope.getSig = function(policy) {
       var myPolicy = {pol: policy};
-      var sig = CarService.getSignature(cUser, myPolicy).then((data) => {
+      var sig = CarService.getSignature(cUser, myPolicy).then( function(data) {
         return data;
       })
       return sig;

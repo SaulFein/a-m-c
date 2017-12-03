@@ -41,7 +41,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12 thumb-group" ng-if="car.morePictures">
                   <div  ng-show="carPix" ng-repeat="picture in thumbs" ng-class="{active:!$index}" data-target="#preview-carousel " data-slide-to="{{ $index }}">
                     <div data-target="#modal-carousel" data-slide-to="{{ $index }}">
-                      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3" style="padding:2px">
+                      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4" style="padding:2px">
                         <a class="thumbnail" id="detailGal">
                           <!-- <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal"> -->
                             <img id="fade-in-pic" show-on-load ng-src="{{picture.image}}">
@@ -142,21 +142,5 @@
       <script>
         $("#preview-carousel").carousel()
         $("#modal-carousel").carousel()
-        // var lastSegment;
-        // $(".modal").on("shown.bs.modal", function()  { // any time a modal is shown
-        //   var url = document.location.href;
-        //   lastSegment = url.split('/').pop();
-        //   var urlReplace = "#/" + $(this).attr('id'); // make the hash the id of the modal shown
-        //   history.pushState(null, null, urlReplace); // push state that hash into the url
-        // });
-        //
-        // $(window).on('popstate', function() {
-        //   $(".modal").modal('hide');
-        // });
-        //
-        // $(".modal").on("hidden.bs.modal", function()  { // any time a modal is hidden
-        //     var urlReplace = window.location.toString().split('#', 1)[0]
-        //     history.pushState(null, null, urlReplace + '#/car/' + lastSegment); // push url without the hash as new history item
-        // });
       </script>
 </div>
