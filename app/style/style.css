@@ -654,6 +654,16 @@ font-size: 24px;
   font-family: 'Gotham', sans-serif !important;
   font-size: 21px;
 }
+@media (min-width: 1328px) and (max-width: 1472px) {
+  .service-banner-title{
+    font-size: 180px !important;
+  }
+}
+  @media (min-width: 1148px) and (max-width: 1329px) {
+    .service-banner-title{
+      font-size: 150px !important;
+    }
+  }
 @media (max-width: 1321px) and (min-width: 1199px){
   .service-banner {
     height: 420px;
@@ -731,10 +741,16 @@ font-size: 24px;
 
 @media (min-width: 992px) and (max-width: 1147px) {
   .service-banner-title{
-    font-size: 120px !important;
+    font-size: 140px !important;
+  }
+  .service-text-block {
+    color: white;
+    width: 100%;
+    font-family: 'Gotham', sans-serif !important;
+    font-size: 18px;
   }
   .service-banner {
-    height: 550px;
+    height: 600px;
   }
   .inv-pics {
     height: 163px;
@@ -800,7 +816,16 @@ font-size: 24px;
     }
 }
 
+@media (min-width: 650px) and (max-width: 830px) {
+  .service-banner-title{
+    font-size: 150px !important;
+  }
+}
+
 @media (min-width: 581px) and (max-width: 799px) {
+  .service-banner-title{
+    font-size: 150px !important;
+  }
   #car-price {
     right: 6px;
     bottom: 91px;
@@ -831,11 +856,14 @@ font-size: 24px;
     }
 }
 
-@media (min-width: 320px) and (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 580px) {
   /*.inv-pics {
     height: 140px;
     width:207px;
   }*/
+  .service-banner-title{
+    font-size: 100px !important;
+  }
   .car-detail-row{
     padding-left: 30px;
     padding-right: 30px;
