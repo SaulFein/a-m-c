@@ -670,6 +670,7 @@ font-size: 24px;
   }
 }
 
+
 @media (min-width: 1199px){
   .inv-pics {
     height: 197px;
@@ -864,10 +865,6 @@ font-size: 24px;
 }
 
 @media (min-width: 320px) and (max-width: 580px) {
-  /*.inv-pics {
-    height: 140px;
-    width:207px;
-  }*/
   .service-banner-title{
     font-size: 100px !important;
   }
@@ -892,6 +889,10 @@ font-size: 24px;
     /*right: -2px;
     bottom: 36px;*/
   }
+  #detailGal {
+    width: 200px;
+    height: 134px;
+  }
   .car-ymm-price {
       width: 90%;
     }
@@ -909,9 +910,11 @@ font-size: 24px;
     padding-left: 30px;
     padding-right: 30px;
   }
+
   .service-banner {
     height: 850px;
   }
+
   .car-detail-carousel {
     width: 100%;
     height: 100%;
@@ -922,18 +925,17 @@ font-size: 24px;
   .car-text {
       bottom: 47px;
   }
-  #car-price {
-    /*right: -2px;
-    bottom: 36px;*/
+
+  #detailGal {
+    width: 100%;
   }
+
   .car-ymm-price {
       width: 90%;
     }
     .car-ymm-price h2{
         font-size: 26px;
       }
-}
-#fade-in-pic {
 }
 
 
