@@ -1,7 +1,28 @@
 <!-- view the gallery of all the cars in the db -->
 <!-- <div class="jumbotron"><h1>Hello</h1></div> -->
+<div class="header-row" id="header-row" style="padding: 0px; overflow:hidden; height:100%; float: none">
+        <!-- container-fluid is the same as container but spans a wider viewport,
+    it still has padding though so you need to remove this either by adding
+    another class with no padding or inline as I did below -->
+   <div class="container-fluid" style="padding: 0px;">
+      <div class="row">
+        <!-- You originally has it set up for two columns, remove the second
+    column as it is unneeded and set the first to always span all 12 columns
+    even when at its smallest (xs). Set the overflow to hidden so no matter
+    the height of your image it will never show outside this div-->
+         <div class="col-xs-12">
+            <a class="navbar-brand logo" style="float: none; padding: 0px">
+        <!-- place your image here -->
+               <img src="../assets/img/amc-banner0.jpg" alt="company logo" style="width: 100%; max-width: 2012px; margin: auto;">
+    <!-- <img src="../assets/img/amc-banner0.jpg" alt="company logo" style="width: 100%; max-width: 2012px; margin: auto; -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+filter: grayscale(100%);"> -->
+            </a>
+         </div>
+      </div>
+   </div>
+</div>
 <div ng-cloak class="row gallery-container container" style="margin:auto" ng-init="getCars();">
-
+<!-- <div id="bannerimage"></div> -->
   <div class="inventory-title">
   </div>
   <div class="car-container col-md-12 col-ms-12 col-mm-12 col-sm-12">
@@ -28,12 +49,9 @@
             <div class="inv-pics">
                 <img style="height: 100%" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', h:225} }}" />
                 <span id="car-price"><p>{{car.price}}</p></span>
-
                 <div class="car-text">
                   <p class="yr-mk-mdl">{{car.year}} {{car.make}} {{car.model}}</p>
                 </div>
-
-
             </div>
           </a> -->
 
