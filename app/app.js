@@ -51,6 +51,9 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
             .when('/service', {
               templateUrl: 'partials/service.html'
             })
+            .when('/storage', {
+              templateUrl: 'partials/storage.html'
+            })
             //Redirect to addCar in all the other cases.
             .otherwise({ redirectTo: '/home' });
 
