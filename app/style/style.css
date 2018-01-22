@@ -310,9 +310,10 @@ button.navbar-toggle.nav-toggle-style:hover {
 }
 
 .nav-style li a {
-    font-family: 'Gotham', sans-serif;
-    font-size: 17px;
-    text-shadow: none;
+  font-family: 'helvetica', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  text-shadow: none;
 }
 
 
