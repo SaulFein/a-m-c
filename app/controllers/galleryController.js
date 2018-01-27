@@ -18,7 +18,10 @@ galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarS
           retrieveCarsFromApi();
         }
         else {
-          $scope.cars = JSON.parse($window.localStorage.cars)
+          $scope.cars = JSON.parse($window.localStorage.cars);
+          if($window.localStorage.sold){
+            $scope.sold = JSON.parse($window.localStorage.sold);
+          }
         }
       }
     }
@@ -26,12 +29,29 @@ galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarS
     var retrieveCarsFromApi = function() {
       CarService.getCarsPublic()
       .then(function(data){
-          $scope.cars = data.data;
+          $scope.cars = removeSold(data.data);
           $window.localStorage.cars = JSON.stringify($scope.cars);
           $window.localStorage.carsDate = new Date();
+          $window.localStorage.sold = JSON.stringify($scope.sold);
       })
       .catch(function(data) {
           console.log('Error: ' + data);
       });
+    }
+
+    var removeSold = function(cars) {
+      var sold = [];
+      var availableInventory = [];
+      var carsToSpliceByIndex = [];
+      for(var i = 0; i < cars.length; i++) {
+        if(cars[i].sold){
+          sold.push(cars[i]);
+          cars.splice(i, 1);
+          i--;
+          carsToSpliceByIndex.push(i);
+        }
+      }
+      $scope.sold = sold;
+      return cars;
     }
 }]);
