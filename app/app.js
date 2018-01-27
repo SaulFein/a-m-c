@@ -3,9 +3,11 @@
 
 
 // var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'pwCheck'])
-var app = angular.module('app', ['addCarCtrl', 'galleryCtrl', 'detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'ngPassword', 'ngMessages', 'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMap', 'EmailService', 'toastr'])
+var app = angular.module('app', ['addCarCtrl', 'galleryCtrl', 'detailCtrl', 'userCtrl', 'ngRoute', 'AuthService',
+                                'ErrorService', 'CarService', 'angular-filepicker', 'ngPassword', 'ngMessages', 'ngAnimate',
+                                'ngTouch', 'ngSanitize', 'ngMap', 'EmailService', 'toastr', 'angular-google-analytics'])
 
-app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function($routeProvider, filepickerProvider, $locationProvider) {
+app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'AnalyticsProvider', function($routeProvider, filepickerProvider, $locationProvider, AnalyticsProvider) {
         //The route provider handles the client request to switch route
         $locationProvider.hashPrefix('');
 
@@ -57,8 +59,10 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider',function
             //Redirect to addCar in all the other cases.
             .otherwise({ redirectTo: '/home' });
 
+        AnalyticsProvider.setAccount('UA-113169326-1');
         filepickerProvider.setKey('AS2OofL0jSaWHwlvlGpt4z');
     }])
+    .run(['Analytics', function(Analytics) { }])
     .directive('routeLoadingIndicator', ['$rootScope',
         function($rootScope) {
             return {
