@@ -10,14 +10,8 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     $scope.car.morePictures = [];
 
     $scope.sortableOptions = {
-      stop: function(e, ui) {
-      for (var index in $scope.car.morePictures) {
-        $scope.car.morePictures[index].i = index;
-      }
-    },
       'ui-floating': true
     };
-    $scope.foo = function () { alert("moved")}
 
     $scope.slides = [];
     $scope.myInterval = 1000;
