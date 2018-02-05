@@ -9,8 +9,8 @@ var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000
                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
 
 //local or production
-//mongoose.connect('mongodb://localhost/db', options);
-mongoose.connect(process.env.MONGOLAB_URI , options);
+mongoose.connect('mongodb://localhost/db', options);
+//mongoose.connect(process.env.MONGOLAB_URI , options);
 
 var db = mongoose.connection;
 
@@ -23,3 +23,5 @@ require(__dirname + '/car.js')(mongoose, models);
 require(__dirname + '/user.js')(mongoose, models);
 
 module.exports = models;
+
+// mongod --dbpath=./db --smallfiles
