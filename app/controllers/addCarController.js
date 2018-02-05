@@ -9,6 +9,10 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     var id = $routeParams.id;
     $scope.car.morePictures = [];
 
+    $scope.sortableOptions = {
+      'ui-floating': true
+    };
+
     $scope.slides = [];
     $scope.myInterval = 1000;
     $scope.currentIndex = 0;
