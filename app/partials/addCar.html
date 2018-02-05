@@ -124,11 +124,16 @@
                     UPLOAD <span class="caret"></span>
                     </button>
                     <!-- Show the thumbanil of more pictures -->
-                        <div style="margin-top:10px;" ng-repeat="picture in car.morePictures">     <div class="col-md-{{12 / car.morePictures.length}}">
-                            <a class="thumbnail">
-                              <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
-                            </a>
+                    <div ui-sortable="sortableOptions" style="display: flex; flex-wrap: wrap" ng-model="car.morePictures">
+                        <div style="margin-top:10px; margin-right:10px;" ng-repeat="picture in car.morePictures">
+                            <div style="height: 175px;">
+                            <div>
+                              <div style="height: 117px; overflow:hidden">
+                                <img style="width: 175px; padding-top: 20px; padding-bottom: 10px;" ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
+                              </div>
+                          </div>
                         </div>
+                    </div>
                     </div>
                     </div>
                 </div>
