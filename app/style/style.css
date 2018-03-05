@@ -740,6 +740,12 @@ font-size: 24px;
     }
 }
 
+.social-media-icon {
+  font-size:36px;
+  color:#3B5998;
+  padding-bottom: 20px;
+}
+
 @media (min-width: 992px) and (max-width: 1147px) {
   .service-banner-title{
     font-size: 140px !important;
