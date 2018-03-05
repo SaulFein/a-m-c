@@ -677,7 +677,7 @@ font-size: 24px;
     width:296px;
   }
   .service-banner {
-    height: 430px;
+    height: 485px;
   }
   .car-detail-carousel {
     width: 685px;
@@ -707,7 +707,7 @@ font-size: 24px;
     font-size: 18px;
   }
   .service-banner {
-    height: 480px;
+    height: 550px;
   }
   .car-text {
       bottom: 49px;
@@ -738,6 +738,12 @@ font-size: 24px;
   .car-ymm-price {
       width: 970px;
     }
+}
+
+.social-media-icon {
+  font-size:36px;
+  color:#3B5998;
+  padding-bottom: 20px;
 }
 
 @media (min-width: 992px) and (max-width: 1147px) {
@@ -912,7 +918,7 @@ font-size: 24px;
   }
 
   .service-banner {
-    height: 850px;
+    height: 870px;
   }
 
   .car-detail-carousel {
