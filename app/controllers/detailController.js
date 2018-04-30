@@ -1,7 +1,7 @@
 'use strict';
 var detailCtrl = angular.module('detailCtrl', []);
-detailCtrl.controller('detailController', ["$scope", "$rootScope", "$http", "$routeParams", "$window", "filepickerService", "AuthService", "EmailService", "toastr",
-function($scope, $rootScope, $http, $routeParams, $window, filepickerService, AuthService, EmailService, toastr){
+detailCtrl.controller('detailController', ["$scope", "$rootScope", "$http", "$routeParams", "$window", "filepickerService", "AuthService", "EmailService", "toastr", "$document",
+function($scope, $rootScope, $http, $routeParams, $window, filepickerService, AuthService, EmailService, toastr, $document){
   // let url = 'http://localhost:3000';
 
     $scope.car = {};
@@ -48,6 +48,10 @@ function($scope, $rootScope, $http, $routeParams, $window, filepickerService, Au
           // or server returns response with an error status.
             });;
     }
+    $scope.scrollToTop = function() {
+      var someElement = angular.element(document.getElementById('topofthepage'));
+      $document.scrollToElement(someElement, 0, 750);
+    }
 
     var getFileThumbUrl = function (fileUrl) {
       var str = fileUrl;
@@ -61,7 +65,9 @@ function($scope, $rootScope, $http, $routeParams, $window, filepickerService, Au
       return res;
     }
 
+
     //get the id to query the db and retrieve the correct car
+
 
     var id = $routeParams.id;
     $scope.getCar = function() {
