@@ -6,6 +6,7 @@
 var app = angular.module('app', ['addCarCtrl', 'galleryCtrl', 'detailCtrl', 'userCtrl', 'ngRoute', 'AuthService',
                                 'ErrorService', 'CarService', 'angular-filepicker', 'ngPassword', 'ngMessages', 'ngAnimate',
                                 'ngTouch', 'ngSanitize', 'ngMap', 'EmailService', 'toastr', 'angular-google-analytics', 'ui.sortable', 'duScroll'])
+                                
 app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'AnalyticsProvider', function($routeProvider, filepickerProvider, $locationProvider, AnalyticsProvider) {
         //The route provider handles the client request to switch route
         $locationProvider.hashPrefix('');
