@@ -3,7 +3,7 @@
 
 
 // var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'pwCheck'])
-var app = angular.module('app', ['addCarCtrl', 'galleryCtrl', 'detailCtrl', 'userCtrl', 'ngRoute', 'AuthService',
+var app = angular.module('app', ['addCarCtrl', 'galleryCtrl', 'detailCtrl', 'userCtrl', 'financeCtrl', 'ngRoute', 'AuthService',
                                 'ErrorService', 'CarService', 'angular-filepicker', 'ngPassword', 'ngMessages', 'ngAnimate',
                                 'ngTouch', 'ngSanitize', 'ngMap', 'EmailService', 'toastr', 'angular-google-analytics', 'ui.sortable', 'duScroll'])
 
@@ -57,7 +57,8 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
               templateUrl: 'partials/storage.html'
             })
             .when('/finance', {
-              templateUrl: 'partials/finance.html'
+              templateUrl: 'partials/finance.html',
+              controller: 'financeController'
             })
             //Redirect to addCar in all the other cases.
             .otherwise({ redirectTo: '/home' });
