@@ -1,0 +1,53 @@
+<div class="contaier">
+  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-6" style="font-family: 'Gotham', sans-serif;">
+    <h1 style="padding-bottom: 10px">FINANCE</h1>
+    <img style="padding-bottom: 26px" src="assets/img/Woodside-Credit-Logo.png"/>
+    <p style="font-size: 18px; padding-bottom: 20px;">Authentic Motorcars has partnered with industry leader Woodside Credit to make financing your Classic Car fast and affordable.</p>
+    <p style="font-size: 18px; margin-bottom: 0px;"><b>Classic Car Loans with the Lowest Monthly Payments</b></p>
+    <p style="font-size: 18px; padding-bottom: 20px;">When financing your classic car, Woodside Credit is all about performance. They are committed to providing their clients with fast, friendly and professional service along with the lowest monthly payments. For over a decade, Woodside has been recognized as the leading lender in the classic car market by manufacturers, dealers, and automobile enthusiasts.</p>
+    <p style="font-size: 18px; padding-bottom: 20px;"><a href="https://www.woodsidecredit.com/Apply/?dlr=19126" target="_blank">CLICK HERE</a> to visit Woodside Credit and fill out their online application.</p>
+    <img style="width: 100%; padding-bottom: 30px" src="assets/img/Ferrari-328.jpg"/>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default" style="margin-top: 32px">
+      <div class="panel-body">
+    <form>
+        <div class="form-group" ng-class="{ 'has-error' : !ir}">
+          <label>INTEREST RATE %</label>
+          <input ng-model="interestRate" type="number" step="0.01" class="form-control">
+          <p ng-show="!ir" class="help-block">Enter a valid interest rate.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : !lt}">
+          <label>LOAN TERM</label>
+          <select ng-model="loanTerm"
+                  ng-init="loanTerm = options[0]"
+                  class="form-control"
+                  style="height: 44px"
+                  ng-options="option.name for option in options">
+          </select>
+          <p ng-show="!lt" class="help-block">Enter a valid loan term.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : !pp}">
+          <label for="pwd">PURCHASE PRICE $</label>
+          <input ng-model="purchasePrice" type="number" step="0.01" class="form-control">
+          <p ng-show="!pp" class="help-block">Enter a valid purchase price.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : !dp}">
+          <label for="pwd">DOWN PAYMENT $</label>
+          <input ng-model="downPayment" type="number" step="0.01" class="form-control">
+          <p ng-show="!dp" class="help-block">Enter a valid down payment.</p>
+        </div>
+        <button type="submit" ng-click="totalMonthlyPayment(purchasePrice, downPayment, loanTerm, interestRate);" class="btn btn-default"
+        style="margin-bottom: 20px; margin-top: 10px; padding: 15px;">CALCULATE PAYMENT</button>
+        <div ng-show="monthlyPayment" class="form-group" style="margin-bottom: 0px">
+          <label for="email">YOUR MONTHLY PAYMENT</label>
+          <div style="font-size: 20px">{{monthlyPayment | currency}}</div>
+        </div>
+    </form>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+<hr style="width: 100%">
