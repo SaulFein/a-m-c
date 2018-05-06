@@ -4,9 +4,10 @@
     <h1 style="padding-bottom: 10px">FINANCE</h1>
     <img style="padding-bottom: 26px" src="assets/img/Woodside-Credit-Logo.png"/>
     <p style="font-size: 18px; padding-bottom: 20px;">Authentic Motorcars has partnered with industry leader Woodside Credit to make financing your Classic Car fast and affordable.</p>
-    <p style="font-size: 18px; padding-bottom: 20px;"><b>Classic Car Loans with the Lowest Monthly Payments</b> When financing your classic car, Woodside Credit is all about performance. They are committed to providing their clients with fast, friendly and professional service along with the lowest monthly payments. For over a decade, Woodside has been recognized as the leading lender in the classic car market by manufacturers, dealers, and automobile enthusiasts.</p>
+    <p style="font-size: 18px; margin-bottom: 0px;"><b>Classic Car Loans with the Lowest Monthly Payments</b></p>
+    <p style="font-size: 18px; padding-bottom: 20px;">When financing your classic car, Woodside Credit is all about performance. They are committed to providing their clients with fast, friendly and professional service along with the lowest monthly payments. For over a decade, Woodside has been recognized as the leading lender in the classic car market by manufacturers, dealers, and automobile enthusiasts.</p>
     <p style="font-size: 18px; padding-bottom: 20px;"><a href="https://www.woodsidecredit.com/Apply/?dlr=19126" target="_blank">CLICK HERE</a> to visit Woodside Credit and fill out their online application.</p>
-    <img style="width: 100%;" src="assets/img/Ferrari-328.jpg"/>
+    <img style="width: 100%; padding-bottom: 30px" src="assets/img/Ferrari-328.jpg"/>
   </div>
   <div class="col-md-6">
     <div class="panel panel-default" style="margin-top: 32px">
@@ -39,14 +40,14 @@
         </div>
         <button type="submit" ng-click="totalMonthlyPayment(purchasePrice, downPayment, loanTerm, interestRate);" class="btn btn-default"
         style="margin-bottom: 20px; margin-top: 10px; padding: 15px;">CALCULATE PAYMENT</button>
-        <div class="form-group">
+        <div ng-show="monthlyPayment" class="form-group" style="margin-bottom: 0px">
           <label for="email">YOUR MONTHLY PAYMENT</label>
-          <div>{{monthlyPayment | currency}}</div>
+          <div style="font-size: 20px">{{monthlyPayment | currency}}</div>
         </div>
     </form>
   </div>
   </div>
 </div>
-
 </div>
 </div>
+<hr style="width: 100%">
