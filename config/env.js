@@ -3,8 +3,10 @@
 exports.PORT = process.env.PORT || 3000;
 
 
-//local or production
+//local
 //exports.MONGOLAB_URI = 'mongodb://localhost/db';
+
+//production
 exports.MONGOLAB_URI = process.env.MONGOLAB_URI;
 
 

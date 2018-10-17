@@ -18,6 +18,14 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     $scope.currentIndex = 0;
     var slides = $scope.slides;
 
+    $scope.showCarFax = function (car) {
+      if(car.carfax == "N/A" || car.carfax == "false"){
+        return false;
+      } else if(car.carfax == "true"){
+        return true;
+      }
+    }
+
     $scope.setCurrentSlideIndex = function(index) {
         $scope.currentIndex = index;
     };

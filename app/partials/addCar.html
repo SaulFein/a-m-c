@@ -21,10 +21,16 @@
         <div class="panel-body">
             <!-- The form to add cars information -->
             <form name ="addForm" novalidate>
-              <div class="col-md-6">
+              <div class="col-md-3">
               <div class="form-group">
                   <label for="sold">Sold</label>
                   <input style="box-shadow:none" type="checkbox" class="form-control" placeholder="Sold" ng-model="car.sold">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                  <label for="car-fax">CarFax</label>
+                  <input style="box-shadow:none" type="checkbox" class="form-control" placeholder="Carfax" ng-true-value="'true'" ng-model="car.carfax">
               </div>
             </div>
               <div class="col-md-6">

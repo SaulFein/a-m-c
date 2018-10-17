@@ -65,10 +65,15 @@ function($scope, $rootScope, $http, $routeParams, $window, filepickerService, Au
       return res;
     }
 
+    $scope.showCarFax = function (car) {
+      if(car.carfax == "N/A" || car.carfax == "false"){
+        return false;
+      } else if(car.carfax == "true"){
+        return true;
+      }
+    }
 
     //get the id to query the db and retrieve the correct car
-
-
     var id = $routeParams.id;
     $scope.getCar = function() {
       $http.get('/inventory/' + id)
@@ -98,6 +103,7 @@ function($scope, $rootScope, $http, $routeParams, $window, filepickerService, Au
       $(".in").remove();
       $('body').removeClass('modal-open');
     });
+
 }]);
 
 
