@@ -26,6 +26,22 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
       }
     }
 
+    var removeSold = function(cars) {
+      var sold = [];
+      var availableInventory = [];
+      var carsToSpliceByIndex = [];
+      for(var i = 0; i < cars.length; i++) {
+        if(cars[i].sold){
+          sold.push(cars[i]);
+          cars.splice(i, 1);
+          i--;
+          carsToSpliceByIndex.push(i);
+        }
+      }
+      $scope.sold = sold;
+      return cars;
+    }
+
     $scope.setCurrentSlideIndex = function(index) {
         $scope.currentIndex = index;
     };
@@ -55,9 +71,10 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
             .then(function() {
               CarService.getCarsPublic()
               .then(function(data){
-                  $scope.cars = data.data;
-                  $window.localStorage.cars = JSON.stringify($scope.cars);
-                  $window.localStorage.carsDate = new Date();
+                $scope.cars = removeSold(data.data);
+                $window.localStorage.cars = JSON.stringify($scope.cars);
+                $window.localStorage.carsDate = new Date();
+                $window.localStorage.sold = JSON.stringify($scope.sold);
               })
               .catch(function(data) {
                   console.log('Error: ' + data);
@@ -81,9 +98,10 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
             .then(function() {
               CarService.getCarsPublic()
               .then(function(data){
-                  $scope.cars = data.data;
-                  $window.localStorage.cars = JSON.stringify($scope.cars);
-                  $window.localStorage.carsDate = new Date();
+                $scope.cars = removeSold(data.data);
+                $window.localStorage.cars = JSON.stringify($scope.cars);
+                $window.localStorage.carsDate = new Date();
+                $window.localStorage.sold = JSON.stringify($scope.sold);
 
               })
               .catch(function(data) {
@@ -146,9 +164,10 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
             .then(function() {
               CarService.getCarsPublic()
               .then(function(data){
-                  $scope.cars = data.data;
-                  $window.localStorage.cars = JSON.stringify($scope.cars);
-                  $window.localStorage.carsDate = new Date();
+                $scope.cars = removeSold(data.data);
+                $window.localStorage.cars = JSON.stringify($scope.cars);
+                $window.localStorage.carsDate = new Date();
+                $window.localStorage.sold = JSON.stringify($scope.sold);
                   $scope.go('/admin-inventory');
               })
               .catch(function(data) {
