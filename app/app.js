@@ -128,8 +128,3 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
             }
         }
     }]);
-
-    
-    // !   Warning: You are running on a deprecated stack.
-    // remote:  !   Please upgrade to the latest stack by following the instructions on:
-    // remote:  !   https://devcenter.heroku.com/articles/upgrading-to-the-latest-stack
