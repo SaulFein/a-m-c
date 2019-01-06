@@ -14,6 +14,8 @@ html {
 }
 html, body {
   height: 100%;
+  padding: 0;
+  margin: 0;
 }
 .page-wrap {
   min-height: 100%;
@@ -33,7 +35,6 @@ html, body {
 }*/
 .footer-section {
   text-align: center;
-  padding-bottom: 50px;
   color: #4d4d4f;
   font-weight: 300;
   font-family: 'Gotham', sans-serif;
@@ -48,4 +49,8 @@ html, body {
     border-right-color: white;
     border-left-color: white;
     border-top-color: white;
+}
+
+body{
+  min-height: 100%;
 }

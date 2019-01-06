@@ -663,6 +663,26 @@ font-size: 24px;
   box-shadow: 0px 0px 6px rgba(35, 173, 255, 1);
 }
 
+.stripes1{
+  background-color: #f58521;
+  color: #f58521;
+  height: calc(100% + 50px);
+  left: 55px;
+  width: 20px;
+  display: flex;
+  position: absolute;
+}
+
+.stripes2{
+  background-color: #00b4dd;
+  color: #00b4dd;
+  height: calc(100% + 50px);
+  left: 25px;
+  width: 20px;
+  display: flex;
+  position: absolute;
+}
+
 @media (min-width: 1442px){
   .service-banner {
     height: 420px !important;
