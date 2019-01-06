@@ -19,7 +19,8 @@ module.exports = (mongoose, models) => {
       morePictures: mongoose.Schema.Types.Mixed, // this is not required
       createdAt: {type: Date, default: Date.now},
       sold: {type: Boolean, default: false},
-      stockNumber: {type: String, default: 'N/A'}
+      stockNumber: {type: String, default: 'N/A'},
+      carfaxFile: mongoose.Schema.Types.Mixed
   });
 
   // Sets the createdAt parameter equal to the current time
