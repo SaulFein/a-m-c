@@ -87,7 +87,7 @@
                           <li class="list-group-item"><span class="spec-lables">ENGINE</span> <br> {{car.engine}}</li>
                           <li class="list-group-item"><span class="spec-lables">TRANSMISSION</span> <br> {{car.transmission}}</li>
                           <li class="list-group-item"><span class="spec-lables">VIN</span> <br> {{car.vin}} <br>
-                            <a ng-if="car.carfaxFile" ng-href='{{car.carfaxFile.url}}' target='_blank'>
+                            <a ng-if="car.carfaxFile" ng-href='{{car.carfaxFile[0].url}}' target='_blank'>
                               <img class='carfax-btn' src='../assets/img/cfxlogo.jpg'></a>
 
                             <!-- <a ng-if="showCarFax(car)" ng-href='http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin={{car.vin}}' target='_blank'>
@@ -375,12 +375,13 @@
                                 <!-- <a href="{{car.picture.url}}" class="thumbnail" ng-if="car.picture"> -->
                                 <div ng-if="car.carfaxFile">
                                   <!-- the picture is rendered with width: 500 and sharpened -->
-                                  <img style="width:300px" ng-src="{{car.carfaxFile.url | fpConvert: {filter:'sharpen'} }}">
+                                  <img style="width:300px" ng-src="{{car.carfaxFile[0].url | fpConvert: {filter:'sharpen'} }}">
                                 </div>
-                                <button type="button" class="btn btn-danger"
+                                <button ng-show="car.carfaxFile.length > 0"
+                                type="button" class="btn btn-danger"
                                                       style="margin-top: 15px;"
                                                       data-toggle="modal"
-                                                      data-target="#confirm-modal-main">
+                                                      data-target="#confirm-modal-carfax">
                                   <span class= "glyphicon glyphicon-remove-circle"></span>
                                   REMOVE CARFAX
                                 </button>

@@ -154,7 +154,7 @@
                             <!-- <a href="{{car.picture.url}}" class="thumbnail" ng-if="car.picture"> -->
                             <div ng-if="car.carfaxFile">
                               <!-- the picture is rendered with width: 500 and sharpened -->
-                              <img style="width:300px" ng-src="{{car.carfaxFile.url | fpConvert: {filter:'sharpen'} }}">
+                              <img style="width:300px" ng-src="{{car.carfaxFile[0].url | fpConvert: {filter:'sharpen'} }}">
                             </div>
                         </div>
                     </div>

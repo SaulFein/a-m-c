@@ -230,7 +230,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 openTo: 'COMPUTER'
             },
             function(Blob) {
-                $scope.car.carfaxFile = Blob;
+                $scope.car.carfaxFile = [Blob];
                 $scope.$apply();
         })
     };
@@ -299,7 +299,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
           openTo: 'COMPUTER'
             },
             function(Blob) {
-                $scope.car.carfaxFile = Blob;
+                $scope.car.carfaxFile = [Blob];
                 $scope.$apply();
                 $scope.updateCar();
             }
@@ -357,7 +357,6 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                   signature: sig
                 },
                 function(){
-
                 }
         );
         // toast removed
@@ -365,20 +364,24 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     };
 
     $scope.removeCarFax = function(data) {
-      var policy = createPolicy(data.carfaxFile.url);
+      var policy = createPolicy(data.carfaxFile[0].url);
       var sig = $scope.getSig(policy);
-      var fpHolder = data.carfaxFile.url;
-        filepickerService.remove(fpHolder,
+      var file = data.carfaxFile[0];
+      // var fpHolder = data.carfaxFile.url;
+      data.carfaxFile.splice(0, 1);
+        filepickerService.remove(file.url,
           {
                   policy: policy,
                   signature: sig
                 },
                 function(){
+                  $scope.updateCar()
 
-                }
-        );
+                });
         // toast removed
-        delete data.carfaxFile;
+        // delete data.carfaxFile;
+        // $scope.updateCar()
+
     };
 
     var getIndexIfObjWithOwnAttr = function(array, attr, value) {
