@@ -663,6 +663,25 @@ font-size: 24px;
   box-shadow: 0px 0px 6px rgba(35, 173, 255, 1);
 }
 
+.stripes1{
+  background-color: #f58521;
+  color: #f58521;
+  min-height: 100%;
+  left: 55px;
+  width: 20px;
+  position: absolute;
+}
+
+.stripes2{
+  background-color: #00b4dd;
+  color: #00b4dd;
+  min-height: 100%;
+  left: 25px;
+  width: 20px;
+  position: absolute;
+}
+
+
 @media (min-width: 1442px){
   .service-banner {
     height: 420px !important;
@@ -846,12 +865,24 @@ font-size: 24px;
   .car-ymm-price {
       width: 688px;
     }
+    .stripes2{
+      display: none;
+    }
+    .stripes1 {
+      display: none;
+    }
 }
 
 @media (min-width: 650px) and (max-width: 830px) {
   .service-banner-title{
     font-size: 150px !important;
     text-align: center;
+  }
+  .stripes2{
+    display: none;
+  }
+  .stripes1 {
+    display: none;
   }
 }
 
@@ -887,6 +918,12 @@ font-size: 24px;
   }
   .car-ymm-price {
       width: 688px;
+    }
+    .stripes2{
+      display: none;
+    }
+    .stripes1 {
+      display: none;
     }
 }
 
@@ -924,6 +961,12 @@ font-size: 24px;
     }
     .car-ymm-price h2{
         font-size: 26px;
+      }
+      .stripes2{
+        display: none;
+      }
+      .stripes1 {
+        display: none;
       }
 }
 

@@ -55,6 +55,8 @@
                 <h3>Description</h3>
                 <div ng-bind-html="car.description"></div>
               </div>
+
+
           </div>
 
           <!--_________________________Modal Carousle ___________________________-->
@@ -103,8 +105,12 @@
                   <li class="list-group-item"><span class="spec-lables">ENGINE</span> <br> {{car.engine}}</li>
                   <li class="list-group-item"><span class="spec-lables">TRANSMISSION</span> <br> {{car.transmission}}</li>
                   <li class="list-group-item"><span class="spec-lables">VIN</span> <br> {{car.vin}} <br>
-                    <a ng-if="showCarFax(car)" ng-href='http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin={{car.vin}}' target='_blank'>
+                    <a ng-if="car.carfaxFile" ng-href='{{car.carfaxFile[0].url}}' target='_blank'>
                       <img class='carfax-btn' src='../assets/img/cfxlogo.jpg'></a>
+
+                    <!-- <a ng-if="showCarFax(car)" ng-href='http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin={{car.vin}}' target='_blank'>
+                      <img class='carfax-btn' src='../assets/img/cfxlogo.jpg'></a> -->
+
                   </li>
                   <li class="list-group-item"><span class="spec-lables">STOCK #</span> <br> {{car.stockNumber}}</li>
                   <li class="list-group-item"><span class="spec-lables">HIGHLIGHTS</span> <br> {{car.highlights}}</li>

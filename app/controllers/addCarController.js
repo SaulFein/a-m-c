@@ -214,10 +214,23 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 imageQuality: 60,
                 language: 'en',
                 services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-                openTo: 'IMAGE_SEARCH'
+                openTo: 'COMPUTER'
             },
             function(Blob) {
                 $scope.car.picture = Blob;
+                $scope.$apply();
+        })
+    };
+
+    //Single file upload, you can take a look at the options
+    $scope.uploadCarfax = function() {
+        filepickerService.pick({
+                language: 'en',
+                services: ['COMPUTER', 'DROPBOX'],
+                openTo: 'COMPUTER'
+            },
+            function(Blob) {
+                $scope.car.carfaxFile = [Blob];
                 $scope.$apply();
         })
     };
@@ -230,7 +243,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 language: 'en',
                 maxFiles: 100, //pickMultiple has one more option
                 services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-                openTo: 'IMAGE_SEARCH'
+                openTo: 'COMPUTER'
             },
             function(Blob) {
                 if (!$scope.car.morePictures) {
@@ -252,7 +265,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 imageQuality: 60,
                 language: 'en',
                 services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-                openTo: 'IMAGE_SEARCH'
+                openTo: 'COMPUTER'
             },
             function(Blob) {
                 $scope.car.morePictures.push(Blob);
@@ -269,10 +282,24 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 imageQuality: 60,
                 language: 'en',
                 services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-                openTo: 'IMAGE_SEARCH'
+                openTo: 'COMPUTER'
             },
             function(Blob) {
                 $scope.car.picture = Blob;
+                $scope.$apply();
+                $scope.updateCar();
+            }
+        );
+    };
+
+    $scope.uploadCarFaxAndUp = function() {
+        filepickerService.pick({
+          language: 'en',
+          services: ['COMPUTER', 'DROPBOX'],
+          openTo: 'COMPUTER'
+            },
+            function(Blob) {
+                $scope.car.carfaxFile = [Blob];
                 $scope.$apply();
                 $scope.updateCar();
             }
@@ -287,7 +314,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 imageQuality: 60,
                 maxFiles: 100, //pickMultiple has one more option
                 services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-                openTo: 'IMAGE_SEARCH'
+                openTo: 'COMPUTER'
             },
             function(Blob) {
                 if (!$scope.car.morePictures) {
@@ -310,7 +337,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 imageQuality: 60,
                 language: 'en',
                 services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-                openTo: 'IMAGE_SEARCH'
+                openTo: 'COMPUTER'
             },
             function(Blob) {
                 $scope.car.morePictures.push(Blob);
@@ -330,11 +357,31 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                   signature: sig
                 },
                 function(){
-
                 }
         );
         // toast removed
         delete data.picture;
+    };
+
+    $scope.removeCarFax = function(data) {
+      var policy = createPolicy(data.carfaxFile[0].url);
+      var sig = $scope.getSig(policy);
+      var file = data.carfaxFile[0];
+      // var fpHolder = data.carfaxFile.url;
+      data.carfaxFile.splice(0, 1);
+        filepickerService.remove(file.url,
+          {
+                  policy: policy,
+                  signature: sig
+                },
+                function(){
+                  $scope.updateCar()
+
+                });
+        // toast removed
+        // delete data.carfaxFile;
+        // $scope.updateCar()
+
     };
 
     var getIndexIfObjWithOwnAttr = function(array, attr, value) {
