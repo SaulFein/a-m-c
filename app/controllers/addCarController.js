@@ -10,7 +10,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     $scope.car.morePictures = [];
 
     $scope.sortableOptions = {
-      'ui-floating': true
+        'ui-floating': true
     };
 
     $scope.slides = [];
@@ -18,28 +18,28 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     $scope.currentIndex = 0;
     var slides = $scope.slides;
 
-    $scope.showCarFax = function (car) {
-      if(car.carfax == "N/A" || car.carfax == "false"){
-        return false;
-      } else if(car.carfax == "true"){
-        return true;
-      }
+    $scope.showCarFax = function(car) {
+        if (car.carfax == "N/A" || car.carfax == "false") {
+            return false;
+        } else if (car.carfax == "true") {
+            return true;
+        }
     }
 
     var removeSold = function(cars) {
-      var sold = [];
-      var availableInventory = [];
-      var carsToSpliceByIndex = [];
-      for(var i = 0; i < cars.length; i++) {
-        if(cars[i].sold){
-          sold.push(cars[i]);
-          cars.splice(i, 1);
-          i--;
-          carsToSpliceByIndex.push(i);
+        var sold = [];
+        var availableInventory = [];
+        var carsToSpliceByIndex = [];
+        for (var i = 0; i < cars.length; i++) {
+            if (cars[i].sold) {
+                sold.push(cars[i]);
+                cars.splice(i, 1);
+                i--;
+                carsToSpliceByIndex.push(i);
+            }
         }
-      }
-      $scope.sold = sold;
-      return cars;
+        $scope.sold = sold;
+        return cars;
     }
 
     $scope.setCurrentSlideIndex = function(index) {
@@ -63,25 +63,25 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 }
             })
             .then(function(data) {
-              toastr.success("car saved")
+                toastr.success("car saved")
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
 
             })
             .then(function() {
-              CarService.getCarsPublic()
-              .then(function(data){
-                $scope.cars = removeSold(data.data);
-                $window.localStorage.cars = JSON.stringify($scope.cars);
-                $window.localStorage.carsDate = new Date();
-                $window.localStorage.sold = JSON.stringify($scope.sold);
-              })
-              .catch(function(data) {
-                  console.log('Error: ' + data);
-              });
+                CarService.getCarsPublic()
+                    .then(function(data) {
+                        $scope.cars = removeSold(data.data);
+                        $window.localStorage.cars = JSON.stringify($scope.cars);
+                        $window.localStorage.carsDate = new Date();
+                        $window.localStorage.sold = JSON.stringify($scope.sold);
+                    })
+                    .catch(function(data) {
+                        console.log('Error: ' + data);
+                    });
             })
             .catch(function(data) {
-              toastr.error("error saving car")
+                toastr.error("error saving car")
             });
     };
 
@@ -92,138 +92,152 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                 }
             })
             .then(function(data) {
-              toastr.success("car updated")
+                toastr.success("car updated")
                 $scope.getCar();
             })
             .then(function() {
-              CarService.getCarsPublic()
-              .then(function(data){
-                $scope.cars = removeSold(data.data);
-                $window.localStorage.cars = JSON.stringify($scope.cars);
-                $window.localStorage.carsDate = new Date();
-                $window.localStorage.sold = JSON.stringify($scope.sold);
+                CarService.getCarsPublic()
+                    .then(function(data) {
+                        $scope.cars = removeSold(data.data);
+                        $window.localStorage.cars = JSON.stringify($scope.cars);
+                        $window.localStorage.carsDate = new Date();
+                        $window.localStorage.sold = JSON.stringify($scope.sold);
 
-              })
-              .catch(function(data) {
-                  console.log('Error: ' + data);
-              });
+                    })
+                    .catch(function(data) {
+                        console.log('Error: ' + data);
+                    });
             })
             .catch(function(data) {
-              toastr.error("error updating car")
-
+                toastr.error("error updating car");
             });
     };
 
-    $scope.deleteCar = function(data) {
-      if(data.picture !== undefined){
-        var fpHolder = data.picture.url;
-        $scope.policy = createPolicy(fpHolder);
-        $scope.sig = $scope.getSig($scope.policy);
-        if (data.morePictures.length > 0) {
-            var fpMHolder = data.morePictures;
+
+    var removeMultPicks = function(fpMHolder) {
+        for (var i = 0; i < fpMHolder.length; i++) {
+            var policy = createPolicy(fpMHolder[i].url);
+            return $scope.getSig(policy).then(function(data) {
+                var sig = data.data;
+                filepickerService.remove(fpMHolder[i].url, {
+                        policy: policy,
+                        signature: sig
+                    },
+                    function() {}
+                )
+            })
+
         }
-      }
-        $http.delete(url + cUser + '/inventory/' + id, {
+    }
+
+    $scope.deleteCar = function(data) {
+        if (data.picture !== undefined) {
+            var fpHolder = data.picture.url;
+            var policy = createPolicy(fpHolder);
+            if (data.morePictures.length > 0) {
+                var fpMHolder = data.morePictures;
+            }
+            $scope.getSig($scope.policy).then(function(data) {
+                    var sig = data.data;
+                    $http.delete(url + cUser + '/inventory/' + id, {
+                        headers: {
+                            token: AuthService.getToken()
+                        }
+                    }).then(function(data) {
+                        if (fpHolder !== undefined) {
+                            filepickerService.remove(fpHolder, {
+                                    policy: policy,
+                                    signature: sig
+                                },
+                                function() {}
+                            )
+                        }
+                    }).then(function () {
+                      if (fpMHolder) {
+                          removeMultPicks(fpMHolder);
+                      }
+                    }).finally(function() {
+                        //Clean the form to allow the user to create new cars
+                        $scope.car = {};
+                        $scope.sig = null;
+                        $scope.policy = null;
+                        toastr.success("car deleted")
+                    })
+                })
+                .then(function() {
+                    CarService.getCarsPublic()
+                        .then(function(data) {
+                            $scope.cars = removeSold(data.data);
+                            $window.localStorage.cars = JSON.stringify($scope.cars);
+                            $window.localStorage.carsDate = new Date();
+                            $window.localStorage.sold = JSON.stringify($scope.sold);
+                            $scope.go('/admin-inventory');
+                        })
+                        .catch(function(data) {
+                            console.log('Error: ' + data);
+                        });
+                })
+                .catch(function(data) {
+                    console.log('Error: ' + data);
+                });
+        }
+    };
+
+    $scope.getCar = function() {
+        $http.get(url + cUser + '/inventory/' + id, {
                 headers: {
                     token: AuthService.getToken()
                 }
             })
             .then(function(data) {
-              if(fpHolder !== undefined){
-                filepickerService.remove(fpHolder,
-                  {
-                    policy: $scope.policy,
-                    signature: $scope.sig
-                  },
-                  function(){
-                    // console.log("car removed ", data)
-                  }
-                )
-                if (fpMHolder) {
-                    for (var i = 0; i < fpMHolder.length; i++) {
-                      var policy = createPolicy(fpMHolder[i].url);
-                      var sig = $scope.getSig(policy);
-                        filepickerService.remove(fpMHolder[i].url,
-                          {
-                            policy: policy,
-                            signature: sig
-                          },
-                          function(){
-                            // console.log("car removed ", data)
-                          }
-                        );
+                $scope.slides = [];
+                // console.log(JSON.stringify(data));
+                $scope.car = data.data;
+                if (data.data.morePictures) {
+                    for (var i = 0; i < data.data.morePictures.length; i++) {}
+                    $scope.slides.push({
+                        image: data.data.picture.url,
+                        title: 'Main Image'
+                    });
+                    for (var i = 0; i < data.data.morePictures.length; i++) {
+                        $scope.slides.push({
+                            image: data.data.morePictures[i].url,
+                            title: 'Image ' + i
+                        });
                     }
                 }
-              };
-                //Clean the form to allow the user to create new cars
-                $scope.car = {};
-                $scope.sig = null;
-                $scope.policy = null;
-                toastr.success("car deleted")
             })
-            .then(function() {
-              CarService.getCarsPublic()
-              .then(function(data){
-                $scope.cars = removeSold(data.data);
-                $window.localStorage.cars = JSON.stringify($scope.cars);
-                $window.localStorage.carsDate = new Date();
-                $window.localStorage.sold = JSON.stringify($scope.sold);
-                  $scope.go('/admin-inventory');
-              })
-              .catch(function(data) {
-                  console.log('Error: ' + data);
-              });
-            })
-
             .catch(function(data) {
                 console.log('Error: ' + data);
             });
     };
-
-    $scope.getCar = function() {
-            $http.get(url + cUser + '/inventory/' + id, {
-                    headers: {
-                        token: AuthService.getToken()
-                    }
-                })
-                .then(function(data) {
-                    $scope.slides = [];
-                        // console.log(JSON.stringify(data));
-                    $scope.car = data.data;
-                    if (data.data.morePictures) {
-                        for (var i = 0; i < data.data.morePictures.length; i++) {
-                        }
-                        $scope.slides.push({ image: data.data.picture.url, title: 'Main Image' });
-                        for (var i = 0; i < data.data.morePictures.length; i++) {
-                            $scope.slides.push({ image: data.data.morePictures[i].url, title: 'Image ' + i });
-                        }
-                    }
-                })
-                .catch(function(data) {
-                    console.log('Error: ' + data);
-                });
-    };
-        ///////////////////////////////////////////////////////////
-        //////////////////file picker functions////////////////////
+    ///////////////////////////////////////////////////////////
+    //////////////////file picker functions////////////////////
 
     //Single file upload, you can take a look at the options
-    $scope.upload = function() {
-        filepickerService.pick({
-                mimetype: 'image/*',
-                imageMax: [1920, 1280],
-                imageQuality: 60,
-                language: 'en',
-                services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-                openTo: 'COMPUTER'
-            },
-            function(Blob) {
-                $scope.car.picture = Blob;
-                $scope.$apply();
-        })
+    $scope.upload = function(data) {
+        var policy = createPolicy();
+        $scope.getSig(policy).then(function(data) {
+            var sig = data.data;
+            filepickerService.pick({
+                    mimetype: 'image/*',
+                    policy: policy,
+                    signature: sig,
+                    imageMax: [1920, 1280],
+                    imageQuality: 60,
+                    language: 'en',
+                    services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                    openTo: 'COMPUTER'
+                },
+                function(Blob) {
+                    $scope.car.picture = Blob;
+                    $scope.$apply();
+                })
+        });
     };
 
     //Single file upload, you can take a look at the options
-    $scope.uploadCarfax = function() {
+    $scope.uploadCarfax = function(data) {
         filepickerService.pick({
                 language: 'en',
                 services: ['COMPUTER', 'DROPBOX'],
@@ -232,10 +246,10 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
             function(Blob) {
                 $scope.car.carfaxFile = [Blob];
                 $scope.$apply();
-        })
+            })
     };
     //Multiple files upload set to 100 as max number
-    $scope.uploadMultiple = function() {
+    $scope.uploadMultiple = function(data) {
         filepickerService.pickMultiple({
                 mimetype: 'image/*',
                 imageDim: [1920, 1280],
@@ -258,7 +272,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
         );
     };
 
-    $scope.uploadOne = function() {
+    $scope.uploadOne = function(data) {
         filepickerService.pick({
                 mimetype: 'image/*',
                 imageDim: [1920, 1280],
@@ -274,29 +288,36 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
         );
     };
 
-//// upload and updateCar
-    $scope.uploadAndUp = function() {
-        filepickerService.pick({
-                mimetype: 'image/*',
-                imageDim: [1920, 1280],
-                imageQuality: 60,
-                language: 'en',
-                services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-                openTo: 'COMPUTER'
-            },
-            function(Blob) {
-                $scope.car.picture = Blob;
-                $scope.$apply();
-                $scope.updateCar();
-            }
-        );
+    //// upload and updateCar
+    $scope.uploadAndUp = function(data) {
+        var policy = createPolicy(data.picture.url);
+        var sig = $scope.getSig(policy).then(function(data) {
+            var sigstuff = data;
+            filepickerService.pick({
+                    mimetype: 'image/*',
+                    imageDim: [1920, 1280],
+                    imageQuality: 60,
+                    policy: policy,
+                    signature: sig,
+                    language: 'en',
+                    services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                    openTo: 'COMPUTER'
+                },
+                function(Blob) {
+                    $scope.car.picture = Blob;
+                    $scope.$apply();
+                    $scope.updateCar();
+                }
+            );
+        });
+
     };
 
-    $scope.uploadCarFaxAndUp = function() {
+    $scope.uploadCarFaxAndUp = function(data) {
         filepickerService.pick({
-          language: 'en',
-          services: ['COMPUTER', 'DROPBOX'],
-          openTo: 'COMPUTER'
+                language: 'en',
+                services: ['COMPUTER', 'DROPBOX'],
+                openTo: 'COMPUTER'
             },
             function(Blob) {
                 $scope.car.carfaxFile = [Blob];
@@ -307,30 +328,38 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     };
     //Multiple files upload set to 100 as max number
     $scope.uploadMultipleAndUp = function() {
-        filepickerService.pickMultiple({
-                mimetype: 'image/*',
-                language: 'en',
-                imageDim: [1920, 1280],
-                imageQuality: 60,
-                maxFiles: 100, //pickMultiple has one more option
-                services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-                openTo: 'COMPUTER'
-            },
-            function(Blob) {
-                if (!$scope.car.morePictures) {
-                    $scope.car.morePictures = Blob;
-                } else {
-                    for (var i = 0; i < Blob.length; i++) {
-                        $scope.car.morePictures.push(Blob[i]);
+        var policy = createPolicy();
+        $scope.getSig(policy).then(function(data) {
+            var sig = data.data;
+            filepickerService.pickMultiple({
+                    mimetype: 'image/*',
+                    policy: policy,
+                    signature: sig,
+                    language: 'en',
+                    imageDim: [1920, 1280],
+                    imageQuality: 60,
+                    maxFiles: 100, //pickMultiple has one more option
+                    services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                    openTo: 'COMPUTER'
+                },
+                function(Blob) {
+                    if (!$scope.car.morePictures) {
+                        $scope.car.morePictures = Blob;
+                    } else {
+                        for (var i = 0; i < Blob.length; i++) {
+                            $scope.car.morePictures.push(Blob[i]);
+                        }
                     }
+                    $scope.$apply();
+                    $scope.updateCar();
                 }
-                $scope.$apply();
-                $scope.updateCar();
-            }
-        );
+            );
+        });
     };
 
-    $scope.uploadOneAndUp = function() {
+    $scope.uploadOneAndUp = function(data) {
+        var policy = createPolicy(data.carfaxFile[0].url);
+        var sig = $scope.getSig(policy);
         filepickerService.pick({
                 mimetype: 'image/*',
                 imageDim: [1920, 1280],
@@ -348,40 +377,33 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     };
 
     $scope.removeImage = function(data) {
-      var policy = createPolicy(data.picture.url);
-      var sig = $scope.getSig(policy);
-      var fpHolder = data.picture.url;
-        filepickerService.remove(fpHolder,
-          {
-                  policy: policy,
-                  signature: sig
-                },
-                function(){
-                }
+        var policy = createPolicy(data.picture.url);
+        var sig = $scope.getSig(policy);
+        var fpHolder = data.picture.url;
+        filepickerService.remove(fpHolder, {
+                policy: policy,
+                signature: sig
+            },
+            function() {}
         );
         // toast removed
         delete data.picture;
     };
 
     $scope.removeCarFax = function(data) {
-      var policy = createPolicy(data.carfaxFile[0].url);
-      var sig = $scope.getSig(policy);
-      var file = data.carfaxFile[0];
-      // var fpHolder = data.carfaxFile.url;
-      data.carfaxFile.splice(0, 1);
-        filepickerService.remove(file.url,
-          {
-                  policy: policy,
-                  signature: sig
-                },
-                function(){
-                  $scope.updateCar()
+        var policy = createPolicy(data.carfaxFile[0].url);
+        var sig = $scope.getSig(policy);
+        var file = data.carfaxFile[0];
+        // var fpHolder = data.carfaxFile.url;
+        data.carfaxFile.splice(0, 1);
+        filepickerService.remove(file.url, {
+                policy: policy,
+                signature: sig
+            },
+            function() {
+                $scope.updateCar()
 
-                });
-        // toast removed
-        // delete data.carfaxFile;
-        // $scope.updateCar()
-
+            });
     };
 
     var getIndexIfObjWithOwnAttr = function(array, attr, value) {
@@ -393,35 +415,41 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
         return -1;
     }
     $scope.setSelected = function(selected) {
-      $scope.selectedImageForRemoval = selected;
+        $scope.selectedImageForRemoval = selected;
     }
 
     var createPolicy = function(url) {
-      var handle = url.match(/[^\/]*$/);
-      var expiry =  Math.floor(new Date().getTime() / 1000 + 60*60)
-      var polObject = JSON.stringify({handle: handle[0], expiry: expiry});
-      return btoa(polObject);
+        // var handle = url.match(/[^\/]*$/);
+        var expiry = Math.floor(new Date().getTime() / 1000 + 60 * 60)
+        // var polObject = JSON.stringify({expiry: expiry});
+        var polObject = JSON.stringify({
+            expiry: expiry
+        });
+
+        return btoa(polObject);
     }
 
     $scope.removeMoreImage = function(data) {
         var index = $scope.selectedImageForRemoval;
         var image = data.morePictures[index];
         var policy = createPolicy(image.url);
-        var sig = $scope.getSig(policy);
         data.morePictures.splice(index, 1);
-        filepickerService.remove(image.url,
-          {
-            policy: policy,
-            signature: sig
-          },
-          function(){
-            $scope.updateCar()
-          })
-        $('#confirm-modal-more').modal('hide');
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
+        $scope.getSig(policy).then(function(data) {
+            var sig = data.data;
+
+            filepickerService.remove(image.url, {
+                    policy: policy,
+                    signature: sig
+                },
+                function() {
+                    $scope.updateCar()
+                })
+            $('#confirm-modal-more').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        })
     }
-    //////////////////////////////////////////////////
+
     $scope.checkToken = function() {
         if (!$window.localStorage.token) {
             $location.path('/')
@@ -436,30 +464,32 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     };
 
     $scope.getSig = function(policy) {
-      var myPolicy = {pol: policy};
-      var sig = CarService.getSignature(cUser, myPolicy).then( function(data) {
-        return data;
-      })
-      return sig;
+        var myPolicy = {
+            pol: policy
+        };
+        var sig = CarService.getSignature(cUser, myPolicy).then(function(data) {
+            return data;
+        })
+        return sig;
     };
     $scope.validateUpload = function() {
-      var make;
-      var model;
-      var year;
-      if($scope.car.make !== "" && $scope.car.make !== null && $scope.car.make !== void 0) {
-        make = true;
-      }
-      if($scope.car.model !== "" && $scope.car.model !== null && $scope.car.model !== void 0) {
-        model = true;
-      }
-      if($scope.car.year !== "" && $scope.car.year !== null && $scope.car.year !== void 0) {
-        year = true;
-      }
-      if(make === true && model === true && year === true){
-        return true;
-      } else {
-        return false;
-      }
+        var make;
+        var model;
+        var year;
+        if ($scope.car.make !== "" && $scope.car.make !== null && $scope.car.make !== void 0) {
+            make = true;
+        }
+        if ($scope.car.model !== "" && $scope.car.model !== null && $scope.car.model !== void 0) {
+            model = true;
+        }
+        if ($scope.car.year !== "" && $scope.car.year !== null && $scope.car.year !== void 0) {
+            year = true;
+        }
+        if (make === true && model === true && year === true) {
+            return true;
+        } else {
+            return false;
+        }
     };
 
 }]);

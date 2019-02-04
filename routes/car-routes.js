@@ -67,7 +67,10 @@ module.exports = (router, models) => {
              router.route('/users/:user/sig')
               .post((req, res) => {
                 var policy = req.body.pol;
-                var sig = CryptoJS.HmacSHA256(policy, fsKey);
+                console.log("req.body.pol: ", req.body.pol)
+                var sig = CryptoJS.HmacSHA256(policy, fsKey).toString();
+                console.log("sig: ", sig);
+
                 res.send(sig);
               });
 };

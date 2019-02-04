@@ -193,7 +193,7 @@
                   <div class="form-group">
                     <label for="sold"></label>
 
-                    <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-click="updateCar(); getCar(); showme=false;" ng-disabled="car.$invalid || !car.picture">UPDATE</button>
+                    <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-click="updateCar(car); getCar(); showme=false;" ng-disabled="car.$invalid || !car.picture">UPDATE</button>
                   </div>
                   </div>
                   <div class="col-md-6 col-sm-12">
@@ -267,7 +267,7 @@
                     <div class="form-group">
                         <label for="picture">Main picture</label>
                         <div class="text-center">
-                            <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadAndUp()"> <span class= "glyphicon glyphicon-upload"></span>
+                            <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadAndUp(car)"> <span class= "glyphicon glyphicon-upload"></span>
                                 UPLOAD <span class="caret"></span>
                             </button>
                             <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"><span class= "glyphicon glyphicon-upload"></span>
@@ -320,7 +320,7 @@
                         <label for="picture">More pictures?</label>
                         <div class="text-center">
                           <div class="ul-mult-btn">
-                            <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadMultipleAndUp()">
+                            <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadMultipleAndUp(car)">
                             <span class= "glyphicon glyphicon-upload"></span> UPLOAD <span class="caret"></span>
                             </button>
                             <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"><span class= "glyphicon glyphicon-upload"></span>
@@ -364,7 +364,7 @@
                     <div class="form-group">
                         <label for="picture">Carfax</label>
                         <div class="text-center">
-                            <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadCarFaxAndUp()"><span class= "glyphicon glyphicon-upload"></span>
+                            <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadCarFaxAndUp(car)"><span class= "glyphicon glyphicon-upload"></span>
                                 UPLOAD <span class="caret"></span>
                             </button>
                             <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"><span class= "glyphicon glyphicon-upload"></span>
