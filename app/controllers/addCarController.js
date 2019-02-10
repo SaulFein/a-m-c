@@ -1,6 +1,7 @@
 'use strict'; ///
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "CarService", "toastr", function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr) {
+addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "CarService", "toastr", "$q",
+                  function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr, $q) {
     // let url = 'http://localhost:3000/api/users/';
     var url = '/api/users/'
     var cUser = $window.localStorage.user;
@@ -57,77 +58,64 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
 
     //Send the newly created car to the server to store in the db
     $scope.createCar = function() {
-        $http.post(url + cUser + '/inventory', $scope.car, {
-                headers: {
-                    token: AuthService.getToken()
-                }
-            })
-            .then(function(data) {
+        CarService.createCar(cUser, $scope.car).then(function(data) {
                 toastr.success("car saved")
                 //Clean the form to allow the user to create new cars
                 $scope.car = {};
-
             })
             .then(function() {
-                CarService.getCarsPublic()
-                    .then(function(data) {
+                CarService.getCarsPublic().then(function(data) {
                         $scope.cars = removeSold(data.data);
                         $window.localStorage.cars = JSON.stringify($scope.cars);
                         $window.localStorage.carsDate = new Date();
                         $window.localStorage.sold = JSON.stringify($scope.sold);
-                    })
-                    .catch(function(data) {
+                    }).catch(function(data) {
                         console.log('Error: ' + data);
                     });
-            })
-            .catch(function(data) {
+            }).catch(function(data) {
                 toastr.error("error saving car")
             });
     };
 
     $scope.updateCar = function() {
-        $http.put(url + cUser + '/inventory/' + id, $scope.car, {
-                headers: {
-                    token: AuthService.getToken()
-                }
-            })
-            .then(function(data) {
+        CarService.updateCar(cUser, $scope.car).then(function(data) {
                 toastr.success("car updated")
                 $scope.getCar();
-            })
-            .then(function() {
-                CarService.getCarsPublic()
-                    .then(function(data) {
+            }).then(function() {
+                CarService.getCarsPublic().then(function(data) {
                         $scope.cars = removeSold(data.data);
                         $window.localStorage.cars = JSON.stringify($scope.cars);
                         $window.localStorage.carsDate = new Date();
                         $window.localStorage.sold = JSON.stringify($scope.sold);
 
-                    })
-                    .catch(function(data) {
+                    }).catch(function(data) {
                         console.log('Error: ' + data);
                     });
-            })
-            .catch(function(data) {
+            }).catch(function(data) {
                 toastr.error("error updating car");
             });
     };
 
 
     var removeMultPicks = function(fpMHolder) {
+        var promises = [];
         for (var i = 0; i < fpMHolder.length; i++) {
             var policy = createPolicy(fpMHolder[i].url);
-            return $scope.getSig(policy).then(function(data) {
+            var pointer = 0;
+            var promise = getSig(policy).then(function(data) {
                 var sig = data.data;
-                filepickerService.remove(fpMHolder[i].url, {
+                filepickerService.remove(fpMHolder[pointer++].url, {
                         policy: policy,
                         signature: sig
                     },
                     function() {}
                 )
             })
+            promises.push(promise);
 
         }
+        $q.all(promises).then(function(){
+        })
     }
 
     $scope.deleteCar = function(data) {
@@ -137,13 +125,9 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
             if (data.morePictures.length > 0) {
                 var fpMHolder = data.morePictures;
             }
-            $scope.getSig($scope.policy).then(function(data) {
+            getSig(policy).then(function(data) {
                     var sig = data.data;
-                    $http.delete(url + cUser + '/inventory/' + id, {
-                        headers: {
-                            token: AuthService.getToken()
-                        }
-                    }).then(function(data) {
+                    CarService.deleteCar(cUser, $scope.car).then(function(data) {
                         if (fpHolder !== undefined) {
                             filepickerService.remove(fpHolder, {
                                     policy: policy,
@@ -159,8 +143,6 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                     }).finally(function() {
                         //Clean the form to allow the user to create new cars
                         $scope.car = {};
-                        $scope.sig = null;
-                        $scope.policy = null;
                         toastr.success("car deleted")
                     })
                 })
@@ -217,7 +199,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     //Single file upload, you can take a look at the options
     $scope.upload = function(data) {
         var policy = createPolicy();
-        $scope.getSig(policy).then(function(data) {
+        getSig(policy).then(function(data) {
             var sig = data.data;
             filepickerService.pick({
                     mimetype: 'image/*',
@@ -291,7 +273,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     //// upload and updateCar
     $scope.uploadAndUp = function(data) {
         var policy = createPolicy(data.picture.url);
-        var sig = $scope.getSig(policy).then(function(data) {
+        var sig = getSig(policy).then(function(data) {
             var sigstuff = data;
             filepickerService.pick({
                     mimetype: 'image/*',
@@ -329,7 +311,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     //Multiple files upload set to 100 as max number
     $scope.uploadMultipleAndUp = function() {
         var policy = createPolicy();
-        $scope.getSig(policy).then(function(data) {
+        getSig(policy).then(function(data) {
             var sig = data.data;
             filepickerService.pickMultiple({
                     mimetype: 'image/*',
@@ -359,7 +341,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
 
     $scope.uploadOneAndUp = function(data) {
         var policy = createPolicy(data.carfaxFile[0].url);
-        var sig = $scope.getSig(policy);
+        var sig = getSig(policy);
         filepickerService.pick({
                 mimetype: 'image/*',
                 imageDim: [1920, 1280],
@@ -378,7 +360,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
 
     $scope.removeImage = function(data) {
         var policy = createPolicy(data.picture.url);
-        var sig = $scope.getSig(policy);
+        var sig = getSig(policy);
         var fpHolder = data.picture.url;
         filepickerService.remove(fpHolder, {
                 policy: policy,
@@ -392,7 +374,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
 
     $scope.removeCarFax = function(data) {
         var policy = createPolicy(data.carfaxFile[0].url);
-        var sig = $scope.getSig(policy);
+        var sig = getSig(policy);
         var file = data.carfaxFile[0];
         // var fpHolder = data.carfaxFile.url;
         data.carfaxFile.splice(0, 1);
@@ -434,7 +416,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
         var image = data.morePictures[index];
         var policy = createPolicy(image.url);
         data.morePictures.splice(index, 1);
-        $scope.getSig(policy).then(function(data) {
+        getSig(policy).then(function(data) {
             var sig = data.data;
 
             filepickerService.remove(image.url, {
@@ -463,7 +445,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
         $('.modal-backdrop').remove();
     };
 
-    $scope.getSig = function(policy) {
+    var getSig = function(policy) {
         var myPolicy = {
             pol: policy
         };

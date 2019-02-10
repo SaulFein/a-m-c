@@ -7,16 +7,12 @@ var CarService = angular.module('CarService', []);
     var carId;
     var carService = {};
 
-    carService.createCar = function(data) {
-      return $http.post('/api/users/' + data._id + '/inventory', data, {
+    carService.createCar = function(cUser, carData) {
+      return $http.post('/api/users/' + cUser + '/inventory', carData, {
         headers: {
           token: AuthService.getToken()
         }
       })
-      .then(function(res) {
-        carId = $window.localStorage.carId = res.data.data._id;
-      // toastr success car added
-      });
     };
 
     carService.getCars = function(userId) {
@@ -25,7 +21,6 @@ var CarService = angular.module('CarService', []);
           token: AuthService.getToken()
         }
       })
-
     };
 
     carService.getCarsPublic = function() {
@@ -40,16 +35,20 @@ var CarService = angular.module('CarService', []);
       })
     }
 
-    carService.updateCar = function(data, carId) {
-      return $http.put('/api/users/' + data._id + '/inventory/' + carId, data, {
+    carService.updateCar = function(cUser, carData) {
+      return $http.put('/api/users/' + cUser + '/inventory/' + carData._id, carData, {
         headers: {
           token: AuthService.getToken()
         }
       });
     };
 
-    carService.deleteCar = function(data) {
-      return $http.delete('/api/users/' + data._id + '/inventory/' + data.carId);
+    carService.deleteCar = function(cUser, carData) {
+      return $http.delete('/api/users/' + cUser + '/inventory/' + carData._id, {
+        headers: {
+          token: AuthService.getToken()
+        }
+      });
     };
 
     carService.getId = function(){
