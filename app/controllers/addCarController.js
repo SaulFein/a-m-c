@@ -145,8 +145,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                         $scope.car = {};
                         toastr.success("car deleted")
                     })
-                })
-                .then(function() {
+                }).then(function() {
                     CarService.getCarsPublic()
                         .then(function(data) {
                             $scope.cars = removeSold(data.data);
@@ -166,32 +165,27 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     };
 
     $scope.getCar = function() {
-        $http.get(url + cUser + '/inventory/' + id, {
-                headers: {
-                    token: AuthService.getToken()
-                }
-            })
-            .then(function(data) {
-                $scope.slides = [];
-                // console.log(JSON.stringify(data));
-                $scope.car = data.data;
-                if (data.data.morePictures) {
-                    for (var i = 0; i < data.data.morePictures.length; i++) {}
-                    $scope.slides.push({
-                        image: data.data.picture.url,
-                        title: 'Main Image'
-                    });
-                    for (var i = 0; i < data.data.morePictures.length; i++) {
-                        $scope.slides.push({
-                            image: data.data.morePictures[i].url,
-                            title: 'Image ' + i
-                        });
-                    }
-                }
-            })
-            .catch(function(data) {
-                console.log('Error: ' + data);
-            });
+        CarService.getCar(cUser, id).then(function(data) {
+          $scope.slides = [];
+
+          // console.log(JSON.stringify(data));
+          $scope.car = data.data;
+          if (data.data.morePictures) {
+              for (var i = 0; i < data.data.morePictures.length; i++) {}
+              $scope.slides.push({
+                  image: data.data.picture.url,
+                  title: 'Main Image'
+              });
+              for (var i = 0; i < data.data.morePictures.length; i++) {
+                  $scope.slides.push({
+                      image: data.data.morePictures[i].url,
+                      title: 'Image ' + i
+                  });
+              }
+          }
+        }).catch(function(data) {
+            console.log('Error: ' + data);
+        });
     };
     ///////////////////////////////////////////////////////////
     //////////////////file picker functions////////////////////

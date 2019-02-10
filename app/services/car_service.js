@@ -15,6 +15,14 @@ var CarService = angular.module('CarService', []);
       })
     };
 
+    carService.getCar = function(cUser, id) {
+      return $http.get('/api/users/' + cUser + '/inventory/' + id, {
+            headers: {
+                token: AuthService.getToken()
+            }
+      })
+    }
+
     carService.getCars = function(userId) {
       return $http.get('/api/users/' + userId + '/inventory', {
         headers: {
