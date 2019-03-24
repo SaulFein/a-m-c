@@ -1,7 +1,7 @@
 'use strict'; ///
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "CarService", "toastr", "$q",
-                  function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr, $q) {
+addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "CarService", "toastr", "$q", "$document",
+                  function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr, $q, $document) {
     // let url = 'http://localhost:3000/api/users/';
     var url = '/api/users/'
     var cUser = $window.localStorage.user;
@@ -42,7 +42,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
         $scope.sold = sold;
         return cars;
     }
-    
+
     $scope.scrollToTop = function() {
       var someElement = angular.element(document.getElementById('topofthepage'));
       $document.scrollToElement(someElement, 0, 750);

@@ -11,39 +11,7 @@
                 <div ng-include="'partials/templates/car-view-detail-caro.html'"></div>
 
                 <!--_________________________Modal Carousle ___________________________-->
-                <div class="hidden-xs">
-                    <div id="carviewmodal" class="item modal fade" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-style" style="max-width: 75%; margin: auto; height: auto;">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <div id="modal-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
-                                        <!-- Slides -->
-                                        <div class="carousel-inner">
-                                            <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
-                                                <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
-                                                <img ng-src="{{ picture.image }}" style="margin:auto">
-
-                                            </div>
-                                        </div>
-                                        <!-- end Slides -->
-
-                                        <!-- Controls -->
-                                        <a class="left carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#modal-carousel" data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="right carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#modal-carousel" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-
-                                        <!-- end Controls -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div ng-include="'partials/templates/modal-caro.html'"></div>
                 <!--- ___________________End of Modal Carousel __________________________-->
 
                 <div class="col-sm-4 col-md-4 col-lg-4">

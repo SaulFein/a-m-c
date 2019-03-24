@@ -449,6 +449,15 @@ p.yr-mk-mdl {
     background-position: center;
     background-color: lightgrey;
 }
+.bg-img-style-modal-caro {
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: lightgrey;
+}
 #car-price {
   position: absolute;
   right: 6px;
@@ -499,6 +508,13 @@ p.yr-mk-mdl {
   position: relative;
   top: 384px;
   left: 8px;
+}
+
+.sprite-caro-modal {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  z-index: 1;
 }
 
 .spec-list li{
