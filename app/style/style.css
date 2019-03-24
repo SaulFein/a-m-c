@@ -448,6 +448,7 @@ p.yr-mk-mdl {
     background-repeat: no-repeat;
     background-position: center;
     background-color: lightgrey;
+    cursor: pointer;
 }
 .bg-img-style-modal-caro {
     float: left;
@@ -457,6 +458,17 @@ p.yr-mk-mdl {
     background-repeat: no-repeat;
     background-position: center;
     background-color: lightgrey;
+}
+.bg-img-style-thumb-caro {
+    float: left;
+    width: 100%;
+    height:74px;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: lightgrey;
+    cursor: pointer;
 }
 #car-price {
   position: absolute;
@@ -508,6 +520,13 @@ p.yr-mk-mdl {
   position: relative;
   top: 384px;
   left: 8px;
+}
+
+.sprite-caro-thumb {
+  height: 17px !important;
+  position: relative;
+  top: 48px;
+  left: -42px;
 }
 
 .sprite-caro-modal {
@@ -803,6 +822,11 @@ font-size: 24px;
   .sprite-caro {
     top: 352px;
   }
+  .sprite-caro-thumb {
+    height: 17px !important;
+    top: 48px;
+    left: -38px;
+  }
   p.yr-mk-mdl {
     font-size: 18px;
   }
@@ -852,6 +876,11 @@ font-size: 24px;
     float: left;
       width: 100%;
       height: 400px;
+  }
+  .sprite-caro-thumb {
+    height: 17px !important;
+    top: 48px;
+    left: -34px;
   }
   .sprite-caro {
     top: 330px;
@@ -943,7 +972,40 @@ font-size: 24px;
     display: none;
   }
 }
-
+@media (min-width: 721px) and (max-width: 767px) {
+  .bg-img-style-thumb-caro {
+      height:150px;
+  }
+  .sprite-caro-thumb {
+    height: 17px !important;
+    top: 120px;
+    left: -93px;
+  }
+}
+@media (min-width: 581px) and (max-width: 721px) {
+  .bg-img-style-thumb-caro {
+      height:118px;
+  }
+  .sprite-caro-thumb {
+    height: 17px !important;
+    top: 91px;
+    left: -90px;
+  }
+}
+@media (min-width: 622px) and (max-width: 694px) {
+  .sprite-caro-thumb {
+    height: 17px !important;
+    top: 91px;
+    left: -80px;
+  }
+}
+@media (min-width: 581px) and (max-width: 622px) {
+  .sprite-caro-thumb {
+    height: 17px !important;
+    top: 91px;
+    left: -70px;
+  }
+}
 @media (min-width: 581px) and (max-width: 799px) {
   .service-banner-title{
     font-size: 150px !important;
@@ -1015,6 +1077,11 @@ font-size: 24px;
     float: left;
       width: 100%;
       height: 50vw;
+  }
+  .sprite-caro-thumb {
+    height: 17px !important;
+    top: 48px;
+    left: -10vw;
   }
   .sprite-caro {
     top: 40vw;

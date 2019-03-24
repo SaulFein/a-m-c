@@ -9,7 +9,7 @@
                           <img src='../assets/favicon.ico' alt='Icons' class='sprite-caro-modal'>
                             <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
                                 <a class="bg-img-style-modal-caro" style="background-image: url('{{picture.image}}')">
-                                  <img src='{{picture.image}}' style="visibility: hidden;">
+                                  <img ng-src='{{picture.image}}' style="visibility: hidden;">
                                 </a>
 
                             </div>
