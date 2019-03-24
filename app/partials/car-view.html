@@ -7,19 +7,22 @@
         <h2 class="car-header">{{car.year}} {{car.make}} {{car.model}}</h2>
         <h2 class="car-price">{{car.price}}</h2>
       </div>
-        <!-- <div class="panel-body text-center"> -->
         <div class="row car-detail-row">
           <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12">
             <div id="preview-carousel" class="carousel slide car-detail-carousel" data-ride="carousel" data-interval="false">
               <!-- Slides -->
               <div class="carousel-inner carousel-container">
                 <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
-                  <a class="hidden-xs" data-toggle="modal" target="_self" data-target="#carviewmodal">
-                <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
-                    <img ng-src="{{ picture.image }}" style="margin:auto">
+                  <a class="hidden-xs bg-img-style-caro" data-toggle="modal" target="_self" data-target="#carviewmodal" style="background-image: url('{{picture.image}}')">
+
+                    <!-- style="background-image: url("https://process.filestackapi.com/resize=width:700/U1wWWaNpQtOL1dfceZey");" -->
+                    <!-- <img ng-src="{{ picture.image }}" style="margin:auto"> -->
+                    <img src='/assets/favicon.ico' alt='Icons' class='sprite-caro'>
+
                   </a>
-                  <a class="visible-xs"> <!--shows on mobile, add visible-sm to show on tablet-->
-                    <img ng-src="{{ picture.image }}" style="margin:auto">
+                  <a class="visible-xs bg-img-style-caro" style="background-image: url('{{picture.image}}')"> <!--shows on mobile, add visible-sm to show on tablet-->
+                    <!-- <img ng-src="{{ picture.image }}" style="margin:auto;"> -->
+                    <img src='/assets/favicon.ico' alt='Icons' class='sprite-caro'>
                   </a>
                 </div>
               </div>
