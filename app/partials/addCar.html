@@ -1,196 +1,196 @@
 <section class="row">
-<div ng-cloak class=" col-md-8 col-md-offset-2" ng-init="checkToken()">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2 class="panel-title text-center">
-                <span class="glyphicon .glyphicon-list"></span> ADD CAR
-            </h2>
-        </div>
+    <div ng-cloak class=" col-md-8 col-md-offset-2" ng-init="checkToken()">
         <div class="panel panel-default">
-                 <!-- <h3 class="panel-title">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">
+                  <span class="glyphicon .glyphicon-list"></span> ADD CAR
+                </h2>
+            </div>
+            <div class="panel panel-default">
+                <!-- <h3 class="panel-title">
                    ADMIN
                     </h3> -->
-                    <div class="rtn-inventory">
+                <div class="rtn-inventory">
 
-                        <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> INVENTORY  </button></a>
+                    <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> INVENTORY  </button></a>
 
-                    </div>
+                </div>
                 <div class="clearfix"></div>
-        </div>
-
-        <div class="panel-body">
-            <!-- The form to add cars information -->
-            <form name ="addForm" novalidate>
-              <div class="col-md-6">
-              <div class="form-group">
-                  <label for="sold">Sold</label>
-                  <input style="box-shadow:none" type="checkbox" class="form-control" placeholder="Sold" ng-model="car.sold">
-              </div>
             </div>
-              <div class="col-md-6">
-              <div class="form-group">
-                <label for="sold"></label>
 
-                <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-click="createCar();" ng-disabled="car.$invalid || !car.picture">ADD CAR</button>
-              </div>
-              </div>
-              <div class="col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label for="make">Make*</label>
-                    <input type="text" class="form-control" placeholder="Make *required" value= "{{car.make}}" ng-model="car.make" required>
-                </div>
-                <div class="form-group">
-                    <label for="model">Model*</label>
-                    <input type="text" class="form-control" placeholder="Model *required" ng-model="car.model" required>
-                </div>
-                <div class="form-group">
-                    <label for="year">Year*</label>
-                    <input type="text" class="form-control" placeholder="Year *required" ng-model="car.year" required>
-                </div>
-                <div class="form-group">
-                    <label for="miles">Miles</label>
-                    <input type="text" class="form-control" placeholder="Miles" ng-model="car.miles" required>
-                </div>
-                <div class="form-group">
-                    <label for="engine">Engine</label>
-                    <input type="text" class="form-control" placeholder="Engine" ng-model="car.engine">
-                </div>
-              </div>
-              <div class="col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label for="color">Color</label>
-                    <input type="text" class="form-control" placeholder="Color" ng-model="car.color" required>
-                </div>
-                <div class="form-group">
-                    <label for="interiorColor">Interior Color</label>
-                    <input type="text" class="form-control" placeholder="interiorColor" ng-model="car.interiorColor" required>
-                </div>
-                <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="text" class="form-control" placeholder="Price" ng-model="car.price">
-                </div>
-                <div class="form-group">
-                    <label for="vin">VIN</label>
-                    <input type="text" class="form-control" placeholder="VIN" ng-model="car.vin">
-                </div>
-                <div class="form-group">
-                    <label for="transmission">Transmission</label>
-                    <input type="text" class="form-control" placeholder="Transmission" ng-model="car.transmission">
-                </div>
-              </div>
-              <div class="col-md-12 col-lg-12 col-sm-12">
-                <div class="form-group">
-                    <label for="highlights">Highlights</label>
-                    <textarea type="text" class="form-control" placeholder="Highlights" ng-model="car.highlights"></textarea>
-                </div>
-              </div>
-              <div class="col-md-12 col-lg-12 col-sm-12">
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea type="text" class="form-control" placeholder="Description" ng-model="car.description"></textarea>
-                </div>
-              </div>
+            <div class="panel-body">
+                <!-- The form to add cars information -->
+                <form name="addForm" novalidate>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="sold">Sold</label>
+                            <input style="box-shadow:none" type="checkbox" class="form-control" placeholder="Sold" ng-model="car.sold">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="sold"></label>
 
-              <div class="col-md-12 col-lg-12 col-sm-12">
-                <div class="form-group">
-                    <label for="picture">Main picture</label>
-                    <div class="text-center">
-                        <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="upload()"><span class= "glyphicon glyphicon-upload"></span>
-                            UPLOAD <span class="caret"></span>
-                        </button>
-                        <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"><span class= "glyphicon glyphicon-upload"></span>
-                            UPLOAD <span class="caret"></span>
-                        </button>
-                        <div style="margin-top:10px;">
-                            <!-- Show the thumbnail only when the picture is uploaded -->
-                            <!-- <a href="{{car.picture.url}}" class="thumbnail" ng-if="car.picture"> -->
-                            <div ng-if="car.picture">
-                              <!-- the picture is rendered with width: 500 and sharpened -->
-                              <img style="width:300px" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}">
+                            <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-click="createCar();" ng-disabled="car.$invalid || !car.picture">ADD CAR</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="make">Make*</label>
+                            <input type="text" class="form-control" placeholder="Make *required" value="{{car.make}}" ng-model="car.make" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="model">Model*</label>
+                            <input type="text" class="form-control" placeholder="Model *required" ng-model="car.model" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Year*</label>
+                            <input type="text" class="form-control" placeholder="Year *required" ng-model="car.year" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="miles">Miles</label>
+                            <input type="text" class="form-control" placeholder="Miles" ng-model="car.miles" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="engine">Engine</label>
+                            <input type="text" class="form-control" placeholder="Engine" ng-model="car.engine">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <input type="text" class="form-control" placeholder="Color" ng-model="car.color" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="interiorColor">Interior Color</label>
+                            <input type="text" class="form-control" placeholder="interiorColor" ng-model="car.interiorColor" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="text" class="form-control" placeholder="Price" ng-model="car.price">
+                        </div>
+                        <div class="form-group">
+                            <label for="vin">VIN</label>
+                            <input type="text" class="form-control" placeholder="VIN" ng-model="car.vin">
+                        </div>
+                        <div class="form-group">
+                            <label for="transmission">Transmission</label>
+                            <input type="text" class="form-control" placeholder="Transmission" ng-model="car.transmission">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="highlights">Highlights</label>
+                            <textarea type="text" class="form-control" placeholder="Highlights" ng-model="car.highlights"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea type="text" class="form-control" placeholder="Description" ng-model="car.description"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="picture">Main picture</label>
+                            <div class="text-center">
+                                <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="upload()"><span class= "glyphicon glyphicon-upload"></span>
+                                  UPLOAD <span class="caret"></span>
+                                </button>
+                                <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"><span class= "glyphicon glyphicon-upload"></span>
+                                  UPLOAD <span class="caret"></span>
+                                </button>
+                                <div style="margin-top:10px;">
+                                    <!-- Show the thumbnail only when the picture is uploaded -->
+                                    <!-- <a href="{{car.picture.url}}" class="thumbnail" ng-if="car.picture"> -->
+                                    <div ng-if="car.picture">
+                                        <!-- the picture is rendered with width: 500 and sharpened -->
+                                        <img style="width:300px" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen'} }}">
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <hr>
                     </div>
-                </div>
-                <hr>
-              </div>
-              <div class="col-md-12 col-lg-12 col-sm-12" style="margin-bottom: 18px">
-                <div class="form-group">
-                    <label for="picture">More pictures?</label>
-                    <div class="text-center">
-                    <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadMultiple()"> <span class= "glyphicon glyphicon-upload"></span>
-                    UPLOAD <span class="caret"></span>
-                    </button>
-                    <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"> <span class= "glyphicon glyphicon-upload"></span>
-                    UPLOAD <span class="caret"></span>
-                    </button>
-                    <!-- Show the thumbanil of more pictures -->
-                    <div ui-sortable="sortableOptions" style="display: flex; flex-wrap: wrap" ng-model="car.morePictures">
-                        <div style="margin-top:10px; margin-right:10px;" ng-repeat="picture in car.morePictures">
-                            <div style="height: 175px;">
-                            <div>
-                              <div style="height: 117px; overflow:hidden">
-                                <img style="width: 175px; padding-top: 20px; padding-bottom: 10px;" ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
-                              </div>
-                          </div>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-                </div>
-                <hr>
-              </div>
-              <div class="col-md-12 col-lg-12 col-sm-12">
-                <div class="form-group">
-                    <label for="picture">Carfax</label>
-                    <div class="text-center">
-                        <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadCarfax()"><span class= "glyphicon glyphicon-upload"></span>
-                            UPLOAD <span class="caret"></span>
-                        </button>
-                        <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"><span class= "glyphicon glyphicon-upload"></span>
-                            UPLOAD <span class="caret"></span>
-                        </button>
-                        <div style="margin-top:10px;">
-                            <!-- Show the thumbnail only when the picture is uploaded -->
-                            <!-- <a href="{{car.picture.url}}" class="thumbnail" ng-if="car.picture"> -->
-                            <div ng-if="car.carfaxFile">
-                              <!-- the picture is rendered with width: 500 and sharpened -->
-                              <img style="width:300px" ng-src="{{car.carfaxFile[0].url | fpConvert: {filter:'sharpen'} }}">
+                    <div class="col-md-12 col-lg-12 col-sm-12" style="margin-bottom: 18px">
+                        <div class="form-group">
+                            <label for="picture">More pictures?</label>
+                            <div class="text-center">
+                                <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadMultiple()"> <span class= "glyphicon glyphicon-upload"></span>
+                                  UPLOAD <span class="caret"></span>
+                                </button>
+                                <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"> <span class= "glyphicon glyphicon-upload"></span>
+                                  UPLOAD <span class="caret"></span>
+                                </button>
+                                <!-- Show the thumbanil of more pictures -->
+                                <div ui-sortable="sortableOptions" style="display: flex; flex-wrap: wrap" ng-model="car.morePictures">
+                                    <div style="margin-top:10px; margin-right:10px;" ng-repeat="picture in car.morePictures">
+                                        <div style="height: 175px;">
+                                            <div>
+                                                <div style="height: 117px; overflow:hidden">
+                                                    <img style="width: 175px; padding-top: 20px; padding-bottom: 10px;" ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <hr>
                     </div>
-                </div>
-                <hr>
-              </div>
-                <!-- <button type="submit" class="btn btn-primary btn-block"  style="margin:auto; width:200px;" ng-click="createCar()" ng-disabled="car.$invalid || !car.picture">ADD CAR</button> -->
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="picture">Carfax</label>
+                            <div class="text-center">
+                                <button ng-if="validateUpload()" type="button" class="btn btn-primary" ng-click="uploadCarfax()"><span class= "glyphicon glyphicon-upload"></span>
+                                  UPLOAD <span class="caret"></span>
+                                </button>
+                                <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"><span class= "glyphicon glyphicon-upload"></span>
+                                  UPLOAD <span class="caret"></span>
+                                </button>
+                                <div style="margin-top:10px;">
+                                    <!-- Show the thumbnail only when the picture is uploaded -->
+                                    <!-- <a href="{{car.picture.url}}" class="thumbnail" ng-if="car.picture"> -->
+                                    <div ng-if="car.carfaxFile">
+                                        <!-- the picture is rendered with width: 500 and sharpened -->
+                                        <img style="width:300px" ng-src="{{car.carfaxFile[0].url | fpConvert: {filter:'sharpen'} }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <!-- <button type="submit" class="btn btn-primary btn-block"  style="margin:auto; width:200px;" ng-click="createCar()" ng-disabled="car.$invalid || !car.picture">ADD CAR</button> -->
 
-                  <!---form validation -->
-                <!-- <div class="form-group">
+                    <!---form validation -->
+                    <!-- <div class="form-group">
                   <div style="color:green" ng-show="addForm.$submitted">Car added!</div> -->
-                  <!-- <div ng-messages="addForm.newPassword.$error" style="color:green" ng-show="addForm.$submitted" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <!-- <div ng-messages="addForm.newPassword.$error" style="color:green" ng-show="addForm.$submitted" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                     <div ng-message="required" class="message slide-left">This field is required</div>
                   </div> -->
-                <!-- </div> -->
+                    <!-- </div> -->
 
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 </section>
 
 <div id="upload-modal-warning" class="modal fade" role="dialog">
-<div class="modal-dialog">
+    <div class="modal-dialog">
 
-    <div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-    </div>
-    <div class="modal-body">
-        <p>Please specify the make, model and year of the car before uploading images and files.</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
-    </div>
-    </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please specify the make, model and year of the car before uploading images and files.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
 
-</div>
+    </div>
 </div>

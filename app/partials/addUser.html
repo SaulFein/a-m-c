@@ -1,68 +1,68 @@
 <section class="row">
-<div class="col-md-8 col-md-offset-2" ng-init="userCtrl.checkToken()">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2 class="panel-title text-center">
+    <div class="col-md-8 col-md-offset-2" ng-init="userCtrl.checkToken()">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">
                 <span class="glyphicon glyphicon-user"></span> ADD USER
             </h2>
-        </div>
-        <div class="panel panel-default">
+            </div>
+            <div class="panel panel-default">
 
-                    <div class="rtn-inventory">
-                        <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> INVENTORY  </button></a>
-                    </div>
+                <div class="rtn-inventory">
+                    <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> INVENTORY  </button></a>
+                </div>
                 <div class="clearfix"></div>
-        </div>
+            </div>
 
-        <div class="panel-body">
-            <!-- The form to add user -->
-            <form name ="addForm" ng-submit="userCtrl.createUser(user)">
+            <div class="panel-body">
+                <!-- The form to add user -->
+                <form name="addForm" ng-submit="userCtrl.createUser(user)">
 
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" placeholder="Username" name="username" ng-model="user.username" required>
-                      <div class="clearfix">
-                        <div ng-messages="addForm.username.$error" style="color:red" ng-if="addForm.$submitted || addForm.username.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
-                          <div ng-message="required" class="message slide-left">This field is required</div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" placeholder="Username" name="username" ng-model="user.username" required>
+                        <div class="clearfix">
+                            <div ng-messages="addForm.username.$error" style="color:red" ng-if="addForm.$submitted || addForm.username.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                                <div ng-message="required" class="message slide-left">This field is required</div>
+                            </div>
                         </div>
-                      </div>
-                </div>
+                    </div>
 
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" placeholder="Password" name="newPassword" ng-model="user.password" required>
-                      <div class="clearfix">
-                        <div ng-messages="addForm.newPassword.$error" style="color:red" ng-if="addForm.$submitted || addForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
-                          <div ng-message="required" class="message slide-left">This field is required</div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="newPassword" ng-model="user.password" required>
+                        <div class="clearfix">
+                            <div ng-messages="addForm.newPassword.$error" style="color:red" ng-if="addForm.$submitted || addForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                                <div ng-message="required" class="message slide-left">This field is required</div>
+                            </div>
                         </div>
-                      </div>
-                </div>
+                    </div>
 
 
-                <div class="form-group">
-                    <label for="confirm">Confirm Password</label>
-                    <input type="password" class="form-control" match-password="newPassword" placeholder="Confirm Password" name="confirmPassword" ng-model="password.confirm" required>
-                      <div class="clearfix">
-                        <div ng-messages="addForm.confirmPassword.$error" style="color:red" ng-if="addForm.$submitted || addForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
-                          <div ng-message="required" class="message slide-left">This field is required</div>
-                          <div ng-message="passwordMatch" class="message slide-left">Your passwords do not match</div>
+                    <div class="form-group">
+                        <label for="confirm">Confirm Password</label>
+                        <input type="password" class="form-control" match-password="newPassword" placeholder="Confirm Password" name="confirmPassword" ng-model="password.confirm" required>
+                        <div class="clearfix">
+                            <div ng-messages="addForm.confirmPassword.$error" style="color:red" ng-if="addForm.$submitted || addForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                                <div ng-message="required" class="message slide-left">This field is required</div>
+                                <div ng-message="passwordMatch" class="message slide-left">Your passwords do not match</div>
+                            </div>
                         </div>
-                     </div>
-                </div>
+                    </div>
 
-                <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-danger btn-block">Submit</button>
-                <button type="reset" ng-click="addForm.$setPristine();" class="btn btn-danger btn-block" ng-show="addForm.$submitted">Reset Form</button>
+                    <button type="submit" ng-disabled="addForm.$invalid" class="btn btn-danger btn-block">Submit</button>
+                    <button type="reset" ng-click="addForm.$setPristine();" class="btn btn-danger btn-block" ng-show="addForm.$submitted">Reset Form</button>
 
-                <!---form validation -->
-                <div class="form-group">
-                  <div style="color:green" ng-show="addForm.$submitted">User added!</div>
-                  <!-- <div ng-messages="addForm.newPassword.$error" style="color:green" ng-show="addForm.$submitted" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <!---form validation -->
+                    <div class="form-group">
+                        <div style="color:green" ng-show="addForm.$submitted">User added!</div>
+                        <!-- <div ng-messages="addForm.newPassword.$error" style="color:green" ng-show="addForm.$submitted" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                     <div ng-message="required" class="message slide-left">This field is required</div>
                   </div> -->
-                </div>
-            </form>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 </section>

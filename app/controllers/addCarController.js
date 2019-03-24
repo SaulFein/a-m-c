@@ -42,6 +42,11 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
         $scope.sold = sold;
         return cars;
     }
+    
+    $scope.scrollToTop = function() {
+      var someElement = angular.element(document.getElementById('topofthepage'));
+      $document.scrollToElement(someElement, 0, 750);
+    }
 
     $scope.setCurrentSlideIndex = function(index) {
         $scope.currentIndex = index;

@@ -1,47 +1,46 @@
 <section class="row" ng-init="userCtrl.getCars(); userCtrl.checkToken()">
-<div class="row">
-<div class="col-sm-12">
-  <div class="panel panel-default" style="width: 100%; margin: auto; border: none; box-shadow: none">
-      <div class="panel-heading" style="background-color: white; background-image: none; border-bottom: none;">
-           <h3 class="panel-title admin-title">
-             ADMIN
-           </h3>
-      </div>
-              <div class="admin-panel">
-                <a id="submit-link" class="no-style-link" href="#/addCar" ng-click="carCtrl.getCars()"><button class="btn btn-primary" id="add-button">ADD CAR</button></a>
-                <a id="submit-link" class="no-style-link" href="#/addUser"><button class="btn btn-danger" id="add-button">ADD USER</button></a>
-                <a id="logout" class="no-style-link" href='' ng-click="userCtrl.signOut()"> <button class="btn btn-warning" id="add-button"><span class= "glyphicon glyphicon-remove-circle"></span> LOGOUT</button></a>
-              </div>
-          <div class="clearfix"></div>
-  </div>
-</div>
-</div>
-
-  <!-- <h2 id="car-title">Make: {{userCtrl.curCar.make}}</h2>
-  <h2 id="car-model">Model: {{userCtrl.curCar.model}}</h2> -->
-  <div class="row gallery-container container" style="margin:auto">
-
-    <div class="inventory-title">
-    </div>
-    <div class="car-container col-md-12 col-ms-12 col-mm-12 col-sm-12">
-      <div ng-repeat="car in userCtrl.cars | orderBy:['make','model']">
-      <div class="col-md-4 col-ms-6 col-mm-6 col-sm-6 col-xs-12 car-tiles">
-        <a show-on-load-bg ng-href="/#/detail/{{car._id}}" class="bg-img-style">
-          <span class="sold-car" ng-if="car.sold">
-            <div class="sold-text" style="font-family: 'Gotham', sans-serif">SOLD</div>
-          </span>
-          <img src='/assets/favicon.ico' alt='Icons' class='sprite'>
-      <div class="inv-pics">
-        <span ng-hide="car.sold" id="car-price"><p>{{car.price}}</p></span>
-        <span ng-show="car.sold" style="opacity: 0.5" id="car-price"><p>{{car.price}}</p></span>
-        <div class="car-text">
-          <p class="yr-mk-mdl">{{car.year}} {{car.make}} {{car.model}}</p>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default" style="width: 100%; margin: auto; border: none; box-shadow: none">
+                <div class="panel-heading" style="background-color: white; background-image: none; border-bottom: none;">
+                    <h3 class="panel-title admin-title">
+                      ADMIN
+                    </h3>
+                </div>
+                <div class="admin-panel">
+                    <a id="submit-link" class="no-style-link" href="#/addCar" ng-click="carCtrl.getCars()"><button class="btn btn-primary" id="add-button">ADD CAR</button></a>
+                    <a id="submit-link" class="no-style-link" href="#/addUser"><button class="btn btn-danger" id="add-button">ADD USER</button></a>
+                    <a id="logout" class="no-style-link" href='' ng-click="userCtrl.signOut()"> <button class="btn btn-warning" id="add-button"><span class= "glyphicon glyphicon-remove-circle"></span> LOGOUT</button></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
         </div>
-      </div>
-        </a>
-      </div>
-  </div>
-</div>
-</div>
+    </div>
+
+    <!-- <h2 id="car-title">Make: {{userCtrl.curCar.make}}</h2>
+  <h2 id="car-model">Model: {{userCtrl.curCar.model}}</h2> -->
+    <div class="row gallery-container container" style="margin:auto">
+
+        <div class="inventory-title"></div>
+        <div class="car-container col-md-12 col-ms-12 col-mm-12 col-sm-12">
+            <div ng-repeat="car in userCtrl.cars | orderBy:['make','model']">
+                <div class="col-md-4 col-ms-6 col-mm-6 col-sm-6 col-xs-12 car-tiles">
+                    <a show-on-load-bg ng-href="/#/detail/{{car._id}}" class="bg-img-style">
+                        <span class="sold-car" ng-if="car.sold">
+                          <div class="sold-text" style="font-family: 'Gotham', sans-serif">SOLD</div>
+                        </span>
+                        <img src='/assets/favicon.ico' alt='Icons' class='sprite'>
+                        <div class="inv-pics">
+                            <span ng-hide="car.sold" id="car-price"><p>{{car.price}}</p></span>
+                            <span ng-show="car.sold" style="opacity: 0.5" id="car-price"><p>{{car.price}}</p></span>
+                            <div class="car-text">
+                                <p class="yr-mk-mdl">{{car.year}} {{car.make}} {{car.model}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
