@@ -120,6 +120,28 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
             }
           }
     })
+
+    .directive("showOnLoadThumb", function() {
+        return {
+            link: function(scope, element) {
+                  var img = new Image();
+                  // var url = scope.car.picture.url;
+                  var getFileTileUrl = function (fileUrl) {
+                    var str = fileUrl;
+                    var res = str.replace("https://cdn.filepicker.io/api/file/", "https://process.filestackapi.com/resize=width:300/");
+                    return res;
+                  }
+                  var tileUrl = getFileTileUrl(scope.picture.image);
+                  img.onload = function(){
+                    scope.carPix = true;
+                    element.css({"background-image": "url("+tileUrl+")"});
+                    element.hide(0).fadeIn(1000);
+                }
+                img.src = scope.picture.image;
+
+            }
+          }
+    })
     .directive('dateYear', [function () {
         return {
             template: "<span>{{year}}</span>",

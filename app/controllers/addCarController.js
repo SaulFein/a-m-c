@@ -1,7 +1,7 @@
 'use strict'; ///
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "CarService", "toastr", "$q",
-                  function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr, $q) {
+addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "CarService", "toastr", "$q", "$document",
+                  function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr, $q, $document) {
     // let url = 'http://localhost:3000/api/users/';
     var url = '/api/users/'
     var cUser = $window.localStorage.user;
@@ -41,6 +41,11 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
         }
         $scope.sold = sold;
         return cars;
+    }
+
+    $scope.scrollToTop = function() {
+      var someElement = angular.element(document.getElementById('topofthepage'));
+      $document.scrollToElement(someElement, 0, 750);
     }
 
     $scope.setCurrentSlideIndex = function(index) {
@@ -266,9 +271,13 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
 
     //// upload and updateCar
     $scope.uploadAndUp = function(data) {
+      if(data.picture){
         var policy = createPolicy(data.picture.url);
-        var sig = getSig(policy).then(function(data) {
-            var sigstuff = data;
+      } else {
+        var policy = createPolicy();
+      }
+        getSig(policy).then(function(data) {
+            var sig = data.data;
             filepickerService.pick({
                     mimetype: 'image/*',
                     imageDim: [1920, 1280],

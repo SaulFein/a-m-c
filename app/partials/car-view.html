@@ -1,155 +1,74 @@
-
 <div ng-cloak class="row gallery-container container" style="margin:auto; padding:0px">
-<div class="" ng-init="getCar();">
-  <div ng-if="car.sold" class="sold-banner">This car has been sold</div>
-    <div class="panel-default">
-      <div class="car-ymm-price" style="padding:0px">
-        <h2 class="car-header">{{car.year}} {{car.make}} {{car.model}}</h2>
-        <h2 class="car-price">{{car.price}}</h2>
-      </div>
-        <!-- <div class="panel-body text-center"> -->
-        <div class="row car-detail-row">
-          <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12">
-            <div id="preview-carousel" class="carousel slide car-detail-carousel" data-ride="carousel" data-interval="false">
-              <!-- Slides -->
-              <div class="carousel-inner carousel-container">
-                <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
-                  <a class="hidden-xs" data-toggle="modal" target="_self" data-target="#carviewmodal">
-                <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
-                    <img ng-src="{{ picture.image }}" style="margin:auto">
-                  </a>
-                  <a class="visible-xs"> <!--shows on mobile, add visible-sm to show on tablet-->
-                    <img ng-src="{{ picture.image }}" style="margin:auto">
-                  </a>
-                </div>
-              </div>
-              <!-- end Slides -->
-
-              <!-- Controls -->
-              <a class="left carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#preview-carousel, #modal-carousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#preview-carousel, #modal-carousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-              <!-- end Controls -->
+    <div class="" ng-init="getCar();">
+        <div ng-if="car.sold" class="sold-banner">This car has been sold</div>
+        <div class="panel-default">
+            <div class="car-ymm-price" style="padding:0px">
+                <h2 class="car-header">{{car.year}} {{car.make}} {{car.model}}</h2>
+                <h2 class="car-price">{{car.price}}</h2>
             </div>
+            <div class="row car-detail-row">
 
-            <!-- Only if there are other pictures -->
-              <div class="col-md-12 col-sm-12 col-xs-12 thumb-group" ng-if="car.morePictures">
-                  <div  ng-show="carPix" ng-repeat="picture in thumbs" ng-class="{active:!$index}" data-target="#preview-carousel " data-slide-to="{{ $index }}">
-                    <div data-target="#modal-carousel" data-slide-to="{{ $index }}">
-                      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4" style="padding:2px">
-                        <a class="thumbnail" id="detailGal">
-                          <!-- <a ng-href="{{picture.url}}" class="thumbnail" id="detailGal"> -->
-                            <img id="fade-in-pic" show-on-load ng-src="{{picture.image}}" ng-click="scrollToTop()">
-                          </a>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              <div class="col-md-12 col-sm-12 col-xs-12 description-section">
-            <!-- add ngSanitize to app and then you can use ng-bind-html -->
-                <h3>Description</h3>
-                <div ng-bind-html="car.description"></div>
-              </div>
+                <div ng-include="'partials/templates/car-view-detail-caro.html'"></div>
 
+                <!--_________________________Modal Carousle ___________________________-->
+                <div ng-include="'partials/templates/modal-caro.html'"></div>
+                <!--- ___________________End of Modal Carousel __________________________-->
 
-          </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="car-specs">
+                        <ul class="list-group spec-list">
+                            <!-- <li class="list-group-item list-price">{{car.price}}</li> -->
+                            <li class="list-group-item"><span class="spec-lables">MILES</span> <br> {{car.miles}}</li>
+                            <li class="list-group-item"><span class="spec-lables">COLOR</span> <br> {{car.color}}</li>
+                            <li class="list-group-item"><span class="spec-lables">INTERIOR COLOR</span> <br> {{car.interiorColor}}</li>
+                            <li class="list-group-item"><span class="spec-lables">ENGINE</span> <br> {{car.engine}}</li>
+                            <li class="list-group-item"><span class="spec-lables">TRANSMISSION</span> <br> {{car.transmission}}</li>
+                            <li class="list-group-item"><span class="spec-lables">VIN</span> <br> {{car.vin}} <br>
+                                <a ng-if="car.carfaxFile" ng-href='{{car.carfaxFile[0].url}}' target='_blank'>
+                                    <img class='carfax-btn' src='../assets/img/cfxlogo.jpg'>
+                                </a>
 
-          <!--_________________________Modal Carousle ___________________________-->
-          <div class="hidden-xs">
-          <div id="carviewmodal" class="item modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-style" style="max-width: 75%; margin: auto; height: auto;">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <div id="modal-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
-                    <!-- Slides -->
-                    <div class="carousel-inner">
-                      <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
-                        <!-- <div class="item" ng-repeat="car in cars" ng-class="{'active': car.active}"> -->
-                        <img ng-src="{{ picture.image }}" style="margin:auto">
-
-                      </div>
-                    </div>
-                    <!-- end Slides -->
-
-                    <!-- Controls -->
-                    <a class="left carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#modal-carousel" data-slide="prev">
-                      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#modal-carousel" data-slide="next">
-                      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-
-                <!-- end Controls -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-<!--- ___________________End of Modal Carousel __________________________-->
-
-            <div class="col-sm-4 col-md-4 col-lg-4">
-              <div class="car-specs">
-                <ul class="list-group spec-list">
-                  <!-- <li class="list-group-item list-price">{{car.price}}</li> -->
-                  <li class="list-group-item"><span class="spec-lables">MILES</span> <br> {{car.miles}}</li>
-                  <li class="list-group-item"><span class="spec-lables">COLOR</span> <br> {{car.color}}</li>
-                  <li class="list-group-item"><span class="spec-lables">INTERIOR COLOR</span> <br> {{car.interiorColor}}</li>
-                  <li class="list-group-item"><span class="spec-lables">ENGINE</span> <br> {{car.engine}}</li>
-                  <li class="list-group-item"><span class="spec-lables">TRANSMISSION</span> <br> {{car.transmission}}</li>
-                  <li class="list-group-item"><span class="spec-lables">VIN</span> <br> {{car.vin}} <br>
-                    <a ng-if="car.carfaxFile" ng-href='{{car.carfaxFile[0].url}}' target='_blank'>
-                      <img class='carfax-btn' src='../assets/img/cfxlogo.jpg'></a>
-
-                    <!-- <a ng-if="showCarFax(car)" ng-href='http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin={{car.vin}}' target='_blank'>
+                                <!-- <a ng-if="showCarFax(car)" ng-href='http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin={{car.vin}}' target='_blank'>
                       <img class='carfax-btn' src='../assets/img/cfxlogo.jpg'></a> -->
 
-                  </li>
-                  <li class="list-group-item"><span class="spec-lables">STOCK #</span> <br> {{car.stockNumber}}</li>
-                  <li class="list-group-item"><span class="spec-lables">HIGHLIGHTS</span> <br> {{car.highlights}}</li>
-                  <!-- <li class="list-group-item"><a class="btn btn-danger" role="button" href="{{car.carfax}}">CarFax Report</a></li> -->
-                </ul>
-                <div class="contact-header">
-                  <h4>Contact Us</h4>
+                            </li>
+                            <li class="list-group-item"><span class="spec-lables">STOCK #</span> <br> {{car.stockNumber}}</li>
+                            <li class="list-group-item"><span class="spec-lables">HIGHLIGHTS</span> <br> {{car.highlights}}</li>
+                            <!-- <li class="list-group-item"><a class="btn btn-danger" role="button" href="{{car.carfax}}">CarFax Report</a></li> -->
+                        </ul>
+                        <div class="contact-header">
+                            <h4>Contact Us</h4>
+                        </div>
+                        <form>
+                            <div style="padding: 10px; border: 1px solid #ddd; border-bottom-right-radius: 4px; border-bottom-left-radius:4px;">
+                                <div class="form-group">
+                                    <input type="fn" ng-model="firstName" class="form-control" id="inputFirst1" placeholder="First Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="ln" ng-model="lastName" class="form-control" id="inputLast1" placeholder="Last Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="phone" ng-model="phone" class="form-control" id="inputPhone1" placeholder="Phone">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" ng-model="email" class="form-control" id="inputEmail1" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputComments1"><span class="email-lables">COMMENTS</span></label>
+                                    <textarea class="form-control" ng-model="comments" rows="3"></textarea>
+                                </div>
+                                <button type="submit" ng-click="sendEmail()" class="btn btn-default">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <form>
-                  <div style="padding: 10px; border: 1px solid #ddd; border-bottom-right-radius: 4px; border-bottom-left-radius:4px;">
-                    <div class="form-group">
-                      <!-- <label for="inputFirst1"><span class="email-lables">CONTACT INFO</span></label> -->
-                      <input type="fn" ng-model="firstName" class="form-control" id="inputFirst1" placeholder="First Name">
-                    </div>
-                    <div class="form-group">
-                      <input type="ln" ng-model="lastName" class="form-control" id="inputLast1" placeholder="Last Name">
-                    </div>
-                    <div class="form-group">
-                      <input type="phone" ng-model="phone" class="form-control" id="inputPhone1" placeholder="Phone">
-                    </div>
-                    <div class="form-group">
-                      <input type="email" ng-model="email" class="form-control" id="inputEmail1" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                      <label for="inputComments1"><span class="email-lables">COMMENTS</span></label>
-                      <textarea class="form-control" ng-model="comments" rows="3"></textarea>
-                    </div>
-                    <button type="submit" ng-click="sendEmail()" class="btn btn-default">Submit</button>
-                  </div>
-                </form>
             </div>
-          </div>
         </div>
-      </div>
 
-      </div>
-      <!-- touch swipe for carousel -->
-      <script>
+    </div>
+    <!-- touch swipe for carousel -->
+    <script>
         $("#preview-carousel").carousel()
         $("#modal-carousel").carousel()
-      </script>
+    </script>
 </div>

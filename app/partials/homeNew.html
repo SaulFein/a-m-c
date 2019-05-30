@@ -1,26 +1,22 @@
 <!-- view the gallery of all the cars in the db -->
 <div class="row gallery-container" ng-init="getCars();">
-  <div class="jumbotron"><h1>Hello</h1></div>
-  <div class="inventory-title">
-  </div>
-  <div class="car-container col-md-10 col-ms-12 col-mm-12 col-sm-12 col-md-offset-1">
-    <div ng-repeat="car in cars | orderBy:['make','model']">
-        <div class="col-md-4 col-ms-6 col-mm-6 col-sm-6" style="display: flex; justify-content: center; padding-bottom: 5%">
-          <a ng-href="/#/car/{{car._id}}" class="no-style-link-thumb">
-            <div class="inv-pics">
-                <img style="height: 100%" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', h:225} }}" />
-                <span id="car-price"><p>{{car.price}}</p></span>
-
-                <div class="car-text">
-                  <p class="yr-mk-mdl">{{car.year}} {{car.make}} {{car.model}}</p>
-                  <!-- <p class="yr-mk-mdl">{{car.miles}} miles</p> -->
-                </div>
-
-
+    <div class="jumbotron">
+        <h1>Hello</h1></div>
+    <div class="inventory-title">
+    </div>
+    <div class="car-container col-md-10 col-ms-12 col-mm-12 col-sm-12 col-md-offset-1">
+        <div ng-repeat="car in cars | orderBy:['make','model']">
+            <div class="col-md-4 col-ms-6 col-mm-6 col-sm-6" style="display: flex; justify-content: center; padding-bottom: 5%">
+                <a ng-href="/#/car/{{car._id}}" class="no-style-link-thumb">
+                    <div class="inv-pics">
+                        <img style="height: 100%" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', h:225} }}" />
+                        <span id="car-price"><p>{{car.price}}</p></span>
+                        <div class="car-text">
+                            <p class="yr-mk-mdl">{{car.year}} {{car.make}} {{car.model}}</p>
+                        </div>
+                    </div>
+                </a>
             </div>
-          </a>
-
         </div>
     </div>
-  </div>
 </div>

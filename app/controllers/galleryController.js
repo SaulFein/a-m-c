@@ -14,7 +14,7 @@ galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarS
         var carsDate = new Date($window.localStorage.carsDate);
         var dif = now - carsDate;
         var diffMins = Math.round(((dif % 86400000) % 3600000) / 60000);
-        if(diffMins > 15){
+        if(diffMins > 8){
           retrieveCarsFromApi();
         }
         else {
