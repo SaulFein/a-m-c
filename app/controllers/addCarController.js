@@ -271,9 +271,13 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
 
     //// upload and updateCar
     $scope.uploadAndUp = function(data) {
+      if(data.picture){
         var policy = createPolicy(data.picture.url);
-        var sig = getSig(policy).then(function(data) {
-            var sigstuff = data;
+      } else {
+        var policy = createPolicy();
+      }
+        getSig(policy).then(function(data) {
+            var sig = data.data;
             filepickerService.pick({
                     mimetype: 'image/*',
                     imageDim: [1920, 1280],
