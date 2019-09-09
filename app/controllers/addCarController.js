@@ -4,7 +4,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                   function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr, $q, $document) {
     // let url = 'http://localhost:3000/api/users/';
     var url = '/api/users/'
-    var cUser = $window.localStorage.user;
+    var cUser = $window.sessionStorage.user;
     $scope.car = {};
     var carId;
     var id = $routeParams.id;
@@ -436,7 +436,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     }
 
     $scope.checkToken = function() {
-        if (!$window.localStorage.token) {
+        if (!$window.sessionStorage.token) {
             $location.path('/')
         }
     }
