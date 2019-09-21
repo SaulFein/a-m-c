@@ -37,6 +37,9 @@
           </div>
         </div>
     </div>
+    <div ng-if="car.videoDisplay !== 'N/A'" class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+      <div class="videoWrapper" ng-bind-html="car.videoDisplay"></div>
+    </div>
     <div class="col-md-12 col-sm-12 col-xs-12 description-section">
   <!-- add ngSanitize to app and then you can use ng-bind-html -->
       <h3>Description</h3>

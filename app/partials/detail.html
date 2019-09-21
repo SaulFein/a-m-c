@@ -35,7 +35,7 @@
                                 <div ng-include="'partials/templates/modal-caro.html'"></div>
                                 <!--- ___________________End of Modal Carousel __________________________-->
 
-                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div class="col-sm-4 col-md-4 col-lg-4 car-spec-col">
                                     <div class="car-specs">
                                         <ul class="list-group spec-list">
                                             <!-- <li class="list-group-item list-price">{{car.price}}</li> -->
@@ -200,6 +200,21 @@
                             <div class="form-group">
                                 <label for="transmission">Transmission</label>
                                 <input type="text" class="form-control" placeholder="Transmission" ng-model="car.transmission">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-sm-12" style="padding-bottom: 10px">
+                          <label for="video">Video</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Video" ng-model="car.video"></input>
+                                <span ng-if="!videoPreview" class="input-group-btn">
+                                    <button class="btn btn-primary" style="height: 44px;" ng-click="showPreview()" type="button">Preview</button>
+                                </span>
+                                <span ng-if="videoPreview" class="input-group-btn">
+                                    <button class="btn btn-primary" style="height: 44px;" ng-click="hidePreview()" type="button">Hide Preview</button>
+                                </span>
+                            </div>
+                            <div ng-if="videoPreview" style="padding: 0px; width 100%; max-width: 800px; margin:auto">
+                              <div class="videoWrapper" ng-bind-html="videoPreview"></div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12 col-sm-12">
