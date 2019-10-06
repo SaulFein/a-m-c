@@ -1,11 +1,12 @@
 'use strict'; ///
 var addCtrl = angular.module('addCarCtrl', []);
-addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "CarService", "toastr", "$q", "$document",
-                  function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr, $q, $document) {
+addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "CarService", "toastr", "$q", "$document", "$sce",
+                  function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, CarService, toastr, $q, $document, $sce) {
     // let url = 'http://localhost:3000/api/users/';
     var url = '/api/users/'
-    var cUser = $window.localStorage.user;
+    var cUser = $window.sessionStorage.user;
     $scope.car = {};
+    $scope.vieoPreview = null;
     var carId;
     var id = $routeParams.id;
     $scope.car.morePictures = [];
@@ -25,6 +26,18 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
         } else if (car.carfax == "true") {
             return true;
         }
+    }
+
+    $scope.showPreview = function() {
+      if($scope.car.videoDisplay){
+        $scope.videoPreview = $scope.car.videoDisplay;
+      } else {
+        $scope.videoPreview = $sce.trustAsHtml($scope.car.video);
+      }
+    }
+
+    $scope.hidePreview = function() {
+      $scope.videoPreview = null;
     }
 
     var removeSold = function(cars) {
@@ -187,6 +200,9 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
                       title: 'Image ' + i
                   });
               }
+          }
+          if($scope.car.video !== 'N/A' && $scope.car.video !== void 0 && $scope.car.video !== null && $scope.car.video !== ""){
+            $scope.car.videoDisplay = $sce.trustAsHtml($scope.car.video);
           }
         }).catch(function(data) {
             console.log('Error: ' + data);
@@ -436,7 +452,7 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
     }
 
     $scope.checkToken = function() {
-        if (!$window.localStorage.token) {
+        if (!$window.sessionStorage.token) {
             $location.path('/')
         }
     }

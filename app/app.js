@@ -24,6 +24,10 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
                 templateUrl: 'partials/gallery.html',
                 controller: 'galleryController'
             })
+            .when('/sold', {
+                templateUrl: 'partials/sold.html',
+                controller: 'galleryController'
+            })
             .when('/car/:id', {
                 templateUrl: 'partials/car-view.html',
                 controller: 'detailController'
@@ -38,7 +42,7 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
                 controller: 'UserController'
             })
             .when('/home', {
-                templateUrl: 'partials/home3.html',
+                templateUrl: 'partials/home.html',
                 controller: 'galleryController'
             })
             .when('/admin-inventory', {

@@ -8,14 +8,14 @@ var AuthService = angular.module('AuthService', []);
         cb || function() {};
       },
       getToken: function() {
-        return token || $window.localStorage.token;
+        return token || $window.sessionStorage.token;
       },
       getId: function(){
-        return userId || $window.localStorage.user;
+        return userId || $window.sessionStorage.user;
       },
       signOut: function(cb) {
-        delete $window.localStorage['token'];
-        $window.localStorage.user = null;
+        delete $window.sessionStorage['token'];
+        $window.sessionStorage.user = null;
         if (cb) cb();
 
       },
@@ -26,8 +26,8 @@ var AuthService = angular.module('AuthService', []);
             authorization: 'Basic ' + btoa(user.username + ':' + user.password)
           }
         }).then(function(res) {
-          token = $window.localStorage.token = res.data.token;
-          userId = $window.localStorage.user = res.data.data._id;
+          token = $window.sessionStorage.token = res.data.token;
+          userId = $window.sessionStorage.user = res.data.data._id;
           cb(null, res);
         }, function (err) {
           cb(err);

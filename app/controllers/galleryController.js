@@ -8,7 +8,7 @@ galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarS
         $window.localStorage.cars === void 0 ||
         $window.localStorage.cars === null){
           retrieveCarsFromApi()
-        }
+       }
       else if($window.localStorage.carsDate !== void 0 && $window.localStorage.carsDate !== null){
         var now = new Date();
         var carsDate = new Date($window.localStorage.carsDate);

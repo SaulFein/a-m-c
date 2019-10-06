@@ -7,6 +7,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
     // vm.pw1 = 'password';
     // vm.user = [];
     vm.cars = [];
+    vm.sold = [];
     vm.curPos = 0;
     vm.curCar;
     vm.user = ['user'];
@@ -42,12 +43,30 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
       })
     }
 
+    var removeSold = function(cars) {
+        var sold = [];
+        var availableInventory = [];
+        var carsToSpliceByIndex = [];
+        for (var i = 0; i < cars.length; i++) {
+            if (cars[i].sold) {
+                sold.push(cars[i]);
+                cars.splice(i, 1);
+                i--;
+                carsToSpliceByIndex.push(i);
+            }
+        }
+        vm.sold = sold;
+        return cars;
+    }
+
   vm.getCars = function() {
   var userId = AuthService.getId();
     CarService.getCars(userId)
     .then(function(data){
-        vm.cars = data.data;
+        vm.cars = removeSold(data.data);
         $window.localStorage.cars = JSON.stringify(vm.cars);
+        $window.localStorage.sold = JSON.stringify(vm.sold);
+
     })
     .catch(function(data) {
         console.log('Error: ' + data);
@@ -60,7 +79,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
     }
 
     vm.checkToken = function() {
-      if(!$window.localStorage.token){
+      if(!$window.sessionStorage.token){
         $location.path('/')
       }
     }

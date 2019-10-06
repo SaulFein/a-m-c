@@ -322,7 +322,7 @@ button.navbar-toggle.nav-toggle-style:hover {
 
 .car-specs {
     list-style: none;
-    width: 95%;
+    width: 100%;
     float: right;
     margin: auto;
     padding-bottom: 5px;
@@ -343,6 +343,26 @@ button.navbar-toggle.nav-toggle-style:hover {
     padding: 2%;
 }
 
+.car-spec-col{
+  padding-left: 10px;
+}
+.car-video iframe{
+  width: 100%;
+}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	/*padding-top: 25px;*/
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
 /*.car-price {
     text-align: center;
 }*/
@@ -548,7 +568,8 @@ p.yr-mk-mdl {
 }
 
 .car-detail-carousel {
-  width: 800px;
+  width: 100% !important;
+  /*width: 800px;*/
   height: 536px;
 }
 

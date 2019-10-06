@@ -1,7 +1,7 @@
 'use strict';
 var detailCtrl = angular.module('detailCtrl', []);
-detailCtrl.controller('detailController', ["$scope", "$rootScope", "$http", "$routeParams", "$window", "filepickerService", "AuthService", "EmailService", "toastr", "$document",
-function($scope, $rootScope, $http, $routeParams, $window, filepickerService, AuthService, EmailService, toastr, $document){
+detailCtrl.controller('detailController', ["$scope", "$rootScope", "$http", "$routeParams", "$window", "filepickerService", "AuthService", "EmailService", "toastr", "$document", "$sce",
+function($scope, $rootScope, $http, $routeParams, $window, filepickerService, AuthService, EmailService, toastr, $document, $sce){
   // let url = 'http://localhost:3000';
 
     $scope.car = {};
@@ -90,6 +90,9 @@ function($scope, $rootScope, $http, $routeParams, $window, filepickerService, Au
             var tileUrl = getFileTileUrl(data.data.morePictures[i].url);
             $scope.tiles.push({image: tileUrl, title:"Image Tile" + i});
             $scope.slides.push({image: data.data.morePictures[i].url, title: 'Image ' + i});
+          }
+          if($scope.car.video !== 'N/A' && $scope.car.video !== void 0 && $scope.car.video !== null && $scope.car.video !== ""){
+            $scope.car.videoDisplay = $sce.trustAsHtml($scope.car.video);
           }
       })
       .catch(function(data) {

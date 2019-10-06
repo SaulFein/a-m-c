@@ -86,7 +86,15 @@
         <!-- Collection of nav links and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse nav-style">
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="nav-link" data-target=".navbar-collapse" style="margin-top: 12px" href="#/gallery">INVENTORY</a></li>
+            <!-- <li><a class="nav-link" data-target=".navbar-collapse" style="margin-top: 12px" href="#/gallery">INVENTORY</a></li> -->
+						<li class="dropdown">
+		          <a style="margin-top: 12px" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">INVENTORY<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#/gallery">CURRENT INVENTORY</a></li>
+		            <li><a href="#/sold">SOLD</a></li>
+		          </ul>
+        		</li>
+
 						<!-- <li><a data-target=".navbar-collapse" style="margin-top: 12px" href="#/service">SERVICE</a></li> -->
 
 					 <li><a class="nav-link" data-target=".navbar-collapse" style="margin-top: 12px" href="#/service">SERVICE</a></li>
