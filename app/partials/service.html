@@ -1,8 +1,8 @@
-<div class="contaier-fluid" style="text-align: center;" ng-init="getServiceData()">
+<div class="contaier-fluid" style="text-align: center;" ng-init="getServiceData(); retrieveServiceDataFromApi();">
 <div class="row">
   <div class="jumbotron jumbotron-fluid" style="background-image: url('./assets/img/service/ferrari-engine.jpg'); margin-bottom: 8px">
     <div class="container">
-      <h1 class="display-4" style="color: white ">Service</h1>
+      <h1 class="display-4" style="color: white ">Service {{services.length}}</h1>
       <p class="lead"></p>
     </div>
   </div>

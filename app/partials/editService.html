@@ -1,9 +1,9 @@
 <section class="row">
-    <div ng-cloak class=" col-md-8 col-md-offset-2" ng-init="checkToken()">
+    <div ng-cloak class=" col-md-8 col-md-offset-2" ng-init="checkToken(); retrieveServiceDataFromApi();">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title text-center">
-                  <span class="glyphicon .glyphicon-list"></span> Edit Service
+                  <span class="glyphicon .glyphicon-list"></span> Edit Service {{services.length}}
                 </h2>
             </div>
             <div class="panel panel-default">
@@ -23,14 +23,14 @@
                         <div class="form-group">
                             <label for="sold"></label>
 
-                            <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-click="createCar();" ng-disabled="car.$invalid || !car.picture">Update Service</button>
+                            <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-disabled="loadingService" ng-click="createService();" >Update Service</button>
                         </div>
                     </div>
 
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea type="text" class="form-control" placeholder="Description" ng-model="car.description"></textarea>
+                            <textarea type="text" class="form-control" placeholder="Description" ng-model="service.description"></textarea>
                         </div>
                     </div>
 

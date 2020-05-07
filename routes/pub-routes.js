@@ -6,6 +6,8 @@ module.exports = (router, models) => {
 
   let User = models.User;
   let Car = models.Car;
+  let Service = models.Service;
+
 
   let basicHTTP = require(__dirname + '/../lib/basicHTTP.js');
   let jsonParser = require('body-parser').json();
@@ -52,6 +54,27 @@ module.exports = (router, models) => {
            res.json(car);
        });
    });
+
+   router.route('/service')
+     .get((req, res) => {
+       //Query the DB and if no errors, send all the services
+       var query = Service.find({});
+       query.exec(function(err, services){
+         console.log("this is service " + services);
+           if(err)  res.send(err);
+           //If no errors, send them back to the client
+           res.json(services);
+       });
+   })
+
+   router.route('/service/:service')
+    .get((req, res) => {
+      Service.findById(req.params.car, function(err, service){
+          if(err) res.send(err);
+          //If no errors, send it back to the client
+          res.json(service);
+      });
+  });
 
    router.route('/contact')
     .post((req, res) => {
