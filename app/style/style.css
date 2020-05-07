@@ -542,6 +542,13 @@ p.yr-mk-mdl {
   left: 8px;
 }
 
+.sprite-caro-service {
+  height: 25px;
+  position: relative;
+  top: 384px;
+  left: 20px;
+}
+
 .sprite-caro-thumb {
   height: 17px !important;
   position: relative;
@@ -572,6 +579,8 @@ p.yr-mk-mdl {
   /*width: 800px;*/
   height: 536px;
 }
+
+
 
 .description-section {
   font-family: 'Gotham' sans-serif;
@@ -791,6 +800,7 @@ font-size: 24px;
     width: 685px;
     height: 460px;
   }
+
 
   #car-price {
     right: 6px;

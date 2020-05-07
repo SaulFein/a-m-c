@@ -1,0 +1,90 @@
+<section class="row">
+    <div ng-cloak class=" col-md-8 col-md-offset-2" ng-init="checkToken()">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">
+                  <span class="glyphicon .glyphicon-list"></span> Edit Service
+                </h2>
+            </div>
+            <div class="panel panel-default">
+                <!-- <h3 class="panel-title">
+                   ADMIN
+                    </h3> -->
+                <div class="rtn-inventory">
+                    <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> INVENTORY  </button></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="panel-body">
+                <!-- The form to add cars information -->
+                <form name="addForm" novalidate>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="sold"></label>
+
+                            <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-click="createCar();" ng-disabled="car.$invalid || !car.picture">Update Service</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea type="text" class="form-control" placeholder="Description" ng-model="car.description"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-12 col-sm-12" style="margin-bottom: 18px">
+                        <div class="form-group" style="border-bottom: none;">
+                            <label for="picture">Service </label>
+                            <div class="text-center">
+                                <div class="ul-mult-btn">
+                                    <button ng-if="true" type="button" class="btn btn-primary" ng-click="uploadMultipleAndUp(car)">
+                                      <span class= "glyphicon glyphicon-upload"></span> UPLOAD <span class="caret"></span>
+                                    </button>
+                                    <button ng-if="validateUpload() === false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload-modal-warning"><span class= "glyphicon glyphicon-upload"></span>
+                                      UPLOAD <span class="caret"></span>
+                                    </button>
+                                </div>
+                                <!-- Show the thumbanil of more pictures -->
+                                <div ui-sortable="sortableOptions" style="display: flex; flex-wrap: wrap" ng-model="car.morePictures">
+                                    <div style="margin-top:10px; margin-right:10px;" ng-repeat="picture in car.morePictures">
+                                        <div style="height: 175px;">
+                                            <div>
+                                                <div style="height: 117px; overflow:hidden">
+                                                    <img style="width: 175px; padding-top: 20px; padding-bottom: 10px;" ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
+                                                </div>
+                                                <br>
+                                                <button type="button" class="btn btn-danger" ng-click="setSelected($index)" data-toggle="modal" data-target="#confirm-modal-more"> <span class= "glyphicon glyphicon-remove-circle"></span> REMOVE IMAGE</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="upload-modal-warning" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please specify the make, model and year of the car before uploading images and files.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+
+    </div>
+</div>

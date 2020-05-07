@@ -20,6 +20,10 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
                 controllerAs: 'userCtrl',
                 controller: 'UserController'
             })
+            .when('/editService', {
+                templateUrl: 'partials/editService.html',
+                controller: 'serviceController'
+            })
             .when('/gallery', {
                 templateUrl: 'partials/gallery.html',
                 controller: 'galleryController'
@@ -55,7 +59,8 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
                     // controller: 'galleryController'
             })
             .when('/service', {
-              templateUrl: 'partials/service.html'
+              templateUrl: 'partials/service.html',
+              controller: 'serviceController'
             })
             .when('/storage', {
               templateUrl: 'partials/storage.html'
