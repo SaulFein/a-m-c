@@ -32,7 +32,6 @@ galleryCtrl.controller('serviceController', ["$scope", "$window", "$http", "$loc
                 toastr.error("error saving service")
             });
       }
-
     };
 
     $scope.retrieveServiceDataFromApi = function() {
