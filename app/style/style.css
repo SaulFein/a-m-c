@@ -314,7 +314,28 @@ button.navbar-toggle.nav-toggle-style:hover {
     font-size: 17px;
     text-shadow: none;
 }
+.navbar-collapse.nav-style .admin-icon{
+  text-align:left;
 
+}
+.admin-icon {
+  text-align: center;
+  text-decoration: none;
+  color: #777;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.admin-icon a{
+  text-decoration: none;
+  color: #777;
+}
+
+
+.admin-icon .admin-icon-text{
+  font-size: 12px;
+  vertical-align: top;
+}
 
 .car-descr {
     text-indent: 30px;

@@ -158,11 +158,16 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
             }
         }
     })
-    .directive('dateYear', [function() {
+    .directive('dateYear', ['$rootScope',function($rootScope) {
         return {
             template: "<span>{{year}}</span>",
             link: function(scope) {
-                scope.year = new Date().getFullYear()
+                scope.year = new Date().getFullYear();
+                if(!window.sessionStorage.token){
+                  $rootScope.adminUser = false;
+                } else {
+                  $rootScope.adminUser = true;
+                }
             }
         }
     }]);

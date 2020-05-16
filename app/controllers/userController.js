@@ -1,6 +1,6 @@
 var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
-  userCtrl.controller('UserController',['AuthService', 'CarService', 'ErrorService', '$http', '$location','$window',
-  function(AuthService, CarService, ErrorService, $http, $location, $window, ngMessages, ngPassword){
+  userCtrl.controller('UserController',['$rootScope','AuthService', 'CarService', 'ErrorService', '$http', '$location','$window',
+  function($rootScope, AuthService, CarService, ErrorService, $http, $location, $window, ngMessages, ngPassword){
 
     // let url = 'http://localhost:3000'
     const vm = this;
@@ -13,7 +13,6 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
     vm.user = ['user'];
     vm.uae = false; //uae = user already exists
     vm.ip = false; //ip = invalid password
-
     vm.createUser = function(user) {
       var userId = AuthService.getId();
       $http.post('api/users/'+ userId +'/signup', user, {
@@ -39,6 +38,7 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
         } else {
           vm.error = ErrorService(null);
           $location.path('/admin-inventory');
+          $rootScope.adminUser = true;
         }
       })
     }
@@ -75,12 +75,16 @@ var userCtrl = angular.module('userCtrl', ['ngPassword', 'ngMessages'])
     vm.signOut = function(){
       AuthService.signOut(function() {
         $location.path('/login')
+        $rootScope.adminUser = false;
       })
     }
 
     vm.checkToken = function() {
       if(!$window.sessionStorage.token){
         $location.path('/')
+        $rootScope.adminUser = false;
+      } else {
+        $rootScope.adminUser = true;
       }
     }
   }])

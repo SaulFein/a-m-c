@@ -4,18 +4,18 @@ galleryCtrl.controller('serviceController', ["$scope", "$window", "$http", "$loc
     $scope.services = [];
     $scope.service = {};
     $scope.loadingService = false;
+    var serviceDefaultPics = [
+    {url: "./assets/img/service/IMG_5794.jpg"},
+    {url: "./assets/img/service/IMG_5889.jpg"},
+    {url: "./assets/img/service/IMG_8897.jpg"},
+    ]
 
     var cUser = $window.sessionStorage.user;
 
     //Retrieve all the serivce images to show the carosel
     $scope.getServiceData = function() {
-      $scope.servicePics = [
-      {image: "./assets/img/service/IMG_5794.jpg"},
-      {image: "./assets/img/service/IMG_5889.jpg"},
-      {image: "./assets/img/service/IMG_8897.jpg"},
 
-
-    ]
+      $scope.retrieveServiceDataFromApi();
     }
 
     //Send the newly created service page to the server to store in the db
@@ -40,6 +40,11 @@ galleryCtrl.controller('serviceController', ["$scope", "$window", "$http", "$loc
       .then(function(data){
         $scope.services = data.data;
         $scope.service = data.data[0];
+        if(!$scope.service.servicePictures || $scope.service.servicePictures.length == 0){
+          $scope.serviceDefaultPics = serviceDefaultPics;
+        } else{
+          $scope.serviceDefaultPics = null;
+        }
         $scope.loadingService = false;
 
       })
@@ -58,5 +63,96 @@ galleryCtrl.controller('serviceController', ["$scope", "$window", "$http", "$loc
                 toastr.error("error updating service");
             });
     };
+
+    //Multiple files upload set to 100 as max number
+    $scope.uploadMultipleAndUp = function() {
+        var policy = createPolicy();
+        getSig(policy).then(function(data) {
+            var sig = data.data;
+            filepickerService.pickMultiple({
+                    mimetype: 'image/*',
+                    policy: policy,
+                    signature: sig,
+                    language: 'en',
+                    imageDim: [1920, 1280],
+                    imageQuality: 60,
+                    maxFiles: 100, //pickMultiple has one more option
+                    services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                    openTo: 'COMPUTER'
+                },
+                function(Blob) {
+                    if (!$scope.service.servicePictures) {
+                        $scope.service.servicePictures = Blob;
+                    } else {
+                        for (var i = 0; i < Blob.length; i++) {
+                            $scope.service.servicePictures.push(Blob[i]);
+                        }
+                    }
+                    $scope.$apply();
+                    $scope.updateService();
+                }
+            );
+        });
+    };
+
+    $scope.removeImage = function(data) {
+        var policy = createPolicy(data.picture.url);
+        var sig = getSig(policy);
+        var fpHolder = data.picture.url;
+        filepickerService.remove(fpHolder, {
+                policy: policy,
+                signature: sig
+            },
+            function() {}
+        );
+        // toast removed
+        delete data.picture;
+    };
+
+    $scope.setSelected = function(selected) {
+        $scope.selectedImageForRemoval = selected;
+    }
+
+    $scope.removeMoreImage = function(data) {
+        var index = $scope.selectedImageForRemoval;
+        var image = data.servicePictures[index];
+        var policy = createPolicy(image.url);
+        data.servicePictures.splice(index, 1);
+        getSig(policy).then(function(data) {
+            var sig = data.data;
+
+            filepickerService.remove(image.url, {
+                    policy: policy,
+                    signature: sig
+                },
+                function() {
+                  $scope.updateService();
+                })
+            $('#confirm-modal-more').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        })
+    }
+
+    var createPolicy = function(url) {
+        // var handle = url.match(/[^\/]*$/);
+        var expiry = Math.floor(new Date().getTime() / 1000 + 60 * 60)
+        // var polObject = JSON.stringify({expiry: expiry});
+        var polObject = JSON.stringify({
+            expiry: expiry
+        });
+
+        return btoa(polObject);
+    }
+
+    var getSig = function(policy) {
+        var myPolicy = {
+            pol: policy
+        };
+        var sig = ServiceService.getSignature(cUser, myPolicy).then(function(data) {
+            return data;
+        })
+        return sig;
+    };31
 
 }]);
