@@ -1,10 +1,12 @@
 'use strict';
 module.exports = (mongoose, models) => {
   // Defines the service schema
+
   let ServiceSchema = mongoose.Schema({
-      description: {type: String, default: 'Service details coming soon'},
+      description: {type: String, default: "Service details coming soon."},
       servicePictures: {type: mongoose.Schema.Types.Mixed},
       createdAt: {type: Date, default: Date.now},
+      serviceList: {type: String, default: 'Service list coming soon.'}
   });
 
   // Sets the createdAt parameter equal to the current time

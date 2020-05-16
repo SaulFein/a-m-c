@@ -29,14 +29,18 @@
 
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Service Introduction / Description</label>
                             <textarea type="text" class="form-control" placeholder="Description" ng-model="service.description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">List of Services (Example input: Maintenance and Diagnostic, Restoration, Performance Tuning)</label>
+                            <textarea type="text" class="form-control" placeholder="Example: Regular Maintenance and Diagnostic, Restoration, Performance Tuning" ng-model="service.serviceList"></textarea>
                         </div>
                     </div>
 
                     <div class="col-md-12 col-lg-12 col-sm-12" style="margin-bottom: 18px">
                         <div class="form-group" style="border-bottom: none;">
-                            <label for="picture">Service </label>
+                            <label for="picture">Service Photos</label>
                             <div class="text-center">
                                 <div class="ul-mult-btn">
                                     <button ng-if="true" type="button" class="btn btn-primary" ng-click="uploadMultipleAndUp(data)">

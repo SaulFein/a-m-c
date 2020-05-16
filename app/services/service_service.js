@@ -50,7 +50,14 @@ var ServiceService = angular.module('ServiceService', []);
         }
       });
     };
-
+    
+    serviceService.deleteService = function(cUser, serviceData) {
+      return $http.delete('/api/users/' + cUser + '/service/' + serviceData._id, {
+        headers: {
+          token: AuthService.getToken()
+        }
+      });
+    };
     // serviceService.getId = function(){
     //   return $window.localStorage.carId || carId;
     // }

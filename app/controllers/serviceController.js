@@ -3,12 +3,18 @@ galleryCtrl.controller('serviceController', ["$scope", "$window", "$http", "$loc
                   function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, ServiceService, toastr, $q, $document, $sce){
     $scope.services = [];
     $scope.service = {};
+    $scope.serviceList = null;
     $scope.loadingService = false;
     var serviceDefaultPics = [
     {url: "./assets/img/service/IMG_5794.jpg"},
     {url: "./assets/img/service/IMG_5889.jpg"},
     {url: "./assets/img/service/IMG_8897.jpg"},
     ]
+    let defaultServicDesc = "Authentic Motorcars is pleased to have Randy Johnson on our team as our lead technician. Randy has" +
+          "experience working with a wide variety of makes that include Alfa Romeo, BMW, Fiat, Ferrari, Maserati, Porsche, Lancia, Volkswagen, and Lotus." +
+          "We like to involve our clients with the service of their vehicles and provide detailed explanations of repairs needed and alternative parts and " +
+          "performance options that are available to ensure longevity. Our mission is to help you better understand the mechanicals of your collector vehicle" +
+          "so you can plan future maintenance campaigns and restoration phases if needed.";
 
     var cUser = $window.sessionStorage.user;
 
@@ -16,6 +22,10 @@ galleryCtrl.controller('serviceController', ["$scope", "$window", "$http", "$loc
     $scope.getServiceData = function() {
 
       $scope.retrieveServiceDataFromApi();
+    }
+
+    $scope.setDefaultDescription = function() {
+      $scope.service.description = defaultServicDesc;
     }
 
     //Send the newly created service page to the server to store in the db
@@ -44,6 +54,10 @@ galleryCtrl.controller('serviceController', ["$scope", "$window", "$http", "$loc
           $scope.serviceDefaultPics = serviceDefaultPics;
         } else{
           $scope.serviceDefaultPics = null;
+        }
+        var hasServiceList = $scope.service.serviceList.indexOf(',') > -1;
+        if(hasServiceList){
+          $scope.serviceList = $scope.service.serviceList.split(', ');
         }
         $scope.loadingService = false;
 
