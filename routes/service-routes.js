@@ -55,6 +55,14 @@ module.exports = (router, models) => {
                 res.status(200).json({message: 'Updated Service', data: service});
               });
             })
+            .delete(jwtAuth, (req, res) => {
+              Service.findByIdAndRemove(req.params.service, (err, service) => {
+                if (err) {
+                  return res.send(err);
+                }
+                res.status(200).json({message: 'Deleted Service', data: service});
+              });
+            });
 
 
              router.route('/users/:user/sig')

@@ -17,14 +17,14 @@
                 We like to involve our clients with the service of their vehicles and provide detailed explanations of repairs needed and alternative parts and performance options that are available to ensure longevity. Our mission is to help you better
                 understand the mechanicals of your collector vehicle so you can plan future maintenance campaigns and restoration phases if needed.
             </p>
-            <p ng-show="service.description != 'Service details coming soon.'">
+            <p ng-if="service.description != 'Service details coming soon.'">
               {{service.description}}
             </p>
             <h4 style="text-align:center; padding-top: 10px">For service inquires please email:</h4>
-            <h3 style="text-align:center"><a href="mailto:randy@authenticmotorcars.com?subject=Service Inquiry" style="color:#00b5dd">randy@authenticmotorcars.com</a> or call <span style="color:#f68621">425-748-8059</span></h3>.
+            <h3 style="text-align:center"><a href="mailto:randy@authenticmotorcars.com?subject=Service Inquiry" style="color:#00b5dd">randy@authenticmotorcars.com</a> or call <span style="color:#f68621">425-748-8059</span></h3>
         </div>
     </div>
-    <div class="row" style="font-family: Gotham">
+    <div ng-show="serviceList.length > 0" class="row" style="font-family: Gotham">
         <div class="col-md-6 col-md-offset-3 col-sm-12">
             <div class="panel panel-default" style="margin:auto">
                 <div class="panel-heading">
