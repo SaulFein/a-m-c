@@ -314,7 +314,28 @@ button.navbar-toggle.nav-toggle-style:hover {
     font-size: 17px;
     text-shadow: none;
 }
+.navbar-collapse.nav-style .admin-icon{
+  text-align:left;
 
+}
+.admin-icon {
+  text-align: center;
+  text-decoration: none;
+  color: #777;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.admin-icon a{
+  text-decoration: none;
+  color: #777;
+}
+
+
+.admin-icon .admin-icon-text{
+  font-size: 12px;
+  vertical-align: top;
+}
 
 .car-descr {
     text-indent: 30px;
@@ -542,6 +563,13 @@ p.yr-mk-mdl {
   left: 8px;
 }
 
+.sprite-caro-service {
+  height: 25px;
+  position: relative;
+  top: 384px;
+  left: 20px;
+}
+
 .sprite-caro-thumb {
   height: 17px !important;
   position: relative;
@@ -572,6 +600,8 @@ p.yr-mk-mdl {
   /*width: 800px;*/
   height: 536px;
 }
+
+
 
 .description-section {
   font-family: 'Gotham' sans-serif;
@@ -791,6 +821,7 @@ font-size: 24px;
     width: 685px;
     height: 460px;
   }
+
 
   #car-price {
     right: 6px;
