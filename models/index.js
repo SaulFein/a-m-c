@@ -5,8 +5,7 @@ let config = require(__dirname + '/../config/env.js');
 
 // mongoose.connect(config.MONGOLAB_URI);
 // Just some options for the db connection
-var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
+var options = { };
 
 //local
 //mongoose.connect('mongodb://localhost/db', options);
