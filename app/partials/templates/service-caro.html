@@ -1,15 +1,21 @@
 <div class="col-md-12" style="padding: 0px  ">
-    <div id="service-carousel" class="carousel slide" style="max-width: 900px; margin:auto" data-ride="carousel" data-interval="5000">
+    <div id="service-carousel" class="carousel slide" style="max-width: 900px; margin:auto" data-ride="carousel" data-interval="5000" data-pause="false">
         <!-- Slides -->
         <div ng-if="service.servicePictures.length > 0" class="carousel-inner carousel-container">
             <div class="item" ng-repeat="picture in service.servicePictures" ng-class="{active:!$index}">
                 <img ng-src="{{picture.url}}" />
+                <div ng-if="service.pictureDesc" class="carousel-caption">
+                  <h3 style="padding-bottom: 0px">{{service.pictureDesc[$index]}}</h3>
+                    <!-- <p>Thank you, Chicago!</p> -->
+                </div>
             </div>
         </div>
 
         <div ng-if="serviceDefaultPics" class="carousel-inner carousel-container">
           <div class="item" ng-repeat="picture in serviceDefaultPics" ng-class="{active:!$index}">
+
               <img ng-src="{{picture.url}}" />
+
           </div>
         </div>
         <!-- end Slides -->

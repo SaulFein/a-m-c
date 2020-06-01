@@ -12,7 +12,7 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
         //The route provider handles the client request to switch route
         $locationProvider.hashPrefix('');
 
-        $routeProvider.when('/addCar', {
+        $routeProvider.when('/addCar/', {
                 templateUrl: 'partials/addCar.html',
                 controller: 'addCarController'
             })
@@ -25,7 +25,7 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
                 templateUrl: 'partials/editService.html',
                 controller: 'serviceController'
             })
-            .when('/gallery', {
+            .when('/gallery/', {
                 templateUrl: 'partials/gallery.html',
                 controller: 'galleryController'
             })
