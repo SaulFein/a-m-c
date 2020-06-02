@@ -1,6 +1,6 @@
 <div class="contaier-fluid" style="text-align: center;" ng-init="getServiceData(); retrieveServiceDataFromApi();">
     <div class="row">
-        <div class="jumbotron jumbotron-fluid" style="background-image: url('./assets/img/service/ferrari-engine.jpg'); margin-bottom: 8px">
+        <div class="jumbotron jumbotron-fluid" style="background-image: url('./assets/img/service/ferrari-engine.jpg');">
             <div class="container">
                 <h1 class="display-4" style="color: white ">Service</h1>
                 <p class="lead"></p>
@@ -8,11 +8,13 @@
         </div>
         <!-- <img style="width:100%; max-width: 1500px" src="./assets/img/service/ferrari-engine.jpg" /> -->
 
-        <div ng-include="'partials/templates/service-caro.html'"></div>
 
     </div>
-    <div class="row" style="font-family: 'Gotham', sans-serif; padding-left: 30px; padding-right: 30px; padding-top: 10px; font-size:17px">
-        <div class="col-md-12" >
+    <div class="row" style="padding-top:8px">
+      <div ng-include="'partials/templates/service-caro.html'"></div>
+    </div>
+    <div class="row" style="font-family: 'Gotham', sans-serif; padding-left: 30px; padding-right: 30px; padding-top:30px; font-size:17px">
+        <div class="col-md-10 col-md-offset-1 col-sm-12" >
             <p ng-show="service.description == 'Service details coming soon.'">Authentic Motorcars is pleased to have Randy Johnson on our team as our lead technician. Randy has experience working with a wide variety of makes that include Alfa Romeo, BMW, Fiat, Ferrari, Maserati, Porsche, Lancia, Volkswagen, and Lotus.
                 We like to involve our clients with the service of their vehicles and provide detailed explanations of repairs needed and alternative parts and performance options that are available to ensure longevity. Our mission is to help you better
                 understand the mechanicals of your collector vehicle so you can plan future maintenance campaigns and restoration phases if needed.
@@ -20,8 +22,9 @@
             <p ng-if="service.description != 'Service details coming soon.'">
               {{service.description}}
             </p>
-            <h4 style="text-align:center; padding-top: 10px">For service inquires please email:</h4>
+            <h4 style="text-align:center; padding-top: 10px">FOR SERVICE INQUIRES PLEASE EMAIL:</h4>
             <h3 style="text-align:center"><a href="mailto:randy@authenticmotorcars.com?subject=Service Inquiry" style="color:#00b5dd">randy@authenticmotorcars.com</a> or call <span style="color:#f68621">425-748-8059</span></h3>
+            <hr>
         </div>
     </div>
     <div ng-show="serviceList.length > 0" class="row" style="font-family: Gotham">
@@ -33,6 +36,18 @@
                     <ul class="list-group">
                         <li class="list-group-item" style="border: none; text-align:left" ng-repeat="item in serviceList"><span style="color:#f68621; padding-right: 2px" class="glyphicon glyphicon-certificate"></span>{{item}}</li>
                     </ul>
+            </div>
+        </div>
+    </div>
+    <div ng-show="service.special && service.special != ''" class="row" style="font-family: Gotham; padding-top: 30px">
+        <div class="col-md-6 col-md-offset-3 col-sm-12">
+            <div class="panel panel-default" style="margin:auto">
+                <div class="panel-heading">
+                    <h3 class="panel-title">SPECIAL GOING ON NOW</h3>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item" style="border: none; text-align:center"><span style="color:#00b5dd; padding-right: 5px" class="glyphicon glyphicon-certificate"></span>{{service.special}}<span style="color:#00b5dd; padding-left: 5px" class="glyphicon glyphicon-certificate"></li>
+                </ul>
             </div>
         </div>
     </div>

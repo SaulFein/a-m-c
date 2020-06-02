@@ -5,7 +5,7 @@ let config = require(__dirname + '/../config/env.js');
 
 // mongoose.connect(config.MONGOLAB_URI);
 // Just some options for the db connection
-var options = { };
+var options = { useNewUrlParser: true, useUnifiedTopology: true};
 
 //local
 //mongoose.connect('mongodb://localhost/db', options);

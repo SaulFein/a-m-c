@@ -1,6 +1,7 @@
 var galleryCtrl = angular.module('galleryCtrl', []);
 galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarService", function($scope, $http, $window, CarService){
     $scope.cars = [];
+
     //Retrieve all the cars to show the gallery
     $scope.getCars = function() {
       if($window.localStorage.carsDate === void 0 ||

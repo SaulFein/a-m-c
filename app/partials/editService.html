@@ -11,7 +11,7 @@
                    ADMIN
                     </h3> -->
                 <div class="rtn-inventory">
-                    <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> INVENTORY  </button></a>
+                    <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> ADMIN  </button></a>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -21,8 +21,7 @@
                 <form name="addForm" novalidate>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="sold"></label>
-
+                            <label for="save/update"></label>
                             <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-disabled="loadingService" ng-click="createService();" >Save / Update</button>
                         </div>
                     </div>
@@ -30,11 +29,15 @@
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="form-group">
                             <label for="description">Service Introduction / Description</label>
-                            <textarea type="text" class="form-control" placeholder="Description" ng-model="service.description"></textarea>
+                            <textarea type="text" style="min-height: 150px;" class="form-control" placeholder="Description" ng-model="service.description"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="description">List of Services (Example input: Maintenance and Diagnostic, Restoration, Performance Tuning)</label>
                             <textarea type="text" class="form-control" placeholder="Example: Regular Maintenance and Diagnostic, Restoration, Performance Tuning" ng-model="service.serviceList"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="special">Current Special (leave blank if there is no current special)</label>
+                            <textarea type="text" class="form-control" placeholder="" ng-model="service.special"></textarea>
                         </div>
                     </div>
 
@@ -65,6 +68,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div ng-if="service.servicePictures" class="form-group">
+                          <div ng-repeat="desc in service.servicePictures">
+                            <label for="description">Photo Description {{$index + 1}}</label>
+                            <textarea type="text" class="form-control" ng-model="service.pictureDesc[$index]"></textarea>
+                          </div>
                         </div>
                     </div>
 
