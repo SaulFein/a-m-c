@@ -5,7 +5,7 @@
             <div class="item" ng-repeat="picture in service.servicePictures" ng-class="{active:!$index}">
                 <img ng-src="{{picture.url}}" />
                 <div ng-if="service.pictureDesc" class="carousel-caption">
-                  <h3 style="padding-bottom: 0px">{{service.pictureDesc[$index]}}</h3>
+                  <h3 style="padding-bottom: 60px">{{service.pictureDesc[$index]}}</h3>
                     <!-- <p>Thank you, Chicago!</p> -->
                 </div>
             </div>

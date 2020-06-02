@@ -11,7 +11,7 @@
                    ADMIN
                     </h3> -->
                 <div class="rtn-inventory">
-                    <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> INVENTORY  </button></a>
+                    <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> ADMIN  </button></a>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -23,6 +23,8 @@
                         <div class="form-group">
                             <label for="save/update"></label>
                             <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-disabled="loadingService" ng-click="createService();" >Save / Update</button>
+                            <label for="Delete"></label>
+                            <button class="btn btn-danger btn-block update-btn" style="width: 200px" ng-disabled="loadingService" ng-click="deleteService(service);">Delete</button>
                         </div>
                     </div>
 

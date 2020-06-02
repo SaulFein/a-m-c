@@ -115,7 +115,7 @@ galleryCtrl.controller('serviceController', ["$scope", "$window", "$http", "$loc
                             }
                         }
                         $scope.$apply();
-                        $scope.updateService();
+                        $scope.createService();
                     }
                 );
             });
