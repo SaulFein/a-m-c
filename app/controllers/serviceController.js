@@ -28,7 +28,6 @@ galleryCtrl.controller('serviceController', ["$scope", "$window", "$http", "$loc
 
         //Retrieve all the serivce images to show the carosel
         $scope.getServiceData = function() {
-
             $scope.retrieveServiceDataFromApi();
         }
 
