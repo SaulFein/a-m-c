@@ -1,12 +1,11 @@
 <div class="col-md-12" style="padding: 0px  ">
-    <div id="service-carousel" class="carousel slide" style="max-width: 900px; margin:auto" data-ride="carousel" data-pause="false">
+    <div id="service-carousel" class="carousel slide" style="max-width: 1280px; margin:auto" data-ride="carousel" data-pause="false">
         <!-- Slides -->
-        <div ng-if="service.servicePictures.length > 0" class="carousel-inner carousel-container">
+        <div ng-if="service.servicePictures.length > 0" class="carousel-inner carousel-container" style="padding-bottom: 49.062682%">
             <div class="item" ng-repeat="picture in service.servicePictures" ng-class="{active:!$index}">
                 <img ng-src="{{picture.url}}" />
                 <div ng-if="service.pictureDesc[$index]" style="right: 0%; left: 0%" class="carousel-caption">
                   <h4 class="service-slide-text">{{service.pictureDesc[$index]}}</h4>
-                    <!-- <p>Thank you, Chicago!</p> -->
                 </div>
             </div>
         </div>
