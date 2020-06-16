@@ -8,10 +8,10 @@ let config = require(__dirname + '/../config/env.js');
 var options = { useNewUrlParser: true, useUnifiedTopology: true};
 
 //local
-//mongoose.connect('mongodb://localhost/db', options);
+mongoose.connect('mongodb://localhost/db', options);
 
 //production
-mongoose.connect(process.env.MONGOLAB_URI , options);
+//mongoose.connect(process.env.MONGOLAB_URI , options);
 
 var db = mongoose.connection;
 
