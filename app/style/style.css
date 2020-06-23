@@ -822,7 +822,9 @@ font-size: 24px;
 }
 .hover10 img:hover {
 	-webkit-filter: grayscale(100%) blur(1px);
-	filter: grayscale(100%) blur(1px);
+  filter: grayscale(100%) blur(1px);
+  -webkit-transform: translate3d(0, 0, 0);
+
 }
 /* Create four equal columns that sits next to each other */
 .column-pic-grid {
