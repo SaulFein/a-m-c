@@ -21,6 +21,8 @@ require(__dirname + '/routes/pub-routes')(publicRouter, models);
 require(__dirname + '/routes/users-routes')(apiRouter, models);
 require(__dirname + '/routes/car-routes')(apiRouter, models);
 require(__dirname + '/routes/service-routes')(apiRouter, models);
+require(__dirname + '/routes/storage-routes')(apiRouter, models);
+
 
 
 

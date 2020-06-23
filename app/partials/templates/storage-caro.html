@@ -1,0 +1,43 @@
+<div class="col-md-12" style="padding: 0px  ">
+    <div id="storage-carousel" class="carousel slide" style="max-width: 1280px; margin:auto" data-ride="carousel" data-pause="false">
+        <!-- Slides -->
+        <div ng-if="storage.storagePictures.length > 0" class="carousel-inner carousel-container" style="padding-bottom: 49.062682%">
+            <div class="item" ng-repeat="picture in storage.storagePictures" ng-class="{active:!$index}">
+                <img ng-src="{{picture.url}}" />
+                <div ng-if="storage.pictureDesc[$index]" style="right: 0%; left: 0%" class="carousel-caption">
+                  <h4 class="service-slide-text">{{storage.pictureDesc[$index]}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="storageDefaultPics" class="carousel-inner carousel-container" style="padding-bottom: 49.062682%">
+          <div class="item" ng-repeat="picture in storageDefaultPics" ng-class="{active:!$index}">
+
+              <img ng-src="{{picture.url}}" />
+
+          </div>
+        </div>
+        <!-- end Slides -->
+        <!-- Controls -->
+        <a class="left carousel-control" ng-class="{'hide': storagePictures.length == 0}" role="button" data-target="#storage-carousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" ng-class="{'hide': storagePictures.length == 0}" role="button" data-target="#storage-carousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <!-- end Controls -->
+    </div>
+
+    <!-- Only if there are other pictures -->
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('.carousel').carousel({
+        interval: 7500
+      })
+    });
+  </script>

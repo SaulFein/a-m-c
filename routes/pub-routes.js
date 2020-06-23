@@ -7,6 +7,7 @@ module.exports = (router, models) => {
   let User = models.User;
   let Car = models.Car;
   let Service = models.Service;
+  let Storage = models.Storage;
 
 
   let basicHTTP = require(__dirname + '/../lib/basicHTTP.js');
@@ -75,6 +76,27 @@ module.exports = (router, models) => {
           res.json(service);
       });
   });
+
+  router.route('/storage')
+  .get((req, res) => {
+    //Query the DB and if no errors, send all the services
+    var query = Storage.find({});
+    query.exec(function(err, storages){
+      console.log("this is storage " + storages);
+        if(err)  res.send(err);
+        //If no errors, send them back to the client
+        res.json(storages);
+    });
+})
+
+router.route('/storage/:storage')
+ .get((req, res) => {
+   Storage.findById(req.params.car, function(err, storage){
+       if(err) res.send(err);
+       //If no errors, send it back to the client
+       res.json(storage);
+   });
+});
 
    router.route('/contact')
     .post((req, res) => {

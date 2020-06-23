@@ -3,9 +3,9 @@
 
 
 // var app = angular.module('app', ['addCarCtrl', 'galleryCtrl','detailCtrl', 'userCtrl', 'ngRoute', 'AuthService', 'ErrorService', 'CarService', 'angular-filepicker', 'pwCheck'])
-var app = angular.module('app', ['addCarCtrl', 'galleryCtrl', 'detailCtrl', 'userCtrl', 'financeCtrl', 'ngRoute', 'AuthService',
+var app = angular.module('app', ['addCarCtrl', 'galleryCtrl', 'detailCtrl', 'userCtrl', 'financeCtrl', 'serviceCtrl', 'storageCtrl', 'ngRoute', 'AuthService',
     'ErrorService', 'CarService', 'angular-filepicker', 'ngPassword', 'ngMessages', 'ngAnimate',
-    'ngTouch', 'ngSanitize', 'ngMap', 'EmailService', 'toastr', 'angular-google-analytics', 'ui.sortable', 'duScroll', 'ServiceService'
+    'ngTouch', 'ngSanitize', 'ngMap', 'EmailService', 'toastr', 'angular-google-analytics', 'ui.sortable', 'duScroll', 'ServiceService', 'StorageService'
 ])
 
 app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'AnalyticsProvider', function($routeProvider, filepickerProvider, $locationProvider, AnalyticsProvider) {
@@ -24,6 +24,10 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
             .when('/editService', {
                 templateUrl: 'partials/editService.html',
                 controller: 'serviceController'
+            })
+            .when('/editStorage', {
+                templateUrl: 'partials/editStorage.html',
+                controller: 'storageController'
             })
             .when('/gallery/', {
                 templateUrl: 'partials/gallery.html',
@@ -64,7 +68,8 @@ app.config(['$routeProvider', 'filepickerProvider', '$locationProvider', 'Analyt
                 controller: 'serviceController'
             })
             .when('/storage', {
-                templateUrl: 'partials/storage.html'
+                templateUrl: 'partials/storage.html',
+                controller: 'storageController'
             })
             .when('/finance', {
                 templateUrl: 'partials/finance.html',

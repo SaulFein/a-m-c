@@ -1,15 +1,14 @@
 <section class="row">
-    <div ng-cloak class=" col-md-8 col-md-offset-2" ng-init="checkToken(); getServiceData();">
+    <div ng-cloak class=" col-md-8 col-md-offset-2" ng-init="checkToken(); getStorageData();">
+        <div ng-cloak class=" col-md-8 col-md-offset-2">
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title text-center">
-                  <span class="glyphicon .glyphicon-list"></span> Edit Service
+                  <span class="glyphicon .glyphicon-list"></span> Edit Storage
                 </h2>
             </div>
             <div class="panel panel-default">
-                <!-- <h3 class="panel-title">
-                   ADMIN
-                    </h3> -->
                 <div class="rtn-inventory">
                     <a id="logout" class="no-style-link" href='#/admin-inventory'> <button type="button" class="btn btn-primary top-panel-btns"><span class= "glyphicon glyphicon-arrow-left"></span> ADMIN  </button></a>
                 </div>
@@ -17,33 +16,34 @@
             </div>
 
             <div class="panel-body">
-                <!-- The form to add cars information -->
-                <form name="addForm" novalidate>
+                <!-- The form to add cars information-->
+               <form name="addForm" novalidate>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="save/update"></label>
-                            <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-disabled="loadingService" ng-click="createService();" >Save / Update</button>
+                            <button type="submit" class="btn btn-info btn-block update-btn" style="width: 200px" ng-disabled="loadingStorage" ng-click="createStorage();" >Save / Update</button>
                         </div>
+                      
                     </div>
 
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="form-group">
-                            <label for="description">Service Introduction / Description</label>
-                            <textarea type="text" style="min-height: 150px;" class="form-control" placeholder="Description" ng-model="service.description"></textarea>
+                            <label for="description">Storage Introduction / Description</label>
+                            <textarea type="text" style="min-height: 150px;" class="form-control" placeholder="Description" ng-model="storage.description"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="description">List of Services (Example input: Maintenance and Diagnostic, Restoration, Performance Tuning)</label>
-                            <textarea type="text" class="form-control" placeholder="Example: Regular Maintenance and Diagnostic, Restoration, Performance Tuning" ng-model="service.serviceList"></textarea>
+                            <label for="description">List of Services (Example input: Climate controlled storage, security)</label>
+                            <textarea type="text" class="form-control" placeholder="Example: Climate controlled storage, security" ng-model="storage.serviceList"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="special">Current Special (leave blank if there is no current special)</label>
-                            <textarea type="text" class="form-control" placeholder="" ng-model="service.special"></textarea>
+                            <textarea type="text" class="form-control" placeholder="" ng-model="storage.special"></textarea>
                         </div>
                     </div>
 
                     <div class="col-md-12 col-lg-12 col-sm-12" style="margin-bottom: 18px">
                         <div class="form-group" style="border-bottom: none;">
-                            <label for="picture">Service Photos</label>
+                            <label for="picture">Storage Photos</label>
                             <div class="text-center">
                                 <div class="ul-mult-btn">
                                     <button ng-if="true" type="button" class="btn btn-primary" ng-click="uploadMultipleAndUp(data)">
@@ -54,8 +54,8 @@
                                     </button>
                                 </div>
                                 <!-- Show the thumbanil of more pictures -->
-                                <div ui-sortable="sortableOptions" style="display: flex; flex-wrap: wrap" ng-model="service.servicePictures">
-                                    <div style="margin-top:10px; margin-right:10px;" ng-repeat="picture in service.servicePictures">
+                                <div ui-sortable="sortableOptions" style="display: flex; flex-wrap: wrap" ng-model="storage.storagePictures">
+                                    <div style="margin-top:10px; margin-right:10px;" ng-repeat="picture in storage.storagePictures">
                                         <div style="height: 175px;">
                                             <div>
                                                 <div style="height: 117px; overflow:hidden">
@@ -69,10 +69,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-if="service.servicePictures" class="form-group">
-                          <div ng-repeat="desc in service.servicePictures">
+                        <div ng-if="storage.storagePictures" class="form-group">
+                          <div ng-repeat="desc in storage.storagePictures">
                             <label for="description">Photo Description {{$index + 1}}</label>
-                            <textarea type="text" class="form-control" ng-model="service.pictureDesc[$index]"></textarea>
+                            <textarea type="text" class="form-control" ng-model="storage.pictureDesc[$index]"></textarea>
                           </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-danger"  data-ng-click="removeMoreImage(picture.url, car)">REMOVE</button> -->
-                <button type="button" class="btn btn-danger" data-ng-click="removeMoreImage(service);">REMOVE</button>
+                <button type="button" class="btn btn-danger" data-ng-click="removeMoreImage(storage);">REMOVE</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
             </div>
         </div>

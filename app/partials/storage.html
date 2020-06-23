@@ -1,4 +1,60 @@
-<div class="contaie-fluid" style="text-align: center; background-color: #393939">
+<div class="contaier-fluid" style="text-align: center;" ng-init="getStorageData();">
+  <div class="row" style="margin-top:8px">
+      <div class="jumbotron jumbotron-fluid" style="background-image: url('./assets/img/storage/DSC_0609.JPG');">
+          <div class="container">
+              <h1 class="display-4" style="color: white ">Storage</h1>
+              <p class="lead"></p>
+          </div>
+      </div>
+      <!-- <img style="width:100%; max-width: 1500px" src="./assets/img/service/ferrari-engine.jpg" /> -->
+
+
+  </div>
+  <div class="row" style="padding-top:8px">
+    <div ng-include="'partials/templates/storage-caro.html'"></div>
+  </div>
+  <div class="row" style="font-family: 'Gotham', sans-serif; padding-left: 30px; padding-right: 30px; padding-top:30px; font-size:17px">
+      <div class="col-md-10 col-md-offset-1 col-sm-12" >
+          <p ng-show="storage.description == 'Storage details coming soon.' || !storage">
+            We have secure access, heated buildings with security cameras, alarm, and fire sprinklers.  Your car will be covered
+            if desired and put on a battery tender periodically and we also have the ability to offer a concierge service including
+            washing, detailing, and regular servicing at an extra cost. With our service technician on staff you are assured in
+            having us available when your car has a mechanical need. Rates start at $350 per month, please inquire on our availability.
+          </p>
+          <p ng-if="storage.description != 'Storage details coming soon.'">
+            {{storage.description}}
+          </p>
+          <h4 style="text-align:center; padding-top: 10px">FOR STORAGE INQUIRES PLEASE EMAIL:</h4>
+          <h3 style="text-align:center"><a href="mailto:shannon@authenticmotorcars.com?subject=Storage Inquiry" style="color:#00b5dd">shannon@authenticmotorcars.com</a> or call <span style="color:#f68621">425-748-8059</span></h3>
+          <hr>
+      </div>
+  </div>
+  <div ng-show="serviceList.length > 0" class="row" style="font-family: Gotham">
+      <div class="col-md-6 col-md-offset-3 col-sm-12">
+          <div class="panel panel-default" style="margin:auto">
+              <div class="panel-heading">
+                  <h3 class="panel-title">SERVICES</h3>
+              </div>
+                  <ul class="list-group">
+                      <li class="list-group-item" style="border: none; text-align:left" ng-repeat="item in serviceList"><span style="color:#f68621; padding-right: 2px" class="glyphicon glyphicon-certificate"></span>{{item}}</li>
+                  </ul>
+          </div>
+      </div>
+  </div>
+  <div ng-show="storage.special && storage.special != ''" class="row" style="font-family: Gotham; padding-top: 30px">
+      <div class="col-md-6 col-md-offset-3 col-sm-12">
+          <div class="panel panel-default" style="margin:auto">
+              <div class="panel-heading">
+                  <h3 class="panel-title">SPECIAL GOING ON NOW</h3>
+              </div>
+              <ul class="list-group">
+                  <li class="list-group-item" style="border: none; text-align:center"><span style="color:#00b5dd; padding-right: 5px" class="glyphicon glyphicon-certificate"></span>{{storage.special}}<span style="color:#00b5dd; padding-left: 5px" class="glyphicon glyphicon-certificate"></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- <div class="contaie-fluid" style="text-align: center; background-color: #393939">
   <div class="col-md-12" style="background-color: #393939">
     <img style="width:100%; max-width: 1500px" src="./assets/img/storage/storage4.jpg" />
     <div class="row">
@@ -27,4 +83,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

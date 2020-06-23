@@ -1,5 +1,5 @@
 var serviceCtrl = angular.module('serviceCtrl', []);
-galleryCtrl.controller('serviceController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "ServiceService", "toastr", "$q", "$document", "$sce",
+serviceCtrl.controller('serviceController', ["$scope", "$window", "$http", "$location", "$routeParams", "filepickerService", "AuthService", "ServiceService", "toastr", "$q", "$document", "$sce",
     function($scope, $window, $http, $location, $routeParams, filepickerService, AuthService, ServiceService, toastr, $q, $document, $sce) {
         $scope.services = [];
         $scope.service = {};
