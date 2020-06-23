@@ -796,10 +796,6 @@ font-size: 24px;
 }
 
 
-
-
-
-
 /* PictureGrid */
 .pic-grid-el img{
   max-width: 100%;
@@ -812,7 +808,22 @@ font-size: 24px;
   flex-wrap: wrap;
   padding: 0 4px;
 }
+.pic-grid-container{
+  flex-flow: column;
+}
 
+.hover10 img {
+  cursor: pointer;
+
+	-webkit-filter: grayscale(0) blur(0);
+	filter: grayscale(0) blur(0);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover10 img:hover {
+	-webkit-filter: grayscale(100%) blur(1px);
+	filter: grayscale(100%) blur(1px);
+}
 /* Create four equal columns that sits next to each other */
 .column-pic-grid {
   flex: 25%;
@@ -826,6 +837,26 @@ font-size: 24px;
   padding: 0 4px;
 }
 
+.column-pic-grid-2 p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate( -50%, -50% );
+  text-align: center;
+  color: white;
+  opacity: 0;
+  font-family: 'Gotham' sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding:8px
+}
+
+.column-pic-grid-2:hover p {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .column-pic-grid img {
   margin-top: 8px;
   vertical-align: middle;
@@ -837,6 +868,17 @@ font-size: 24px;
   vertical-align: middle;
   width: 100%;
 }
+
+/* .column-pic-grid img:hover {
+  margin-top: 8px;
+  width: calc(100% - 2px);
+}
+
+.column-pic-grid-2 img:hover {
+  margin-top: 8px;
+
+  width: calc(100% -2 px);
+} */
 
 /* Responsive layout - makes a two column-layout instead of four columns */
 /* @media screen and (max-width: 800px) {
@@ -1040,7 +1082,7 @@ font-size: 24px;
 }
 
 @media (max-width: 991px) {
-  .amc-banner {
+  .amc-banner, .row-pic-grid, .bottom-bars {
     display: none !important;
   }
 }

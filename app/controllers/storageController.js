@@ -6,13 +6,13 @@ storageCtrl.controller('storageController', ["$scope", "$window", "$http", "$loc
         $scope.serviceList = null;
         $scope.loadingStorage = false;
         var storageDefaultPics = [{
-                url: "./assets/img/storage/IMG_5794.jpg"
+                url: "./assets/img/storage/storage3.jpg"
             },
             {
-                url: "./assets/img/storage/IMG_5889.JPG"
+                url: "./assets/img/storage/DSC_0599.JPG"
             },
             {
-                url: "./assets/img/storage/IMG_8897.JPG"
+                url: "./assets/img/storage/DSC_0608.JPG"
             },
         ];
         console.log("Storage Controller Connected");
@@ -68,7 +68,7 @@ storageCtrl.controller('storageController', ["$scope", "$window", "$http", "$loc
                     }
                 })
                 .catch(function(data) {
-                    console.log('Error getting storage data: ' + data);
+                    console.log('Error getting storage data: ', data);
                 }).finally($scope.loadingStorage = false);
         }
 
@@ -175,7 +175,7 @@ storageCtrl.controller('storageController', ["$scope", "$window", "$http", "$loc
         };
 
         $scope.deleteStorage = function(data) {
-            StorageService.deleteService(cUser, $scope.storage).then(function(data) {}).catch(function(data) {
+            StorageService.deleteStorage(cUser, $scope.storage).then(function(data) {}).catch(function(data) {
                 console.log('Error: ' + data);
             }).finally(function() {
                 //Clean the form to allow the user to create new cars

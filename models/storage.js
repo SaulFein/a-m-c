@@ -12,7 +12,7 @@ module.exports = (mongoose, models) => {
   });
 
   // Sets the createdAt parameter equal to the current time
-  ServiceSchema.pre('save', function(next){
+  StorageSchema.pre('save', function(next){
       var now = new Date();
       if (!this.createdAt) {
           this.createdAt = now;

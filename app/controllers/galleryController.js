@@ -1,5 +1,5 @@
 var galleryCtrl = angular.module('galleryCtrl', []);
-galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarService", function($scope, $http, $window, CarService){
+galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarService", "$location", "$anchorScroll", function($scope, $http, $window, CarService, $location, $anchorScroll){
     $scope.cars = [];
 
     //Retrieve all the cars to show the gallery
@@ -26,7 +26,15 @@ galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarS
         }
       }
     }
+    $scope.gotoInventory = function() {
+      $location.path("/gallery")
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      // $location.hash('home-inventory');
 
+      // // call $anchorScroll()
+      // $anchorScroll();
+    };
     var retrieveCarsFromApi = function() {
       CarService.getCarsPublic()
       .then(function(data){

@@ -4,10 +4,10 @@
     <!-- container-fluid is the same as container but spans a wider viewport,
     it still has padding though so you need to remove this either by adding
     another class with no padding or inline as I did below -->
-    <div class="container-fluid" style="padding: 0px;">
+    <div class="container-fluid" style="padding: 0px; overflow:hidden">
 
 
-        <div class="row" style="padding: 0px 20px 10px">
+        <div class="row pic-grid-container hover10" ng-click="gotoInventory();" style="padding: 0px 20px 10px">
             <!-- You originally has it set up for two columns, remove the second
     column as it is unneeded and set the first to always span all 12 columns
     even when at its smallest (xs). Set the overflow to hidden so no matter
@@ -26,7 +26,10 @@
                   <img src="../assets/img/collage_imgs/DSC_0108-2.jpg">
                 </div>
                 <div class="column-pic-grid-2">
-                    <img src="./assets/img/amc-home-img.jpg">
+                    <img src="./assets/img/amc-home-img.jpg">    
+                         <p>CLICK TO VIEW INVENTORY</p>
+                    </img>
+               
                     <!-- <img src="../assets/img/collage_imgs/DSC_0108-2.jpg"> -->
                 </div>
                 <div class="column-pic-grid">
@@ -113,8 +116,8 @@
                 </div>
             </div> -->
         </div>
-        <div class="row" style="height:20px; background-color: #f58521"></div>
-        <div class="row" style="height:20px; background-color:#00b4dd"></div>
+        <div class="row bottom-bars" style="height:20px; background-color: #f58521; margin-bottom:4px;"></div>
+        <div class="row bottom-bars" style="height:20px; background-color:#00b4dd"></div>
     </div>
 
 </div>
@@ -125,7 +128,7 @@
     </div>
     <div class="car-container col-md-12 col-ms-12 col-mm-12 col-sm-12">
         <div ng-repeat="car in cars | orderBy:['make','model']">
-            <div class="col-md-4 col-ms-6 col-mm-6 col-sm-6 col-xs-12 car-tiles">
+            <div id="home-inventory" class="col-md-4 col-ms-6 col-mm-6 col-sm-6 col-xs-12 car-tiles">
                 <a ng-cloak show-on-load-bg ng-href="/#/car/{{car._id}}" class="bg-img-style">
                     <span class="sold-car" ng-if="car.sold">
                       <div class="sold-text" style="font-family: 'Gotham', sans-serif">SOLD</div>
