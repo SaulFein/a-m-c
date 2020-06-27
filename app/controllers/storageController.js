@@ -74,8 +74,7 @@ storageCtrl.controller('storageController', ["$scope", "$window", "$http", "$loc
 
         $scope.updateStorage = function() {
             StorageService.updateStorage(cUser, $scope.storage).then(function(data) {
-                toastr.success("storage page updated")
-                // $scope.getCar();
+                toastr.success("storage page updated");
             }).then(function() {
                 $scope.retrieveStorageDataFromApi();
             }).catch(function(data) {

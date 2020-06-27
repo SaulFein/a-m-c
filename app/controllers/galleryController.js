@@ -1,7 +1,8 @@
 var galleryCtrl = angular.module('galleryCtrl', []);
-galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarService", "$location", "$anchorScroll", function($scope, $http, $window, CarService, $location, $anchorScroll){
+galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarService", "$location", "$anchorScroll", "HomeService", 
+            function($scope, $http, $window, CarService, $location, $anchorScroll, HomeService){
     $scope.cars = [];
-
+    $scope.showHomeDefaultPics = false;
     //Retrieve all the cars to show the gallery
     $scope.getCars = function() {
       if($window.localStorage.carsDate === void 0 ||
@@ -62,5 +63,27 @@ galleryCtrl.controller('galleryController', ["$scope", "$http", "$window", "CarS
       }
       $scope.sold = sold;
       return cars;
+    }
+
+    $scope.retrieveHomeDataFromApi = function() {
+      $scope.loadingHome = true;
+      HomeService.getHomePublic()
+          .then(function(data) {
+              $scope.homes = data.data;
+              $scope.home = data.data[0];
+              if($scope.home){
+                if (!$scope.home.picture || !$scope.home.morePictures) {
+                    $scope.showHomeDefaultPics = true;
+                } else {
+                    $scope.showHomeDefaultPics = false;
+                }
+                $scope.loadingHome = false;
+              } else {
+                $scope.showHomeDefaultPics = true;
+              }
+          })
+          .catch(function(data) {
+              console.log('Error getting home data: ', data);
+          }).finally($scope.loadingHome = false);
     }
 }]);
