@@ -8,7 +8,7 @@ module.exports = (router, models) => {
   let Car = models.Car;
   let Service = models.Service;
   let Storage = models.Storage;
-
+  let Home = models.Home;
 
   let basicHTTP = require(__dirname + '/../lib/basicHTTP.js');
   let jsonParser = require('body-parser').json();
@@ -70,7 +70,7 @@ module.exports = (router, models) => {
 
    router.route('/service/:service')
     .get((req, res) => {
-      Service.findById(req.params.car, function(err, service){
+      Service.findById(req.params.service, function(err, service){
           if(err) res.send(err);
           //If no errors, send it back to the client
           res.json(service);
@@ -91,11 +91,32 @@ module.exports = (router, models) => {
 
 router.route('/storage/:storage')
  .get((req, res) => {
-   Storage.findById(req.params.car, function(err, storage){
+   Storage.findById(req.params.storage, function(err, storage){
        if(err) res.send(err);
        //If no errors, send it back to the client
        res.json(storage);
    });
+});
+
+router.route('/home')
+.get((req, res) => {
+  //Query the DB and if no errors, send all the homes
+  var query = Home.find({});
+  query.exec(function(err, homes){
+    console.log("this is home " + homes);
+      if(err)  res.send(err);
+      //If no errors, send them back to the client
+      res.json(homes);
+  });
+})
+
+router.route('/home/:home')
+.get((req, res) => {
+ Home.findById(req.params.home, function(err, home){
+     if(err) res.send(err);
+     //If no errors, send it back to the client
+     res.json(home);
+ });
 });
 
    router.route('/contact')

@@ -24,6 +24,7 @@ require(__dirname + '/car.js')(mongoose, models);
 require(__dirname + '/service.js')(mongoose, models);
 require(__dirname + '/user.js')(mongoose, models);
 require(__dirname + '/storage.js')(mongoose, models);
+require(__dirname + '/home.js')(mongoose, models);
 
 
 module.exports = models;
