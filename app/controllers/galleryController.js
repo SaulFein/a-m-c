@@ -20,30 +20,25 @@ galleryCtrl.controller('galleryController', [
     $scope.showHomeDefaultPics = false;
     //Retrieve all the cars to show the gallery
     $scope.getCars = function () {
-      if (
-        $window.localStorage.carsDate === void 0 ||
-        $window.localStorage.carsDate === null ||
-        $window.localStorage.cars === void 0 ||
-        $window.localStorage.cars === null
-      ) {
-        retrieveCarsFromApi();
-      } else if (
-        $window.localStorage.carsDate !== void 0 &&
-        $window.localStorage.carsDate !== null
-      ) {
-        var now = new Date();
-        var carsDate = new Date($window.localStorage.carsDate);
-        var dif = now - carsDate;
-        var diffMins = Math.round(((dif % 86400000) % 3600000) / 60000);
-        if (diffMins > 8) {
-          retrieveCarsFromApi();
-        } else {
-          $scope.cars = JSON.parse($window.localStorage.cars);
-          if ($window.localStorage.sold) {
-            $scope.sold = JSON.parse($window.localStorage.sold);
-          }
-        }
-      }
+      // if (!$window.localStorage.carsDate || !$window.localStorage.cars) {
+      retrieveCarsFromApi();
+      //   } else {
+      //     let diffMins = null;
+      //     if ($window.localStorage.carsDate) {
+      //       let now = new Date();
+      //       let carsDate = new Date($window.localStorage.carsDate);
+      //       let dif = now - carsDate;
+      //       diffMins = Math.round(((dif % 86400000) % 3600000) / 60000);
+      //     }
+      //     if (diffMins && diffMins > 8) {
+      //       retrieveCarsFromApi();
+      //     } else {
+      //       $scope.cars = JSON.parse($window.localStorage.cars);
+      //       if ($window.localStorage.sold) {
+      //         $scope.sold = JSON.parse($window.localStorage.sold);
+      //       }
+      //     }
+      //   }
     };
     $scope.gotoInventory = function () {
       $location.path('/gallery');
