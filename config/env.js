@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 exports.PORT = process.env.PORT || 3000;
 
@@ -7,6 +7,7 @@ exports.PORT = process.env.PORT || 3000;
 
 //production
 exports.MONGOLAB_URI = process.env.MONGOLAB_URI;
+exports.MONGOLAB_URI2 = process.env.MONGOLAB_URI2;
 
 exports.FILESTACK = process.env.FILESTACK;
 exports.EUSERNAME = process.env.EUSERNAME;
