@@ -13,7 +13,7 @@ var options = {
 mongoose.set('useCreateIndex', true);
 
 //local
-//mongoose.connect("mongodb://localhost/db", options);
+// mongoose.connect("mongodb://localhost/db", options);
 
 //production
 mongoose.connect(process.env.MONGOLAB_URI, options);
