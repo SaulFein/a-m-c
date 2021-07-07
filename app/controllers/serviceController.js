@@ -18,11 +18,7 @@ serviceCtrl.controller('serviceController', ["$scope", "$window", "$http", "$loc
 
         $scope.pictureDesc=["Test1", "Test2", "Test3"];
 
-        var defaultServicDesc = "Authentic Motorcars is pleased to have Randy Johnson on our team as our lead technician. Randy has" +
-            "experience working with a wide variety of makes that include Alfa Romeo, BMW, Fiat, Ferrari, Maserati, Porsche, Lancia, Volkswagen, and Lotus." +
-            "We like to involve our clients with the service of their vehicles and provide detailed explanations of repairs needed and alternative parts and " +
-            "performance options that are available to ensure longevity. Our mission is to help you better understand the mechanicals of your collector vehicle" +
-            "so you can plan future maintenance campaigns and restoration phases if needed.";
+        var defaultServicDesc = "More info coming soon.";
 
         var cUser = $window.sessionStorage.user;
 
