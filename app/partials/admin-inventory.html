@@ -61,7 +61,7 @@
                                 style="font-family: 'Gotham', sans-serif">SOLD</div>
                         </span>
                         <div class="gallery-car-banner"
-                            ng-if="car.banner && car.banner !==''"><span
+                            ng-if="car.banner && car.banner !=='' && !car.sold"><span
                                 class="gallery-car-banner-txt">{{car.banner}}</span>
                         </div>
                         <img src='/assets/favicon.ico'
@@ -96,7 +96,7 @@
                                 style="font-family: 'Gotham', sans-serif">SOLD</div>
                         </span>
                         <div class="gallery-car-banner"
-                            ng-if="car.banner && car.banner !==''"><span
+                            ng-if="car.banner && car.banner !=='' && !car.sold"><span
                                 class="gallery-car-banner-txt">{{car.banner}}</span>
                         </div>
                         <img src='/assets/favicon.ico'
