@@ -1,48 +1,95 @@
 <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12">
-  <div id="preview-carousel" class="carousel slide car-detail-carousel" data-ride="carousel" data-interval="false">
+  <div id="preview-carousel"
+    class="carousel slide car-detail-carousel"
+    data-ride="carousel"
+    data-interval="false">
     <!-- Slides -->
     <div class="carousel-inner carousel-container">
-      <div class="item" ng-repeat="picture in slides" ng-class="{active:!$index}">
-        <a class="hidden-xs bg-img-style-caro" data-toggle="modal" target="_self" data-target="#carviewmodal" style="background-image: url('{{picture.image}}')">
-          <img src='/assets/favicon.ico' alt='Icons' class='sprite-caro'>
+      <div class="item"
+        ng-repeat="picture in slides"
+        ng-class="{active:!$index}">
+        <a class="hidden-xs bg-img-style-caro"
+          data-toggle="modal"
+          target="_self"
+          data-target="#carviewmodal"
+          style="background-image: url('{{picture.image}}')">
+          <div class="main-car-banner"
+            ng-if="$index === 0 && car.banner && car.banner !== ''"><span
+              class="main-car-banner-txt">{{car.banner}}</span></div>
+          <img src='/assets/favicon.ico'
+            alt='Icons'
+            class='sprite-caro'>
         </a>
-        <a class="visible-xs bg-img-style-caro" style="background-image: url('{{picture.image}}')"> <!--shows on mobile, add visible-sm to show on tablet-->
-          <img src='/assets/favicon.ico' alt='Icons' class='sprite-caro'>
+        <a class="visible-xs bg-img-style-caro"
+          style="background-image: url('{{picture.image}}')">
+          <!--shows on mobile, add visible-sm to show on tablet-->
+          <div class="main-car-banner"
+            ng-if="$index === 0 && car.banner && car.banner !== ''"><span
+              class="main-car-banner-txt">{{car.banner}}</span></div>
+          <img src='/assets/favicon.ico'
+            alt='Icons'
+            class='sprite-caro'>
         </a>
       </div>
     </div>
     <!-- end Slides -->
 
     <!-- Controls -->
-    <a class="left carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#preview-carousel, #modal-carousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <a class="left carousel-control"
+      ng-class="{'hide': slides.length == 0}"
+      role="button"
+      data-target="#preview-carousel, #modal-carousel"
+      data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"
+        aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="right carousel-control" ng-class="{'hide': slides.length == 0}" role="button" data-target="#preview-carousel, #modal-carousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <a class="right carousel-control"
+      ng-class="{'hide': slides.length == 0}"
+      role="button"
+      data-target="#preview-carousel, #modal-carousel"
+      data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"
+        aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
     <!-- end Controls -->
   </div>
 
   <!-- Only if there are other pictures -->
-    <div class="col-md-12 col-sm-12 col-xs-12 thumb-group" ng-if="car.morePictures">
-        <div ng-show="carPix" ng-repeat="picture in slides" ng-class="{active:!$index}" data-target="#preview-carousel " data-slide-to="{{ $index }}">
-          <div data-target="#modal-carousel" data-slide-to="{{ $index }}">
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4" style="padding:2px">
-              <a show-on-load-thumb class="thumbnail bg-img-style-thumb-caro" ng-click="scrollToTop()">
-                <img show-on-load src='/assets/favicon.ico' alt='Icons' class='sprite-caro-thumb'>
-              </a>
-            </div>
-          </div>
+  <div class="col-md-12 col-sm-12 col-xs-12 thumb-group"
+    ng-if="car.morePictures">
+    <div ng-show="carPix"
+      ng-repeat="picture in slides"
+      ng-class="{active:!$index}"
+      data-target="#preview-carousel "
+      data-slide-to="{{ $index }}">
+      <div data-target="#modal-carousel"
+        data-slide-to="{{ $index }}">
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4"
+          style="padding:2px">
+          <a show-on-load-thumb
+            class="thumbnail bg-img-style-thumb-caro"
+            ng-click="scrollToTop()">
+            <img show-on-load
+              src='/assets/favicon.ico'
+              alt='Icons'
+              class='sprite-caro-thumb'>
+          </a>
         </div>
+      </div>
     </div>
-    <div ng-if="car.videoDisplay !== 'N/A' && car.videoDisplay !== null && car.videoDisplay !== undefined && car.videoDisplay !== ''" class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-      <div class="videoWrapper" ng-bind-html="car.videoDisplay"></div>
-    </div>
-    <div class="col-md-12 col-sm-12 col-xs-12 description-section">
-  <!-- add ngSanitize to app and then you can use ng-bind-html -->
-      <h3>Description</h3>
-      <div ng-bind-html="car.description"></div>
-    </div>
+  </div>
+  <div
+    ng-if="car.videoDisplay !== 'N/A' && car.videoDisplay !== null && car.videoDisplay !== undefined && car.videoDisplay !== ''"
+    class="col-md-12 col-sm-12 col-xs-12"
+    style="padding: 0px;">
+    <div class="videoWrapper"
+      ng-bind-html="car.videoDisplay"></div>
+  </div>
+  <div class="col-md-12 col-sm-12 col-xs-12 description-section">
+    <!-- add ngSanitize to app and then you can use ng-bind-html -->
+    <h3>Description</h3>
+    <div ng-bind-html="car.description"></div>
+  </div>
 </div>

@@ -694,6 +694,44 @@ font-size: 24px;
   font-size: 20px;
 }
 
+.main-car-banner {
+
+  background-color: white;
+    width: 331px;
+    height: 68px;
+    position: relative;
+    top: 43px;
+    left: -72px;
+    transform: rotate(-39deg);
+}
+.main-car-banner-txt{
+    color: #777;
+    font-size: 32px;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    margin-top:10px;
+}
+
+.gallery-car-banner {
+    background-color: white;
+    width: 325px;
+    height: 44px;
+    position: relative;
+    top: 30px;
+    left: -95px;
+    transform: rotate(-39deg);
+}
+.gallery-car-banner-txt{
+    color: #777;
+    font-size: 23px;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: -4px;
+}
+
 .contact-info a {
   text-decoration: none;
   color: #777;

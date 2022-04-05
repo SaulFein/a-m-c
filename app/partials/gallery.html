@@ -1,22 +1,43 @@
 <!-- view the gallery of all the cars in the db -->
 <!-- <div class="jumbotron"><h1>Hello</h1></div> -->
 
-<div ng-cloak class="row gallery-container container" style="margin:auto" ng-init="getCars();">
+<div ng-cloak
+    class="row gallery-container container"
+    style="margin:auto"
+    ng-init="getCars();">
 
     <div class="inventory-title">
     </div>
     <div class="car-container col-md-12 col-ms-12 col-mm-12 col-sm-12">
         <div ng-repeat="car in cars | orderBy:['make','model']">
             <div class="col-md-4 col-ms-6 col-mm-6 col-sm-6 col-xs-12 car-tiles">
-                <a ng-cloak show-on-load-bg ng-href="/#/car/{{car._id}}" class="bg-img-style">
-                    <span class="sold-car" ng-if="car.sold">
-                      <div class="sold-text" style="font-family: 'Gotham', sans-serif">SOLD</div>
+                <a ng-cloak
+                    show-on-load-bg
+                    ng-href="/#/car/{{car._id}}"
+                    class="bg-img-style">
+                    <span class="sold-car"
+                        ng-if="car.sold">
+                        <div class="sold-text"
+                            style="font-family: 'Gotham', sans-serif">SOLD</div>
                     </span>
-                    <img src='/assets/favicon.ico' alt='Icons' class='sprite'>
+                    <div class="gallery-car-banner"
+                        ng-if="car.banner && car.banner !==''"><span
+                            class="gallery-car-banner-txt">{{car.banner}}</span>
+                    </div>
+                    <img src='/assets/favicon.ico'
+                        alt='Icons'
+                        class='sprite'>
                     <div class="inv-pics">
                         <!-- <img style="height: 100%" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', h:225} }}" /> -->
-                        <span ng-hide="car.sold" id="car-price"><p>{{car.price}}</p></span>
-                        <span ng-show="car.sold" style="opacity: 0.5" id="car-price"><p>{{car.price}}</p></span>
+                        <span ng-hide="car.sold"
+                            id="car-price">
+                            <p>{{car.price}}</p>
+                        </span>
+                        <span ng-show="car.sold"
+                            style="opacity: 0.5"
+                            id="car-price">
+                            <p>{{car.price}}</p>
+                        </span>
 
                         <div class="car-text">
                             <p class="yr-mk-mdl">{{car.year}} {{car.make}} {{car.model}}</p>
@@ -33,8 +54,8 @@
                     </span>
                     <img src='/assets/favicon.ico' alt='Icons' class='sprite'>
                     <div class="inv-pics"> -->
-                        <!-- <img style="height: 100%" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', h:225} }}" /> -->
-                        <!-- <span ng-hide="car.sold" id="car-price"><p>{{car.price}}</p></span>
+        <!-- <img style="height: 100%" ng-src="{{car.picture.url | fpConvert: {filter:'sharpen', h:225} }}" /> -->
+        <!-- <span ng-hide="car.sold" id="car-price"><p>{{car.price}}</p></span>
                         <span ng-show="car.sold" style="opacity: 0.5" id="car-price"><p>{{car.price}}</p></span>
 
                         <div class="car-text">
