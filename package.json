@@ -15,7 +15,7 @@
     "gulp-bower": "0.0.15",
     "gulp-ng-config": "^1.5.1",
     "gulp-util": "3.0.7",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.9.15",
     "morgan": "1.9.1",
     "nodemailer": "4.0.1",
