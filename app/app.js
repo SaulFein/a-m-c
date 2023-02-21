@@ -102,10 +102,10 @@ app
           templateUrl: "partials/contact.html",
           // controller: 'galleryController'
         })
-        .when("/service", {
-          templateUrl: "partials/service.html",
-          controller: "serviceController",
-        })
+        // .when("/service", {
+        //   templateUrl: "partials/service.html",
+        //   controller: "serviceController",
+        // })
         .when("/storage", {
           templateUrl: "partials/storage.html",
           controller: "storageController",
