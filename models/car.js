@@ -22,6 +22,7 @@ module.exports = (mongoose, models) => {
     stockNumber: { type: String, default: 'N/A' },
     carfaxFile: mongoose.Schema.Types.Mixed,
     video: { type: String, default: 'N/A' },
+    video2: { type: String, default: 'N/A' },
     banner: { type: String, default: '' },
   });
 

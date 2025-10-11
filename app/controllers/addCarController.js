@@ -40,6 +40,18 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
       $scope.videoPreview = null;
     }
 
+    $scope.showPreview2 = function() {
+      if($scope.car.video2Display){
+        $scope.videoPreview2 = $scope.car.video2Display;
+      } else {
+        $scope.videoPreview2 = $sce.trustAsHtml($scope.car.video2);
+      }
+    }
+
+    $scope.hidePreview2 = function() {
+      $scope.videoPreview2 = null;
+    }
+
     var removeSold = function(cars) {
         var sold = [];
         var availableInventory = [];
@@ -203,6 +215,9 @@ addCtrl.controller('addCarController', ["$scope", "$window", "$http", "$location
           }
           if($scope.car.video !== 'N/A' && $scope.car.video !== void 0 && $scope.car.video !== null && $scope.car.video !== ""){
             $scope.car.videoDisplay = $sce.trustAsHtml($scope.car.video);
+          }
+          if($scope.car.video2 !== 'N/A' && $scope.car.video2 !== void 0 && $scope.car.video2 !== null && $scope.car.video2 !== ""){
+            $scope.car.video2Display = $sce.trustAsHtml($scope.car.video2);
           }
         }).catch(function(data) {
             console.log('Error: ' + data);

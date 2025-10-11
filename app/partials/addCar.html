@@ -175,6 +175,35 @@
                                 ng-bind-html="videoPreview"></div>
                         </div>
                     </div>
+                    <div class="col-md-12 col-lg-12 col-sm-12"
+                        style="margin-bottom: 10px">
+                        <label for="video2">Video 2</label>
+                        <div class="input-group">
+                            <input type="text"
+                                class="form-control"
+                                placeholder="Video 2"
+                                ng-model="car.video2"></input>
+                            <span ng-if="!videoPreview2"
+                                class="input-group-btn">
+                                <button class="btn btn-primary"
+                                    style="height: 44px;"
+                                    ng-click="showPreview2()"
+                                    type="button">Preview</button>
+                            </span>
+                            <span ng-if="videoPreview2"
+                                class="input-group-btn">
+                                <button class="btn btn-primary"
+                                    style="height: 44px;"
+                                    ng-click="hidePreview2()"
+                                    type="button">Hide Preview</button>
+                            </span>
+                        </div>
+                        <div ng-if="videoPreview2"
+                            style="padding: 0px; width: 100%; max-width: 800px; margin:auto">
+                            <div class="videoWrapper"
+                                ng-bind-html="videoPreview2"></div>
+                        </div>
+                    </div>
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="form-group">
                             <label for="highlights">Highlights</label>
