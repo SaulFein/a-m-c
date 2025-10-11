@@ -94,6 +94,9 @@ function($scope, $rootScope, $http, $routeParams, $window, filepickerService, Au
           if($scope.car.video !== 'N/A' && $scope.car.video !== void 0 && $scope.car.video !== null && $scope.car.video !== ""){
             $scope.car.videoDisplay = $sce.trustAsHtml($scope.car.video);
           }
+          if($scope.car.video2 !== 'N/A' && $scope.car.video2 !== void 0 && $scope.car.video2 !== null && $scope.car.video2 !== ""){
+            $scope.car.video2Display = $sce.trustAsHtml($scope.car.video2);
+          }
       })
       .catch(function(data) {
           console.log('Error: ' + data);

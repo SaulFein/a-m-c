@@ -87,6 +87,13 @@
     <div class="videoWrapper"
       ng-bind-html="car.videoDisplay"></div>
   </div>
+  <div
+    ng-if="car.video2Display !== 'N/A' && car.video2Display !== null && car.video2Display !== undefined && car.video2Display !== ''"
+    class="col-md-12 col-sm-12 col-xs-12"
+    style="padding: 0px; margin-top: 10px">
+    <div class="videoWrapper"
+      ng-bind-html="car.video2Display"></div>
+  </div>
   <div class="col-md-12 col-sm-12 col-xs-12 description-section">
     <!-- add ngSanitize to app and then you can use ng-bind-html -->
     <h3>Description</h3>
