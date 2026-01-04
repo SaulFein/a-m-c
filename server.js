@@ -13,6 +13,20 @@ let publicRouter = express.Router();
 let apiRouter = express.Router();
 let config = require('./config/env.js');
 
+if (process.env.NODE_ENV === 'production' || process.env.DYNO) {
+  app.enable('trust proxy');
+  app.use(function(req, res, next) {
+    var proto = (req.headers['x-forwarded-proto'] || '').split(',')[0].trim();
+    if (proto === 'http') {
+      return res.redirect(301, 'https://' + req.headers.host + req.originalUrl);
+    }
+    if (proto === 'https' || req.secure) {
+      res.setHeader('Strict-Transport-Security', 'max-age=15552000; includeSubDomains');
+    }
+    return next();
+  });
+}
+
 // Log with Morgan
 app.use(morgan('dev'));
 
