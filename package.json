@@ -2,6 +2,7 @@
   "name": "amc",
   "main": "server.js",
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "bower": "1.8.8",
@@ -20,6 +21,7 @@
     "morgan": "1.9.1",
     "nodemailer": "4.0.1",
     "nodemailer-smtp-transport": "2.7.4",
+    "react-hook-form": "^7.71.1",
     "sendmail": "1.1.1"
   },
   "engines": {
