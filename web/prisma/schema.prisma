@@ -1,0 +1,136 @@
+// Prisma schema for Authentic Motorcars
+// Maps to existing MongoDB collections
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// Auth.js Models (new tables for authentication)
+// ============================================
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ============================================
+// Existing Data Models (map to existing collections)
+// ============================================
+
+model Car {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  make          String
+  model         String
+  year          String
+  miles         String   @default("N/A")
+  color         String   @default("N/A")
+  interiorColor String   @default("N/A")
+  price         String   @default("Inquire")
+  vin           String   @default("N/A")
+  highlights    String   @default("N/A")
+  description   String   @default("N/A")
+  carfax        String   @default("N/A")
+  engine        String   @default("N/A")
+  transmission  String   @default("N/A")
+  picture       Json // Main picture (Filestack data)
+  morePictures  Json? // Additional pictures array
+  video         String   @default("N/A")
+  video2        String   @default("N/A")
+  banner        String   @default("")
+  sold          Boolean  @default(false)
+  stockNumber   String   @default("N/A")
+  carfaxFile    Json?
+  createdAt     DateTime @default(now())
+
+  @@map("cars")
+}
+
+model Service {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  description     String   @default("More info coming soon.")
+  servicePictures Json?
+  pictureDesc     String[]
+  special         String?
+  serviceList     String   @default("Service list coming soon.")
+  createdAt       DateTime @default(now())
+
+  @@map("services")
+}
+
+model Storage {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  description     String   @default("Storage details coming soon.")
+  storagePictures Json?
+  pictureDesc     String[]
+  special         String?
+  specialTitle    String   @default("SPECIAL GOING ON NOW")
+  mmcbsTitle      String   @default("OUTDOOR STORAGE AVAILABLE")
+  mmcbsBlurb      String?
+  serviceList     String   @default("Service list coming soon.")
+  createdAt       DateTime @default(now())
+
+  @@map("storages")
+}
+
+model Home {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  description  String   @default("N/A")
+  picture      Json?
+  morePictures Json?
+  video        String   @default("N/A")
+  createdAt    DateTime @default(now())
+
+  @@map("homes")
+}
