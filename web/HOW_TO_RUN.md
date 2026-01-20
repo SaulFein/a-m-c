@@ -95,8 +95,10 @@ To test locally against the production MongoDB (useful for debugging production 
 | `EMAIL_SERVER_USER` | No* | SMTP username |
 | `EMAIL_SERVER_PASSWORD` | No* | SMTP password (use Gmail app password) |
 | `EMAIL_FROM` | No* | From address for emails |
+| `NEXT_PUBLIC_FILESTACK_API_KEY` | No** | Filestack API key for image uploads |
 
 *Required for authentication to work. Without these, login will not function.
+**Required for image uploads in admin. Get your key from [Filestack](https://www.filestack.com/).
 
 ---
 

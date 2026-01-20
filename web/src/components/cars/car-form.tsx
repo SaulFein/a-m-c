@@ -41,6 +41,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { carFormSchema, type CarFormData, type CarFormInput } from "@/lib/validations/car";
 import { createCar, updateCar } from "@/actions/cars";
+import { FilestackUpload, type FilestackFile } from "@/components/filestack-upload";
 
 interface CarFormProps {
   car?: Car; // If provided, we're in edit mode
@@ -372,18 +373,76 @@ export function CarForm({ car }: CarFormProps) {
           />
         </div>
 
-        {/* Media - TODO: Add Filestack integration */}
+        {/* Media */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold">Media</h2>
           <Separator />
 
-          <div className="rounded-lg border border-dashed p-6 text-center">
-            <p className="text-muted-foreground">
-              Image upload will be integrated with Filestack.
-              <br />
-              For now, images can be managed through the existing system.
-            </p>
-          </div>
+          {/* Main Picture */}
+          <FormField
+            control={form.control}
+            name="picture"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Main Picture</FormLabel>
+                <FormControl>
+                  <FilestackUpload
+                    value={field.value as FilestackFile | null}
+                    onChange={field.onChange}
+                    label="Upload Main Picture"
+                  />
+                </FormControl>
+                <FormDescription>
+                  The primary image shown in listings
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Additional Pictures */}
+          <FormField
+            control={form.control}
+            name="morePictures"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Additional Pictures</FormLabel>
+                <FormControl>
+                  <FilestackUpload
+                    value={field.value as FilestackFile[] | null}
+                    onChange={field.onChange}
+                    multiple
+                    maxFiles={20}
+                    label="Upload Additional Pictures"
+                  />
+                </FormControl>
+                <FormDescription>
+                  Gallery images for the detail page
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Carfax File */}
+          <FormField
+            control={form.control}
+            name="carfaxFile"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Carfax Report (PDF)</FormLabel>
+                <FormControl>
+                  <FilestackUpload
+                    value={field.value as FilestackFile | null}
+                    onChange={field.onChange}
+                    accept={["application/pdf"]}
+                    label="Upload Carfax PDF"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <div className="grid gap-4 sm:grid-cols-2">
             <FormField
