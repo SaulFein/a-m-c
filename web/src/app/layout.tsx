@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { Providers } from "@/components/providers";
 import { Header, Footer } from "@/components/layout";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -94,30 +95,33 @@ export default function RootLayout({
           antialiased: Smooths font rendering
           font-sans: Uses our Inter font (defined via CSS variable)
         */}
-        <ThemeProvider>
-          <div className="relative flex min-h-screen flex-col">
-            {/*
-              min-h-screen: Minimum height of viewport
-              flex flex-col: Column layout (header, main, footer stack vertically)
-
-              This ensures the footer stays at the bottom even on short pages.
-            */}
-            <Header />
-            <main className="flex-1">
+        <Providers>
+          {/* SessionProvider for auth - makes useSession() available */}
+          <ThemeProvider>
+            <div className="relative flex min-h-screen flex-col">
               {/*
-                flex-1: Takes up all remaining space
-                This pushes the footer to the bottom
+                min-h-screen: Minimum height of viewport
+                flex flex-col: Column layout (header, main, footer stack vertically)
+
+                This ensures the footer stays at the bottom even on short pages.
               */}
-              {children}
-            </main>
-            <Footer />
-          </div>
-          <Toaster />
-          {/*
-            Toaster: Toast notification container
-            Renders toast popups for success/error messages
-          */}
-        </ThemeProvider>
+              <Header />
+              <main className="flex-1">
+                {/*
+                  flex-1: Takes up all remaining space
+                  This pushes the footer to the bottom
+                */}
+                {children}
+              </main>
+              <Footer />
+            </div>
+            <Toaster />
+            {/*
+              Toaster: Toast notification container
+              Renders toast popups for success/error messages
+            */}
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
