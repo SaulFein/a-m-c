@@ -39,9 +39,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
-import { carFormSchema, type CarFormData, type CarFormInput } from "@/lib/validations/car";
+import { carFormSchema, type CarFormInput, type FilestackFile } from "@/lib/validations/car";
 import { createCar, updateCar } from "@/actions/cars";
-import { FilestackUpload, type FilestackFile } from "@/components/filestack-upload";
+import { FilestackUpload } from "@/components/filestack-upload";
 
 interface CarFormProps {
   car?: Car; // If provided, we're in edit mode
@@ -61,6 +61,7 @@ export function CarForm({ car }: CarFormProps) {
     defaultValues: car
       ? {
           // Edit mode: populate from existing car
+          // Cast Json fields to expected types (safe because structure is validated at runtime)
           make: car.make,
           model: car.model,
           year: car.year,
@@ -75,12 +76,12 @@ export function CarForm({ car }: CarFormProps) {
           engine: car.engine,
           transmission: car.transmission,
           stockNumber: car.stockNumber,
-          picture: car.picture,
-          morePictures: car.morePictures,
+          picture: car.picture as FilestackFile | null,
+          morePictures: car.morePictures as FilestackFile[] | null,
           video: car.video,
           video2: car.video2,
           banner: car.banner,
-          carfaxFile: car.carfaxFile,
+          carfaxFile: car.carfaxFile as FilestackFile | null,
           sold: car.sold,
         }
       : {

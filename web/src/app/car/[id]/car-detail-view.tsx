@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Car } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -6,11 +5,23 @@ import {
   formatPrice,
   formatMiles,
   getCarTitle,
-  getFilestackUrl,
   isAvailable,
 } from "@/lib/utils";
 import { CarImageGallery } from "./car-image-gallery";
 import { CarInquiryForm } from "./car-inquiry-form";
+
+/**
+ * Validate that a URL is safe to use as an href
+ * Prevents XSS via javascript: or data: URLs
+ */
+function isSafeUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    return ["http:", "https:"].includes(parsed.protocol);
+  } catch {
+    return false;
+  }
+}
 
 /**
  * CarDetailView - Full car detail display
@@ -77,8 +88,8 @@ export function CarDetailView({ car, isAdmin = false }: CarDetailViewProps) {
               <SpecRow label="Stock #" value={car.stockNumber} />
             </dl>
 
-            {/* Carfax Link */}
-            {isAvailable(car.carfax) && car.carfax !== "N/A" && (
+            {/* Carfax Link - only render if URL is safe */}
+            {isAvailable(car.carfax) && isSafeUrl(car.carfax) && (
               <a
                 href={car.carfax}
                 target="_blank"
@@ -163,30 +174,47 @@ function SpecRow({ label, value }: { label: string; value: string }) {
 
 /**
  * VideoEmbed - Embed YouTube/Vimeo videos
- * Parses URL to get embed URL
+ * Parses URL to get embed URL safely
  */
 function VideoEmbed({ url, title }: { url: string; title: string }) {
   // Convert YouTube/Vimeo URLs to embed URLs
-  let embedUrl = url;
+  let embedUrl: string | null = null;
 
-  // YouTube
-  if (url.includes("youtube.com/watch")) {
-    const videoId = new URL(url).searchParams.get("v");
-    if (videoId) {
-      embedUrl = `https://www.youtube.com/embed/${videoId}`;
+  try {
+    // Validate URL is safe before processing
+    if (!isSafeUrl(url)) {
+      return null;
     }
-  } else if (url.includes("youtu.be/")) {
-    const videoId = url.split("youtu.be/")[1]?.split("?")[0];
-    if (videoId) {
-      embedUrl = `https://www.youtube.com/embed/${videoId}`;
+
+    // YouTube - youtube.com/watch?v=xxx
+    if (url.includes("youtube.com/watch")) {
+      const videoId = new URL(url).searchParams.get("v");
+      if (videoId) {
+        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      }
     }
+    // YouTube - youtu.be/xxx
+    else if (url.includes("youtu.be/")) {
+      const videoId = url.split("youtu.be/")[1]?.split("?")[0];
+      if (videoId) {
+        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      }
+    }
+    // Vimeo
+    else if (url.includes("vimeo.com/")) {
+      const videoId = url.split("vimeo.com/")[1]?.split("?")[0];
+      if (videoId) {
+        embedUrl = `https://player.vimeo.com/video/${videoId}`;
+      }
+    }
+  } catch {
+    // URL parsing failed - don't render video
+    return null;
   }
-  // Vimeo
-  else if (url.includes("vimeo.com/")) {
-    const videoId = url.split("vimeo.com/")[1]?.split("?")[0];
-    if (videoId) {
-      embedUrl = `https://player.vimeo.com/video/${videoId}`;
-    }
+
+  // If we couldn't parse an embed URL, don't render
+  if (!embedUrl) {
+    return null;
   }
 
   return (

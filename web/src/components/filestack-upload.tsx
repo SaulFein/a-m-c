@@ -6,17 +6,10 @@ import { Upload, X, Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { getFilestackUrl } from "@/lib/utils";
+import { type FilestackFile } from "@/lib/validations/car";
 
 // Initialize Filestack client
 const client = filestack.init(process.env.NEXT_PUBLIC_FILESTACK_API_KEY || "");
-
-export interface FilestackFile {
-  url: string;
-  filename: string;
-  mimetype: string;
-  size: number;
-  handle: string;
-}
 
 interface FilestackUploadProps {
   value: FilestackFile | FilestackFile[] | null;
@@ -99,7 +92,7 @@ export function FilestackUpload({
           {imageUrl ? (
             <Image
               src={imageUrl}
-              alt={file.filename}
+              alt={file.filename || "Uploaded image"}
               fill
               className="object-cover"
               sizes="200px"
@@ -134,12 +127,12 @@ export function FilestackUpload({
           const imageUrl = getFilestackUrl(file, { width: 150, height: 100, fit: "crop" });
 
           return (
-            <div key={file.handle || index} className="relative">
+            <div key={file.handle || file.id || index} className="relative">
               <div className="relative h-[100px] w-[150px] overflow-hidden rounded-lg border bg-muted">
                 {imageUrl ? (
                   <Image
                     src={imageUrl}
-                    alt={file.filename}
+                    alt={file.filename || `Image ${index + 1}`}
                     fill
                     className="object-cover"
                     sizes="150px"

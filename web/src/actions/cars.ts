@@ -101,8 +101,9 @@ export async function createCar(data: CarFormInput) {
 
   try {
     // 3. Create car in database
+    // Type assertion is safe because Zod validates the structure at runtime
     const car = await prisma.car.create({
-      data: validatedData.data,
+      data: validatedData.data as Parameters<typeof prisma.car.create>[0]["data"],
     });
 
     // 4. Revalidate cached pages so they show the new car
@@ -140,9 +141,10 @@ export async function updateCar(id: string, data: Partial<CarFormInput>) {
 
   try {
     // 3. Update car in database
+    // Type assertion is safe because Zod validates the structure at runtime
     const car = await prisma.car.update({
       where: { id },
-      data: validatedData.data,
+      data: validatedData.data as Parameters<typeof prisma.car.update>[0]["data"],
     });
 
     // 4. Revalidate all pages that might show this car
