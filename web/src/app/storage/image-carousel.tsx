@@ -28,7 +28,8 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
   };
 
   const currentImage = validImages[currentIndex];
-  const imageUrl = getFilestackUrl(currentImage, { width: 800, height: 500, fit: "crop" });
+  // Use original image for maximum quality (no resize transformation)
+  const imageUrl = getFilestackUrl(currentImage);
 
   return (
     <div className="relative overflow-hidden rounded-lg">
@@ -40,7 +41,8 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
             alt={`Image ${currentIndex + 1}`}
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 100vw, 800px"
+            sizes="100vw"
+            unoptimized
           />
         )}
       </div>

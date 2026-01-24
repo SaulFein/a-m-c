@@ -200,11 +200,26 @@ function VideoEmbed({ url, title }: { url: string; title: string }) {
         embedUrl = `https://www.youtube.com/embed/${videoId}`;
       }
     }
-    // Vimeo
-    else if (url.includes("vimeo.com/")) {
-      const videoId = url.split("vimeo.com/")[1]?.split("?")[0];
-      if (videoId) {
-        embedUrl = `https://player.vimeo.com/video/${videoId}`;
+    // Vimeo - multiple formats
+    else if (url.includes("vimeo.com")) {
+      // Already an embed URL - use directly
+      if (url.includes("player.vimeo.com/video/")) {
+        embedUrl = url.split("?")[0]; // Strip query params for security
+      }
+      // Standard vimeo.com/video/xxx or vimeo.com/xxx format
+      else {
+        // Extract video ID - handles vimeo.com/123, vimeo.com/video/123, vimeo.com/123/hash
+        const match = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+        if (match && match[1]) {
+          const videoId = match[1];
+          // Check for private video hash (vimeo.com/123/abcdef)
+          const hashMatch = url.match(/vimeo\.com\/\d+\/([a-zA-Z0-9]+)/);
+          if (hashMatch && hashMatch[1]) {
+            embedUrl = `https://player.vimeo.com/video/${videoId}?h=${hashMatch[1]}`;
+          } else {
+            embedUrl = `https://player.vimeo.com/video/${videoId}`;
+          }
+        }
       }
     }
   } catch {

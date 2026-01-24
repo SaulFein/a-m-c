@@ -59,6 +59,7 @@ export function getFilestackUrl(
     width?: number;
     height?: number;
     fit?: "clip" | "crop" | "scale" | "max";
+    quality?: number; // 1-100, default is to not transform
   }
 ): string | null {
   if (!file) return null;
@@ -80,16 +81,25 @@ export function getFilestackUrl(
 
   if (!handle) return null;
 
+  // If no options, return original image URL (best quality)
+  if (!options || (!options.width && !options.height && !options.quality)) {
+    return `https://cdn.filestackcontent.com/${handle}`;
+  }
+
   // Build transformation URL
   const transforms: string[] = [];
 
-  if (options?.width || options?.height) {
+  if (options.width || options.height) {
     const resize = [`resize=`];
     if (options.width) resize.push(`width:${options.width}`);
     if (options.height) resize.push(`height:${options.height}`);
     if (options.fit) resize.push(`fit:${options.fit}`);
     transforms.push(resize.join(",").replace("=,", "="));
   }
+
+  // Add quality setting (defaults to high quality when resizing)
+  const quality = options.quality ?? 90;
+  transforms.push(`output=quality:${quality}`);
 
   const transformPath = transforms.length > 0 ? transforms.join("/") + "/" : "";
 

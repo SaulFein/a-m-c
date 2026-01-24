@@ -36,7 +36,8 @@ export function CarImageGallery({ images, alt }: CarImageGalleryProps) {
   }
 
   const currentImage = images[currentIndex];
-  const imageUrl = getFilestackUrl(currentImage, { width: 1200, height: 900, fit: "clip" });
+  // Use original image for maximum quality (no resize transformation)
+  const imageUrl = getFilestackUrl(currentImage);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -57,7 +58,8 @@ export function CarImageGallery({ images, alt }: CarImageGalleryProps) {
             fill
             className="object-contain"
             priority={currentIndex === 0}
-            sizes="(max-width: 1024px) 100vw, 66vw"
+            sizes="100vw"
+            unoptimized
           />
         )}
 

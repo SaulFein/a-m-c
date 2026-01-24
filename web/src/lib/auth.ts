@@ -24,12 +24,15 @@ const providers: Provider[] = [];
 
 // Google OAuth - only add if credentials are configured
 if (process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET) {
+  console.log("✅ Google OAuth configured");
   providers.push(
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     })
   );
+} else {
+  console.log("❌ Google OAuth NOT configured - missing AUTH_GOOGLE_ID or AUTH_GOOGLE_SECRET");
 }
 
 // Email (Magic Link) - only add if email server is configured

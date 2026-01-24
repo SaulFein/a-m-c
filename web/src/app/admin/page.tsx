@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { Plus, Wrench, Warehouse } from "lucide-react";
 import { getAllCars } from "@/actions/cars";
 import { Button } from "@/components/ui/button";
 import { AdminCarTable } from "./admin-car-table";
@@ -13,6 +13,7 @@ export const metadata = {
  *
  * Shows all cars (both available and sold) in a table.
  * Allows adding new cars and links to edit existing ones.
+ * Also provides links to edit Service and Storage pages.
  */
 export default async function AdminPage() {
   const cars = await getAllCars();
@@ -22,6 +23,39 @@ export default async function AdminPage() {
 
   return (
     <div className="space-y-6">
+      {/* Page Management Links */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Link
+          href="/admin/service"
+          className="flex items-center gap-3 rounded-lg border p-4 transition-colors hover:bg-muted/50"
+        >
+          <div className="rounded-full bg-primary/10 p-2">
+            <Wrench className="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <h3 className="font-medium">Edit Service Page</h3>
+            <p className="text-sm text-muted-foreground">
+              Update service information and images
+            </p>
+          </div>
+        </Link>
+
+        <Link
+          href="/admin/storage"
+          className="flex items-center gap-3 rounded-lg border p-4 transition-colors hover:bg-muted/50"
+        >
+          <div className="rounded-full bg-primary/10 p-2">
+            <Warehouse className="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <h3 className="font-medium">Edit Storage Page</h3>
+            <p className="text-sm text-muted-foreground">
+              Update storage information and images
+            </p>
+          </div>
+        </Link>
+      </div>
+
       {/* Header with stats and add button */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>

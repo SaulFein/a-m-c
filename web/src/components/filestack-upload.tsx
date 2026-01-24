@@ -84,6 +84,7 @@ export function FilestackUpload({
     const file = value as FilestackFile | null;
     if (!file) return null;
 
+    // Keep thumbnails small for fast loading in admin
     const imageUrl = getFilestackUrl(file, { width: 200, height: 150, fit: "crop" });
 
     return (
@@ -124,6 +125,7 @@ export function FilestackUpload({
     return (
       <div className="flex flex-wrap gap-4">
         {files.map((file, index) => {
+          // Keep thumbnails small for fast loading in admin
           const imageUrl = getFilestackUrl(file, { width: 150, height: 100, fit: "crop" });
 
           return (
