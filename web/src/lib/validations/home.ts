@@ -6,13 +6,12 @@ import { filestackFileSchema, filestackFilesSchema } from "./car";
  *
  * Used for editing the Home page content.
  * This is a single-record entity (not a list like cars).
+ * Only includes picture fields - description and video are not displayed on the page.
  */
 
 export const homeFormSchema = z.object({
-  description: z.string().optional().nullable(),
   picture: filestackFileSchema.nullable(),
   morePictures: filestackFilesSchema.nullable(),
-  video: z.string().optional().nullable(),
 });
 
 export type HomeFormData = z.infer<typeof homeFormSchema>;

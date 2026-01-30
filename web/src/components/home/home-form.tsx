@@ -10,8 +10,6 @@ import { toast } from "sonner";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Form,
   FormControl,
@@ -39,16 +37,12 @@ export function HomeForm({ home }: HomeFormProps) {
     resolver: zodResolver(homeFormSchema),
     defaultValues: home
       ? {
-          description: home.description ?? "",
           picture: home.picture as FilestackFile | null,
           morePictures: home.morePictures as FilestackFile[] | null,
-          video: home.video ?? "",
         }
       : {
-          description: "",
           picture: null,
           morePictures: null,
-          video: "",
         },
   });
 
@@ -147,55 +141,6 @@ export function HomeForm({ home }: HomeFormProps) {
                 </FormControl>
                 <FormDescription>
                   Upload at least 8 images for the full collage effect. Images 1-4 appear in the corners, images 5-8 appear in the bottom row.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        {/* Optional Fields */}
-        <div className="space-y-4">
-          <h2 className="text-xl font-semibold">Additional Settings (Optional)</h2>
-          <Separator />
-
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description (Optional)</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Optional description for the home page..."
-                    className="min-h-[100px]"
-                    {...field}
-                    value={field.value ?? ""}
-                  />
-                </FormControl>
-                <FormDescription>
-                  Optional description (not currently displayed on the page)
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="video"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Video URL (Optional)</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="https://youtube.com/..."
-                    {...field}
-                    value={field.value ?? ""}
-                  />
-                </FormControl>
-                <FormDescription>
-                  Optional video URL (not currently displayed on the page)
                 </FormDescription>
                 <FormMessage />
               </FormItem>

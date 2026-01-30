@@ -47,10 +47,8 @@ export async function upsertHome(data: HomeFormInput) {
     // Type assertion is safe because Zod validates the structure at runtime
     if (existing) {
       const updateData = {
-        description: validatedData.data.description ?? "N/A",
         picture: validatedData.data.picture,
         morePictures: validatedData.data.morePictures,
-        video: validatedData.data.video ?? "N/A",
       };
       home = await prisma.home.update({
         where: { id: existing.id },
@@ -58,10 +56,8 @@ export async function upsertHome(data: HomeFormInput) {
       });
     } else {
       const createData = {
-        description: validatedData.data.description ?? "N/A",
         picture: validatedData.data.picture,
         morePictures: validatedData.data.morePictures,
-        video: validatedData.data.video ?? "N/A",
       };
       home = await prisma.home.create({
         data: createData as Parameters<typeof prisma.home.create>[0]["data"],
