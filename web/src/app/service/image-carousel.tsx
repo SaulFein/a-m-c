@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getFilestackUrl } from "@/lib/utils";
+import { ImageLightbox } from "@/components/image-lightbox";
 
 interface ImageCarouselProps {
   images: Array<{ url?: string; handle?: string }>;
@@ -12,6 +13,7 @@ interface ImageCarouselProps {
 
 export function ImageCarousel({ images }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [lightboxOpen, setLightboxOpen] = React.useState(false);
 
   const validImages = images.filter((img) => img.url || img.handle);
 
@@ -19,11 +21,13 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
     return null;
   }
 
-  const goToPrevious = () => {
+  const goToPrevious = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setCurrentIndex((prev) => (prev === 0 ? validImages.length - 1 : prev - 1));
   };
 
-  const goToNext = () => {
+  const goToNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setCurrentIndex((prev) => (prev === validImages.length - 1 ? 0 : prev + 1));
   };
 
@@ -32,55 +36,71 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
   const imageUrl = getFilestackUrl(currentImage);
 
   return (
-    <div className="relative overflow-hidden rounded-lg">
-      {/* Main Image */}
-      <div className="relative aspect-video w-full bg-muted">
-        {imageUrl && (
-          <Image
-            src={imageUrl}
-            alt={`Image ${currentIndex + 1}`}
-            fill
-            className="object-cover"
-            sizes="100vw"
-            unoptimized
-          />
+    <>
+      <div className="relative overflow-hidden rounded-lg">
+        {/* Main Image - Clickable to open lightbox */}
+        <button
+          className="relative aspect-video w-full bg-muted cursor-zoom-in"
+          onClick={() => setLightboxOpen(true)}
+        >
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              alt={`Image ${currentIndex + 1}`}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              unoptimized
+            />
+          )}
+        </button>
+
+        {/* Navigation Arrows */}
+        {validImages.length > 1 && (
+          <>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70"
+              onClick={goToPrevious}
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70"
+              onClick={goToNext}
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
+
+            {/* Dots Indicator */}
+            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+              {validImages.map((_, index) => (
+                <button
+                  key={index}
+                  className={`h-2 w-2 rounded-full transition-colors ${
+                    index === currentIndex ? "bg-white" : "bg-white/50"
+                  }`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentIndex(index);
+                  }}
+                />
+              ))}
+            </div>
+          </>
         )}
       </div>
 
-      {/* Navigation Arrows */}
-      {validImages.length > 1 && (
-        <>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70"
-            onClick={goToPrevious}
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70"
-            onClick={goToNext}
-          >
-            <ChevronRight className="h-6 w-6" />
-          </Button>
-
-          {/* Dots Indicator */}
-          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
-            {validImages.map((_, index) => (
-              <button
-                key={index}
-                className={`h-2 w-2 rounded-full transition-colors ${
-                  index === currentIndex ? "bg-white" : "bg-white/50"
-                }`}
-                onClick={() => setCurrentIndex(index)}
-              />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+      {/* Lightbox Modal */}
+      <ImageLightbox
+        images={validImages}
+        initialIndex={currentIndex}
+        open={lightboxOpen}
+        onOpenChange={setLightboxOpen}
+      />
+    </>
   );
 }

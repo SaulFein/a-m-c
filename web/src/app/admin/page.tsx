@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Plus, Wrench, Warehouse } from "lucide-react";
+import { Plus, Wrench, Warehouse, Home } from "lucide-react";
 import { getAllCars } from "@/actions/cars";
 import { Button } from "@/components/ui/button";
 import { AdminCarTable } from "./admin-car-table";
@@ -25,6 +25,21 @@ export default async function AdminPage() {
     <div className="space-y-6">
       {/* Page Management Links */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Link
+          href="/admin/home"
+          className="flex items-center gap-3 rounded-lg border p-4 transition-colors hover:bg-muted/50"
+        >
+          <div className="rounded-full bg-primary/10 p-2">
+            <Home className="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <h3 className="font-medium">Edit Home Page</h3>
+            <p className="text-sm text-muted-foreground">
+              Update photo collage and content
+            </p>
+          </div>
+        </Link>
+
         <Link
           href="/admin/service"
           className="flex items-center gap-3 rounded-lg border p-4 transition-colors hover:bg-muted/50"
