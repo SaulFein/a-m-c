@@ -1,6 +1,6 @@
 # Authentic Motorcars - Application Architecture
 
-**Last Updated:** January 31, 2025
+**Last Updated:** February 14, 2026
 
 ---
 
@@ -100,6 +100,69 @@ Single-record entities for page content:
 - **Session:** Active sessions (database strategy)
 - **VerificationToken:** Email magic links
 
+### Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    User ||--o{ Account : has
+    User ||--o{ Session : has
+    Car {
+        string make
+        string model
+        string year
+        string price
+        string miles
+        string color
+        string interiorColor
+        string engine
+        string transmission
+        string vin
+        string stockNumber
+        string highlights
+        string description
+        json picture
+        json morePictures
+        boolean sold
+    }
+    Service {
+        string description
+        json servicePictures
+        string serviceList
+        string special
+    }
+    Storage {
+        string description
+        json storagePictures
+        string serviceList
+        string special
+        string specialTitle
+    }
+    Home {
+        json picture
+        json morePictures
+        string description
+    }
+    User {
+        string email
+        string name
+        string image
+    }
+    Account {
+        string provider
+        string providerAccountId
+        string type
+    }
+    Session {
+        string sessionToken
+        datetime expires
+    }
+    VerificationToken {
+        string identifier
+        string token
+        datetime expires
+    }
+```
+
 ---
 
 ## 3. Page Routes
@@ -127,24 +190,62 @@ Single-record entities for page content:
 | `/admin/service` | Edit service content |
 | `/admin/storage` | Edit storage content |
 
+### Route Tree
+
+```mermaid
+graph TD
+    Root["/"] --> Gallery["/gallery"]
+    Root --> CarDetail["/car/[id]"]
+    Root --> Sold["/sold"]
+    Root --> Contact["/contact"]
+    Root --> Service["/service"]
+    Root --> Storage["/storage"]
+    Root --> Finance["/finance"]
+    Root --> Login["/login"]
+    Root --> Admin["/admin"]
+    Admin --> CarsNew["/admin/cars/new"]
+    Admin --> CarsEdit["/admin/cars/[id]"]
+    Admin --> AdminHome["/admin/home"]
+    Admin --> AdminService["/admin/service"]
+    Admin --> AdminStorage["/admin/storage"]
+
+    style Admin fill:#f59e0b,color:#000
+    style CarsNew fill:#f59e0b,color:#000
+    style CarsEdit fill:#f59e0b,color:#000
+    style AdminHome fill:#f59e0b,color:#000
+    style AdminService fill:#f59e0b,color:#000
+    style AdminStorage fill:#f59e0b,color:#000
+```
+
+_Orange nodes are protected admin routes._
+
 ---
 
 ## 4. Authentication Flow
 
-```
-User visits /admin
-    ↓
-layout.tsx calls auth()
-    ↓
-No session? → redirect to /login
-    ↓
-User signs in (Google OAuth or Email magic link)
-    ↓
-Auth.js checks if email is in ADMIN_EMAILS env var
-    ↓
-Not in list? → redirect to /login?error=AccessDenied
-    ↓
-In list? → Create session in MongoDB → Allow access
+```mermaid
+sequenceDiagram
+    participant User
+    participant Admin as /admin layout.tsx
+    participant Auth as Auth.js
+    participant DB as MongoDB
+
+    User->>Admin: Visit /admin
+    Admin->>Auth: Check session (auth())
+    alt No session
+        Auth-->>User: Redirect to /login
+        User->>Auth: Sign in (Google OAuth or Email magic link)
+        Auth->>Auth: Check email against ADMIN_EMAILS
+        alt Authorized
+            Auth->>DB: Create session
+            Auth-->>User: Allow access to /admin
+        else Not authorized
+            Auth-->>User: Redirect to /login?error=AccessDenied
+        end
+    else Valid session
+        Auth-->>Admin: Session valid
+        Admin-->>User: Render admin page
+    end
 ```
 
 **Key Files:**
@@ -230,18 +331,20 @@ async function onSubmit(data: CarFormInput) {
 ## 7. Image Handling (Filestack)
 
 ### Upload Flow
-```
-User clicks "Upload" button
-    ↓
-FilestackUpload component opens Filestack picker
-    ↓
-User selects/uploads images
-    ↓
-Filestack returns file metadata (url, handle, filename, etc.)
-    ↓
-Component calls onChange with file data
-    ↓
-Form stores as JSON in database
+```mermaid
+sequenceDiagram
+    participant User
+    participant Component as FilestackUpload
+    participant Filestack as Filestack CDN
+    participant Form as Form State
+    participant DB as MongoDB
+
+    User->>Component: Click "Upload" button
+    Component->>Filestack: Open picker widget
+    User->>Filestack: Select / upload images
+    Filestack-->>Component: Return file metadata (url, handle, filename)
+    Component->>Form: Call onChange with file data
+    Form->>DB: Save as JSON on submit
 ```
 
 ### URL Building
@@ -381,21 +484,12 @@ npx prisma db push   # Sync schema to database
 
 ## 12. Deployment Architecture
 
-```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│   User Browser  │────▶│   Cloudflare    │────▶│     Heroku      │
-│                 │     │   (DNS + CDN)   │     │   (Next.js)     │
-└─────────────────┘     └─────────────────┘     └─────────────────┘
-                                                        │
-                        ┌─────────────────┐            │
-                        │  MongoDB Atlas  │◀───────────┘
-                        │   (Database)    │
-                        └─────────────────┘
-
-                        ┌─────────────────┐
-                        │    Filestack    │◀─── Images
-                        │     (CDN)       │
-                        └─────────────────┘
+```mermaid
+graph LR
+    Browser[User Browser] --> Cloudflare[Cloudflare<br/>DNS + CDN]
+    Cloudflare --> Heroku[Heroku<br/>Next.js App]
+    Heroku --> MongoDB[MongoDB Atlas<br/>Database]
+    Heroku --> Filestack[Filestack<br/>Image CDN]
 ```
 
 ### DNS Configuration (Cloudflare)

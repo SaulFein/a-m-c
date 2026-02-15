@@ -9,6 +9,7 @@ This file provides context and instructions for Claude Code when working on this
 **Authentic Motorcars** - A car dealership website built with Next.js 16 (App Router), TypeScript, Prisma/MongoDB, and Auth.js.
 
 - **Main documentation:** `ARCHITECTURE.md` (keep this updated!)
+- **Visual overview:** `PROJECT_OVERVIEW.md` (non-technical summary with mermaid diagrams)
 - **DNS migration status:** `../DNS_MIGRATION_PROGRESS.md`
 
 ---
@@ -26,9 +27,12 @@ This file provides context and instructions for Claude Code when working on this
 - Changing the deployment or infrastructure setup
 
 ### How to update
+Use the `doc-keeper` agent to scan for drift and update both `ARCHITECTURE.md` and `PROJECT_OVERVIEW.md` automatically. It compares routes, models, actions, components, deps, and env vars against what's documented.
+
+For manual updates:
 1. Read the current `ARCHITECTURE.md`
 2. Identify what sections need changes
-3. Update the relevant sections
+3. Update the relevant sections (use mermaid diagrams for visual representations)
 4. Update the "Last Updated" date at the top
 
 ---
@@ -83,7 +87,8 @@ This file provides context and instructions for Claude Code when working on this
 
 | File | Purpose |
 |------|---------|
-| `ARCHITECTURE.md` | Full app documentation (keep updated!) |
+| `ARCHITECTURE.md` | Full app documentation with mermaid diagrams (keep updated!) |
+| `PROJECT_OVERVIEW.md` | Visual non-technical overview with mermaid diagrams |
 | `HOW_TO_RUN.md` | Local development setup guide |
 | `../DNS_MIGRATION_PROGRESS.md` | DNS migration checklist |
 | `../DNS_MIGRATION_GUIDE.md` | Step-by-step DNS migration instructions |
