@@ -10,7 +10,7 @@ This file provides context and instructions for Claude Code when working on this
 
 - **Main documentation:** `ARCHITECTURE.md` (keep this updated!)
 - **Visual overview:** `PROJECT_OVERVIEW.md` (non-technical summary with mermaid diagrams)
-- **DNS migration status:** `../DNS_MIGRATION_PROGRESS.md`
+- **DNS migration guide:** `../DNS_MIGRATION_GUIDE.md`
 
 ---
 
@@ -90,6 +90,5 @@ For manual updates:
 | `ARCHITECTURE.md` | Full app documentation with mermaid diagrams (keep updated!) |
 | `PROJECT_OVERVIEW.md` | Visual non-technical overview with mermaid diagrams |
 | `HOW_TO_RUN.md` | Local development setup guide |
-| `../DNS_MIGRATION_PROGRESS.md` | DNS migration checklist |
-| `../DNS_MIGRATION_GUIDE.md` | Step-by-step DNS migration instructions |
+| `../DNS_MIGRATION_GUIDE.md` | DNS migration instructions (completed Feb 2025) |
 | `.env.example` | Environment variable template |
