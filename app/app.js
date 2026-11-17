@@ -131,8 +131,11 @@ app
     "$location",
     "$window",
     function ($rootScope, $location, $window) {
-      $rootScope.$on("$routeChangeSuccess", function () {
+      $rootScope.$on("$routeChangeSuccess", function (event, current) {
         if (typeof $window.gtag !== "function") return;
+        // Redirect routes (e.g. /gallery -> /gallery/) also fire this event;
+        // skip them so each page is counted once.
+        if (current && current.redirectTo) return;
         $window.gtag("event", "page_view", {
           page_location:
             $window.location.origin + $location.path() + $window.location.search,
