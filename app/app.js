@@ -123,7 +123,25 @@ app
       filepickerProvider.setKey("AS2OofL0jSaWHwlvlGpt4z");
     },
   ])
-  // .run(['Analytics', function(Analytics) {}])
+  // Send a GA4 page view on every route change. The app uses hash routes
+  // (/#/detail/123), so the route is turned into a normal path for reporting.
+  // location.search keeps UTM tags from QR codes, e.g. /?utm_source=qr#/detail/123
+  .run([
+    "$rootScope",
+    "$location",
+    "$window",
+    function ($rootScope, $location, $window) {
+      $rootScope.$on("$routeChangeSuccess", function () {
+        if (typeof $window.gtag !== "function") return;
+        $window.gtag("event", "page_view", {
+          page_location:
+            $window.location.origin + $location.path() + $window.location.search,
+          page_path: $location.path(),
+          page_title: $window.document.title,
+        });
+      });
+    },
+  ])
   .directive("routeLoadingIndicator", [
     "$rootScope",
     function ($rootScope) {

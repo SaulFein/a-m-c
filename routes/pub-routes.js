@@ -40,7 +40,6 @@ module.exports = (router, models) => {
         //Query the DB and if no errors, send all the cars
         var query = Car.find({});
         query.exec(function(err, cars){
-          console.log("this is cars " + cars);
             if(err)  res.send(err);
             //If no errors, send them back to the client
             res.json(cars);

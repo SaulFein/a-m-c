@@ -25,6 +25,14 @@
 	<link href="./bower_components/angular-toastr/dist/angular-toastr.css" rel="stylesheet" />
 	<link data-require="font-awesome@*" data-semver="4.1.0" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Google Analytics 4. Page views are sent from app.js on each route change. -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6H9NL7Q2F0"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-6H9NL7Q2F0', { send_page_view: false });
+	</script>
 </head>
 
 <!-- JS libraries -->
